@@ -13,20 +13,20 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.api) : super(InitLoginState());
   ServiceApi api;
 
-  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController passwprdController = TextEditingController();
 
   int currentUser = 2; // 1 driver  2  user
 
-  toggleDriver() {
-    currentUser = 1;
-    emit(DriverState());
-  }
+  // toggleDriver() {
+  //   currentUser = 1;
+  //   emit(DriverState());
+  // }
 
-  toggleUser() {
-    currentUser = 2;
-    emit(UserState());
-  }
+  // toggleUser() {
+  //   currentUser = 2;
+  //   emit(UserState());
+  // }
 
   bool isPassword = true;
 
@@ -37,13 +37,13 @@ class LoginCubit extends Cubit<LoginState> {
 
   var formKey = GlobalKey<FormState>();
   LoginModel? userModel;
-  loginAuth(BuildContext context) async {
+  loginAuth(BuildContext context, String type) async {
     var pref = await SharedPreferences.getInstance();
     emit(LoadingLoginAuth());
     final response = await api.loginAuth(
-        email: emailController.text,
+        phone: phoneController.text,
         password: passwprdController.text,
-        type: currentUser == 2 ? "user" : "driver");
+        type: type);
     response.fold((l) {
       emit(ErrorLoginAuth());
     }, (r) {
@@ -64,7 +64,7 @@ class LoginCubit extends Cubit<LoginState> {
                 );
           successGetBar(r.message);
         });
-        emailController.clear();
+        phoneController.clear();
         passwprdController.clear();
         pref.setBool('onBoarding', true);
         emit(LoadedLoginAuth());
