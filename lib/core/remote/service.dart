@@ -15,7 +15,7 @@ class ServiceApi {
 
   ServiceApi(this.dio);
   Future<Either<Failure, LoginModel>> loginAuth({
-    required String email,
+    required String phone,
     required String password,
     required String type,
   }) async {
@@ -25,7 +25,7 @@ class ServiceApi {
       var response = await dio.post(
         EndPoints.loginUrl,
         body: {
-          "email": email,
+          "phone": phone,
           "password": password,
           "type": type,
         },

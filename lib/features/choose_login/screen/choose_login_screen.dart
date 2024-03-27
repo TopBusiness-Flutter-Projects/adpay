@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../config/routes/app_routes.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/assets_manager.dart';
 import '../../../core/utils/get_size.dart';
@@ -17,6 +18,8 @@ class _ChooseloginScreenState extends State<ChooseloginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        // leading: ,
         title: Container(
           width: double.infinity,
           child: Text(
@@ -35,21 +38,29 @@ class _ChooseloginScreenState extends State<ChooseloginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.secondPrimary2,
+            InkWell(
+              onTap: () => Navigator.pushNamed(context, Routes.loginRoute,
+                  arguments: 'vendor'),
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.secondPrimary2,
+                ),
+                height: getSize(context) / 3,
+                child: Image.asset(ImageAssets.partnerImage),
               ),
-              height: getSize(context) / 3,
-              child: Image.asset(ImageAssets.partnerImage),
             ),
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.secondPrimary2,
+            InkWell(
+              onTap: () => Navigator.pushNamed(context, Routes.loginRoute,
+                  arguments: 'user'),
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.secondPrimary2,
+                ),
+                height: getSize(context) / 3,
+                child: Image.asset(ImageAssets.customerImage),
               ),
-              height: getSize(context) / 3,
-              child: Image.asset(ImageAssets.customerImage),
             ),
           ],
         ),

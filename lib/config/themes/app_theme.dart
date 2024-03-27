@@ -7,9 +7,8 @@ ThemeData appTheme() {
   return ThemeData(
     primaryColor: AppColors.primary,
     hintColor: AppColors.hint,
-
     brightness: Brightness.light,
-    // scaffoldBackgroundColor: AppColors.scaffoldBackground,
+    scaffoldBackgroundColor: AppColors.white,
     fontFamily: AppStrings.fontFamily,
     textTheme: const TextTheme(
       bodyMedium: TextStyle(
@@ -21,7 +20,7 @@ ThemeData appTheme() {
     appBarTheme: AppBarTheme(
       centerTitle: true,
       elevation: 0.0,
-      backgroundColor: AppColors.transparent,
+      backgroundColor: AppColors.white,
       titleTextStyle: const TextStyle(
         fontSize: 22.0,
         letterSpacing: 1.5,

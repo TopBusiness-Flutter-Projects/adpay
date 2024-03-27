@@ -42,7 +42,6 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (context) => const SplashScreen(),
         );
-
       case Routes.homeRoute:
         return PageTransition(
           type: PageTransitionType.fade,
@@ -65,11 +64,12 @@ class AppRoutes {
           child: OnBoardinScreen(),
         );
       case Routes.loginRoute:
+        String id = settings.arguments as String;
         return PageTransition(
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: LoginScreen(),
+          child: LoginScreen(id: id),
         );
       case Routes.choosLogin:
         return PageTransition(

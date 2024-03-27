@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/api/app_interceptors.dart';
 import 'core/api/base_api_consumer.dart';
 import 'core/api/dio_consumer.dart';
+import 'features/login/cubit/cubit.dart';
 
 // import 'features/downloads_videos/cubit/downloads_videos_cubit.dart';
 
@@ -19,82 +20,81 @@ Future<void> setup() async {
   ///////////////////////// Blocs ////////////////////////
   //
   serviceLocator.registerFactory(() => OnboardingCubit(
-          // serviceLocator(),
-          )
+      // serviceLocator(),
+      ));
 
-      // serviceLocator.registerFactory(
-      //   () => LoginCubit(
-      //     serviceLocator(),
-      //   ),
-      // );
-      // serviceLocator.registerFactory(
-      //       () => GoogleMapsCubit(
-      //    // serviceLocator(),
-      //   ),
-      // );
-      // serviceLocator.registerFactory(
-      //   () => ProfileCubit(
-      //      serviceLocator(),
-      //   ),
-      // );
-      // serviceLocator.registerFactory(
-      //   () => FavoriteCubit(
-      //     serviceLocator(),
-      //   ),
-      // );
-      // serviceLocator.registerFactory(
-      //   () => HomeCubit(
-      //     serviceLocator(),
-      //   ),
-      // );
-      // serviceLocator.registerFactory(
-      //   () => PostsCubit(
-      //     serviceLocator(),
-      //   ),
-      // );
-      // serviceLocator.registerFactory(
-      //       () => EditProfileCubit(
-      //     serviceLocator(),
-      //   ),
-      //
-      // );
-      // serviceLocator.registerFactory(
-      //       () => MyPostsCubit(
-      //     serviceLocator(),
-      //   ),
-      //
-      // );
-      // serviceLocator.registerFactory(
-      //       () => AddServiceCubit(
-      //     serviceLocator(),
-      //   ),
-      //
-      // );
-      // serviceLocator.registerFactory(
-      //       () => DetailsCubit(
-      //     serviceLocator(),
-      //   ),
-      //
-      // );
-      //
-      // serviceLocator.registerFactory(
-      //       () => PrivacyCubit(
-      //     serviceLocator(),
-      //   ),
-      //
-      // );
-      // serviceLocator.registerFactory(
-      //       () => ContactUsCubit(
-      //     serviceLocator(),
-      //   ),
-      //
-      // );
-      // serviceLocator.registerFactory(
-      //       () => NottificationCubit(
-      //     serviceLocator(),
-      //   ),
-      //
-      );
+  serviceLocator.registerFactory(
+    () => LoginCubit(
+      serviceLocator(),
+    ),
+  );
+  // serviceLocator.registerFactory(
+  //       () => GoogleMapsCubit(
+  //    // serviceLocator(),
+  //   ),
+  // );
+  // serviceLocator.registerFactory(
+  //   () => ProfileCubit(
+  //      serviceLocator(),
+  //   ),
+  // );
+  // serviceLocator.registerFactory(
+  //   () => FavoriteCubit(
+  //     serviceLocator(),
+  //   ),
+  // );
+  // serviceLocator.registerFactory(
+  //   () => HomeCubit(
+  //     serviceLocator(),
+  //   ),
+  // );
+  // serviceLocator.registerFactory(
+  //   () => PostsCubit(
+  //     serviceLocator(),
+  //   ),
+  // );
+  // serviceLocator.registerFactory(
+  //       () => EditProfileCubit(
+  //     serviceLocator(),
+  //   ),
+  //
+  // );
+  // serviceLocator.registerFactory(
+  //       () => MyPostsCubit(
+  //     serviceLocator(),
+  //   ),
+  //
+  // );
+  // serviceLocator.registerFactory(
+  //       () => AddServiceCubit(
+  //     serviceLocator(),
+  //   ),
+  //
+  // );
+  // serviceLocator.registerFactory(
+  //       () => DetailsCubit(
+  //     serviceLocator(),
+  //   ),
+  //
+  // );
+  //
+  // serviceLocator.registerFactory(
+  //       () => PrivacyCubit(
+  //     serviceLocator(),
+  //   ),
+  //
+  // );
+  // serviceLocator.registerFactory(
+  //       () => ContactUsCubit(
+  //     serviceLocator(),
+  //   ),
+  //
+  // );
+  // serviceLocator.registerFactory(
+  //       () => NottificationCubit(
+  //     serviceLocator(),
+  //   ),
+  //
 
   ///////////////////////////////////////////////////////////////////////////////
 
