@@ -10,6 +10,7 @@ import 'core/utils/app_strings.dart';
 import 'package:adpay/injector.dart' as injector;
 
 import 'features/login/cubit/cubit.dart';
+import 'features/vendor_sign_up/cubit/cubit.dart';
 
 class Adpay extends StatefulWidget {
   const Adpay({Key? key}) : super(key: key);
@@ -40,6 +41,9 @@ class _AdpayState extends State<Adpay> {
           ),
           BlocProvider(
             create: (_) => injector.serviceLocator<LoginCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<SignUpVendorCubit>(),
           ),
           // BlocProvider(
           //   create: (_) => injector.serviceLocator<HomeCubit>(),

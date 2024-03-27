@@ -30,9 +30,9 @@ class CustomTextField extends StatelessWidget {
         Container(
           child: Text(title,
               style: TextStyle(
-                color: AppColors.grayColor,
-                fontWeight: FontWeight.bold,
-              )),
+                  color: AppColors.grayColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: getSize(context) / 20)),
         ),
         SizedBox(height: getSize(context) / 88),
         Padding(

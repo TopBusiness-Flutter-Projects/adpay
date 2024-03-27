@@ -16,5 +16,7 @@
   "phone": "رقم الجوال",
   "enter_phone": "ادخل رقم الجوال",
   "don't_have_an_account": "ليس لديك حساب معنا ؟",
-  "forget_password": "هل نسيت كلمة المرور ؟"
+  "forget_password": "هل نسيت كلمة المرور ؟",
+  "personal_info":"البيانات الشخصية",
+  "market_info":"بيانات المتجر"
 }
