@@ -16,5 +16,8 @@
      "enter_password": "enter password",
      "enter_phone": "enter phone number",
      "don't_have_an_account": "don't have an account?",
-     "forget_password": "forget password ?"
+     "forget_password": "forget password ?",
+
+     "personal_info":"personal info",
+     "market_info":"market info"
 }

@@ -1,8 +1,11 @@
+import 'package:adpay/config/routes/app_routes.dart';
 import 'package:adpay/features/login/cubit/cubit.dart';
 import 'package:adpay/features/login/cubit/state.dart';
 import 'package:adpay/features/login/widgets/custom_text_field.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/app_colors.dart';
@@ -30,7 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
             centerTitle: false,
             title: Text(
               'login'.tr(),
-              style: TextStyle(color: AppColors.grayColor),
+              style: TextStyle(
+                  color: AppColors.grayColor, fontWeight: FontWeight.w700),
             ),
           ),
           body: ListView(
@@ -69,6 +73,78 @@ class _LoginScreenState extends State<LoginScreen> {
                 hintTitle: 'enter_password'.tr(),
                 message: 'enter_password'.tr(),
                 keyboardType: TextInputType.visiblePassword,
+              ),
+              SizedBox(
+                height: getSize(context) / 22,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, Routes.forgetPassword);
+                  //!
+                },
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'forget_password'.tr(),
+                    style: TextStyle(
+                        color: AppColors.secondPrimary,
+                        fontWeight: FontWeight.w400,
+                        fontSize: getSize(context) / 28),
+                  ),
+                ),
+              ),
+              SizedBox(height: getSize(context) / 12),
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  margin:
+                      EdgeInsets.symmetric(horizontal: getSize(context) / 22),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getSize(context) / 22, vertical: 5),
+                  decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius:
+                          BorderRadius.circular(getSize(context) / 12)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 2.0),
+                    child: Text(
+                      'login'.tr(),
+                      style: TextStyle(
+                          color: Colors.white, fontSize: getSize(context) / 18),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: getSize(context) / 6),
+              Container(
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "${'don\'t_have_an_account'.tr()} ",
+                      style: TextStyle(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.w400,
+                          fontSize: getSize(context) / 24),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.vendorSignUp);
+
+                        //TODO:  nav to signup
+                      },
+                      child: Text(
+                        'signup'.tr(),
+                        style: TextStyle(
+                            color: AppColors.secondPrimary,
+                            fontWeight: FontWeight.w400,
+                            fontSize: getSize(context) / 24),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

@@ -6,8 +6,10 @@ import 'package:page_transition/page_transition.dart';
 
 import '../../core/utils/app_strings.dart';
 import '../../features/choose_login/screen/choose_login_screen.dart';
+import '../../features/forget_password/screen/forget_pass.dart';
 import '../../features/login/screen/login_screen.dart';
 import '../../features/on_boarding/screen/onboarding_screen.dart';
+import '../../features/vendor_sign_up/screen/vendor_sign_up.dart';
 
 class Routes {
   static const String initialRoute = '/';
@@ -16,6 +18,8 @@ class Routes {
   static const String homeRouteDriver = '/homescreendriver';
   static const String onboarding = '/onboardinscreen';
   static const String choosLogin = '/choosLoginscreen';
+  static const String forgetPassword = '/forgetPassword';
+  static const String vendorSignUp = '/vendorSignUp';
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
 //   static const String registerScreenRoute = '/registerScreen';
@@ -77,6 +81,20 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: ChooseloginScreen(),
+        );
+      case Routes.forgetPassword:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: ForgetPasswordScreen(),
+        );
+      case Routes.vendorSignUp:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: VendorSignupScreen(),
         );
       default:
         return undefinedRoute();

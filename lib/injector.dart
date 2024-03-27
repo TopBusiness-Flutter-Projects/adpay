@@ -9,6 +9,7 @@ import 'core/api/app_interceptors.dart';
 import 'core/api/base_api_consumer.dart';
 import 'core/api/dio_consumer.dart';
 import 'features/login/cubit/cubit.dart';
+import 'features/vendor_sign_up/cubit/cubit.dart';
 
 // import 'features/downloads_videos/cubit/downloads_videos_cubit.dart';
 
@@ -25,6 +26,11 @@ Future<void> setup() async {
 
   serviceLocator.registerFactory(
     () => LoginCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+    () => SignUpVendorCubit(
       serviceLocator(),
     ),
   );
