@@ -11,6 +11,7 @@ class ImageAssets {
   static const String topBbusiness = '$imagePath/top.png';
   static const String storeIcon = '$imagePath/store_icon.png';
   static const String introBackgroundImage = '$imagePath/intro_background.png';
+  static const String uImage = '$imagePath/u_image.png';
   static const String introBackgroundImage2 =
       '$imagePath/intro_background2.png';
   static const String introBackgroundImage3 =
