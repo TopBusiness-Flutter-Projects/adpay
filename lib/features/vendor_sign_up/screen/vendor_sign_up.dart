@@ -1,11 +1,12 @@
 import 'package:adpay/core/utils/app_colors.dart';
 import 'package:adpay/features/vendor_sign_up/cubit/cubit.dart';
 import 'package:adpay/features/vendor_sign_up/cubit/state.dart';
+import 'package:adpay/features/vendor_sign_up/widget/user_info.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../widget/store_info.dart';
 import '../widget/tab_widget.dart';
 
 class VendorSignupScreen extends StatefulWidget {
@@ -48,8 +49,12 @@ class _VendorSignupScreenState extends State<VendorSignupScreen> {
                           isSelected: cubit.isPersonalType)),
                   GestureDetector(
                       onTap: () {
-                        cubit.setSignUpPageType(false);
-                        print(cubit.isPersonalType);
+                        setState(() {
+                          if (cubit.selectedOption == 1) {
+                            cubit.setSignUpPageType(false);
+                            print(cubit.isPersonalType);
+                          } else {}
+                        });
                       },
                       child: SignUpTabBar(
                           isRight: false,
@@ -58,13 +63,10 @@ class _VendorSignupScreenState extends State<VendorSignupScreen> {
                 ],
               ),
               Flexible(
-                  child: cubit.isPersonalType
-                      ? Center(
-                          child: Text('personal_info'.tr()),
-                        )
-                      : Center(
-                          child: Text('market_info'.tr()),
-                        ))
+                child: cubit.isPersonalType
+                    ? UserInfoWidget(cubit: cubit)
+                    : StoreInfoWidget(cubit: cubit),
+              )
             ],
           ),
         );
