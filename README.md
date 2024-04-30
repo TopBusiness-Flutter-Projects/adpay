@@ -1,14 +1,13 @@
-<div style="display: flex; justify-content: center; margin-top: 1rem">
-    <img src="public/adpay-favicon.png" alt="ADPAY">
+<div align="center">
+    <img align="center" src="https://adpay.topbusiness.io/adpay-favicon.png" alt="ADPAY">
 </div>
 
-<div style="display: flex; justify-content: center; margin-top: 1rem">
+<div align="center">
     <h1>
         ADPAY MOBILE APPLICATION
     </h1>
 </div>
 
-***
 
 ### REQUIREMENTS : 
 
