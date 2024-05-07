@@ -39,7 +39,6 @@ class DioConsumer implements BaseApiConsumer {
       client.interceptors.add(injector.serviceLocator<LogInterceptor>());
     }
   }
-
   @override
   Future get(String path,
       {Map<String, dynamic>? queryParameters, Options? options}) async {

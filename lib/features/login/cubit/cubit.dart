@@ -29,7 +29,7 @@ class LoginCubit extends Cubit<LoginState> {
   // }
 
   bool isPassword = true;
-
+  String? Devicetoken;
   togglePassword() {
     isPassword = !isPassword;
     emit(ChangePasswordState());
@@ -37,41 +37,102 @@ class LoginCubit extends Cubit<LoginState> {
 
   var formKey = GlobalKey<FormState>();
   LoginModel? userModel;
-  loginAuth(BuildContext context, String type) async {
+  // void loginValidate() {
+  //   if (formKey.currentState!.validate()) {
+  //     loginAuth(context);
+  //   }
+  // }
+  Future<void>loginAuth(BuildContext context) async {
+
+    var pref = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Devicetoken  = prefs.getString('checkUser' ?? "");
+      emit(LoadingLoginAuth());
+      final response = await api.loginAuth(
+          phone: phoneController.text,
+          password: passwprdController.text,
+          device_token: '$Devicetoken');
+      //
+      response.fold((l) {
+        emit(ErrorLoginAuth());
+      }, (r) async {
+          print("loaded");
+          emit(LoadedLoginAuth());
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('auth-token', r.data!.token.toString() ?? "");
+          Preferences.instance.setUser(r).then((value) {
+            userModel = r;
+            (userModel!.data!.type == 'user' &&
+                userModel!.data!.type!= null)
+                ? Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.homeRoute,
+                  (route) => false,
+            )
+                : Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.homeRouteDriver,
+                  (route) => false,
+            );
+            successGetBar(r.msg);
+          });
+        //  phoneController.clear();
+        //  passwprdController.clear();
+          pref.setBool('onBoarding', true);
+        // } else {
+        //   errorGetBar(r.message ?? "");
+        //   emit(ErrorLoginAuth());
+        // }
+      });
+
+    }
+  Future<void>CheckUser(BuildContext context) async {
+
     var pref = await SharedPreferences.getInstance();
     emit(LoadingLoginAuth());
-    final response = await api.loginAuth(
+    final response = await api.CheckUser(
         phone: phoneController.text,
-        password: passwprdController.text,
-        type: type);
+      );
+    //
     response.fold((l) {
       emit(ErrorLoginAuth());
-    }, (r) {
-      if (r.code == 200) {
-        Preferences.instance.setUser(r).then((value) {
-          userModel = r;
-          (userModel!.data!.user!.type == 'user' &&
-                  userModel!.data!.user!.userType != null)
-              ? Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  Routes.homeRoute,
-                  (route) => false,
-                )
-              : Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  Routes.homeRouteDriver,
-                  (route) => false,
-                );
-          successGetBar(r.message);
-        });
-        phoneController.clear();
-        passwprdController.clear();
-        pref.setBool('onBoarding', true);
-        emit(LoadedLoginAuth());
-      } else {
-        errorGetBar(r.message ?? "");
-        emit(ErrorLoginAuth());
-      }
+    }, (r) async {
+
+      print("loaded");
+      emit(LoadedLoginAuth());
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('checkUser', r.data!.deviceToken.toString() ?? "");
+      prefs.setString('name', r.data!.name.toString() ?? "");
+
+      loginAuth(context);
+      // Preferences.instance.setUser(r).then((value) {
+      //   userModel = r;
+      //   (userModel!.data!.type == 'user' &&
+      //       userModel!.data!.type!= null)
+      //       ? Navigator.pushNamedAndRemoveUntil(
+      //     context,
+      //     Routes.homeRoute,
+      //         (route) => false,
+      //   )
+      //       : Navigator.pushNamedAndRemoveUntil(
+      //     context,
+      //     Routes.homeRouteDriver,
+      //         (route) => false,
+      //   );
+      //   successGetBar(r.msg);
+      // });
+      //  phoneController.clear();
+      //  passwprdController.clear();
+      pref.setBool('onBoarding', true);
+      // } else {
+      //   errorGetBar(r.message ?? "");
+      //   emit(ErrorLoginAuth());
+      // }
     });
   }
+
+
+
 }
+

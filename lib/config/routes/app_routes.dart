@@ -1,5 +1,3 @@
-import 'package:adpay/features/home_screen/screen/home_screen.dart';
-import 'package:adpay/features/home_screen_driver/screen/home_screen_driver.dart';
 import 'package:flutter/material.dart';
 import 'package:adpay/features/splash/screens/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -7,6 +5,8 @@ import 'package:page_transition/page_transition.dart';
 import '../../core/utils/app_strings.dart';
 import '../../features/choose_login/screen/choose_login_screen.dart';
 import '../../features/forget_password/screen/forget_pass.dart';
+import '../../features/home_screen/presentation/screen/home_screen.dart';
+import '../../features/home_screen_provider/screen/home_screen_driver.dart';
 import '../../features/login/screen/login_screen.dart';
 import '../../features/on_boarding/screen/onboarding_screen.dart';
 import '../../features/vendor_sign_up/screen/vendor_sign_up.dart';

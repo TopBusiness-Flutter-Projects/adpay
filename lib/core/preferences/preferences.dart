@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/checkUser_model.dart';
 import '../models/login_model.dart';
 import '../utils/app_strings.dart';
 
@@ -29,7 +30,26 @@ class Preferences {
         'user', jsonEncode(LoginModel.fromJson(loginModel.toJson())));
     print(await getUserModel());
   }
-
+  //set checkuser
+  Future<void> setCheckUser(CheckUserModel checkUserModel) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString(
+        'CheckUser', jsonEncode(CheckUserModel.fromJson(checkUserModel.toJson())));
+    print(await getUserModel());
+  }
+//get user
+  Future<CheckUserModel> getCheckUser() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? jsonData = preferences.getString('CheckUser');
+    CheckUserModel checkuserModel;
+    if (jsonData != null) {
+      checkuserModel = CheckUserModel.fromJson(jsonDecode(jsonData));
+    } else {
+      checkuserModel = CheckUserModel();
+    }
+    return checkuserModel;
+  }
+  //clear
   Future<void> clearShared() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.clear();

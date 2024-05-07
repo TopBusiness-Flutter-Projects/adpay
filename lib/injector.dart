@@ -1,3 +1,4 @@
+import 'package:adpay/features/home_screen/presentation/controller/home_cubit.dart';
 import 'package:adpay/features/on_boarding/cubit/onboarding_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -34,11 +35,11 @@ Future<void> setup() async {
       serviceLocator(),
     ),
   );
-  // serviceLocator.registerFactory(
-  //       () => GoogleMapsCubit(
-  //    // serviceLocator(),
-  //   ),
-  // );
+  serviceLocator.registerFactory(
+        () => HomeCubit(
+     serviceLocator(),
+    ),
+  );
   // serviceLocator.registerFactory(
   //   () => ProfileCubit(
   //      serviceLocator(),
@@ -96,11 +97,6 @@ Future<void> setup() async {
   //   ),
   //
   // );
-  // serviceLocator.registerFactory(
-  //       () => NottificationCubit(
-  //     serviceLocator(),
-  //   ),
-  //
 
   ///////////////////////////////////////////////////////////////////////////////
 

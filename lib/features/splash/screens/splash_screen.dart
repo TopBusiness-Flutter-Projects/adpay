@@ -38,8 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (prefs.getBool('onBoarding') == true) {
       if (prefs.getString('user') != null) {
         Preferences.instance.getUserModel().then((value) {
-          if (value.data!.user!.type == 'user' &&
-              value.data!.user!.userType != null) {
+          if (value.data!.type == 'user' ) {
             Navigator.pushNamedAndRemoveUntil(
               context,
               Routes.homeRoute,

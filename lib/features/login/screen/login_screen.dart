@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/assets_manager.dart';
@@ -24,7 +25,19 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is LoadingLoginAuth) {
+          EasyLoading.show(status: 'loading...');
+        }   else if (state is LoadedLoginAuth) {
+          EasyLoading.dismiss();
+          EasyLoading.showSuccess('Login Success');
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //       builder: (context) => Container()),
+          // );
+        } else if (state is ErrorLoginAuth) {
+          EasyLoading.showError("state.toString()");
+        }
       },
       builder: (context, state) {
         var cubit = context.read<LoginCubit>();
@@ -95,7 +108,11 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: getSize(context) / 12),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  print("screen");
+               //   cubit.loginAuth(context);
+                  cubit.CheckUser(context);
+                },
                 child: Container(
                   margin:
                       EdgeInsets.symmetric(horizontal: getSize(context) / 22),

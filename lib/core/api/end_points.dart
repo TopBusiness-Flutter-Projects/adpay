@@ -1,6 +1,7 @@
 class EndPoints {
-  static const String baseUrl = 'https://khdamat.topbusiness.io/api/';
+  static const String baseUrl = 'https://adpay.topbusiness.io/api/';
   static const String loginUrl = '${baseUrl}auth/login';
+  static const String CheckUser = '${baseUrl}auth/checkUser';
   static const String homeUrl = '${baseUrl}home';
   // static const String citiesUrl = '${baseUrl}cities';
   // static const String servicesUrl = '${baseUrl}services/';

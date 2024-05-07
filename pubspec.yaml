@@ -55,6 +55,10 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   mobkit_dashed_border: ^0.0.6
   dropdown_button2: ^2.3.9
+  flutter_easyloading: ^3.0.5
+  shimmer: ^3.0.0
+  conditional_builder_null_safety: ^0.0.6
+  card_swiper: ^3.0.1
 
 dev_dependencies:
   flutter_test:
