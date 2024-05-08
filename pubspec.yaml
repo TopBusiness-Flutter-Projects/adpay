@@ -59,6 +59,7 @@ dependencies:
   shimmer: ^3.0.0
   conditional_builder_null_safety: ^0.0.6
   card_swiper: ^3.0.1
+  flutter_screenutil: ^5.9.0
 
 dev_dependencies:
   flutter_test:

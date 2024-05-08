@@ -37,7 +37,19 @@
   "add_sub_categoty":"اضف تصنيف",
 
   "store_logo":"لوجو المتجر",
-  "banner_logo":"لوجو البانر"
+  "banner_logo":"لوجو البانر",
+"advertisements": "الاعلانات",
+  "advertisement": "اعلان",
 
-
+  "Categories": "التصنيفات",
+  "all": "الكل",
+  "hello": "اهلا بك",
+  "search": "ايحث عن منتجك",
+  "BsetSeller": "الاكثر مبيعا",
+  "theShop": "المتجر",
+  "garage": "الجراج",
+  "products": "المنتجات",
+  "birthday": "عيدك عندنا",
+  "Discounts": "تخفيضات علي كل ملابس الاطفال",
+  "AdvertisementStore": "اعلان.متجر الاصيل"
 }
