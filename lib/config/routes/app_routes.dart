@@ -1,5 +1,3 @@
-import 'package:adpay/features/home_screen/screen/home_screen.dart';
-import 'package:adpay/features/home_screen_driver/screen/home_screen_driver.dart';
 import 'package:flutter/material.dart';
 import 'package:adpay/features/splash/screens/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -7,6 +5,9 @@ import 'package:page_transition/page_transition.dart';
 import '../../core/utils/app_strings.dart';
 import '../../features/choose_login/screen/choose_login_screen.dart';
 import '../../features/forget_password/screen/forget_pass.dart';
+import '../../features/home_screen/presentation/screen/Categories.dart';
+import '../../features/home_screen/presentation/screen/home_screen.dart';
+import '../../features/home_screen_provider/screen/home_screen_driver.dart';
 import '../../features/login/screen/login_screen.dart';
 import '../../features/on_boarding/screen/onboarding_screen.dart';
 import '../../features/vendor_sign_up/screen/vendor_sign_up.dart';
@@ -14,6 +15,8 @@ import '../../features/vendor_sign_up/screen/vendor_sign_up.dart';
 class Routes {
   static const String initialRoute = '/';
   static const String loginRoute = '/login';
+  static const String CategoriesRoute = '/categories'; // Change this line
+
   static const String homeRoute = '/home';
   static const String homeRouteDriver = '/homescreendriver';
   static const String onboarding = '/onboardinscreen';
@@ -42,6 +45,13 @@ class AppRoutes {
 
   static Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case Routes.CategoriesRoute: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: Catogreisss(), // Replace with your category screen widget
+        );
       case Routes.initialRoute:
         return MaterialPageRoute(
           builder: (context) => const SplashScreen(),
@@ -75,6 +85,7 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: LoginScreen(id: id),
         );
+
       case Routes.choosLogin:
         return PageTransition(
           type: PageTransitionType.fade,
@@ -89,6 +100,7 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: ForgetPasswordScreen(),
         );
+
       case Routes.vendorSignUp:
         return PageTransition(
           type: PageTransitionType.fade,

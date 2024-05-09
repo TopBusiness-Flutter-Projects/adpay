@@ -35,7 +35,19 @@
    
      "add_sub_categoty": "add category",
      "store_logo": "store logo",
-     "banner_logo":"banner logo"
-
+     "banner_logo":"banner logo",
+     "advertisements": "advertisements",
+     "Categories": "Categories",
+     "all": "all",
+     "hello": "hello",
+     "search": "search for products",
+     "BsetSeller": "BsetSeller",
+     "theShop": "The shop",
+     "garage": "The garage",
+     "products": "Products",
+     "birthday": "Your birthday is with us",
+     "Discounts": "Discounts on all children's clothing",
+     "AdvertisementStore": "Advertisement. Al-Aseel Store",
+     "advertisement": "advertisement"
    
 }

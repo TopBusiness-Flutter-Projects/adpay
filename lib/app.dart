@@ -2,6 +2,8 @@ import 'package:adpay/features/on_boarding/cubit/onboarding_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'config/routes/app_routes.dart';
@@ -9,6 +11,9 @@ import 'config/themes/app_theme.dart';
 import 'core/utils/app_strings.dart';
 import 'package:adpay/injector.dart' as injector;
 
+import 'features/home_screen/presentation/controller/home_cubit.dart';
+import 'features/home_screen/presentation/screen/home_screen.dart';
+import 'features/home_screen/presentation/screen/products.dart';
 import 'features/login/cubit/cubit.dart';
 import 'features/vendor_sign_up/cubit/cubit.dart';
 
@@ -45,9 +50,9 @@ class _AdpayState extends State<Adpay> {
           BlocProvider(
             create: (_) => injector.serviceLocator<SignUpVendorCubit>(),
           ),
-          // BlocProvider(
-          //   create: (_) => injector.serviceLocator<HomeCubit>(),
-          // ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<HomeCubit>()..getUserModel(),
+          ),
           // BlocProvider(
           //   create: (_) => injector.serviceLocator<PostsCubit>(),
           // ),
@@ -67,17 +72,25 @@ class _AdpayState extends State<Adpay> {
           //   create: (_) => injector.serviceLocator<AddServiceCubit>(),
           // ),
         ],
-        child: GetMaterialApp(
+        child:  ScreenUtilInit(
+    designSize: const Size(360, 690),
+    minTextAdapt: true,
+    splitScreenMode: true,
+    // Use builder only if you need to use library outside ScreenUtilInit context
+    builder: (_ , child) {
+         return GetMaterialApp(
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           theme: appTheme(),
           themeMode: ThemeMode.light,
           darkTheme: ThemeData.light(),
+          builder: EasyLoading.init(),
+
           // standard dark theme
           localizationsDelegates: context.localizationDelegates,
           debugShowCheckedModeBanner: false,
-          title: AppStrings.appName,
-          onGenerateRoute: AppRoutes.onGenerateRoute,
-        ));
+           title: AppStrings.appName, onGenerateRoute: AppRoutes.onGenerateRoute,
+       //   home:Products_Screen()
+        );}));
   }
 }

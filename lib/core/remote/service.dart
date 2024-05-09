@@ -2,32 +2,37 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../api/base_api_consumer.dart';
 import '../api/end_points.dart';
 import '../error/exceptions.dart';
 import '../error/failures.dart';
+import '../models/checkUser_model.dart';
 import '../models/login_model.dart';
 import '../preferences/preferences.dart';
-
 class ServiceApi {
+  String ?Devicetoken;
+
   final BaseApiConsumer dio;
 
   ServiceApi(this.dio);
+
   Future<Either<Failure, LoginModel>> loginAuth({
     required String phone,
     required String password,
-    required String type,
+    required String device_token,
   }) async {
     String lan = await Preferences.instance.getSavedLang();
-
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Devicetoken  = prefs.getString('checkUser' ?? "");
     try {
       var response = await dio.post(
         EndPoints.loginUrl,
         body: {
           "phone": phone,
           "password": password,
-          "type": type,
+          "device_token": '$Devicetoken',
         },
         options: Options(
           headers: {'Accept-Language': lan},
@@ -39,7 +44,27 @@ class ServiceApi {
     }
   }
 
-//
+//checkuser
+  Future<Either<Failure, CheckUserModel>> CheckUser({
+    required String phone,
+  }) async {
+    String lan = await Preferences.instance.getSavedLang();
+    try {
+      var response = await dio.post(
+        EndPoints.CheckUser,
+        body: {
+          "phone": "11227179601",
+        },
+        options: Options(
+          headers: {'Accept-Language': lan},
+        ),
+      );
+      return Right(CheckUserModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //register
   Future<Either<Failure, LoginModel>> postRegister(
       String phone, String phoneCode, String name) async {
     try {
