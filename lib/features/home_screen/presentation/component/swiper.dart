@@ -1,7 +1,11 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart%20';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/api/end_points.dart';
+import '../controller/home/home_cubit.dart';
+import '../controller/home/home_state.dart';
 import 'custom_network_image.dart';
 
 class CustomSwiper extends StatelessWidget {
@@ -9,6 +13,12 @@ class CustomSwiper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+ return  BlocConsumer<HomeCubit, HomeState>(
+        listener: (context, state) {},
+    builder: (context, statee) {
+    if (statee is LoadedADS) {
+
+    HomeCubit cubit = HomeCubit.get(context);
     return    Container(
       height: MediaQuery.of(context).size.height * 0.5 / 3,
       width: MediaQuery.of(context).size.width,
@@ -20,7 +30,7 @@ class CustomSwiper extends StatelessWidget {
         textDirection: TextDirection.rtl,
         child: Swiper(
             autoplay: true,
-            itemCount: 3,
+            itemCount: cubit.homeModel?.data?.sliders?.length??0,
             pagination: const SwiperPagination(
               alignment: Alignment.bottomCenter,
               builder: DotSwiperPaginationBuilder(
@@ -30,16 +40,22 @@ class CustomSwiper extends StatelessWidget {
             ),
             duration: 600,
             itemBuilder: (context, index) {
-              return CustomNetworkImage(
-                image:
-                //  "${cubit.sliderModel![index].image}",
-                "",
-                width: 100,
-                height: 80,
-                border: BorderRadius.circular(20),
+          return    Image.network(
+                EndPoints.baseUrlImage +
+                    (cubit.homeModel?.data?.sliders?[index].image.toString() ??
+                        ''),
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset('assets/images/chair.jpg');
+                },
               );
             }),
       ),
     );
+  }else {
+      return const Center(child: Text("no data"));
+    }
+    },
+ );
   }
 }
+

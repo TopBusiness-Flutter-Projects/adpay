@@ -1,8 +1,14 @@
 class EndPoints {
   static const String baseUrl = 'https://adpay.topbusiness.io/api/';
+  static const String baseUrlImage = 'https://adpay.topbusiness.io/';
+
   static const String loginUrl = '${baseUrl}auth/login';
   static const String CheckUser = '${baseUrl}auth/checkUser';
-  static const String homeUrl = '${baseUrl}home';
+  static const String homeUrl = '${baseUrl}user/getHome';
+  static const String CatogriesListUrl = '${baseUrl}user/getCategories';
+
+  static const String AdsListUrl = '${baseUrl}user/getAds';
+  static const String ProductListUrl = '${baseUrl}user/getProducts';
   // static const String citiesUrl = '${baseUrl}cities';
   // static const String servicesUrl = '${baseUrl}services/';
   // static const String editServicesUrl = '${baseUrl}services/update/';

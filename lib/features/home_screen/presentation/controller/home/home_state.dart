@@ -1,3 +1,5 @@
+import 'package:adpay/core/models/Home_models.dart';
+
 abstract class HomeState {}
 
 class HomeInitial extends HomeState {}
@@ -33,4 +35,11 @@ class ShowProductError extends HomeState {
   final String error;
 
   ShowProductError(this.error);
+}
+//ADS
+class LoadingADS extends HomeState{}
+class ErrorADS extends HomeState{}
+class LoadedADS extends HomeState{
+  final HomeModel ?homeModel;
+  LoadedADS({required this.homeModel});
 }

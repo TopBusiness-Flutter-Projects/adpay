@@ -30,11 +30,6 @@ class _LoginScreenState extends State<LoginScreen> {
         }   else if (state is LoadedLoginAuth) {
           EasyLoading.dismiss();
           EasyLoading.showSuccess('Login Success');
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //       builder: (context) => Container()),
-          // );
         } else if (state is ErrorLoginAuth) {
           EasyLoading.showError("state.toString()");
         }

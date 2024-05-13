@@ -19,7 +19,7 @@ void main() async {
       supportedLocales: const [Locale('ar', ''), Locale('en', '')],
       path: 'assets/lang',
       saveLocale: true,
-      startLocale: const Locale('en', ''),
+      startLocale: const Locale('ar', ''),
       fallbackLocale: const Locale('ar', ''),
       child: HotRestartController(child: const Adpay()),
     ),

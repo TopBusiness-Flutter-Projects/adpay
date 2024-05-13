@@ -5,8 +5,8 @@ import 'package:flutter/material.dart%20';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../controller/home_cubit.dart';
-import '../controller/home_state.dart';
+import '../controller/home/home_cubit.dart';
+import '../controller/home/home_state.dart';
 import 'custom_icon_appbar.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -34,7 +34,7 @@ class CustomAppBar extends StatelessWidget {
       centerTitle: false,
       title:      Text(
       // 'hello '.tr()+${cubit.userData?.data?.name??""},
-        'hello'.tr() +" , " +(cubit.userData?.data?.name ?? ""),
+        'hello'.tr() +" , " +(cubit.userData?.data?.name ?? "nehal"),
 
         style: TextStyle(
         fontSize: 16,

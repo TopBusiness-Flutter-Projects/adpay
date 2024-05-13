@@ -106,29 +106,7 @@ class LoginCubit extends Cubit<LoginState> {
       prefs.setString('name', r.data!.name.toString() ?? "");
 
       loginAuth(context);
-      // Preferences.instance.setUser(r).then((value) {
-      //   userModel = r;
-      //   (userModel!.data!.type == 'user' &&
-      //       userModel!.data!.type!= null)
-      //       ? Navigator.pushNamedAndRemoveUntil(
-      //     context,
-      //     Routes.homeRoute,
-      //         (route) => false,
-      //   )
-      //       : Navigator.pushNamedAndRemoveUntil(
-      //     context,
-      //     Routes.homeRouteDriver,
-      //         (route) => false,
-      //   );
-      //   successGetBar(r.msg);
-      // });
-      //  phoneController.clear();
-      //  passwprdController.clear();
       pref.setBool('onBoarding', true);
-      // } else {
-      //   errorGetBar(r.message ?? "");
-      //   emit(ErrorLoginAuth());
-      // }
     });
   }
 

@@ -8,8 +8,12 @@ import '../api/base_api_consumer.dart';
 import '../api/end_points.dart';
 import '../error/exceptions.dart';
 import '../error/failures.dart';
+import '../models/Home_models.dart';
+import '../models/adsence_Model.dart';
+import '../models/catogrie_model.dart';
 import '../models/checkUser_model.dart';
 import '../models/login_model.dart';
+import '../models/products_model.dart';
 import '../preferences/preferences.dart';
 class ServiceApi {
   String ?Devicetoken;
@@ -238,21 +242,69 @@ class ServiceApi {
 //     }
 //   }
 //
-//   Future<Either<Failure, CategoriesServicesModel>> servicesData(
-//       int catId) async {
-//     LoginModel loginModel = await Preferences.instance.getUserModel();
-//     try {
-//       final response = await dio.get(
-//         EndPoints.servicesUrl + catId.toString(),
-//         options: Options(
-//           headers: {'Authorization': loginModel.data!.accessToken!},
-//         ),
-//       );
-//       return Right(CategoriesServicesModel.fromJson(response));
-//     } on ServerException {
-//       return Left(ServerFailure());
-//     }
-//   }
+  Future<Either<Failure, HomeModel>> homeData() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.homeUrl,
+        options: Options(
+         headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(HomeModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //catogries
+  Future<Either<Failure, CategoriesModel>> CategoriesData() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.CatogriesListUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(CategoriesModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //adenceList
+  Future<Either<Failure, AdsenceModel>> ADsenceData() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.AdsListUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(AdsenceModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //products
+  Future<Either<Failure, ProductModel>> ProductsData({ String  id=''}) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.ProductListUrl+'?cat_id=$id',
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(ProductModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 //   Future<Either<Failure, UpdatedModel>> editService(
 //       int catId,ServiceToUpdate serviceToUpdate) async {
 //     LoginModel loginModel = await Preferences.instance.getUserModel();

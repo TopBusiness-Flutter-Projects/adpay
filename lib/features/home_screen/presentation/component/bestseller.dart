@@ -2,13 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart%20';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../controller/home/home_cubit.dart';
+import '../controller/home/home_state.dart';
 
 class BestSeller extends StatelessWidget {
   const BestSeller({super.key});
 
   @override
   Widget build(BuildContext context) {
+  return  BlocConsumer<HomeCubit, HomeState>(
+        listener: (context, state) {},
+    builder: (context, statee) {
+    if (statee is LoadedADS) {
+
+    HomeCubit cubit = HomeCubit.get(context);
     return SizedBox(
       height: 200.h,
       child: ListView.builder(
@@ -49,7 +59,6 @@ class BestSeller extends StatelessWidget {
                   ),
                   Container(
                     width: double.infinity,
-// color: Colors.red,
                     padding: EdgeInsets.only(top: 2.0),
                     child: Text(
                     'تيشيرت',
@@ -109,4 +118,11 @@ class BestSeller extends StatelessWidget {
       ),
     );
   }
+    else {
+      return const Center(child: Text("no data"));
+    }
+    },
+  );
+  }
 }
+
