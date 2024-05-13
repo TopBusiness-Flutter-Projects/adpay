@@ -60,6 +60,7 @@ dependencies:
   conditional_builder_null_safety: ^0.0.6
   card_swiper: ^3.0.1
   flutter_screenutil: ^5.9.0
+  floating_navbar: ^2.0.2
 
 dev_dependencies:
   flutter_test:

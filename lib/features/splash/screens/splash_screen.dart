@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
           if (value.data!.type == 'user' ) {
             Navigator.pushNamedAndRemoveUntil(
               context,
-              Routes.homeRoute,
+              Routes.floatingRote,
               (route) => false,
             );
           } else {

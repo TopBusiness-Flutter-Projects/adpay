@@ -16,11 +16,7 @@ String text1;
       //TextStyle(color:AppColors.secondPrimary,fontSize: 20,fontWeight:FontWeight.w500),
       Styles.style20),
       Spacer(),
-      InkWell( onTap:() {
-        Navigator.pushNamed(context, Routes.CategoriesRoute);
-
-      },
-          child: Text(text2,style: Styles.style18))
+      Text(text2,style: Styles.style18)
     ],);
     ;
   }

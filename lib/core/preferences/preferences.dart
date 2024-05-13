@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/Home_models.dart';
 import '../models/checkUser_model.dart';
 import '../models/login_model.dart';
 import '../utils/app_strings.dart';
@@ -28,6 +29,12 @@ class Preferences {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString(
         'user', jsonEncode(LoginModel.fromJson(loginModel.toJson())));
+    print(await getUserModel());
+  }
+  Future<void> setHome(HomeModel homeModel) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString(
+        'home', jsonEncode(LoginModel.fromJson(homeModel.toJson())));
     print(await getUserModel());
   }
   //set checkuser
@@ -65,6 +72,19 @@ class Preferences {
       userModel = LoginModel();
     }
     return userModel;
+  }
+  //setuser
+
+  Future<HomeModel> getHomeModel() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? jsonData = preferences.getString('home');
+    HomeModel homeModel;
+    if (jsonData != null) {
+      homeModel = HomeModel.fromJson(jsonDecode(jsonData));
+    } else {
+      homeModel = HomeModel();
+    }
+    return homeModel;
   }
 
   Future<bool> clearAllData() async {

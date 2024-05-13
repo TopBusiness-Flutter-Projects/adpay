@@ -1,4 +1,5 @@
-import 'package:adpay/features/home_screen/presentation/controller/home_cubit.dart';
+import 'package:adpay/features/home_screen/presentation/controller/adesence/adsence_cubit.dart';
+import 'package:adpay/features/home_screen/presentation/controller/home/home_cubit.dart';
 import 'package:adpay/features/on_boarding/cubit/onboarding_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -9,6 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/api/app_interceptors.dart';
 import 'core/api/base_api_consumer.dart';
 import 'core/api/dio_consumer.dart';
+import 'features/home_screen/presentation/controller/Catogries/catogries_cubit.dart';
+import 'features/home_screen/presentation/controller/products/products_cubit.dart';
 import 'features/login/cubit/cubit.dart';
 import 'features/vendor_sign_up/cubit/cubit.dart';
 
@@ -40,6 +43,22 @@ Future<void> setup() async {
      serviceLocator(),
     ),
   );
+  serviceLocator.registerFactory(
+        () => CatogriesCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+        () => AdsenceCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+        () => ProductsCubit(
+      serviceLocator(),
+    ),
+  );
+
   // serviceLocator.registerFactory(
   //   () => ProfileCubit(
   //      serviceLocator(),

@@ -11,11 +11,16 @@ import 'config/themes/app_theme.dart';
 import 'core/utils/app_strings.dart';
 import 'package:adpay/injector.dart' as injector;
 
-import 'features/home_screen/presentation/controller/home_cubit.dart';
-import 'features/home_screen/presentation/screen/home_screen.dart';
+import 'features/home_screen/presentation/component/catogreyCard.dart';
+import 'features/home_screen/presentation/controller/Catogries/catogries_cubit.dart';
+import 'features/home_screen/presentation/controller/adesence/adsence_cubit.dart';
+import 'features/home_screen/presentation/controller/home/home_cubit.dart';
+import 'features/home_screen/presentation/controller/products/products_cubit.dart';
+import 'features/home_screen/presentation/screen/home_screen_user.dart';
 import 'features/home_screen/presentation/screen/products.dart';
 import 'features/login/cubit/cubit.dart';
 import 'features/vendor_sign_up/cubit/cubit.dart';
+import 'floating.dart';
 
 class Adpay extends StatefulWidget {
   const Adpay({Key? key}) : super(key: key);
@@ -51,7 +56,17 @@ class _AdpayState extends State<Adpay> {
             create: (_) => injector.serviceLocator<SignUpVendorCubit>(),
           ),
           BlocProvider(
-            create: (_) => injector.serviceLocator<HomeCubit>()..getUserModel(),
+            create: (_) => injector.serviceLocator<HomeCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<CatogriesCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<AdsenceCubit>(),
+          ),
+          //ProductsCubit
+          BlocProvider(
+            create: (_) => injector.serviceLocator<ProductsCubit>(),
           ),
           // BlocProvider(
           //   create: (_) => injector.serviceLocator<PostsCubit>(),
@@ -89,8 +104,8 @@ class _AdpayState extends State<Adpay> {
           // standard dark theme
           localizationsDelegates: context.localizationDelegates,
           debugShowCheckedModeBanner: false,
-           title: AppStrings.appName, onGenerateRoute: AppRoutes.onGenerateRoute,
-       //   home:Products_Screen()
+          title: AppStrings.appName, onGenerateRoute: AppRoutes.onGenerateRoute,
+         // home:floating()
         );}));
   }
 }
