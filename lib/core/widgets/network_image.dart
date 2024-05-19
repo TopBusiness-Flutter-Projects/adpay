@@ -24,7 +24,9 @@ class ManageNetworkImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: CachedNetworkImage(
-        imageUrl: imageUrl,
+        imageUrl: imageUrl,errorWidget: (context, url, error) {
+          return Image.asset('assets/images/chair.jpg');
+        },
         fit: boxFit,
         height: height != 0 ? height : null,
         width: width != 0 ? width : null,

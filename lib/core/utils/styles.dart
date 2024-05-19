@@ -21,7 +21,7 @@ abstract class Styles {
   static TextStyle style18 = TextStyle(
     fontSize: 18.sp,
     fontFamily: 'Inter',
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.normal,
     color:AppColors.primary
   );
   static TextStyle stylebutton = TextStyle(
@@ -38,7 +38,9 @@ abstract class Styles {
   static TextStyle style16 = TextStyle(
     fontSize: 16.sp,
     fontFamily: 'Inter',
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w600,
+      color:AppColors.primary
+
   );
   
   static TextStyle style12 = TextStyle(

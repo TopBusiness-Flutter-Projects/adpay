@@ -1,5 +1,4 @@
-import 'package:adpay/features/home_screen/presentation/controller/adesence/adsence_cubit.dart';
-import 'package:adpay/features/home_screen/presentation/controller/home/home_cubit.dart';
+
 import 'package:adpay/features/on_boarding/cubit/onboarding_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -10,8 +9,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/api/app_interceptors.dart';
 import 'core/api/base_api_consumer.dart';
 import 'core/api/dio_consumer.dart';
-import 'features/home_screen/presentation/controller/Catogries/catogries_cubit.dart';
-import 'features/home_screen/presentation/controller/products/products_cubit.dart';
+import 'features/home_screen/advertisment/cubit/adsence_cubit.dart';
+import 'features/home_screen/catogries/cubit/catogries_cubit.dart';
+import 'features/home_screen/garage/cubit/grage_cubit.dart';
+import 'features/home_screen/grage_details/cubit/grage_details_cubit.dart';
+import 'features/home_screen/main_screen/cubit/home_cubit.dart';
+import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
+
+import 'features/home_screen/products/cubit/products_cubit.dart';
+import 'features/home_screen/shop/cubit/shop_cubit.dart';
 import 'features/login/cubit/cubit.dart';
 import 'features/vendor_sign_up/cubit/cubit.dart';
 
@@ -58,7 +64,27 @@ Future<void> setup() async {
       serviceLocator(),
     ),
   );
+  serviceLocator.registerFactory(
+        () => GrageCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+        () => ShopCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+        () => ProductsDetailsCubit(
+      serviceLocator(),
+    ),
+  );
 
+  serviceLocator.registerFactory(
+        () => GrageDetailsCubit(
+      serviceLocator(),
+    ),
+  );
   // serviceLocator.registerFactory(
   //   () => ProfileCubit(
   //      serviceLocator(),

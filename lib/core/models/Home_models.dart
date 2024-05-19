@@ -27,7 +27,7 @@ class Data {
   List<Sliders>? sliders;
   List<Categories>? categories;
   List<Ads>? ads;
-  List<dynamic>? productMostSell;
+  List<Products>? productMostSell;
   List<Shops>? shops;
   List<Auctions>? auctions;
   List<Products>? products;
@@ -39,7 +39,7 @@ class Data {
     sliders = json["sliders"] == null ? null : (json["sliders"] as List).map((e) => Sliders.fromJson(e)).toList();
     categories = json["categories"] == null ? null : (json["categories"] as List).map((e) => Categories.fromJson(e)).toList();
     ads = json["ads"] == null ? null : (json["ads"] as List).map((e) => Ads.fromJson(e)).toList();
-    productMostSell = json["product_most_sell"] ?? [];
+    productMostSell = json["product_most_sell"] == null ? null : (json["product_most_sell"] as List).map((e) => Products.fromJson(e)).toList();;
     shops = json["shops"] == null ? null : (json["shops"] as List).map((e) => Shops.fromJson(e)).toList();
     auctions = json["auctions"] == null ? null : (json["auctions"] as List).map((e) => Auctions.fromJson(e)).toList();
     products = json["products"] == null ? null : (json["products"] as List).map((e) => Products.fromJson(e)).toList();

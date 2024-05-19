@@ -5,7 +5,8 @@ import 'package:floating_navbar/floating_navbar_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart%20';
 
-import 'features/home_screen/presentation/screen/home_screen_user.dart';
+import 'features/home_screen/main_screen/screens/home_screen_user.dart';
+import 'features/home_screen/presentation/hayaaa.dart';
 
 class floating extends StatelessWidget {
   const floating({super.key});
@@ -22,12 +23,13 @@ class floating extends StatelessWidget {
         FloatingNavBarItem(iconData: Icons.home_outlined, page: HomeScreen(), title: 'home'.tr()),
 
         FloatingNavBarItem(iconData: Icons.local_hospital_outlined, page: Container(color: Colors.blue), title: 'hello'),
-        FloatingNavBarItem(iconData: Icons.alarm, page: Container(color: Colors.blue), title: 'Reminders'),
-        FloatingNavBarItem(iconData: Icons.pending_actions_outlined, page: Container(color: Colors.white60), title: 'Records'),
+        FloatingNavBarItem(iconData: Icons.shopping_basket, page:Hayaa(), title: 'Reminders'),
+        FloatingNavBarItem(iconData: Icons.pending_actions_outlined, page: Container(color: Colors.blue), title: 'Records'),
       ],
       horizontalPadding: 10.0,
-      hapticFeedback: true,
-      showTitle: true,
+
+      hapticFeedback: false,
+      showTitle: false,
     );
   }
 }

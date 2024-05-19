@@ -9,6 +9,13 @@ class EndPoints {
 
   static const String AdsListUrl = '${baseUrl}user/getAds';
   static const String ProductListUrl = '${baseUrl}user/getProducts';
+  static const String GrageListUrl = '${baseUrl}user/getAuctions';
+  static const String ProductDetails = '${baseUrl}user/productDetails/';
+  static const String AuctionsDetails = '${baseUrl}user/auctionDetails/';
+
+  static const String ShopsList = '${baseUrl}user/getShops';
+  static const String Favourite = '${baseUrl}user/storeFavorite';
+static const String CommentsUrl='${baseUrl}user/storeComment';
   // static const String citiesUrl = '${baseUrl}cities';
   // static const String servicesUrl = '${baseUrl}services/';
   // static const String editServicesUrl = '${baseUrl}services/update/';
