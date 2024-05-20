@@ -34,7 +34,8 @@ errorGetBar(String message) {
 /*----------------------------------------------------------------------------*/
 
 successGetBar(String? message) {
-  Get.showSnackbar(GetSnackBar(
+  Get.showSnackbar(
+      GetSnackBar(
     messageText: Text(
       message ?? 'success'.tr,
       style: Get.textTheme.bodyMedium!.copyWith(
@@ -50,7 +51,8 @@ successGetBar(String? message) {
     isDismissible: true,
     margin: const EdgeInsets.all(8.0),
     snackPosition: SnackPosition.TOP,
-  ));
+  )
+  );
 }
 
 /*----------------------------------------------------------------------------*/

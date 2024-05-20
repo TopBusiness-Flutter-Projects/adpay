@@ -20,6 +20,7 @@
   "forget_password": "هل نسيت كلمة المرور ؟",
   "personal_info":"البيانات الشخصية",
   "market_info":"بيانات المتجر",
+  "no_data": "لا يوجد منتاجات",
 
   "name":"الاسم",
   "enter_name":"ادخل الأسم",
@@ -52,5 +53,18 @@
   "birthday": "عيدك عندنا",
   "Discounts": "تخفيضات علي كل ملابس الاطفال",
   "AdvertisementStore": "اعلان.متجر الاصيل",
-  "home": "الرئيسية"
+  "home": "الرئيسية",
+ "Addtocart": "اضف للسله",
+  "Productdetails": "تفاصيل المنتج",
+  "colors": "الالوان المتاحه",
+"Availablesizes": "المقاسات المتاحة",
+  "comments": "التعليقات",
+"AllComments": "كل التعليقات",
+  "SendMessage":"ارسال رساله",
+  "reply": "اكتب ردك",
+  "SendReply": "ارسل رسالتك",
+  "basket": "السلة",
+  "mainpage": "العودة للرئيسية",
+  "completedsuccessfully": "تم اكمال طلبك بنجاح",
+  "happytodeal": "مرحبا بك نحن سعداء بالتعامل معك في تطبيق ادباي ويمكنك استخدام تطبيقنا في اي وقت"
 }

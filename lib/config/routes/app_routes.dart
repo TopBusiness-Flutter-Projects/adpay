@@ -1,4 +1,6 @@
-import 'package:adpay/features/home_screen/presentation/screen/grage.dart';
+import 'package:adpay/features/home_screen/grage_details/screen/grage_details_screen.dart';
+import 'package:adpay/features/home_screen/presentation/chatpage.dart';
+import 'package:adpay/features/home_screen/presentation/complete_order.dart';
 import 'package:flutter/material.dart';
 import 'package:adpay/features/splash/screens/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -6,11 +8,15 @@ import 'package:page_transition/page_transition.dart';
 import '../../core/utils/app_strings.dart';
 import '../../features/choose_login/screen/choose_login_screen.dart';
 import '../../features/forget_password/screen/forget_pass.dart';
-import '../../features/home_screen/presentation/screen/Categories_screen.dart';
-import '../../features/home_screen/presentation/screen/advertisment_screen.dart';
-import '../../features/home_screen/presentation/screen/home_screen_user.dart';
-import '../../features/home_screen/presentation/screen/products.dart';
-import '../../features/home_screen/presentation/screen/theshop.dart';
+import '../../features/home_screen/advertisment/screen/advertisment_screen.dart';
+import '../../features/home_screen/best_seller/screens/best_seller_screen.dart';
+import '../../features/home_screen/catogries/screens/Categories_screen.dart';
+import '../../features/home_screen/garage/screens/grage_screen.dart';
+import '../../features/home_screen/grage_details/screen/allcomments_screen.dart';
+import '../../features/home_screen/main_screen/screens/home_screen_user.dart';
+import '../../features/home_screen/product_details/screens/proudct_details_screen.dart';
+import '../../features/home_screen/products/screens/products-screen.dart';
+import '../../features/home_screen/shop/screens/theshop_screen.dart';
 import '../../features/home_screen_provider/screen/home_screen_driver.dart';
 import '../../features/login/screen/login_screen.dart';
 import '../../features/on_boarding/screen/onboarding_screen.dart';
@@ -21,7 +27,9 @@ class Routes {
   static const String initialRoute = '/';
   static const String loginRoute = '/login';
   static const String CategoriesRoute = '/categories'; // Change this line
-  static const String ProductssRoute = '/products'; // Change this line
+  static const String ProductssRoute = '/products';
+  static const String ProductsDetails = '/productsDetails'; // Change this line
+
   static const String floatingRote = '/floating';
   static const String garageRoute = '/garage'; // Change this line
   static const String ShopRoute = '/shop'; // Change this line
@@ -32,6 +40,15 @@ class Routes {
   static const String choosLogin = '/choosLoginscreen';
   static const String forgetPassword = '/forgetPassword';
   static const String vendorSignUp = '/vendorSignUp';
+
+  static const String bestSeller = '/BestSeller';
+  static const String gragedetails = '/GrageDetails';
+
+  static const String allcomments = '/allcomments';
+
+  static const String chatapp = '/chatapp';
+  static const String completeorder = '/compeleteorder';
+
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
 //   static const String registerScreenRoute = '/registerScreen';
@@ -52,6 +69,7 @@ class Routes {
 class AppRoutes {
   static String route = '';
 
+
   static Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.CategoriesRoute: // Change this line
@@ -67,6 +85,13 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: Advertesment_Screen(),
+        );
+      case Routes.completeorder:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: CompleteOrder(),
         );
       case Routes.initialRoute:
         return MaterialPageRoute(
@@ -94,6 +119,20 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: Shop_Screen(),
         );
+      case Routes.bestSeller:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: BestSellerScreen(),
+        );
+      case Routes.chatapp:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: chatpage(),
+        );
       case Routes.homeRouteDriver:
         return PageTransition(
           type: PageTransitionType.fade,
@@ -101,21 +140,45 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: HomeScreenDriver(),
         );
+
       case Routes.ProductssRoute:
-        String id = settings.arguments as String;
+        String? id = settings.arguments as String?;
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: ProductsScreen(id:id ),
+        );
+      case Routes.ProductsDetails:
+        String? id = settings.arguments as String?;
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: ProductDetailsScreen(id:id ),
+        );
+      case Routes.gragedetails:
+        String? id = settings.arguments as String?;
 
         return PageTransition(
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: ProductsScreen(id:id ,),
+          child: GrageDetailsScreen(id:id),
         );
       case Routes.garageRoute:
         return PageTransition(
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: Grage_Screen(),
+          child: GrageScreen(),
+        );
+      case Routes.allcomments:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: AllComments(),
         );
       case Routes.onboarding:
         return PageTransition(

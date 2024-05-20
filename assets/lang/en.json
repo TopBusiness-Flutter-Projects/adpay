@@ -9,7 +9,8 @@
      "on_3": "Buy and sell your products, new or used, and earn easily with AdPay",
      "start_now": "Start now",
      "choose_login": "You can now choose to log in!",
-     "login": "login",
+     "login": "login",  "no_data": "there are no products",
+
      "signup": "signup",
      "password": "password",
      "phone": "phone",
@@ -49,6 +50,19 @@
      "Discounts": "Discounts on all children's clothing",
      "AdvertisementStore": "Advertisement. Al-Aseel Store",
      "advertisement": "advertisement",
-     "home":"Home"
-   
+     "home":"Home",
+     "Addtocart": "Add to cart",
+     "Productdetails": "Product Details",
+        "colors": "Available colors",
+     "Availablesizes": "Available sizes",
+"comments": "comments",
+     "AllComments": "AllComments",
+     "SendMessage": "Send Message",
+     "reply": "your reply",
+     "SendReply": "Send Reply",
+     "basket": "The basket",
+     "mainpage": "Back to main page",
+     "completedsuccessfully": "Your request has been completed successfully",
+        "happytodeal": "Welcome, we are happy to deal with you on the AdPay application and you can use our application at any time"
+
 }

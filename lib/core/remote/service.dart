@@ -1,5 +1,7 @@
 // import 'package:http/http.dart' as http;
 
+import 'package:adpay/core/models/comment_model.dart';
+import 'package:adpay/features/home_screen/grage_details/screen/grage_details_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,11 +14,17 @@ import '../models/Home_models.dart';
 import '../models/adsence_Model.dart';
 import '../models/catogrie_model.dart';
 import '../models/checkUser_model.dart';
+import '../models/favourite_model.dart';
+import '../models/grage_details_model.dart';
+import '../models/grage_model.dart';
 import '../models/login_model.dart';
+import '../models/product_details._modeldart';
 import '../models/products_model.dart';
+import '../models/shop_model.dart';
 import '../preferences/preferences.dart';
+
 class ServiceApi {
-  String ?Devicetoken;
+  String? Devicetoken;
 
   final BaseApiConsumer dio;
 
@@ -29,7 +37,7 @@ class ServiceApi {
   }) async {
     String lan = await Preferences.instance.getSavedLang();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    Devicetoken  = prefs.getString('checkUser' ?? "");
+    Devicetoken = prefs.getString('checkUser' ?? "");
     try {
       var response = await dio.post(
         EndPoints.loginUrl,
@@ -68,6 +76,75 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
+  //post favourite
+  Future<Either<Failure, FavouriteModel>> FavouriteStore(
+      {bool isAuction = false, String? productId}) async {
+    String lan = await Preferences.instance.getSavedLang();
+
+    LoginModel user = await Preferences.instance.getUserModel();
+    try {
+      var response = await dio.post(
+        EndPoints.Favourite,
+        body: isAuction
+            ? {
+                "auction_id": productId,
+              }
+            : {
+                "product_id": productId,
+              },
+        formDataIsEnabled: true,
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(FavouriteModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  //comment
+  Future<Either<Failure,CommentsModel>> PostComment(
+      {
+        bool isComment=true,
+         String? auction_id,
+        String? comment,
+         String? type,
+           String? comment_id,}) async {
+    String lan = await Preferences.instance.getSavedLang();
+
+    LoginModel user = await Preferences.instance.getUserModel();
+    try {
+      var response = await dio.post(
+        EndPoints.CommentsUrl,
+        body:isComment?{
+          "auction_id": auction_id,
+          "comment": comment,
+          "type": "comment",
+        }:
+            {
+              "auction_id": auction_id,
+              "comment": comment,
+              "type": "reply",
+              "comment_id": comment_id
+            },
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(CommentsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
   //register
   Future<Either<Failure, LoginModel>> postRegister(
       String phone, String phoneCode, String name) async {
@@ -87,6 +164,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
 //   //
 //   // Future<Either<Failure, ServiceStoreModel>> postServiceStore(ServiceModel serviceModel) async {
 //   //   LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -249,7 +327,7 @@ class ServiceApi {
       final response = await dio.get(
         EndPoints.homeUrl,
         options: Options(
-         headers: {'Authorization': loginModel.data!.token},
+          headers: {'Authorization': loginModel.data!.token},
         ),
       );
       return Right(HomeModel.fromJson(response));
@@ -257,6 +335,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
   //catogries
   Future<Either<Failure, CategoriesModel>> CategoriesData() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -273,6 +352,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
   //adenceList
   Future<Either<Failure, AdsenceModel>> ADsenceData() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -289,18 +369,88 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
   //products
-  Future<Either<Failure, ProductModel>> ProductsData({ String  id=''}) async {
+  Future<Either<Failure, ProductModel>> ProductsData({String? id}) async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
 
     try {
       final response = await dio.get(
-        EndPoints.ProductListUrl+'?cat_id=$id',
+        EndPoints.ProductListUrl + '?cat_id=${(id == null) ? '' : id}',
         options: Options(
           headers: {'Authorization': loginModel.data!.token},
         ),
       );
       return Right(ProductModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  //productdetails
+  Future<Either<Failure, ProductDetailsModel>> ProductsDetails(
+      {String? id}) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.ProductDetails + '${id}',
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(ProductDetailsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+//gragedetails
+  Future<Either<Failure, GradeDetailsModel>> GrageDetails({String? id}) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.AuctionsDetails + '${id}',
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(GradeDetailsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+//grage list
+  Future<Either<Failure, GrageModel>> grageList({String? id}) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.GrageListUrl + '?cat_id=${id ?? ''}',
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(GrageModel?.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  //shoplist
+  Future<Either<Failure, ShopModel>> ShopList({String? id}) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.ShopsList + '?cat_id=${id ?? ''}',
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(ShopModel?.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
