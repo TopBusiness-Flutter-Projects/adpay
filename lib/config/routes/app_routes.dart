@@ -14,6 +14,7 @@ import '../../features/home_screen/catogries/screens/Categories_screen.dart';
 import '../../features/home_screen/garage/screens/grage_screen.dart';
 import '../../features/home_screen/grage_details/screen/allcomments_screen.dart';
 import '../../features/home_screen/main_screen/screens/home_screen_user.dart';
+import '../../features/home_screen/presentation/salla.dart';
 import '../../features/home_screen/product_details/screens/proudct_details_screen.dart';
 import '../../features/home_screen/products/screens/products-screen.dart';
 import '../../features/home_screen/shop/screens/theshop_screen.dart';
@@ -48,6 +49,7 @@ class Routes {
 
   static const String chatapp = '/chatapp';
   static const String completeorder = '/compeleteorder';
+  static const String salla = '/salla';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -118,6 +120,13 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: Shop_Screen(),
+        );
+      case Routes.salla:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: SallaScreen(),
         );
       case Routes.bestSeller:
         return PageTransition(

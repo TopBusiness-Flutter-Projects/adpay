@@ -63,6 +63,7 @@
      "basket": "The basket",
      "mainpage": "Back to main page",
      "completedsuccessfully": "Your request has been completed successfully",
-        "happytodeal": "Welcome, we are happy to deal with you on the AdPay application and you can use our application at any time"
+        "happytodeal": "Welcome, we are happy to deal with you on the AdPay application and you can use our application at any time",
+     "orders": "the orders"
 
 }

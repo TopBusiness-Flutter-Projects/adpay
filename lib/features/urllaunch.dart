@@ -13,10 +13,7 @@ class CallIcon extends StatelessWidget {
       onTap: () {
         _launchCall(phoneNumber);
       },
-      child: Icon(
-        Icons.phone,
-        color: Colors.white,
-      ),
+      child: Image.asset("assets/images/call.png")
     );
   }
 
