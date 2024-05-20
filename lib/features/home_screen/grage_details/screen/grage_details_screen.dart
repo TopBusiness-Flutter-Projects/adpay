@@ -331,8 +331,14 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                                             '01288143936',
                                                       )),
                                                   SizedBox(width: 6.w),
-                                                  Image.asset(
-                                                      "assets/images/typing.png")
+                                                  InkWell(
+                                                    onTap: (){
+                                                      Navigator.pushNamed(context, Routes.chatapp,
+                                                          );
+                                                    },
+                                                    child: Image.asset(
+                                                        "assets/images/typing.png"),
+                                                  )
                                                 ],
                                               ),
                                             )

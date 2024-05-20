@@ -1,4 +1,6 @@
 import 'package:adpay/features/home_screen/grage_details/screen/grage_details_screen.dart';
+import 'package:adpay/features/home_screen/presentation/chatpage.dart';
+import 'package:adpay/features/home_screen/presentation/complete_order.dart';
 import 'package:flutter/material.dart';
 import 'package:adpay/features/splash/screens/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -44,6 +46,9 @@ class Routes {
 
   static const String allcomments = '/allcomments';
 
+  static const String chatapp = '/chatapp';
+  static const String completeorder = '/compeleteorder';
+
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
 //   static const String registerScreenRoute = '/registerScreen';
@@ -81,6 +86,13 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: Advertesment_Screen(),
         );
+      case Routes.completeorder:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: CompleteOrder(),
+        );
       case Routes.initialRoute:
         return MaterialPageRoute(
           builder: (context) => const SplashScreen(),
@@ -113,6 +125,13 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: BestSellerScreen(),
+        );
+      case Routes.chatapp:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: chatpage(),
         );
       case Routes.homeRouteDriver:
         return PageTransition(
