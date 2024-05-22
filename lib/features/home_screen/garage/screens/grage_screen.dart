@@ -69,7 +69,8 @@ class _GrageScreenState extends State<GrageScreen> {
                               child: Text("no_data".tr())),
                         )
                       : Flexible(
-                          child: GridView.builder(
+                          child:
+                          GridView.builder(
                             shrinkWrap: true,
                             padding: EdgeInsets.all(16),
                             gridDelegate:

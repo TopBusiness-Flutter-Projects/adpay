@@ -7,12 +7,20 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/styles.dart';
 
-class OrderScreen extends StatelessWidget {
+class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
 
+  @override
+  State<OrderScreen> createState() => _OrderScreenState();
+}
+
+class _OrderScreenState extends State<OrderScreen> {
+  bool ?colors=true;
+  bool colors2=true;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -21,14 +29,7 @@ class OrderScreen extends StatelessWidget {
       Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Icon(Icons.arrow_back)),
-        ),
+       
         title: Text("orders".tr(),
             style: Styles.style20.copyWith(color: Colors.black)),
       ),
@@ -36,50 +37,63 @@ class OrderScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Container(
-                   margin: EdgeInsets.symmetric(horizontal: 5),
-                    padding: EdgeInsets.symmetric(horizontal: 5,vertical: 6),
-                    width: getSize(context) / 3,
-                    decoration: BoxDecoration(
-                      color:
-                       AppColors.primary,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text('الطلبات المكتمله',
-                        maxLines: 1,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color:
-                              AppColors.white,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                  child: InkWell(
+                    onTap: (){
+                      setState(() {
+                       colors==true? colors=false:colors=true;
+                      });
+                    },
+                    child: Container(
+                     margin: EdgeInsets.symmetric(horizontal: 5),
+                      padding: EdgeInsets.symmetric(horizontal: 5,vertical: 6),
+                      width: getSize(context) / 3,
+                      decoration: BoxDecoration(
+                        color: colors == true ? AppColors.primary : AppColors.secondPrimary,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text('الطلبات المكتمله',
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color:
+                                AppColors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                    padding: EdgeInsets.symmetric(horizontal: 5,vertical: 6),
-                    width: getSize(context) / 3,
-                    decoration: BoxDecoration(
-                      color:
-                      AppColors.primary,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text('الطلبات المكتمله',
-                        maxLines: 1,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color:
-                          AppColors.white,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                  child: InkWell(
+                    onTap: (){
+                      setState(() {
+                        colors2==true? colors2=false:colors2=true;
+                      });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 5,vertical: 6),
+                      width: getSize(context) / 3,
+                      decoration: BoxDecoration(
+
+                        color: colors2 == true ? AppColors.primary : AppColors.secondPrimary,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text('الطلبات المكتمله',
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color:
+                            AppColors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -87,8 +101,8 @@ class OrderScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: 900.h,
+            Container(
+              height: 3000.h,
               child: ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
@@ -118,8 +132,11 @@ class OrderScreen extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.account_circle),
-                              Text("رقم الطلب"),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset("assets/images/ordernumber.png"),
+                              ),
+                              Text("ordernum".tr()),
                               Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -128,22 +145,40 @@ class OrderScreen extends StatelessWidget {
                             ],),
                           Row(
                             children: [
-                              Icon(Icons.account_circle),
-                              Text("رقم الطلب"),
-                              Spacer(),
+
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("#235345435"),
-                              )
+                                child: Image.asset("assets/images/calender.png"),
+                              ),
+                              Text("ordernum".tr()),
+                              SizedBox(width: 30.w,),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset("assets/images/watch.png"),
+                              ),
+                              Text("pm 3:23"),
                             ],),
                           Row(
                             children: [
-                              Icon(Icons.account_circle),
-                              Text("رقم الطلب"),
-                              Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("#235345435"),
+                                child: Image.asset("assets/images/grage.png"),
+                              ),
+                              Text("ordernum".tr()),
+                              Spacer(),
+                              InkWell(
+                                onTap: (){
+                                  Navigator.pushNamed(context, Routes.orderDetails);
+
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("details".tr(),style: TextStyle(color: AppColors.primary),),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left:10.0),
+                                child: Image.asset("assets/images/forwarddetails.png"),
                               )
                             ],),
                         ],
@@ -155,7 +190,8 @@ class OrderScreen extends StatelessWidget {
                          itemCount: 3,
               ),
             ),
-            Container(height:1300.h,color:Colors.white),
+
+SizedBox(height: 200.h,)
          ]
       )
 

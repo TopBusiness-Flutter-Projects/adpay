@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/utils/get_size.dart';
+import '../../../core/utils/hex_color.dart';
 import '../../../core/utils/styles.dart';
 import 'package:flutter/material.dart';
 class SallaScreen extends StatelessWidget {
@@ -81,7 +82,7 @@ class SallaScreen extends StatelessWidget {
                   ),
                 ],
               ),
-SizedBox(height: 80.h,)
+SizedBox(height: 5.h,)
 
             ])));
   }
@@ -280,7 +281,7 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                 padding:
                 EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 decoration: BoxDecoration(
-                  color: Colors.pink.shade100,
+                  color:HexColor('#fdd7cf'),
                   borderRadius: BorderRadius.circular(70.0),
                   border: Border.all(
                     color: Colors.red,

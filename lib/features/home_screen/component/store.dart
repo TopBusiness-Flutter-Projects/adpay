@@ -5,6 +5,7 @@ import 'package:flutter/material.dart%20';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../config/routes/app_routes.dart';
 import '../main_screen/cubit/home_cubit.dart';
 import '../main_screen/cubit/home_state.dart';
 
@@ -47,9 +48,9 @@ class _ProductsState extends State<Products> {
                    children: [
                      InkWell(
                        onTap: (){
-                      //   Navigator.pushNamed(
-                         //    context, Routes.ProductsDetails,arguments:context.read<ProductsCubit>().productsModel?.data?[index].id.toString()??"1"
-                        // );
+                        Navigator.pushNamed(
+                            context, Routes.tagerscreen,
+                        );
                        },
                        child: Container(
                          width: 100.w,
