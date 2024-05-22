@@ -26,7 +26,6 @@ class GrageDetailsScreen extends StatefulWidget {
 }
 
 class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
-
   void initState() {
     super.initState();
     context.read<GrageDetailsCubit>().getGrageDetils(id: widget.id);
@@ -151,7 +150,8 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                                           context: context,
                                                           productId: cubit
                                                               .grageModelDetails
-                                                              ?.id.toString());
+                                                              ?.id
+                                                              .toString());
                                                 },
                                                 child: Icon(
                                                   Icons.favorite,
@@ -297,7 +297,7 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                                   errorBuilder: (context, error,
                                                       stackTrace) {
                                                     return Image.asset(
-                                                        'assets/images/chair.jpg');
+                                                        'assets/images/chair.jpg',scale: 10,);
                                                   },
                                                 )),
                                               ),
@@ -322,19 +322,17 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                                   SizedBox(
                                                     width: 20.w,
                                                   ),
-                                                  CircleAvatar(
-                                                      backgroundColor: Colors
-                                                          .red, // Background color of the circle
-
-                                                      child: CallIcon(
-                                                        phoneNumber:
-                                                            '01288143936',
-                                                      )),
+                                                  CallIcon(
+                                                    phoneNumber:
+                                                        '01288143936',
+                                                  ),
                                                   SizedBox(width: 6.w),
                                                   InkWell(
-                                                    onTap: (){
-                                                      Navigator.pushNamed(context, Routes.chatapp,
-                                                          );
+                                                    onTap: () {
+                                                      Navigator.pushNamed(
+                                                        context,
+                                                        Routes.chatapp,
+                                                      );
                                                     },
                                                     child: Image.asset(
                                                         "assets/images/typing.png"),
@@ -367,7 +365,6 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                             shrinkWrap: true,
                                             physics: BouncingScrollPhysics(),
                                             itemBuilder: (context, index) {
-
                                               final comment = cubit
                                                   .grageModelDetails
                                                   ?.comments[index];
@@ -379,9 +376,12 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                                     .shrink(); // Return an empty widget if the comment is null
                                               }
                                             },
-                                            itemCount:( cubit.grageModelDetails
-                                                    !.comments!.length> 5) ? 5:cubit.grageModelDetails
-                                                ?.comments.length,
+                                            itemCount: (cubit.grageModelDetails!
+                                                        .comments!.length >
+                                                    5)
+                                                ? 5
+                                                : cubit.grageModelDetails
+                                                    ?.comments.length,
                                           ),
                                     SizedBox(
                                       height: 100.h,

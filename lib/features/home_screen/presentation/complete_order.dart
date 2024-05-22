@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart%20';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../config/routes/app_routes.dart';
+
 class CompleteOrder extends StatelessWidget {
   const CompleteOrder({super.key});
 
@@ -30,7 +32,8 @@ class CompleteOrder extends StatelessWidget {
             padding: const EdgeInsets.all(30.0),
             child: ElevatedButton(
               onPressed: () {
-                // Add your onPressed logic here
+                Navigator.pushNamed(context, Routes.salla );
+
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Set the background color of the button to red

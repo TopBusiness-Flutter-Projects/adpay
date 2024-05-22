@@ -101,6 +101,6 @@ class CustomGrageWidget extends StatelessWidget {
           ),
         ),
       ),
-    );;
+    );
   }
 }

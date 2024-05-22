@@ -59,11 +59,11 @@ class LoginCubit extends Cubit<LoginState> {
           print("loaded");
           emit(LoadedLoginAuth());
           SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString('auth-token', r.data!.token.toString() ?? "");
+          prefs.setString('auth-token', r.data?.token.toString() ?? "");
           Preferences.instance.setUser(r).then((value) {
             userModel = r;
-            (userModel!.data!.type == 'user' &&
-                userModel!.data!.type!= null)
+            (userModel?.data?.type == 'user' &&
+                userModel?.data?.type!= null)
                 ? Navigator.pushNamedAndRemoveUntil(
               context,
               Routes.homeRoute,

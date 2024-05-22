@@ -67,18 +67,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   ); },
 
                 )
-                //     :selectedCategoryIndex == 1 ? GridView.count(
-                //   crossAxisCount: 2,
-                //   crossAxisSpacing: 16,
-                //   mainAxisSpacing: 16,
-                //   padding: EdgeInsets.all(16),
-                //   children: [
-                //     BestSeller(),
-                //     BestSeller(),
-                //
-                //   ],
-                // )
-                //     :Container()
               ),
             ],
           ),

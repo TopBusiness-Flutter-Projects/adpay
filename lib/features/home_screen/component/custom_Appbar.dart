@@ -5,6 +5,7 @@ import 'package:flutter/material.dart%20';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../config/routes/app_routes.dart';
 import '../main_screen/cubit/home_cubit.dart';
 import '../main_screen/cubit/home_state.dart';
 import 'custom_icon_appbar.dart';
@@ -43,9 +44,14 @@ class CustomAppBar extends StatelessWidget {
     ),
       // leadingWidth: 100,
       actions: [
-        Padding(
-            padding: const EdgeInsets.all(10),
-            child:Icon(Icons.notifications)
+        InkWell(
+          onTap: (){
+            Navigator.pushNamed(context, Routes.notificationscreen,);
+          },
+          child: Padding(
+              padding: const EdgeInsets.all(10),
+              child:Icon(Icons.notifications)
+          ),
         )
       ],
       bottom: PreferredSize(

@@ -351,7 +351,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                         errorBuilder:
                                             (context, error, stackTrace) {
                                           return Image.asset(
-                                              'assets/images/chair.jpg');
+                                              'assets/images/chair.jpg',scale: 10,);
                                         },
                                       )),
                                     ),
@@ -399,13 +399,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           SizedBox(
                                             width: 15.w,
                                           ),
-                                          CircleAvatar(
-                                              backgroundColor: Colors
-                                                  .red, // Background color of the circle
-
-                                              child: CallIcon(
-                                                phoneNumber: '01288143936',
-                                              )),
+                                          CallIcon(
+                                            phoneNumber: '01288143936',
+                                          ),
                                           SizedBox(width: 6.w),
                                           Image.asset(
                                               "assets/images/typing.png")

@@ -66,5 +66,37 @@
   "basket": "السلة",
   "mainpage": "العودة للرئيسية",
   "completedsuccessfully": "تم اكمال طلبك بنجاح",
-  "happytodeal": "مرحبا بك نحن سعداء بالتعامل معك في تطبيق ادباي ويمكنك استخدام تطبيقنا في اي وقت"
+  "happytodeal": "مرحبا بك نحن سعداء بالتعامل معك في تطبيق ادباي ويمكنك استخدام تطبيقنا في اي وقت",
+  "orders": "الطلبات",
+  "details": "التفاصيل",
+  "ordernum": "رقم الطلب",
+  "Merchantaccount": "حساب التاجر",
+  "MerchantRating": "تقيم التاجر",
+  "confirm": "تأكيد",
+        "writecomment": "اكتب تعليقك",
+  "menue": "القائمة",
+  "Mydata": "بياناتي",
+  "Profilepersonly": "الملف الشخصي",
+  "Mymessages": "رسائلي",
+  "AddHaraj": " اضافة حراج",
+  "Favorite": "المفضله",
+  "Settings": "الاعدادات",
+  "contactus": "تواصل معنا",
+  "aboutapp": "عن التطبيق",
+  "Terms": "الشروط والأحكام",
+  "Shareapp": "مشاركة التطبيق",
+  "evaluation": "تقييم التطبيق",
+  "Logout": "تسجيل الخروج",
+  "notifications": "الاشعارات",
+  "writecomment": "اكتب تعليقك",
+  "messages": "الرسائل",
+  "addharag": "اضافة حراج",
+  "Productimage": "صورة المنتج",
+  "productname": "اسم المنتج",
+  "price": "السعر",
+  "Category": "الفئة",
+  "Selectcategory": "اختر الفئة"
+
+
+
 }

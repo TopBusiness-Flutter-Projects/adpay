@@ -1,11 +1,12 @@
 import 'package:adpay/features/home_screen/grage_details/screen/grage_details_screen.dart';
+import 'package:adpay/features/home_screen/messgaes/screens/messages.dart';
 import 'package:adpay/features/home_screen/presentation/chatpage.dart';
 import 'package:adpay/features/home_screen/presentation/complete_order.dart';
 import 'package:flutter/material.dart';
 import 'package:adpay/features/splash/screens/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
-
 import '../../core/utils/app_strings.dart';
+import '../../features/add_harag/screens/add_harag.dart';
 import '../../features/choose_login/screen/choose_login_screen.dart';
 import '../../features/forget_password/screen/forget_pass.dart';
 import '../../features/home_screen/advertisment/screen/advertisment_screen.dart';
@@ -14,9 +15,13 @@ import '../../features/home_screen/catogries/screens/Categories_screen.dart';
 import '../../features/home_screen/garage/screens/grage_screen.dart';
 import '../../features/home_screen/grage_details/screen/allcomments_screen.dart';
 import '../../features/home_screen/main_screen/screens/home_screen_user.dart';
+import '../../features/home_screen/notifications/screens/notification_screen.dart';
+import '../../features/home_screen/order_details/screens/order_details.dart';
+import '../../features/home_screen/presentation/salla.dart';
 import '../../features/home_screen/product_details/screens/proudct_details_screen.dart';
 import '../../features/home_screen/products/screens/products-screen.dart';
 import '../../features/home_screen/shop/screens/theshop_screen.dart';
+import '../../features/home_screen/tager/screens/tager_screen.dart';
 import '../../features/home_screen_provider/screen/home_screen_driver.dart';
 import '../../features/login/screen/login_screen.dart';
 import '../../features/on_boarding/screen/onboarding_screen.dart';
@@ -48,6 +53,13 @@ class Routes {
 
   static const String chatapp = '/chatapp';
   static const String completeorder = '/compeleteorder';
+  static const String salla = '/salla';
+  static const String orderDetails = '/orderDetails';
+  static const String tagerscreen = '/tagerscreen';
+  static const String notificationscreen = '/notification';
+  static const String messagescreen = '/message';
+  static const String addharag = '/addharag';
+
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -79,12 +91,40 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: Catogreisss(), // Replace with your category screen widget
         );
+      case Routes.messagescreen: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: MessageScreen(), // Replace with your category screen widget
+        );
+      case Routes.notificationscreen: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: NotificationScreen(), // Replace with your category screen widget
+        );
+      case Routes.orderDetails: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: OrderDetails(), // Replace with your category screen widget
+        );
       case Routes.advertisement:
         return PageTransition(
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: Advertesment_Screen(),
+        );
+      case Routes.tagerscreen:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: TagerScreen(),
         );
       case Routes.completeorder:
         return PageTransition(
@@ -118,6 +158,13 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: Shop_Screen(),
+        );
+      case Routes.salla:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: SallaScreen(),
         );
       case Routes.bestSeller:
         return PageTransition(
@@ -203,6 +250,7 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: ChooseloginScreen(),
         );
+
       case Routes.forgetPassword:
         return PageTransition(
           type: PageTransitionType.fade,
@@ -210,7 +258,13 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: ForgetPasswordScreen(),
         );
-
+      case Routes.addharag:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: AddHarag(),
+        );
       case Routes.vendorSignUp:
         return PageTransition(
           type: PageTransitionType.fade,
