@@ -1,15 +1,16 @@
 import 'dart:io';
 
-import 'package:adpay/features/add_harag/screens/widgets/custom_container_dropdown.dart';
+import 'package:adpay/features/add_harag/screens/widgets/custom_drop_down_menu.dart';
 import 'package:adpay/features/add_harag/screens/widgets/custom_text_field.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
 
 import '../../../config/routes/app_routes.dart';
+import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/styles.dart';
 import '../../login/widgets/custom_text_field.dart';
 
@@ -22,6 +23,8 @@ class AddHarag extends StatefulWidget {
 
 class _AddHaragState extends State<AddHarag> {
   String? imagePath;
+  String? selectedCategory;
+  final List<String> categories = ['Category 1', 'Category 2', 'Category 3'];
 
   Future<void> _pickImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -109,42 +112,67 @@ class _AddHaragState extends State<AddHarag> {
                   ),
                 ),
               ),
-
               Padding(
-                padding: const EdgeInsets.only(right:8.0),
-                child: Text("productname".tr(),style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),),
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Text(
+                  "productname".tr(),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: CustomTextFieldHarag()
-
+                child: CustomTextFieldHarag(),
               ),
               Padding(
-                padding: const EdgeInsets.only(right:8.0),
-                child: Text("price".tr(),style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),),
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Text(
+                  "price".tr(),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomTextFieldHarag()
-
+                padding: const EdgeInsets.all(8.0),
+                child: CustomTextFieldHarag(),
               ),
               Padding(
-                padding: const EdgeInsets.only(right:8.0),
-                child: Text("Category".tr(),style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),),
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Text(
+                  "Category".tr(),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: MyContainerWithDropdown()
-
+                padding: const EdgeInsets.all(10.0),
+                child: CustomDropDownMenu(
+                  text: 'Select Category',
+                  items: categories.map((String category) {
+                    return DropdownMenuItem<String>(
+                      value: category,
+                      child: Row(
+                        children: [
+                          Image.asset('assets/images/down.png', width: 24, height: 24),
+                          SizedBox(width: 8),
+                          Text(category,style: TextStyle(color:Colors.blue),),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  dropdownValue: selectedCategory,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      selectedCategory = newValue;
+                    });
+                  },
+                ),
               ),
             ],
           ),
@@ -153,3 +181,5 @@ class _AddHaragState extends State<AddHarag> {
     );
   }
 }
+
+
