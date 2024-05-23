@@ -28,7 +28,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return   BlocConsumer<ProductsCubit, ProductsState>(
         listener: (context, state) {},
     builder: (context, statee) {
-    // if (statee is LoadedProducts) {
     ProductsCubit cubit = ProductsCubit.get(context);
     return
      Scaffold(
@@ -72,7 +71,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
           ),
         ),
       ),
-    );}
+    );
+        }
     // }
     // else {
     //   return const Center(child: Text("no data"));

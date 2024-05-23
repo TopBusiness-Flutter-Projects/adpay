@@ -42,7 +42,11 @@ class MenueScreen extends StatelessWidget {
                 child: Text("Mydata".tr(),style: Styles.style16,),),
             ),
           ),
-          MenueWidget(text: 'Profilepersonly'.tr(), path: 'assets/images/profile2.png'),
+          InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, Routes.profile);
+            },
+              child: MenueWidget(text: 'Profilepersonly'.tr(), path: 'assets/images/profile2.png')),
           InkWell(
             onTap: (){
               Navigator.pushNamed(context, Routes.messagescreen);            },
@@ -52,7 +56,11 @@ class MenueScreen extends StatelessWidget {
               Navigator.pushNamed(context, Routes.addharag);
             },
               child: MenueWidget(text: 'AddHaraj'.tr(), path: 'assets/images/Harag.png')),
-          MenueWidget(text: 'Favorite'.tr(), path: 'assets/images/favourite.png'),
+          InkWell(
+    onTap: () {
+      Navigator.pushNamed(context, Routes.favouritescreen);
+    },
+              child: MenueWidget(text: 'Favorite'.tr(), path: 'assets/images/favourite.png')),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -68,7 +76,11 @@ class MenueScreen extends StatelessWidget {
                 child: Text("Settings".tr(),style: Styles.style16,),),
             ),
           ),
-          MenueWidget(text: 'contactus'.tr(), path: 'assets/images/contactus.png'),
+          InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, Routes.contactus);
+            },
+              child: MenueWidget(text: 'contactus'.tr(), path: 'assets/images/contactus.png')),
           MenueWidget(text: 'aboutapp'.tr(), path: 'assets/images/i.png'),
           MenueWidget(text: 'Terms'.tr(), path: 'assets/images/verified.png'),
           MenueWidget(text: 'Shareapp'.tr(), path: 'assets/images/share.png'),
