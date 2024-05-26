@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../config/routes/app_routes.dart';
+import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/styles.dart';
 import '../main_screen/cubit/home_cubit.dart';
 import '../main_screen/cubit/home_state.dart';
 import 'custom_icon_appbar.dart';
@@ -50,7 +52,23 @@ class CustomAppBar extends StatelessWidget {
           },
           child: Padding(
               padding: const EdgeInsets.all(10),
-              child:Icon(Icons.notifications)
+              child:
+              // Badge(
+              //
+              //     child: Icon(Icons.notifications))
+              Badge(
+                alignment:Alignment.topRight,
+                backgroundColor: AppColors.secondPrimary, // Use your AppColors.primary here
+                textColor:AppColors.white,
+                textStyle: Styles.style12,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(200),
+                  child: Icon(Icons.notifications,color:Colors.grey,size: 30,)
+                ),
+                label: Center(child: Container(
+                  child: Text('2'),)), // Add this line
+
+              ),
           ),
         )
       ],

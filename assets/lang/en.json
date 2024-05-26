@@ -106,6 +106,13 @@
      "places": "the places",
      "edit": "Edit Profile",
      "delete": "delete profile",
-     "pocket": "pocket"
+     "pocket": "pocket",
+     "editprofile": "editprofile",
+     "NewPassword": "New Password",
+     "ConfirmPass": "Confirm Password",
+     "update": "update",
+     "Detailedaddress": "Detailed address",
+     "Sold": "Sold",
+     "editproduct": "editproduct"
 
 }

@@ -1,14 +1,12 @@
-import 'package:adpay/core/utils/app_colors.dart';
 import 'package:adpay/core/utils/hex_color.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart%20';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../config/routes/app_routes.dart';
 import '../../../../../core/utils/styles.dart';
-import '../widgets/menue_widget.dart';
+import '../screens/widgets/menue_widget.dart';
 
 class MyProfileScreen extends StatelessWidget {
   const MyProfileScreen({super.key});
@@ -73,7 +71,7 @@ class MyProfileScreen extends StatelessWidget {
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -239,9 +237,15 @@ class MyProfileScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: MenueWidget(
-            text: 'Forester'.tr(),
-            path: 'assets/images/boxes.png',
+          child: InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, Routes.myharag);
+
+            },
+            child: MenueWidget(
+              text: 'Forester'.tr(),
+              path: 'assets/images/boxes.png',
+            ),
           ),
         ),
         Padding(
@@ -258,9 +262,14 @@ class MyProfileScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: MenueWidget(
-            text: 'edit'.tr(),
-            path: 'assets/images/edit.png',
+          child: InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, Routes.editprofile);
+            },
+            child: MenueWidget(
+              text: 'edit'.tr(),
+              path: 'assets/images/edit.png',
+            ),
           ),
         ),
         Padding(

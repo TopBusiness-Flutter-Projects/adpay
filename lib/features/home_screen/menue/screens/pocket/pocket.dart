@@ -12,7 +12,7 @@ class PocketScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return    Scaffold(
+    return   Scaffold(
         body: SingleChildScrollView(
             child: SafeArea(
                 child: Column(
@@ -78,7 +78,6 @@ class PocketScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Container(

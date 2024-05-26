@@ -1,21 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart%20';
+import 'package:flutter/widgets.dart';
 
-import '../../../../core/utils/styles.dart';
-import '../../../add_harag/screens/widgets/custom_text_field.dart';
-import '../../presentation/widgets/custom_elevated_button.dart';
-
+import '../../../../../../core/utils/styles.dart';
+import '../../../../presentation/widgets/custom_elevated_button.dart';
 class ContactUsScreen extends StatelessWidget {
   const ContactUsScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListTile(
                 leading: InkWell(
@@ -25,13 +24,12 @@ class ContactUsScreen extends StatelessWidget {
                   child: Icon(Icons.arrow_back),
                 ),
                 title: Text(
-                  "addharag".tr(),
+                  "contactus".tr(),
                   style: Styles.style20.copyWith(color: Colors.black),
                 ),
               ),
-              Center(
-                child: Image.asset("assets/images/contactus2.png"),
-              ),
+              Padding(padding: const EdgeInsets.only(right:20.0),
+                child: Center(child: Image.asset("assets/images/contactus2.png",scale: 5,)),),
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Text(

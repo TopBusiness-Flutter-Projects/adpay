@@ -109,7 +109,14 @@
   "places": "الاماكن",
   "edit": "تعديل الحساب",
   "delete": "حذف الحساب",
-  "pocket": "محفظتي"
+  "pocket": "محفظتي",
+  "editprofile": "تعديل الحساب",
+  "NewPassword": "كلمة المرور الجديده",
+  "ConfirmPass": "تأكيد كلمة المرور",
+  "update": "تحديث",
+  "Detailedaddress": "العنوان بالتفصيل",
+  "Sold": "تم البيع",
+  "editproduct": "تعديل المنتج"
 
 
 

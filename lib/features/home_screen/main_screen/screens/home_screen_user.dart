@@ -86,7 +86,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             SizedBox(
                               height: 9.h,
                             ),
-          
                             Catogries(),
                             InkWell(
                                 onTap: () {
