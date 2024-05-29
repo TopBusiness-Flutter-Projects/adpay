@@ -22,6 +22,7 @@ import '../../features/home_screen/menue/myprofile/edit_my_harag/edit_my_harag.d
 import '../../features/home_screen/menue/myprofile/myharag/screens/my_harag.dart';
 import '../../features/home_screen/menue/myprofile/myprofile.dart';
 import '../../features/home_screen/menue/screens/contact_us/screens/contact_us.dart';
+import '../../features/home_screen/menue/screens/menue_screen.dart';
 import '../../features/home_screen/menue/screens/mypoints/screens/points.dart';
 import '../../features/home_screen/menue/screens/places/places.dart';
 import '../../features/home_screen/menue/screens/pocket/pocket.dart';
@@ -44,6 +45,8 @@ class Routes {
   static const String CategoriesRoute = '/categories'; // Change this line
   static const String ProductssRoute = '/products';
   static const String ProductsDetails = '/productsDetails'; // Change this line
+
+  static const String float = '/float'; // Change this line
 
   static const String floatingRote = '/floating';
   static const String garageRoute = '/garage'; // Change this line
@@ -86,6 +89,8 @@ class Routes {
   static const String myharagdetails = '/myharagdetails';
 
   static const String editmyharagdetails = '/editmyharagdetails';
+
+  static const String Main = '/Main';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -151,6 +156,13 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: PocketScreen(), // Replace with your category screen widget
+        );
+      case Routes.float: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: floating(), // Replace with your category screen widget
         );
       case Routes.editprofile: // Change this line
         return PageTransition(
@@ -292,6 +304,14 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: chatpage(),
         );
+      case Routes.Main:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: HomeScreen(),
+        );
+
       case Routes.homeRouteDriver:
         return PageTransition(
           type: PageTransitionType.fade,

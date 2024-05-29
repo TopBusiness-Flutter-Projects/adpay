@@ -67,7 +67,6 @@ class CustomAppBar extends StatelessWidget {
                 ),
                 label: Center(child: Container(
                   child: Text('2'),)), // Add this line
-
               ),
           ),
         )

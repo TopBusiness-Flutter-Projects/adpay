@@ -10,13 +10,13 @@ import '../main_screen/cubit/home_cubit.dart';
 import '../main_screen/cubit/home_state.dart';
 
 
-class Products extends StatefulWidget {
-   Products({super.key});
+class Stores extends StatefulWidget {
+   Stores({super.key});
   @override
-  State<Products> createState() => _ProductsState();
+  State<Stores> createState() => _StoresState();
 }
 
-class _ProductsState extends State<Products> {
+class _StoresState extends State<Stores> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(
@@ -24,76 +24,70 @@ class _ProductsState extends State<Products> {
     builder: (context, statee) {
     if (statee is LoadedADS) {
     HomeCubit cubit = HomeCubit.get(context);
-    return   InkWell(
-      onTap: (){
-
-      },
-      child: SizedBox(
-        height: 200.h,
-        child: GridView.builder(
-          physics: const BouncingScrollPhysics(),
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 2.0,
-            crossAxisSpacing: 2.0,
-            childAspectRatio: 1 / 1.4,
-          ),
-          itemCount: statee.homeModel!.data!.shops!.length,
-          itemBuilder: (BuildContext context, int index) {
-
-               return Column(
-                   children: [
-                     InkWell(
-                       onTap: (){
-                        Navigator.pushNamed(
-                            context, Routes.tagerscreen,
-                        );
-                       },
-                       child: Container(
-                         width: 100.w,
-                         height: 70.h,
-                         decoration: BoxDecoration(
-                           color: Colors.black,
-                           borderRadius: BorderRadius.circular(30),
-                         ),
-                         child: ClipRRect(
-                           borderRadius: BorderRadius.circular(5),
-                           child: Image.asset(
-                             "assets/images/Rectangle.png",
-                             fit: BoxFit.cover,
-                           ),
-                         ),
-                       ),
-                     ),
-                     SizedBox(
-                       height: 5,
-                     ),
-                     Text(
-                       (EasyLocalization.of(context)!
-                           .locale
-                           .languageCode ==
-                           'ar')
-                           ? (cubit.homeModel?.data?.shops?[index]
-                           .titleAr ??
-                           '')
-                           : (cubit.homeModel?.data?.shops?[index]
-                           .titleEn ??
-                           ''),
-                       style: TextStyle(
-                         fontSize: 16,
-                         fontWeight: FontWeight.w400,
-                         overflow: TextOverflow.ellipsis,
-                       ),
-                     ),
-                   ],
-               );},
-
-
-
+    return   SizedBox(
+      height: 200.h,
+      child: GridView.builder(
+        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 2.0,
+          crossAxisSpacing: 2.0,
+          childAspectRatio: 1 / 1.4,
         ),
+        itemCount: statee.homeModel!.data!.shops!.length,
+        itemBuilder: (BuildContext context, int index) {
+
+             return Column(
+                 children: [
+                   InkWell(
+                     onTap: (){
+                      Navigator.pushNamed(
+                          context, Routes.tagerscreen,
+                      );
+                     },
+                     child: Container(
+                       width: 100.w,
+                       height: 70.h,
+                       decoration: BoxDecoration(
+                         color: Colors.black,
+                         borderRadius: BorderRadius.circular(30),
+                       ),
+                       child: ClipRRect(
+                         borderRadius: BorderRadius.circular(5),
+                         child: Image.asset(
+                           "assets/images/Rectangle.png",
+                           fit: BoxFit.cover,
+                         ),
+                       ),
+                     ),
+                   ),
+                   SizedBox(
+                     height: 5,
+                   ),
+                   Text(
+                     (EasyLocalization.of(context)!
+                         .locale
+                         .languageCode ==
+                         'ar')
+                         ? (cubit.homeModel?.data?.shops?[index]
+                         .titleAr ??
+                         '')
+                         : (cubit.homeModel?.data?.shops?[index]
+                         .titleEn ??
+                         ''),
+                     style: TextStyle(
+                       fontSize: 16,
+                       fontWeight: FontWeight.w400,
+                       overflow: TextOverflow.ellipsis,
+                     ),
+                   ),
+                 ],
+             );},
+
+
+
       ),
     );
   }

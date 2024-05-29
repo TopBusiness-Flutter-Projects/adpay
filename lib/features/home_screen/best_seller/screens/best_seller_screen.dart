@@ -50,8 +50,9 @@ class _BestSellerScreenState extends State<BestSellerScreen> {
                     gridDelegate:
                     SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 2,
+                      childAspectRatio: 7/9,
+                      mainAxisSpacing: 1,
                     ),
                     itemCount: cubit.homeModel?.data?.productMostSell?.length??1,
                     itemBuilder: (BuildContext context, int index) {
