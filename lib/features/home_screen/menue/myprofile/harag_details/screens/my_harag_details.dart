@@ -123,7 +123,7 @@ class MyHaragDetails extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Text("nono",
+                                  Text("تيشيرت",
                                       style: Styles.style18),
                                   Text("nonjbjbjbjbjhsbdhbhhshcbcbjknjknkjnjknknkskncknskcnskjcnsjkcnsjkcnkjnscnjknkjnjknjknkjnkjnhshdcschbcbhschschbchsdbo",
                                       maxLines: 2,

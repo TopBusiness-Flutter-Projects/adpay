@@ -67,10 +67,10 @@ class NotificationScreen extends StatelessWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("nehal"),
+                                  Text("T-Shirt"),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-                                    child: Text("nehal"),
+                                    child: Text("T-Shirt"),
                                   ),
                                 ],
                               ),

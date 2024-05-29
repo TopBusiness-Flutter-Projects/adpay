@@ -84,7 +84,7 @@ class MyHarag extends StatelessWidget {
                                                 width: double.infinity,
                                                 padding: EdgeInsets.only(top: 2.0,right:7),
                                                 child: Text(
-                                                  "nono", maxLines: 1,
+                                                  "T-Shirt", maxLines: 1,
                                                   textAlign: TextAlign.start,
                                                   style: TextStyle(
                                                     fontSize: 16,

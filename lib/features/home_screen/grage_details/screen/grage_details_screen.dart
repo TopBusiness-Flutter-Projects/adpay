@@ -206,7 +206,7 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                                           cubit.grageModelDetails
                                                                   ?.id
                                                                   .toString() ??
-                                                              "nono",
+                                                              "تيشيرت",
                                                           style: Styles.style16,
                                                           maxLines: 1,
                                                           overflow: TextOverflow

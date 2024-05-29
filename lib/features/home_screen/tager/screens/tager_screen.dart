@@ -215,7 +215,7 @@ class TagerScreen extends StatelessWidget {
                               width: double.infinity,
                               padding: EdgeInsets.only(top: 2.0,right: 5.0),
                               child: Text(
-                                "nonoooooooooo",
+                                "T-Shirt",
 
                                 maxLines: 1,
                                 textAlign: TextAlign.start,
@@ -234,7 +234,7 @@ class TagerScreen extends StatelessWidget {
                                   Flexible(
                                     fit: FlexFit.tight,
                                     child: Text(
-                                      "nono",
+                                      "T-Shirt",
 
                                       maxLines: 1,
                                       style: TextStyle(

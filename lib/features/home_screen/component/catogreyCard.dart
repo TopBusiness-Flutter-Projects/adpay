@@ -66,7 +66,7 @@ late  int currentIdX;
                     child: Text(
                       (EasyLocalization.of(context)!.locale.languageCode ==
                               'ar')
-                          ? (cubit.catogriesModel?.data?[index]?.titleAr ?? 'nono')
+                          ? (cubit.catogriesModel?.data?[index]?.titleAr ?? 'T-Shirt')
                           : (cubit.catogriesModel?.data?[index]?.titleEn ?? ''),
                       maxLines: 1,
                       textAlign: TextAlign.center,

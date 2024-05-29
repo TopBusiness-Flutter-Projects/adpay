@@ -23,7 +23,7 @@ class BublleChat extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(16),
-                child: Text("Hello i am nono",style: TextStyle(color:Colors.white),),
+                child: Text("T-Shirt",style: TextStyle(color:Colors.white),),
               ),
             ),
           ),
