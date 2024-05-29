@@ -92,6 +92,27 @@
      "productname": "Product Name" ,
      "price": "the price",
      "Category": "Category",
-     "Selectcategory": "Select category"
+     "Selectcategory": "Select category",
+     "Subcategory": "Subcategory",
+     "Productdetails": "Product details",
+     "add": "add",
+     "name": "The name",
+     "phone": "your phone",
+     "topic": "the topic",
+     "send": "the send",
+     "profile": "my profile",
+     "points": "my points",
+     "Forester": "Forester",
+     "places": "the places",
+     "edit": "Edit Profile",
+     "delete": "delete profile",
+     "pocket": "pocket",
+     "editprofile": "editprofile",
+     "NewPassword": "New Password",
+     "ConfirmPass": "Confirm Password",
+     "update": "update",
+     "Detailedaddress": "Detailed address",
+     "Sold": "Sold",
+     "editproduct": "editproduct"
 
 }

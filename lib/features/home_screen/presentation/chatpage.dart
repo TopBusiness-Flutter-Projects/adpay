@@ -2,6 +2,8 @@ import 'package:adpay/features/home_screen/presentation/widgets/bubble-widget.da
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import '../../../config/routes/app_routes.dart';
 class chatpage extends StatelessWidget {
   const chatpage({Key? key}) : super(key: key);
 
@@ -11,15 +13,23 @@ class chatpage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: InkWell(
+          onTap: (){
+             Navigator.pop(context);
+
+          },
+            child: Icon(Icons.arrow_back_ios_sharp,color:Colors.white)),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.blueGrey,
+        
         title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Image.asset(
             "assets/images/logo.png",
             height: 30,
           ),
-          Text("chat")
+          Text("chat"),
         ]),
+      
         centerTitle: true,
       ),
       body: Column(

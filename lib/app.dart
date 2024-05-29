@@ -118,7 +118,6 @@ class _AdpayState extends State<Adpay> {
           debugShowCheckedModeBanner: false,
           title: AppStrings.appName,
            onGenerateRoute: AppRoutes.onGenerateRoute,
-         // home:floating()
         );}));
   }
 }

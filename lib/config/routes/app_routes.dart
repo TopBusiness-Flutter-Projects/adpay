@@ -1,4 +1,7 @@
 import 'package:adpay/features/home_screen/grage_details/screen/grage_details_screen.dart';
+import 'package:adpay/features/home_screen/menue/myprofile/edit_profile/edit_profile.dart';
+import 'package:adpay/features/home_screen/menue/myprofile/harag_details/screens/my_harag_details.dart';
+import 'package:adpay/features/home_screen/menue/screens/favourite/favoutite_screen.dart';
 import 'package:adpay/features/home_screen/messgaes/screens/messages.dart';
 import 'package:adpay/features/home_screen/presentation/chatpage.dart';
 import 'package:adpay/features/home_screen/presentation/complete_order.dart';
@@ -6,15 +9,23 @@ import 'package:flutter/material.dart';
 import 'package:adpay/features/splash/screens/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import '../../core/utils/app_strings.dart';
-import '../../features/add_harag/screens/add_harag.dart';
 import '../../features/choose_login/screen/choose_login_screen.dart';
 import '../../features/forget_password/screen/forget_pass.dart';
+import '../../features/home_screen/add_harag/screens/add_harag.dart';
 import '../../features/home_screen/advertisment/screen/advertisment_screen.dart';
 import '../../features/home_screen/best_seller/screens/best_seller_screen.dart';
 import '../../features/home_screen/catogries/screens/Categories_screen.dart';
 import '../../features/home_screen/garage/screens/grage_screen.dart';
 import '../../features/home_screen/grage_details/screen/allcomments_screen.dart';
 import '../../features/home_screen/main_screen/screens/home_screen_user.dart';
+import '../../features/home_screen/menue/myprofile/edit_my_harag/edit_my_harag.dart';
+import '../../features/home_screen/menue/myprofile/myharag/screens/my_harag.dart';
+import '../../features/home_screen/menue/myprofile/myprofile.dart';
+import '../../features/home_screen/menue/screens/contact_us/screens/contact_us.dart';
+import '../../features/home_screen/menue/screens/menue_screen.dart';
+import '../../features/home_screen/menue/screens/mypoints/screens/points.dart';
+import '../../features/home_screen/menue/screens/places/places.dart';
+import '../../features/home_screen/menue/screens/pocket/pocket.dart';
 import '../../features/home_screen/notifications/screens/notification_screen.dart';
 import '../../features/home_screen/order_details/screens/order_details.dart';
 import '../../features/home_screen/presentation/salla.dart';
@@ -34,6 +45,8 @@ class Routes {
   static const String CategoriesRoute = '/categories'; // Change this line
   static const String ProductssRoute = '/products';
   static const String ProductsDetails = '/productsDetails'; // Change this line
+
+  static const String float = '/float'; // Change this line
 
   static const String floatingRote = '/floating';
   static const String garageRoute = '/garage'; // Change this line
@@ -60,6 +73,24 @@ class Routes {
   static const String messagescreen = '/message';
   static const String addharag = '/addharag';
 
+  static const String contactus = '/contactus';
+  static const String profilescreen = '/profilescreen';
+
+  static const String favouritescreen = '/favouritescreen';
+  static const String profile = '/profile';
+  static const String pocket = '/pocket';
+
+  static const String points = '/points';
+
+  static const String places = '/places';
+  static const String myharag = '/myharag';
+  static const String editprofile = '/editprofile';
+
+  static const String myharagdetails = '/myharagdetails';
+
+  static const String editmyharagdetails = '/editmyharagdetails';
+
+  static const String Main = '/Main';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -91,6 +122,99 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: Catogreisss(), // Replace with your category screen widget
         );
+      case Routes.profilescreen: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: MyProfileScreen(), // Replace with your category screen widget
+        );
+      case Routes.myharag: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: MyHarag(), // Replace with your category screen widget
+        );
+      case Routes.editmyharagdetails: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: EditMyHaragDetails(), // Replace with your category screen widget
+        );
+      case Routes.myharagdetails: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: MyHaragDetails(), // Replace with your category screen widget
+        );
+      case Routes.pocket: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: PocketScreen(), // Replace with your category screen widget
+        );
+      case Routes.float: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: floating(), // Replace with your category screen widget
+        );
+      case Routes.editprofile: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: EditProfile(), // Replace with your category screen widget
+        );
+      case Routes.profile: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: MyProfileScreen(), // Replace with your category screen widget
+        );
+      case Routes.favouritescreen: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: FavouriteScreen(), // Replace with your category screen widget
+        );
+      case Routes.favouritescreen: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: MyHaragDetails(), // Replace with your category screen widget
+        );
+      case Routes.contactus: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: ContactUsScreen(), // Replace with your category screen widget
+        );
+
+      case Routes.points: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: MyPoints(), // Replace with your category screen widget
+        );
+      case Routes.places: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: PlacesScreen(), // Replace with your category screen widget
+        );
+
       case Routes.messagescreen: // Change this line
         return PageTransition(
           type: PageTransitionType.fade,
@@ -180,6 +304,14 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: chatpage(),
         );
+      case Routes.Main:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: HomeScreen(),
+        );
+
       case Routes.homeRouteDriver:
         return PageTransition(
           type: PageTransitionType.fade,

@@ -32,7 +32,7 @@ class CompleteOrder extends StatelessWidget {
             padding: const EdgeInsets.all(30.0),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, Routes.salla );
+                Navigator.pushNamed(context, Routes.float );
 
               },
               style: ElevatedButton.styleFrom(

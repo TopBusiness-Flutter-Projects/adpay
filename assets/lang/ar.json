@@ -95,7 +95,28 @@
   "productname": "اسم المنتج",
   "price": "السعر",
   "Category": "الفئة",
-  "Selectcategory": "اختر الفئة"
+  "Selectcategory": "اختر الفئة",
+  "Subcategory": "الفئة الفرعيه",
+  "Productdetails": "تفاصيل المنتج",
+"add": "أضافه",
+  "name": "الاسم",
+  "phone": "رقم الجوال",
+  "topic": "الموضوع",
+  "send": "ارسال",
+  "profile": "حسابي",
+  "points": "نقاطي",
+  "Forester": "حراجي",
+  "places": "الاماكن",
+  "edit": "تعديل الحساب",
+  "delete": "حذف الحساب",
+  "pocket": "محفظتي",
+  "editprofile": "تعديل الحساب",
+  "NewPassword": "كلمة المرور الجديده",
+  "ConfirmPass": "تأكيد كلمة المرور",
+  "update": "تحديث",
+  "Detailedaddress": "العنوان بالتفصيل",
+  "Sold": "تم البيع",
+  "editproduct": "تعديل المنتج"
 
 
 

@@ -17,46 +17,47 @@ class AllComments extends StatelessWidget {
       GrageDetailsCubit cubit = GrageDetailsCubit.get(context);
 
       return SafeArea(
-        bottom: true,
+          bottom: true,
           child: Scaffold(
-        bottomSheet: SendMessage(),
-        body: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: Padding(
+            bottomSheet: SendMessage(),
+            body: Column(children: [
+              Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(Icons.arrow_back)
+                child: ListTile(
+                  leading: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back)),
+                  ),
+                  title: Text("AllComments".tr(),
+                      style: Styles.style20.copyWith(color: Colors.black)),
                 ),
               ),
-              title: Text("AllComments".tr(),
-                  style: Styles.style20.copyWith(color: Colors.black)),
-            ),
-          ),
-          Flexible(fit: FlexFit.tight,
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                final comment = cubit.grageModelDetails?.comments[index];
-                if (comment != null) {
-                  return CommentsWidget(comment: comment);
-                } else {
-                  return SizedBox
-                      .shrink(); // Return an empty widget if the comment is null
-                }
-              },
-              itemCount: cubit.grageModelDetails?.comments.length ?? 0,
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.width/4,
-          )        ]),
-      ));
+              Flexible(
+                fit: FlexFit.tight,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    final comment = cubit.grageModelDetails?.comments[index];
+                    if (comment != null) {
+                      return CommentsWidget(comment: comment);
+                    } else {
+                      return SizedBox
+                          .shrink();
+                    }
+                  },
+                  itemCount: cubit.grageModelDetails?.comments.length ?? 0,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.width / 4,
+              )
+            ]),
+          ));
     });
   }
 }

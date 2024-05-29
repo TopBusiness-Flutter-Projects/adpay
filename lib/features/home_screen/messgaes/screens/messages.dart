@@ -39,12 +39,40 @@ class MessageScreen extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(200), // Same border radius as ClipRRect
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(200),
-                  child: Image.asset(
-                    "assets/images/chair.jpg",
-                    scale: 11,
+                child:
+                // ClipRRect(
+                //   borderRadius: BorderRadius.circular(200),
+                //   child: Image.asset(
+                //     "assets/images/chair.jpg",
+                //     scale: 11,
+                //   ),
+                // ),
+                // Badge(
+                //   backgroundColor: AppColors.primary,
+                //   child:
+                //   ClipRRect(
+                //     borderRadius: BorderRadius.circular(200),
+                //     child: Image.asset(
+                //       "assets/images/chair.jpg",
+                //       scale: 11,
+                //     ),
+                //   ),
+                // )
+                Badge(
+                  alignment:Alignment.bottomLeft,
+                  backgroundColor: AppColors.secondPrimary, // Use your AppColors.primary here
+                    textColor:AppColors.white,
+                  textStyle: Styles.style12,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(200),
+                    child: Image.asset(
+                      "assets/images/chair.jpg",
+                      scale: 11,
+                    ),
                   ),
+                  label: Center(child: Container(
+                    child: Text('2'),)), // Add this line
+
                 ),
               ),
               Padding(

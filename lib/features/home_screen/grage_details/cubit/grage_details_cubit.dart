@@ -46,6 +46,7 @@ class GrageDetailsCubit extends Cubit<GrageDetailsState> {
     required bool isComment,
     required String auction_id,
     required String? comment,
+    required BuildContext context,
     String? type,
     String? comment_id,
   }) async {
@@ -60,8 +61,18 @@ class GrageDetailsCubit extends Cubit<GrageDetailsState> {
     response.fold((l) {
       emit(ErrorComments());
     }, (r) async {
+//   grageModelDetails!.comments!.where((element) {
+//     if(element.id.toString()==comment_id!){
+//
+//     }else{}
+// return Comment();
+//        //!
+//      });
       successGetBar(r.msg);
-
+  if(isComment){
+    //scscscsc
+  }else{
+    Navigator.pop(context);  }
       emit(LoadedComments());
     });
   }

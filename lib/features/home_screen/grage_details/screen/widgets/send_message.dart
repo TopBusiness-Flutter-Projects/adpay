@@ -50,7 +50,7 @@ class SendMessage extends StatelessWidget {
           InkWell(
             onTap: (){
               final cubit = context.read<GrageDetailsCubit>();
-              cubit.PostComments(
+              cubit.PostComments(context: context,
                   auction_id:
                   cubit.grageModelDetails?.id.toString() ?? "1",
                   comment:context.read<GrageDetailsCubit>().comment.text ?? "good Morning",

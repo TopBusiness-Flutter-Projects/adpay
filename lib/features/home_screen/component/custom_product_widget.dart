@@ -22,7 +22,7 @@ Products?product;
         },
         child: Container(
           width: 150.w,
-          height: 300.h,
+          // height: 300.h,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -86,23 +86,7 @@ Products?product;
                         ),
                       ),
                     ),
-                    // Row(
-                    //   children: [
-                    //     Icon(
-                    //       Icons.star,
-                    //       color: Colors.amber,
-                    //       size: 18,
-                    //     ),
-                    //     SizedBox(width: 4),
-                    //     Text(
-                    //       product?.rate?.toString()??'',
-                    //       style: TextStyle(
-                    //         fontSize: 16,
-                    //         fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
+
                   ],
                 ),
               ),
