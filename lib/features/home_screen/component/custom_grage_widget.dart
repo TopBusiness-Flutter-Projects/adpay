@@ -54,9 +54,9 @@ class CustomGrageWidget extends StatelessWidget {
                       .languageCode ==
                       'ar')
                       ? (auctions?.titleAr ??
-                      'nehal')
+                      'تيشيرت')
                       : (auctions?.titleEn ??
-                      'nono'),
+                      'T-shirt'),
 
                   maxLines: 1,
                   textAlign: TextAlign.start,

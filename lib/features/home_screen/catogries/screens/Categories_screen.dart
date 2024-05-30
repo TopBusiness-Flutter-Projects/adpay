@@ -144,7 +144,7 @@ class _CatogreisssState extends State<Catogreisss> {
             ),
           );
         } else {
-          return const Center(child: Text("no data"));
+          return  Container();
         }
       },
     );

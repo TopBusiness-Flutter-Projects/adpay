@@ -67,7 +67,7 @@ class _Advertesment_ScreenState extends State<Advertesment_Screen> {
 
 
 
-                  : Center(child: Text("no data"))
+                  : Container()
                 ],
               ),
             ),

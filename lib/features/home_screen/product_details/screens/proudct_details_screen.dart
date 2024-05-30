@@ -170,7 +170,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                   cubit.productsModelDetails
                                                           ?.data?.price
                                                           .toString() ??
-                                                      "nono",
+                                                      "T-Shirt",
                                                   style: Styles.style16,
                                                 )))
                                           ],

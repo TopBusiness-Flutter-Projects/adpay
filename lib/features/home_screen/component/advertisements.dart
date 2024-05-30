@@ -47,7 +47,7 @@ class _advertisementsState extends State<advertisements> {
             ),
           );
         } else {
-          return const Center(child: Text("no data"));
+          return  Container();
         }
       },
     );

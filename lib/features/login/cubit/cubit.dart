@@ -69,11 +69,12 @@ class LoginCubit extends Cubit<LoginState> {
               Routes.homeRoute,
                   (route) => false,
             )
-                : Navigator.pushNamedAndRemoveUntil(
+                : (userModel?.data?.type == 'driver' &&
+                userModel?.data?.type!= null)? Navigator.pushNamedAndRemoveUntil(
               context,
               Routes.homeRouteDriver,
                   (route) => false,
-            );
+            ):null;
             successGetBar(r.msg);
           });
         //  phoneController.clear();
