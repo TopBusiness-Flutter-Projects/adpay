@@ -88,6 +88,7 @@ ServiceApi api;
     response.fold((l) {
       emit(ErrorADS());
     }, (r) async {
+      getUserModel();
       print("sucess cubit");
       homeModel =r;
       print('homemodel : ${homeModel?.data?.ads?.first.descriptionAr

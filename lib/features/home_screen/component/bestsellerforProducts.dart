@@ -28,23 +28,21 @@ class _BestSellerforProductsState extends State<BestSellerforProducts> {
     return  BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
       builder: (context, statee) {
-        if (statee is LoadedADS) {
+
 
           HomeCubit cubit = HomeCubit.get(context);
           return SizedBox(
             height: 200.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: statee.homeModel!.data!.products!.length,
+              itemCount: cubit.homeModel!.data!.products!.length,
               itemBuilder: (context, index) {
-                return CustomProductWidget(product:  statee.homeModel!.data!.products?[index],);
+                return CustomProductWidget(product:  cubit.homeModel!.data!.products?[index],);
               },
             ),
           );
-        }
-        else {
-          return  Container();
-        }
+
+
       },
     );
   }

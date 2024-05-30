@@ -8,8 +8,12 @@ import '../../login/widgets/custom_text_field.dart';
 import '../cubit/cubit.dart';
 
 class UserInfoWidget extends StatefulWidget {
-  UserInfoWidget({required this.cubit, super.key});
+  UserInfoWidget({required this.cubit,
+
+    this.isUser=false,
+    super.key});
   SignUpVendorCubit cubit;
+  bool isUser;
   @override
   State<UserInfoWidget> createState() => _UserInfoWidgetState();
 }
@@ -55,7 +59,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
           ),
         ),
         SizedBox(height: getSize(context) / 32),
-        SizedBox(
+  SizedBox(
           height: getSize(context) / 4,
           child: Row(
             children: [

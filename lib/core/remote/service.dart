@@ -22,6 +22,7 @@ import '../models/grage_model.dart';
 import '../models/login_model.dart';
 import '../models/product_details._modeldart';
 import '../models/products_model.dart';
+import '../models/register_model.dart';
 import '../models/shop_model.dart';
 import '../preferences/preferences.dart';
 
@@ -168,8 +169,8 @@ class ServiceApi {
         EndPoints.registerUrl,
         formDataIsEnabled: true,
         body: {
-          'phone': phone,
-          'phone_code': phoneCode,
+          'password': phone,
+          'phone': phoneCode,
           "image": data,
           'name': name,
           'device_token': deviceToken,

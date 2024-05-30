@@ -8,10 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/assets_manager.dart';
 import '../../../core/utils/get_size.dart';
+import '../../register_user/screen/user_signup.dart';
+import '../../register_user/screen/user_signup.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({this.id = 'user', super.key});
@@ -149,9 +150,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, Routes.vendorSignUp);
 
-                          //TODO:  nav to signup
+                            if (widget.id== "user") {
+                              Navigator.pushNamed(context, Routes.usersignupscreen); // Replace 'Routes.otherRoute' with the actual route you want to navigate to.
+                            } else {
+                              Navigator.pushNamed(context, Routes.vendorSignUp);
+
+                            }
+
+
                         },
                         child: Text(
                           'signup'.tr(),

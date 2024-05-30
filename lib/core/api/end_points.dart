@@ -31,5 +31,5 @@ static const String CommentsUrl='${baseUrl}user/storeComment';
   // static const String deepLink = '${baseUrl}details/';
   // static const String searchUrl = '${baseUrl}search';
   // static const String notificationUrl = '${baseUrl}notifications';
-  static const String registerUrl = '${baseUrl}client/auth/register';
+  static const String registerUrl = '${baseUrl}user/register';
 }

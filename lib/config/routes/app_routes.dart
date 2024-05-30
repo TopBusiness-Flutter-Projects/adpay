@@ -36,6 +36,7 @@ import '../../features/home_screen/tager/screens/tager_screen.dart';
 import '../../features/home_screen_provider/screen/home_screen_driver.dart';
 import '../../features/login/screen/login_screen.dart';
 import '../../features/on_boarding/screen/onboarding_screen.dart';
+import '../../features/register_user/screen/user_signup.dart';
 import '../../features/vendor_sign_up/screen/vendor_sign_up.dart';
 import '../../floating.dart';
 
@@ -91,6 +92,7 @@ class Routes {
   static const String editmyharagdetails = '/editmyharagdetails';
 
   static const String Main = '/Main';
+  static const String usersignupscreen = '/usersignupscreen';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -128,6 +130,13 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: MyProfileScreen(), // Replace with your category screen widget
+        );
+      case Routes.usersignupscreen: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: UserSignUpScreen(), // Replace with your category screen widget
         );
       case Routes.myharag: // Change this line
         return PageTransition(

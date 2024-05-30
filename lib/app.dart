@@ -20,6 +20,7 @@ import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 import 'features/home_screen/products/cubit/products_cubit.dart';
 import 'features/home_screen/shop/cubit/shop_cubit.dart';
 import 'features/login/cubit/cubit.dart';
+import 'features/register_user/cubit/register_user_cubit.dart';
 import 'features/vendor_sign_up/cubit/cubit.dart';
 
 class Adpay extends StatefulWidget {
@@ -48,6 +49,9 @@ class _AdpayState extends State<Adpay> {
         providers: [
           BlocProvider(
             create: (_) => injector.serviceLocator<OnboardingCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<SignUpUserCubit>(),
           ),
           BlocProvider(
             create: (_) => injector.serviceLocator<LoginCubit>(),

@@ -19,11 +19,12 @@ import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 import 'features/home_screen/products/cubit/products_cubit.dart';
 import 'features/home_screen/shop/cubit/shop_cubit.dart';
 import 'features/login/cubit/cubit.dart';
+import 'features/register_user/cubit/register_user_cubit.dart';
 import 'features/vendor_sign_up/cubit/cubit.dart';
 
 // import 'features/downloads_videos/cubit/downloads_videos_cubit.dart';
 
-final serviceLocator = GetIt.instance;
+final serviceLocator  = GetIt.instance;
 
 Future<void> setup() async {
   //! Features
@@ -85,6 +86,12 @@ Future<void> setup() async {
       serviceLocator(),
     ),
   );
+  serviceLocator.registerFactory(
+        () => SignUpUserCubit(
+      serviceLocator(),
+    ),
+  );
+
   // serviceLocator.registerFactory(
   //   () => ProfileCubit(
   //      serviceLocator(),

@@ -67,7 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       return Padding(
                         padding: const EdgeInsets.all(10),
                         child:RefreshIndicator(
-
                           onRefresh: ()async {
                             await   context.read<HomeCubit>().getHome();
 

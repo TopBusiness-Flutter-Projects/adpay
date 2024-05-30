@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart' as trans;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../config/routes/app_routes.dart';
@@ -104,8 +105,10 @@ class OnBoarding2 extends StatelessWidget {
                     ),
                   )),
               InkWell(
-                  onTap: () {
+                  onTap: () async{
                     Navigator.pushReplacementNamed(context, Routes.choosLogin);
+                    SharedPreferences pref=await SharedPreferences.getInstance();
+                    pref.setBool('onBoarding', true);
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(
