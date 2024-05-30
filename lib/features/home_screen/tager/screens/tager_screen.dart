@@ -246,7 +246,7 @@ class TagerScreen extends StatelessWidget {
                                   ),
                                   SizedBox(width: 4),
                                   Text(
-                                    "nehal",
+                                    "T-Shirt",
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,

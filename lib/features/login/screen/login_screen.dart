@@ -21,6 +21,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  GlobalKey<FormState> loginKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
@@ -45,120 +46,126 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: AppColors.grayColor, fontWeight: FontWeight.w700),
             ),
           ),
-          body: ListView(
-            padding: EdgeInsets.symmetric(horizontal: getSize(context) / 16),
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: getSize(context) / 22),
-                child: Image.asset(
-                  widget.id == 'user'
-                      ? ImageAssets.appIconImage
-                      : ImageAssets.storeIcon,
-                  width: getSize(context) / 2.5,
-                  height: getSize(context) / 2.5,
-                ),
-              ),
-              CustomTextField(
-                controller: cubit.phoneController,
-                message: 'enter_phone'.tr(),
-                title: 'phone'.tr(),
-                hintTitle: 'enter_phone'.tr(),
-                keyboardType: TextInputType.phone,
-              ),
-              SizedBox(
-                height: getSize(context) / 22,
-              ),
-              CustomTextField(
-                isPass: true,
-                onPressed: () {
-                  cubit.togglePassword();
-                },
-                obscureText: cubit.isPassword,
-                controller: cubit.passwprdController,
-                title: 'password'.tr(),
-                hintTitle: 'enter_password'.tr(),
-                message: 'enter_password'.tr(),
-                keyboardType: TextInputType.visiblePassword,
-              ),
-              SizedBox(
-                height: getSize(context) / 22,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, Routes.forgetPassword);
-                  //!
-                },
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'forget_password'.tr(),
-                    style: TextStyle(
-                        color: AppColors.secondPrimary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: getSize(context) / 28),
+          body: Form(
+            key: loginKey,
+            child: ListView(
+              padding: EdgeInsets.symmetric(horizontal: getSize(context) / 16),
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: getSize(context) / 22),
+                  child: Image.asset(
+                    widget.id == 'user'
+                        ? ImageAssets.appIconImage
+                        : ImageAssets.storeIcon,
+                    width: getSize(context) / 2.5,
+                    height: getSize(context) / 2.5,
                   ),
                 ),
-              ),
-              SizedBox(height: getSize(context) / 12),
-              GestureDetector(
-                onTap: () {
-                  print("screen");
-               //   cubit.loginAuth(context);
-                  cubit.CheckUser(context);
-                },
-                child: Container(
-                  margin:
-                      EdgeInsets.symmetric(horizontal: getSize(context) / 22),
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(
-                      horizontal: getSize(context) / 22, vertical: 5),
-                  decoration: BoxDecoration(
-                      color: AppColors.primary,
-                      borderRadius:
-                          BorderRadius.circular(getSize(context) / 12)),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 2.0),
+                CustomTextField(
+                  controller: cubit.phoneController,
+                  message: 'enter_phone'.tr(),
+                  title: 'phone'.tr(),
+                  hintTitle: 'enter_phone'.tr(),
+                  keyboardType: TextInputType.phone,
+                ),
+                SizedBox(
+                  height: getSize(context) / 22,
+                ),
+                CustomTextField(
+                  isPass: true,
+                  onPressed: () {
+                    cubit.togglePassword();
+                  },
+                  obscureText: cubit.isPassword,
+                  controller: cubit.passwprdController,
+                  title: 'password'.tr(),
+                  hintTitle: 'enter_password'.tr(),
+                  message: 'enter_password'.tr(),
+                  keyboardType: TextInputType.visiblePassword,
+                ),
+                SizedBox(
+                  height: getSize(context) / 22,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, Routes.forgetPassword);
+                    //!
+                  },
+                  child: Container(
+                    alignment: Alignment.centerLeft,
                     child: Text(
-                      'login'.tr(),
+                      'forget_password'.tr(),
                       style: TextStyle(
-                          color: Colors.white, fontSize: getSize(context) / 18),
+                          color: AppColors.secondPrimary,
+                          fontWeight: FontWeight.w400,
+                          fontSize: getSize(context) / 28),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: getSize(context) / 6),
-              Container(
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "${'don\'t_have_an_account'.tr()} ",
-                      style: TextStyle(
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w400,
-                          fontSize: getSize(context) / 24),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, Routes.vendorSignUp);
+                SizedBox(height: getSize(context) / 12),
+                GestureDetector(
+                  onTap: () {
 
-                        //TODO:  nav to signup
-                      },
+                    if(loginKey.currentState!.validate()){
+                      print("screen");
+                      //   cubit.loginAuth(context);
+                      cubit.CheckUser(context);
+                    }
+
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: getSize(context) / 22),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: getSize(context) / 22, vertical: 5),
+                    decoration: BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius:
+                            BorderRadius.circular(getSize(context) / 12)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 2.0),
                       child: Text(
-                        'signup'.tr(),
+                        'login'.tr(),
                         style: TextStyle(
-                            color: AppColors.secondPrimary,
+                            color: Colors.white, fontSize: getSize(context) / 18),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: getSize(context) / 6),
+                Container(
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "${'don\'t_have_an_account'.tr()} ",
+                        style: TextStyle(
+                            color: AppColors.black,
                             fontWeight: FontWeight.w400,
                             fontSize: getSize(context) / 24),
                       ),
-                    ),
-                  ],
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, Routes.vendorSignUp);
+
+                          //TODO:  nav to signup
+                        },
+                        child: Text(
+                          'signup'.tr(),
+                          style: TextStyle(
+                              color: AppColors.secondPrimary,
+                              fontWeight: FontWeight.w400,
+                              fontSize: getSize(context) / 24),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
