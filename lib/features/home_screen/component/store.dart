@@ -92,7 +92,7 @@ class _StoresState extends State<Stores> {
     );
   }
     else {
-      return const Center(child: Text("no data"));
+      return  Container();
     }
     },
     );
