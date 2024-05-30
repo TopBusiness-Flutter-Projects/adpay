@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "979222201210",
+    "firebase_url": "https://adpay-edf24-default-rtdb.firebaseio.com",
+    "project_id": "adpay-edf24",
+    "storage_bucket": "adpay-edf24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979222201210:android:38c3e594d5c2aad1eb4cc3",
+        "android_client_info": {
+          "package_name": "com.topbusiness.adpay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5Z89wejGw6nF4oDIoIG1beoSKboj1jsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

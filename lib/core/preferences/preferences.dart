@@ -31,19 +31,22 @@ class Preferences {
         'user', jsonEncode(LoginModel.fromJson(loginModel.toJson())));
     print(await getUserModel());
   }
+
   Future<void> setHome(HomeModel homeModel) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString(
         'home', jsonEncode(LoginModel.fromJson(homeModel.toJson())));
     print(await getUserModel());
   }
+
   //set checkuser
   Future<void> setCheckUser(CheckUserModel checkUserModel) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString(
-        'CheckUser', jsonEncode(CheckUserModel.fromJson(checkUserModel.toJson())));
+    preferences.setString('CheckUser',
+        jsonEncode(CheckUserModel.fromJson(checkUserModel.toJson())));
     print(await getUserModel());
   }
+
 //get user
   Future<CheckUserModel> getCheckUser() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -56,6 +59,7 @@ class Preferences {
     }
     return checkuserModel;
   }
+
   //clear
   Future<void> clearShared() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -73,7 +77,21 @@ class Preferences {
     }
     return userModel;
   }
-  //setuser
+
+  Future<void> setDeviceToken(String? token) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('device_token', token ?? '');
+  }
+
+  Future<String?> getDeviceToken() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    if (await preferences.getString('device_token') != null) {
+      return await preferences.getString('device_token');
+    } else {
+      return null;
+    }
+  }
 
   Future<HomeModel> getHomeModel() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
