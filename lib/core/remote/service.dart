@@ -1,5 +1,7 @@
 // import 'package:http/http.dart' as http;
 
+import 'dart:io';
+
 import 'package:adpay/core/models/comment_model.dart';
 import 'package:adpay/features/home_screen/grage_details/screen/grage_details_screen.dart';
 import 'package:dartz/dartz.dart';
@@ -108,30 +110,31 @@ class ServiceApi {
   }
 
   //comment
-  Future<Either<Failure,CommentsModel>> PostComment(
-      {
-        bool isComment=true,
-         String? auction_id,
-        String? comment,
-         String? type,
-           String? comment_id,}) async {
+  Future<Either<Failure, CommentsModel>> PostComment({
+    bool isComment = true,
+    String? auction_id,
+    String? comment,
+    String? type,
+    String? comment_id,
+  }) async {
     String lan = await Preferences.instance.getSavedLang();
 
     LoginModel user = await Preferences.instance.getUserModel();
     try {
       var response = await dio.post(
         EndPoints.CommentsUrl,
-        body:isComment?{
-          "auction_id": auction_id,
-          "comment": comment,
-          "type": "comment",
-        }:
-            {
-              "auction_id": auction_id,
-              "comment": comment,
-              "type": "reply",
-              "comment_id": comment_id
-            },
+        body: isComment
+            ? {
+                "auction_id": auction_id,
+                "comment": comment,
+                "type": "comment",
+              }
+            : {
+                "auction_id": auction_id,
+                "comment": comment,
+                "type": "reply",
+                "comment_id": comment_id
+              },
         options: Options(
           headers: {
             'Accept-Language': lan,
@@ -147,15 +150,29 @@ class ServiceApi {
 
   //register
   Future<Either<Failure, LoginModel>> postRegister(
-      String phone, String phoneCode, String name) async {
+      {required String phone,
+      required File profileImage,
+      required String phoneCode,
+      required String name}) async {
+    String? deviceToken = await Preferences.instance.getDeviceToken();
+
     try {
+      //! images >>Multipare.
+
+      var fileName;
+      fileName = profileImage.path.split('/').last; // x.png
+      var data =
+          await MultipartFile.fromFile(profileImage.path, filename: fileName);
+
       var response = await dio.post(
         EndPoints.registerUrl,
+        formDataIsEnabled: true,
         body: {
           'phone': phone,
           'phone_code': phoneCode,
+          "image": data,
           'name': name,
-          //'role_id': 1,
+          'device_token': deviceToken,
         },
       );
 

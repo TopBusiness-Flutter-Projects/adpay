@@ -1,4 +1,3 @@
-
 import 'package:adpay/features/on_boarding/cubit/onboarding_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -100,24 +99,25 @@ class _AdpayState extends State<Adpay> {
           //   create: (_) => injector.serviceLocator<AddServiceCubit>(),
           // ),
         ],
-        child:  ScreenUtilInit(
-    designSize: const Size(360, 690),
-    minTextAdapt: true,
-    splitScreenMode: true,
-    // Use builder only if you need to use library outside ScreenUtilInit context
-    builder: (_ , child) {
-         return GetMaterialApp(
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          theme: appTheme(),
-          themeMode: ThemeMode.light,
-          darkTheme: ThemeData.light(),
-          builder: EasyLoading.init(),
-          // standard dark theme
-          localizationsDelegates: context.localizationDelegates,
-          debugShowCheckedModeBanner: false,
-          title: AppStrings.appName,
-           onGenerateRoute: AppRoutes.onGenerateRoute,
-        );}));
+        child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            minTextAdapt: true,
+            splitScreenMode: true,
+            // Use builder only if you need to use library outside ScreenUtilInit context
+            builder: (_, child) {
+              return GetMaterialApp(
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
+                theme: appTheme(),
+                themeMode: ThemeMode.light,
+                darkTheme: ThemeData.light(),
+                builder: EasyLoading.init(),
+                // standard dark theme
+                localizationsDelegates: context.localizationDelegates,
+                debugShowCheckedModeBanner: false,
+                title: AppStrings.appName,
+                onGenerateRoute: AppRoutes.onGenerateRoute,
+              );
+            }));
   }
 }

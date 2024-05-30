@@ -221,43 +221,72 @@ class _StoreInfoWidgetState extends State<StoreInfoWidget> {
                       fontWeight: FontWeight.bold,
                       fontSize: getSize(context) / 20)),
             ),
-            Column(
-              children: [
-                InkWell(
-                  child: Container(
+            InkWell(
+              onTap: () {
+                //! Add sub category
+                Scaffold.of(context).showBottomSheet(
+                    enableDrag: true,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(getSize(context) / 22),
+                            topRight: Radius.circular(getSize(context) / 22))),
+                    (context) {
+                  return Container(
                     decoration: BoxDecoration(
-                        color: AppColors.secondPrimary,
-                        borderRadius:
-                            BorderRadius.circular(getSize(context) / 100)),
-                    child: Icon(Icons.add, color: AppColors.white),
+                        color: AppColors.blue,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(getSize(context) / 22),
+                            topRight: Radius.circular(getSize(context) / 22))),
+                    height: getSize(context) / 2,
+                  );
+                });
+              },
+              child: Column(
+                children: [
+                  InkWell(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: AppColors.secondPrimary,
+                          borderRadius:
+                              BorderRadius.circular(getSize(context) / 100)),
+                      child: Icon(Icons.add, color: AppColors.white),
+                    ),
                   ),
-                ),
-                Container(
-                  child: Text('add_sub_categoty'.tr(),
-                      style: TextStyle(
-                          color: AppColors.grayColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: getSize(context) / 32)),
-                ),
-              ],
+                  Container(
+                    child: Text('add_sub_categoty'.tr(),
+                        style: TextStyle(
+                            color: AppColors.grayColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: getSize(context) / 32)),
+                  ),
+                ],
+              ),
             )
           ],
         ),
         SizedBox(height: getSize(context) / 32),
         Container(
-          child: GridView.builder(
+          child: ListView.builder(
               itemCount: 10,
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
               itemBuilder: (context, index) {
                 return Container(
+                  margin: EdgeInsets.all(2),
+                  padding: EdgeInsets.all(8),
+
+                  // alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: AppColors.secondPrimary,
                       borderRadius:
-                          BorderRadius.circular(getSize(context) / 100)),
-                  child: Text('ملابس'),
+                          BorderRadius.circular(getSize(context) / 32)),
+                  child: Text(
+                    'ملابس',
+                    style: TextStyle(
+                      color: AppColors.white,
+                      backgroundColor: AppColors.secondPrimary,
+                    ),
+                  ),
                 );
               }),
         ),

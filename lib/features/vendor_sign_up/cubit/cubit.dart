@@ -68,10 +68,7 @@ class SignUpVendorCubit extends Cubit<SignUpVendorState> {
 
   //TODO after add male selectedImage null
 
-  final List<String> genderItems = [
-    'Male',
-    'Female',
-  ];
+  final List<String> genderItems = ['Male', 'Female'];
 
   String? selectedValue;
 }
