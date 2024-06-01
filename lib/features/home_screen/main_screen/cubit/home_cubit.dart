@@ -13,6 +13,7 @@ class HomeCubit extends Cubit<HomeState> {
 ServiceApi api;
   static HomeCubit get(context) => BlocProvider.of(context);
   LoginModel ?userData;
+  //عشان الاسم الي فوق
   getUserModel(){
 
      Preferences.instance.getUserModel().then((e){

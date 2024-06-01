@@ -3,12 +3,15 @@
 import 'dart:io';
 
 import 'package:adpay/core/models/comment_model.dart';
+import 'package:adpay/core/models/get_favourite_model.dart';
 import 'package:adpay/features/home_screen/grage_details/screen/grage_details_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../api/base_api_consumer.dart';
+import '../api/dio_consumer.dart';
 import '../api/end_points.dart';
 import '../error/exceptions.dart';
 import '../error/failures.dart';
@@ -17,9 +20,11 @@ import '../models/adsence_Model.dart';
 import '../models/catogrie_model.dart';
 import '../models/checkUser_model.dart';
 import '../models/favourite_model.dart';
+import '../models/get_myprofile_model.dart';
 import '../models/grage_details_model.dart';
 import '../models/grage_model.dart';
 import '../models/login_model.dart';
+import '../models/my_auctions_model.dart';
 import '../models/product_details._modeldart';
 import '../models/products_model.dart';
 import '../models/register_model.dart';
@@ -32,6 +37,16 @@ class ServiceApi {
   final BaseApiConsumer dio;
 
   ServiceApi(this.dio);
+//   if (dio is DioConsumer) {
+//   (dio as DioConsumer).client.interceptors.add(PrettyDioLogger(
+//   requestHeader: true,
+//   requestBody: true,
+//   responseBody: true,
+//   responseHeader: false,
+//   compact: false,
+//   ));
+//   }
+// }
 
   Future<Either<Failure, LoginModel>> loginAuth({
     required String phone,
@@ -167,6 +182,39 @@ class ServiceApi {
 
       var response = await dio.post(
         EndPoints.registerUrl,
+        formDataIsEnabled: true,
+        body: {
+          'password': phone,
+          'phone': phoneCode,
+          "image": data,
+          'name': name,
+          'device_token': deviceToken,
+        },
+      );
+
+      return Right(LoginModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //edit profile
+  Future<Either<Failure, LoginModel>> PostEditProfile(
+      {required String phone,
+        required File profileImage,
+        required String phoneCode,
+        required String name}) async {
+    String? deviceToken = await Preferences.instance.getDeviceToken();
+
+    try {
+      //! images >>Multipare.
+
+      var fileName;
+      fileName = profileImage.path.split('/').last; // x.png
+      var data =
+      await MultipartFile.fromFile(profileImage.path, filename: fileName);
+
+      var response = await dio.post(
+        EndPoints.EditProfileUrl,
         formDataIsEnabled: true,
         body: {
           'password': phone,
@@ -353,6 +401,60 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+//getfavourite
+  Future<Either<Failure, GetFavouriteModel>> GetFavourite() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.getfavouriteUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(GetFavouriteModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //getProfile
+  Future<Either<Failure, GetProfileModel>> getProfile() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.getprofileUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+
+      );
+      // print('Response data: ${response.data}');
+
+      return Right(GetProfileModel.fromJson(response));
+
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+
+  }
+  //myauctions
+  Future<Either<Failure, MyAuctionsModel>> GetMyAuctions() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+String userid=loginModel?.data?.id.toString()??"";
+    try {
+      final response = await dio.get(
+        EndPoints.getmyauctionsUrl+ '?user_id=${(userid == null) ? '' : userid}',
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(MyAuctionsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
 
   //catogries
   Future<Either<Failure, CategoriesModel>> CategoriesData() async {
