@@ -115,7 +115,6 @@ class Routes {
 class AppRoutes {
   static String route = '';
 
-
   static Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.CategoriesRoute: // Change this line
@@ -151,7 +150,8 @@ class AppRoutes {
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: EditMyHaragDetails(), // Replace with your category screen widget
+          child:
+              EditMyHaragDetails(), // Replace with your category screen widget
         );
       case Routes.myharagdetails: // Change this line
         return PageTransition(
@@ -172,7 +172,7 @@ class AppRoutes {
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: floating(), // Replace with your category screen widget
+          child: Floating(), // Replace with your category screen widget
         );
       case Routes.editprofile: // Change this line
         return PageTransition(
@@ -237,7 +237,8 @@ class AppRoutes {
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: NotificationScreen(), // Replace with your category screen widget
+          child:
+              NotificationScreen(), // Replace with your category screen widget
         );
       case Routes.orderDetails: // Change this line
         return PageTransition(
@@ -283,7 +284,7 @@ class AppRoutes {
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: floating(),
+          child: Floating(),
         );
 
       case Routes.ShopRoute:
@@ -336,7 +337,7 @@ class AppRoutes {
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: ProductsScreen(id:id ),
+          child: ProductsScreen(id: id),
         );
       case Routes.ProductsDetails:
         String? id = settings.arguments as String?;
@@ -344,7 +345,7 @@ class AppRoutes {
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: ProductDetailsScreen(id:id ),
+          child: ProductDetailsScreen(id: id),
         );
       case Routes.gragedetails:
         String? id = settings.arguments as String?;
@@ -353,7 +354,7 @@ class AppRoutes {
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: GrageDetailsScreen(id:id),
+          child: GrageDetailsScreen(id: id),
         );
       case Routes.garageRoute:
         return PageTransition(
