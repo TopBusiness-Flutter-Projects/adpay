@@ -1,4 +1,5 @@
 
+import 'package:adpay/features/home_screen/menue/screens/pocket/cubit/pocket_cubit.dart';
 import 'package:adpay/features/on_boarding/cubit/onboarding_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -18,6 +19,7 @@ import 'features/home_screen/menue/myprofile/cubit/get_profile_cubit.dart';
 import 'features/home_screen/menue/myprofile/edit_profile/cubit/edit_profile_cubit.dart';
 import 'features/home_screen/menue/myprofile/myharag/cubit/my_harag_cubit.dart';
 import 'features/home_screen/menue/screens/favourite/cubit/favourite_cubit.dart';
+import 'features/home_screen/menue/screens/mypoints/cubit/points_cubit.dart';
 import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 
 import 'features/home_screen/products/cubit/products_cubit.dart';
@@ -57,6 +59,16 @@ Future<void> setup() async {
   );
   serviceLocator.registerFactory(
         () => MyHaragCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+        () => PointsCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+        () => PocketCubit(
       serviceLocator(),
     ),
   );

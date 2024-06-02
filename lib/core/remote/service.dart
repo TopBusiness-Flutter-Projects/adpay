@@ -19,6 +19,7 @@ import '../models/Home_models.dart';
 import '../models/adsence_Model.dart';
 import '../models/catogrie_model.dart';
 import '../models/checkUser_model.dart';
+import '../models/coins_model.dart';
 import '../models/favourite_model.dart';
 import '../models/get_myprofile_model.dart';
 import '../models/grage_details_model.dart';
@@ -29,6 +30,7 @@ import '../models/product_details._modeldart';
 import '../models/products_model.dart';
 import '../models/register_model.dart';
 import '../models/shop_model.dart';
+import '../models/wallet_model.dart';
 import '../preferences/preferences.dart';
 
 class ServiceApi {
@@ -462,6 +464,40 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+  //coinsurl
+  Future<Either<Failure, MyCoinsModel>> getCoins() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.CoinsUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      // print('Response data: ${response.data}');
+      return Right(MyCoinsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+//getwallet
+  Future<Either<Failure, MyWalletModel>> GetWallet() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(
+        EndPoints.WalletUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      // print('Response data: ${response.data}');
+      return Right(MyWalletModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
 
   //myauctions
   Future<Either<Failure, MyAuctionsModel>> GetMyAuctions() async {
