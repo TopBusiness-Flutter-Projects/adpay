@@ -29,7 +29,7 @@ void main() async {
       path: 'assets/lang',
       saveLocale: true,
       startLocale: const Locale('ar', ''),
-      fallbackLocale: const Locale('ar', ''), //افتراضيه
+      fallbackLocale: const Locale('ar', ''),
       child: HotRestartController(child: const Adpay()),
     ),
   );
@@ -41,6 +41,5 @@ getToken() async {
   String? token = await messaging.getToken();
   print('Token : $token');
   await Preferences.instance.setDeviceToken(token);
-
   return token;
 }

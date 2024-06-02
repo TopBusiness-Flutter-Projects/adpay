@@ -74,6 +74,32 @@ class ServiceApi {
     }
   }
 
+  Future<Either<Failure, LoginModel>> loginAuthProvider({
+    required String phone,
+    required String password,
+    required String device_token,
+  }) async {
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.post(
+        EndPoints.loginUrlProvider,
+        body: {
+          "phone": phone,
+          "password": password,
+          "device_token": '$Devicetoken',
+        },
+        options: Options(
+          headers: {'Accept-Language': lan},
+        ),
+      );
+      return Right(LoginModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
 //checkuser
   Future<Either<Failure, CheckUserModel>> CheckUser({
     required String phone,
@@ -82,9 +108,7 @@ class ServiceApi {
     try {
       var response = await dio.post(
         EndPoints.CheckUser,
-        body: {
-          "phone": "11227179601",
-        },
+        body: {"phone": phone},
         options: Options(
           headers: {'Accept-Language': lan},
         ),
@@ -197,12 +221,13 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
   //edit profile
   Future<Either<Failure, LoginModel>> PostEditProfile(
       {required String phone,
-        required File profileImage,
-        required String phoneCode,
-        required String name}) async {
+      required File profileImage,
+      required String phoneCode,
+      required String name}) async {
     String? deviceToken = await Preferences.instance.getDeviceToken();
 
     try {
@@ -211,7 +236,7 @@ class ServiceApi {
       var fileName;
       fileName = profileImage.path.split('/').last; // x.png
       var data =
-      await MultipartFile.fromFile(profileImage.path, filename: fileName);
+          await MultipartFile.fromFile(profileImage.path, filename: fileName);
 
       var response = await dio.post(
         EndPoints.EditProfileUrl,
@@ -401,6 +426,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
 //getfavourite
   Future<Either<Failure, GetFavouriteModel>> GetFavourite() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -417,6 +443,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
   //getProfile
   Future<Either<Failure, GetProfileModel>> getProfile() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -427,24 +454,23 @@ class ServiceApi {
         options: Options(
           headers: {'Authorization': loginModel.data!.token},
         ),
-
       );
       // print('Response data: ${response.data}');
 
       return Right(GetProfileModel.fromJson(response));
-
     } on ServerException {
       return Left(ServerFailure());
     }
-
   }
+
   //myauctions
   Future<Either<Failure, MyAuctionsModel>> GetMyAuctions() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
-String userid=loginModel?.data?.id.toString()??"";
+    String userid = loginModel?.data?.id.toString() ?? "";
     try {
       final response = await dio.get(
-        EndPoints.getmyauctionsUrl+ '?user_id=${(userid == null) ? '' : userid}',
+        EndPoints.getmyauctionsUrl +
+            '?user_id=${(userid == null) ? '' : userid}',
         options: Options(
           headers: {'Authorization': loginModel.data!.token},
         ),
@@ -454,7 +480,6 @@ String userid=loginModel?.data?.id.toString()??"";
       return Left(ServerFailure());
     }
   }
-
 
   //catogries
   Future<Either<Failure, CategoriesModel>> CategoriesData() async {

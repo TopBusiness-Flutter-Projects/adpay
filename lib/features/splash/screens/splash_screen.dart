@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (prefs.getBool('onBoarding') == true) {
       if (prefs.getString('user') != null) {
         Preferences.instance.getUserModel().then((value) {
-          if (value.data?.type == 'user' ) {
+          if (value.data?.type == 'user') {
             Navigator.pushNamedAndRemoveUntil(
               context,
               Routes.floatingRote,
@@ -76,8 +76,7 @@ class _SplashScreenState extends State<SplashScreen> {
         bottomSheet: Container(
           padding: const EdgeInsets.all(5),
           color: Colors.white,
-          child: Image.asset(
-              ImageAssets.topBbusiness,
+          child: Image.asset(ImageAssets.topBbusiness,
               width: getSize(context) / 3),
         ),
         body: Center(

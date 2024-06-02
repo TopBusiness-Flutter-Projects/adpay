@@ -3,6 +3,7 @@ class EndPoints {
   static const String baseUrlImage = 'https://adpay.topbusiness.io/';
 
   static const String loginUrl = '${baseUrl}auth/login';
+  static const String loginUrlProvider = '${baseUrl}provider/login';
   static const String CheckUser = '${baseUrl}auth/checkUser';
   static const String homeUrl = '${baseUrl}user/getHome';
   static const String CatogriesListUrl = '${baseUrl}user/getCategories';
@@ -14,7 +15,7 @@ class EndPoints {
   static const String AuctionsDetails = '${baseUrl}user/auctionDetails/';
   static const String ShopsList = '${baseUrl}user/getShops';
   static const String Favourite = '${baseUrl}user/storeFavorite';
-static const String CommentsUrl='${baseUrl}user/storeComment';
+  static const String CommentsUrl = '${baseUrl}user/storeComment';
   // static const String citiesUrl = '${baseUrl}cities';
   // static const String servicesUrl = '${baseUrl}services/';
   // static const String editServicesUrl = '${baseUrl}services/update/';
@@ -38,6 +39,4 @@ static const String CommentsUrl='${baseUrl}user/storeComment';
   static const String getprofileUrl = '${baseUrl}user/myAccount';
   static const String getmyauctionsUrl = '${baseUrl}user/getMyAuctions';
   static const String EditProfileUrl = '${baseUrl}user/updateProfile';
-
-
 }
