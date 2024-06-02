@@ -41,6 +41,5 @@ getToken() async {
   String? token = await messaging.getToken();
   print('Token : $token');
   await Preferences.instance.setDeviceToken(token);
-
   return token;
 }

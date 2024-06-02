@@ -16,7 +16,7 @@ class LoginCubit extends Cubit<LoginState> {
   int currentUser = 2; // 1 driver  2  user
 //!  register
   bool isPassword = true;
-  String? Devicetoken;
+  String? deviceToken;
   togglePassword() {
     isPassword = !isPassword;
     emit(ChangePasswordState());
@@ -32,18 +32,56 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> loginAuth(BuildContext context) async {
     var pref = await SharedPreferences.getInstance();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    Devicetoken = prefs.getString('checkUser' ?? "");
+    deviceToken = prefs.getString('checkUser');
     emit(LoadingLoginAuth());
     final response = await api.loginAuth(
         phone: phoneController.text,
         password: passwprdController.text,
-        device_token: '$Devicetoken');
+        device_token: '$deviceToken');
     //
     response.fold((l) {
       emit(ErrorLoginAuth());
     }, (r) async {
       print("loaded");
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('auth-token', r.data?.token.toString() ?? "");
+      Preferences.instance.setUser(r).then((value) {
+        userModel = r;
+        (userModel?.data?.type == 'user' && userModel?.data?.type != null)
+            ? Navigator.pushNamedAndRemoveUntil(
+                context,
+                Routes.floatingRote,
+                (route) => false,
+              )
+            : (userModel?.data?.type == 'vendor' &&
+                    userModel?.data?.type != null)
+                ? Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    Routes.homeRouteDriver,
+                    (route) => false,
+                  )
+                : null;
+        successGetBar(r.msg);
+      });
       emit(LoadedLoginAuth());
+      pref.setBool('onBoarding', true);
+    });
+  }
+
+  Future<void> loginAuthProvider(BuildContext context) async {
+    var pref = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    deviceToken = prefs.getString('checkUser');
+    emit(LoadingLoginAuth());
+    final response = await api.loginAuthProvider(
+        phone: phoneController.text,
+        password: passwprdController.text,
+        device_token: '$deviceToken');
+    //
+    response.fold((l) {
+      emit(ErrorLoginAuth());
+    }, (r) async {
+      print("loaded");
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('auth-token', r.data?.token.toString() ?? "");
       Preferences.instance.setUser(r).then((value) {
@@ -54,7 +92,7 @@ class LoginCubit extends Cubit<LoginState> {
                 Routes.homeRoute,
                 (route) => false,
               )
-            : (userModel?.data?.type == 'driver' &&
+            : (userModel?.data?.type == 'vendor' &&
                     userModel?.data?.type != null)
                 ? Navigator.pushNamedAndRemoveUntil(
                     context,
@@ -63,36 +101,37 @@ class LoginCubit extends Cubit<LoginState> {
                   )
                 : null;
         successGetBar(r.msg);
-      }
-      );
-      //  phoneController.clear();
-      //  passwprdController.clear();
+      });
+      emit(LoadedLoginAuth());
+
       pref.setBool('onBoarding', true);
-      // } else {
-      //   errorGetBar(r.message ?? "");
-      //   emit(ErrorLoginAuth());
-      // }
     });
   }
 
   Future<void> CheckUser(BuildContext context) async {
     var pref = await SharedPreferences.getInstance();
-    emit(LoadingLoginAuth());
+    emit(LoadingCheckUserAuth());
     final response = await api.CheckUser(
       phone: phoneController.text,
     );
     //
     response.fold((l) {
-      emit(ErrorLoginAuth());
+      emit(ErrorCheckUserAuth());
     }, (r) async {
-      print("loaded");
-      emit(LoadedLoginAuth());
-
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('checkUser', r.data!.deviceToken.toString() ?? "");
-      prefs.setString('name', r.data!.name.toString() ?? "");
-      loginAuth(context);
-      pref.setBool('onBoarding', true);
+      if (r.status == 1) {
+        print("loaded");
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('checkUser', r.data!.deviceToken.toString());
+        prefs.setString('name', r.data!.name.toString());
+        loginAuth(context);
+        pref.setBool('onBoarding', true);
+        emit(LoadedCheckUserAuth());
+      } else if (r.status == 0) {
+        errorGetBar(r.msg ?? '');
+        emit(ErrorCheckUserAuth());
+      } else {
+        errorGetBar(r.msg ?? '');
+      }
     });
   }
 }

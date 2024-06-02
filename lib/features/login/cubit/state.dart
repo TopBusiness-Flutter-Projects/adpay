@@ -13,3 +13,9 @@ class LoadingLoginAuth extends LoginState {}
 class LoadedLoginAuth extends LoginState {}
 
 class ErrorLoginAuth extends LoginState {}
+
+class LoadingCheckUserAuth extends LoginState {}
+
+class LoadedCheckUserAuth extends LoginState {}
+
+class ErrorCheckUserAuth extends LoginState {}
