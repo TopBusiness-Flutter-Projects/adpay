@@ -28,6 +28,8 @@ class _LoginScreenState extends State<LoginScreen> {
         } else if (state is LoadedLoginAuth) {
           EasyLoading.dismiss();
           EasyLoading.showSuccess('Login Success');
+        } else if (state is ErrorLoginAuth) {
+          EasyLoading.showError("state.toString()");
         } else if (state is ErrorLoginAuth || state is ErrorLoginAuth) {
           EasyLoading.dismiss();
           EasyLoading.showError("${state.toString()}");
