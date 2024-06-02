@@ -16,10 +16,15 @@ import 'features/home_screen/garage/cubit/grage_cubit.dart';
 import 'features/home_screen/grage_details/cubit/grage_details_cubit.dart';
 import 'features/home_screen/main_screen/cubit/home_cubit.dart';
 
+import 'features/home_screen/menue/myprofile/cubit/get_profile_cubit.dart';
+import 'features/home_screen/menue/myprofile/edit_profile/cubit/edit_profile_cubit.dart';
+import 'features/home_screen/menue/myprofile/myharag/cubit/my_harag_cubit.dart';
+import 'features/home_screen/menue/screens/favourite/cubit/favourite_cubit.dart';
 import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 import 'features/home_screen/products/cubit/products_cubit.dart';
 import 'features/home_screen/shop/cubit/shop_cubit.dart';
 import 'features/login/cubit/cubit.dart';
+import 'features/register_user/cubit/register_user_cubit.dart';
 import 'features/vendor_sign_up/cubit/cubit.dart';
 
 class Adpay extends StatefulWidget {
@@ -48,6 +53,9 @@ class _AdpayState extends State<Adpay> {
         providers: [
           BlocProvider(
             create: (_) => injector.serviceLocator<OnboardingCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<SignUpUserCubit>(),
           ),
           BlocProvider(
             create: (_) => injector.serviceLocator<LoginCubit>(),
@@ -79,6 +87,20 @@ class _AdpayState extends State<Adpay> {
           ),
           BlocProvider(
             create: (_) => injector.serviceLocator<GrageDetailsCubit>(),
+          ),
+
+          BlocProvider(
+            create: (_) => injector.serviceLocator<FavouriteCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<GetProfileCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<MyHaragCubit>(),
+          ),
+
+          BlocProvider(
+            create: (_) => injector.serviceLocator<EditProfileCubit>(),
           ),
           // BlocProvider(
           //   create: (_) => injector.serviceLocator<PostsCubit>(),

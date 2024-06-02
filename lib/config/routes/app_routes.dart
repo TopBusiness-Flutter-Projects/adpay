@@ -1,5 +1,6 @@
 import 'package:adpay/features/home_screen/grage_details/screen/grage_details_screen.dart';
 import 'package:adpay/features/home_screen/menue/myprofile/edit_profile/edit_profile.dart';
+import 'package:adpay/features/home_screen/menue/myprofile/edit_profile/screen/user_signup.dart';
 import 'package:adpay/features/home_screen/menue/myprofile/harag_details/screens/my_harag_details.dart';
 import 'package:adpay/features/home_screen/menue/screens/favourite/favoutite_screen.dart';
 import 'package:adpay/features/home_screen/messgaes/screens/messages.dart';
@@ -20,7 +21,7 @@ import '../../features/home_screen/grage_details/screen/allcomments_screen.dart'
 import '../../features/home_screen/main_screen/screens/home_screen_user.dart';
 import '../../features/home_screen/menue/myprofile/edit_my_harag/edit_my_harag.dart';
 import '../../features/home_screen/menue/myprofile/myharag/screens/my_harag.dart';
-import '../../features/home_screen/menue/myprofile/myprofile.dart';
+import '../../features/home_screen/menue/myprofile/screens/myprofile.dart';
 import '../../features/home_screen/menue/screens/contact_us/screens/contact_us.dart';
 import '../../features/home_screen/menue/screens/menue_screen.dart';
 import '../../features/home_screen/menue/screens/mypoints/screens/points.dart';
@@ -36,6 +37,7 @@ import '../../features/home_screen/tager/screens/tager_screen.dart';
 import '../../features/home_screen_provider/screen/home_screen_driver.dart';
 import '../../features/login/screen/login_screen.dart';
 import '../../features/on_boarding/screen/onboarding_screen.dart';
+import '../../features/register_user/screen/user_signup.dart';
 import '../../features/vendor_sign_up/screen/vendor_sign_up.dart';
 import '../../floating.dart';
 
@@ -91,6 +93,7 @@ class Routes {
   static const String editmyharagdetails = '/editmyharagdetails';
 
   static const String Main = '/Main';
+  static const String usersignupscreen = '/usersignupscreen';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -128,6 +131,13 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: MyProfileScreen(), // Replace with your category screen widget
+        );
+      case Routes.usersignupscreen: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: UserSignUpScreen(), // Replace with your category screen widget
         );
       case Routes.myharag: // Change this line
         return PageTransition(

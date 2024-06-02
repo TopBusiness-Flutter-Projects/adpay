@@ -31,5 +31,14 @@ static const String CommentsUrl='${baseUrl}user/storeComment';
   // static const String deepLink = '${baseUrl}details/';
   // static const String searchUrl = '${baseUrl}search';
   // static const String notificationUrl = '${baseUrl}notifications';
-  static const String registerUrl = '${baseUrl}client/auth/register';
+  static const String registerUrl = '${baseUrl}user/register';
+
+  static const String logoutUrl = '${baseUrl}auth/logout';
+
+  static const String getfavouriteUrl = '${baseUrl}user/myFavorite';
+  static const String getprofileUrl = '${baseUrl}user/myAccount';
+  static const String getmyauctionsUrl = '${baseUrl}user/getMyAuctions';
+  static const String EditProfileUrl = '${baseUrl}user/updateProfile';
+
+
 }

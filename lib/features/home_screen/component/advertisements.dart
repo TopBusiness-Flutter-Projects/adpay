@@ -31,7 +31,7 @@ class _advertisementsState extends State<advertisements> {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
       builder: (context, statee) {
-        if (statee is LoadedADS) {
+
           HomeCubit cubit = HomeCubit.get(context);
           return SingleChildScrollView(
             child: SizedBox(
@@ -46,10 +46,8 @@ class _advertisementsState extends State<advertisements> {
                   }),
             ),
           );
-        } else {
-          return  Container();
         }
-      },
+
     );
   }
 }

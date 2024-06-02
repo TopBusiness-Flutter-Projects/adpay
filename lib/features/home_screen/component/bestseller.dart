@@ -17,7 +17,7 @@ class BestSeller extends StatelessWidget {
   return  BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {},
     builder: (context, statee) {
-    if (statee is LoadedADS) {
+
 
     HomeCubit cubit = HomeCubit.get(context);
     return SizedBox(
@@ -32,10 +32,7 @@ class BestSeller extends StatelessWidget {
       ),
     );
   }
-    else {
-      return  Container();
-    }
-    },
+
   );
   }
 }

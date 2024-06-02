@@ -63,7 +63,8 @@ class LoginCubit extends Cubit<LoginState> {
                   )
                 : null;
         successGetBar(r.msg);
-      });
+      }
+      );
       //  phoneController.clear();
       //  passwprdController.clear();
       pref.setBool('onBoarding', true);
@@ -90,7 +91,6 @@ class LoginCubit extends Cubit<LoginState> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('checkUser', r.data!.deviceToken.toString() ?? "");
       prefs.setString('name', r.data!.name.toString() ?? "");
-
       loginAuth(context);
       pref.setBool('onBoarding', true);
     });

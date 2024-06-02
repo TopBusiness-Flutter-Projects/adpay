@@ -16,24 +16,22 @@ class BestSellerforGrage extends StatelessWidget {
     return  BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
       builder: (context, statee) {
-        if (statee is LoadedADS) {
+
 
           HomeCubit cubit = HomeCubit.get(context);
           return SizedBox(
             height: 200.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: statee.homeModel!.data!.auctions!.length,
+              itemCount: cubit.homeModel!.data!.auctions!.length,
               itemBuilder: (context, index) {
                 return CustomGrageWidget(auctions:cubit.homeModel?.data?.auctions?[index],);
               },
             ),
           );
         }
-        else {
-          return  Container();
-        }
-      },
+
+
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:adpay/core/models/register_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/Home_models.dart';

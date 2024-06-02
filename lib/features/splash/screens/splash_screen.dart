@@ -76,7 +76,8 @@ class _SplashScreenState extends State<SplashScreen> {
         bottomSheet: Container(
           padding: const EdgeInsets.all(5),
           color: Colors.white,
-          child: Image.asset(ImageAssets.topBbusiness,
+          child: Image.asset(
+              ImageAssets.topBbusiness,
               width: getSize(context) / 3),
         ),
         body: Center(

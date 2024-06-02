@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:adpay/core/api/status_code.dart';
-
 import '../error/exceptions.dart';
 import 'app_interceptors.dart';
 import 'base_api_consumer.dart';
@@ -39,9 +37,9 @@ class DioConsumer implements BaseApiConsumer {
       client.interceptors.add(injector.serviceLocator<LogInterceptor>());
     }
   }
+
   @override
-  Future get(String path,
-      {Map<String, dynamic>? queryParameters, Options? options}) async {
+  Future<dynamic> get(String path, {Map<String, dynamic>? queryParameters, Options? options}) async {
     try {
       final response = await client.get(
         path,
@@ -55,11 +53,7 @@ class DioConsumer implements BaseApiConsumer {
   }
 
   @override
-  Future post(String path,
-      {Map<String, dynamic>? body,
-      bool formDataIsEnabled = false,
-      Map<String, dynamic>? queryParameters,
-      Options? options}) async {
+  Future<dynamic> post(String path, {Map<String, dynamic>? body, bool formDataIsEnabled = false, Map<String, dynamic>? queryParameters, Options? options}) async {
     try {
       final response = await client.post(
         path,
@@ -74,10 +68,7 @@ class DioConsumer implements BaseApiConsumer {
   }
 
   @override
-  Future put(String path,
-      {Map<String, dynamic>? body,
-      Map<String, dynamic>? queryParameters,
-      Options? options}) async {
+  Future<dynamic> put(String path, {Map<String, dynamic>? body, Map<String, dynamic>? queryParameters, Options? options}) async {
     try {
       final response = await client.put(
         path,
@@ -124,11 +115,7 @@ class DioConsumer implements BaseApiConsumer {
   }
 
   @override
-  Future newPost(String path,
-      {bool formDataIsEnabled = false,
-      Map<String, dynamic>? body,
-      Map<String, dynamic>? queryParameters,
-      Options? options}) async {
+  Future<dynamic> newPost(String path, {bool formDataIsEnabled = false, Map<String, dynamic>? body, Map<String, dynamic>? queryParameters, Options? options}) async {
     try {
       final response = await client.post(
         path,
@@ -143,11 +130,7 @@ class DioConsumer implements BaseApiConsumer {
   }
 
   @override
-  Future delete(String path,
-      {bool formDataIsEnabled = false,
-      Map<String, dynamic>? body,
-      Map<String, dynamic>? queryParameters,
-      Options? options}) async {
+  Future<dynamic> delete(String path, {bool formDataIsEnabled = false, Map<String, dynamic>? body, Map<String, dynamic>? queryParameters, Options? options}) async {
     try {
       final response = await client.delete(
         path,

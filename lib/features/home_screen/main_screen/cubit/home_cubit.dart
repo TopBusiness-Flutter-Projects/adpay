@@ -13,6 +13,7 @@ class HomeCubit extends Cubit<HomeState> {
 ServiceApi api;
   static HomeCubit get(context) => BlocProvider.of(context);
   LoginModel ?userData;
+  //عشان الاسم الي فوق
   getUserModel(){
 
      Preferences.instance.getUserModel().then((e){
@@ -88,6 +89,7 @@ ServiceApi api;
     response.fold((l) {
       emit(ErrorADS());
     }, (r) async {
+      getUserModel();
       print("sucess cubit");
       homeModel =r;
       print('homemodel : ${homeModel?.data?.ads?.first.descriptionAr

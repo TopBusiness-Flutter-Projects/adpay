@@ -1,4 +1,5 @@
 {
+
      "skip": "skip",
      "next": "next",
      "our_app": "our application",
@@ -113,6 +114,7 @@
      "update": "update",
      "Detailedaddress": "Detailed address",
      "Sold": "Sold",
-     "editproduct": "editproduct"
+     "editproduct": "editproduct",
+     "Createaccount": "Create an account"
 
 }

@@ -20,7 +20,7 @@ class Catogries extends StatelessWidget {
     return   BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {},
     builder: (context, statee) {
-    if (statee is LoadedADS) {
+    // if (statee is LoadedADS) {
     HomeCubit cubit = HomeCubit.get(context);
     return Container(
       alignment: Alignment.centerRight,
@@ -84,9 +84,9 @@ class Catogries extends StatelessWidget {
         },
       ),
     );
-  }else {
-      return  Container();
-    }
+  // }else {
+  //     return  Container();
+  //   }
     },
     );
   }

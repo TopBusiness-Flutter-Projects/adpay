@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 
 abstract class BaseApiConsumer {
+  // List<Interceptor> get interceptors; // Add this line
+
   Future<dynamic> get(String path, {Map<String, dynamic>? queryParameters,Options? options});
 
   Future<dynamic> post(String path,

@@ -36,7 +36,7 @@ class Data {
   int? id;
   String? name;
   String? image;
-  int? phone;
+  dynamic? phone;
   String? type;
   int? points;
   String? deviceToken;

@@ -22,7 +22,7 @@ class _StoresState extends State<Stores> {
     return BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {},
     builder: (context, statee) {
-    if (statee is LoadedADS) {
+
     HomeCubit cubit = HomeCubit.get(context);
     return   SizedBox(
       height: 200.h,
@@ -36,7 +36,7 @@ class _StoresState extends State<Stores> {
           crossAxisSpacing: 2.0,
           childAspectRatio: 1 / 1.4,
         ),
-        itemCount: statee.homeModel!.data!.shops!.length,
+        itemCount: cubit.homeModel!.data!.shops!.length,
         itemBuilder: (BuildContext context, int index) {
 
              return Column(
@@ -90,10 +90,7 @@ class _StoresState extends State<Stores> {
 
       ),
     );
-  }
-    else {
-      return  Container();
-    }
+
     },
     );
   }
