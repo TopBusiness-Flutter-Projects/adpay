@@ -12,7 +12,6 @@ class EndPoints {
   static const String GrageListUrl = '${baseUrl}user/getAuctions';
   static const String ProductDetails = '${baseUrl}user/productDetails/';
   static const String AuctionsDetails = '${baseUrl}user/auctionDetails/';
-
   static const String ShopsList = '${baseUrl}user/getShops';
   static const String Favourite = '${baseUrl}user/storeFavorite';
 static const String CommentsUrl='${baseUrl}user/storeComment';

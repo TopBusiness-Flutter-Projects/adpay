@@ -126,7 +126,6 @@ if(widget.cubit.passwprdController.text==widget.cubit.confirmPasswprdController.
 }else{
  Fluttertoast.showToast(msg: 'please enter same pass');}
                 }
-          
                 },
                 child: Container(
                   margin: EdgeInsets.all(getSize(context) / 22),
@@ -140,7 +139,7 @@ if(widget.cubit.passwprdController.text==widget.cubit.confirmPasswprdController.
                     ),
                   ),
                   child: Text(
-                   'Createaccount'.tr() ,
+                   'editprofile'.tr() ,
                     style: TextStyle(
                       fontSize: getSize(context) / 18,
                       color: AppColors.white,
