@@ -8,6 +8,7 @@ class CustomTextFieldHarag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  TextField(
+
       onSubmitted: (data) async {},
       decoration: InputDecoration(
         hintText: "SendMessage".tr(),

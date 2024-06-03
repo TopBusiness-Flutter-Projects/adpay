@@ -67,7 +67,7 @@ class MyHaragDetails extends StatelessWidget {
                                       alignment: Alignment.bottomCenter,
                                       builder: DotSwiperPaginationBuilder(
                                         color: Colors.grey,
-                                        activeColor: Colors.green,
+                                        activeColor: Color(0xff205960),
                                       ),
                                     ),
                                     duration: 600,
@@ -81,7 +81,8 @@ class MyHaragDetails extends StatelessWidget {
                           padding: const EdgeInsets.all(10.0),
                           child: InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, Routes.editmyharagdetails);
+                                Navigator.pushNamed(
+                                    context, Routes.editmyharagdetails);
                               },
                               child: Image.asset("assets/images/edit3.png")),
                         )
@@ -123,16 +124,19 @@ class MyHaragDetails extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Text("تيشيرت",
-                                      style: Styles.style18),
-                                  Text("nonjbjbjbjbjhsbdhbhhshcbcbjknjknkjnjknknkskncknskcnskjcnsjkcnsjkcnkjnscnjknkjnjknjknkjnkjnhshdcschbcbhschschbchsdbo",
-                                      maxLines: 2,
-                                      style: Styles.style12,
+                                  Text("تيشيرت", style: Styles.style18),
+                                  Text(
+                                    "nonjbjbjbjbjhsbdhbhhshcbcbjknjknkjnjknknkskncknskcnskjcnsjkcnsjkcnkjnscnjknkjnjknjknkjnkjnhshdcschbcbhschschbchsdbo",
+                                    maxLines: 2,
+                                    style: Styles.style12,
                                     overflow: TextOverflow.ellipsis,
-
                                   ),
-                                  SizedBox(height: 80.0.h,),
-                                  CustomElevatedButton(text: 'Sold'.tr(),)
+                                  SizedBox(
+                                    height: 80.0.h,
+                                  ),
+                                  CustomElevatedButton(
+                                    text: 'Sold'.tr(),
+                                  )
                                 ],
                               ),
                             ),

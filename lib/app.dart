@@ -11,20 +11,24 @@ import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
 import 'core/utils/app_strings.dart';
 import 'package:adpay/injector.dart' as injector;
+import 'features/home_screen/add_harag/cubit/add_harag_cubit.dart';
 import 'features/home_screen/advertisment/cubit/adsence_cubit.dart';
 import 'features/home_screen/catogries/cubit/catogries_cubit.dart';
 import 'features/home_screen/garage/cubit/grage_cubit.dart';
 import 'features/home_screen/grage_details/cubit/grage_details_cubit.dart';
 import 'features/home_screen/main_screen/cubit/home_cubit.dart';
 
+import 'features/home_screen/menue/cubit/logout_cubit.dart';
 import 'features/home_screen/menue/myprofile/cubit/get_profile_cubit.dart';
 import 'features/home_screen/menue/myprofile/edit_profile/cubit/edit_profile_cubit.dart';
 import 'features/home_screen/menue/myprofile/myharag/cubit/my_harag_cubit.dart';
+import 'features/home_screen/menue/screens/contact_us/cubit/contact_us_cubit.dart';
 import 'features/home_screen/menue/screens/favourite/cubit/favourite_cubit.dart';
 import 'features/home_screen/menue/screens/mypoints/cubit/points_cubit.dart';
 import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 import 'features/home_screen/products/cubit/products_cubit.dart';
 import 'features/home_screen/shop/cubit/shop_cubit.dart';
+import 'features/home_screen_provider/main_screen/cubit/cubit.dart';
 import 'features/login/cubit/cubit.dart';
 import 'features/register_user/cubit/register_user_cubit.dart';
 import 'features/vendor_sign_up/cubit/cubit.dart';
@@ -90,7 +94,16 @@ class _AdpayState extends State<Adpay> {
           BlocProvider(
             create: (_) => injector.serviceLocator<GrageDetailsCubit>(),
           ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<AddHaragCubit>(),
+          ),
 
+          BlocProvider(
+            create: (_) => injector.serviceLocator<LogoutCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<ContactUsCubit>(),
+          ),
           BlocProvider(
             create: (_) => injector.serviceLocator<FavouriteCubit>(),
           ),
@@ -110,9 +123,9 @@ class _AdpayState extends State<Adpay> {
           BlocProvider(
             create: (_) => injector.serviceLocator<EditProfileCubit>(),
           ),
-          // BlocProvider(
-          //   create: (_) => injector.serviceLocator<PostsCubit>(),
-          // ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<MainVendorCubit>(),
+          ),
           // BlocProvider(
           //   create: (_) => injector.serviceLocator<ProfileCubit>(),
           // ),
@@ -133,7 +146,6 @@ class _AdpayState extends State<Adpay> {
             designSize: const Size(360, 690),
             minTextAdapt: true,
             splitScreenMode: true,
-            // Use builder only if you need to use library outside ScreenUtilInit context
             builder: (_, child) {
               return GetMaterialApp(
                 supportedLocales: context.supportedLocales,

@@ -249,7 +249,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 child: Image.asset("assets/images/pocket.png"),
                               ),
                               Text(
-                                cubit.profileModel?.data.points.toString() ??
+                                cubit.profileModel?.data.auctionsCount.toString() ??
                                     "0",
                                 style: Styles.style16
                                     .copyWith(color: Colors.black),

@@ -10,11 +10,10 @@ class CallIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        _launchCall(phoneNumber);
-      },
-      child: Image.asset("assets/images/call.png")
-    );
+        onTap: () {
+          _launchCall(phoneNumber);
+        },
+        child: Image.asset("assets/images/call.png"));
   }
 
   // Method to launch a phone call

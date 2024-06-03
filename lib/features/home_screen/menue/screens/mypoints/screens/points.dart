@@ -84,7 +84,7 @@ class _MyPointsState extends State<MyPoints> {
                                 child: Image.asset("assets/images/coins.png"),
                               ),
                               Text(
-                                cubit.coinsModel?.data?.configPoint.toString()??"nehal",
+                                cubit.coinsModel?.data?.user.points.toString()??"nehal",
                                 style: Styles.style16.copyWith(color: Colors.black),
                               ),
                             ],

@@ -79,67 +79,78 @@ class _FloatingState extends State<Floating> {
                 child: _pages[_index]),
             bottomNavigationBar: Container(
               color: Colors.transparent,
-              width: getSize(context) / 12,
+              // width: getSize(context) / 14,
               // height: getSize(context) / 4,
               child: FloatingNavbar(
-                borderRadius: 50,
+                borderRadius: getSize(context) / 4,
                 backgroundColor: AppColors.secondPrimary,
                 // selectedItemColor: purpleColor,
                 // unselectedItemColor: purpleColor,
                 selectedBackgroundColor: Colors.transparent,
                 elevation: 0,
-                padding: EdgeInsets.all(Platform.isIOS ? 0 : 1),
+                padding: EdgeInsets.zero,
                 margin: EdgeInsets.zero,
                 items: [
                   FloatingNavbarItem(
-                      customWidget: _index == 0
-                          ? Image.asset(
-                              'assets/images/Home2.png',
-                              width: getSize(context) / 12,
-                              height: getSize(context) / 12,
-                            )
-                          : Image.asset(
-                              'assets/images/Home.png',
-                              width: getSize(context) / 12,
-                              height: getSize(context) / 12,
-                            )),
+                      customWidget: Padding(
+                    padding: EdgeInsets.all(2),
+                    child: _index == 0
+                        ? Image.asset(
+                            'assets/images/Home2.png',
+                            width: getSize(context) / 14,
+                            height: getSize(context) / 14,
+                          )
+                        : Image.asset(
+                            'assets/images/Home.png',
+                            width: getSize(context) / 14,
+                            height: getSize(context) / 14,
+                          ),
+                  )),
                   FloatingNavbarItem(
-                      customWidget: _index == 1
-                          ? Image.asset(
-                              'assets/images/catogries2.png',
-                              width: getSize(context) / 12,
-                              height: getSize(context) / 12,
-                            )
-                          : Image.asset(
-                              'assets/images/catogries.png',
-                              width: getSize(context) / 12,
-                              height: getSize(context) / 12,
-                            )),
+                      customWidget: Padding(
+                    padding: EdgeInsets.all(2),
+                    child: _index == 1
+                        ? Image.asset(
+                            'assets/images/catogries2.png',
+                            width: getSize(context) / 14,
+                            height: getSize(context) / 14,
+                          )
+                        : Image.asset(
+                            'assets/images/catogries.png',
+                            width: getSize(context) / 14,
+                            height: getSize(context) / 14,
+                          ),
+                  )),
                   FloatingNavbarItem(
-                      customWidget: _index == 2
-                          ? Image.asset(
-                              'assets/images/cart2.png',
-                              width: getSize(context) / 12,
-                              height: getSize(context) / 12,
-                            )
-                          : Image.asset(
-                              'assets/images/cart.png',
-                              width: getSize(context) / 12,
-                              height: getSize(context) / 12,
-                            )),
+                      customWidget: Padding(
+                    padding: EdgeInsets.all(2),
+                    child: _index == 2
+                        ? Image.asset(
+                            'assets/images/cart2.png',
+                            width: getSize(context) / 14,
+                            height: getSize(context) / 14,
+                          )
+                        : Image.asset(
+                            'assets/images/cart.png',
+                            width: getSize(context) / 14,
+                            height: getSize(context) / 14,
+                          ),
+                  )),
                   FloatingNavbarItem(
-                    customWidget: _index == 3
+                      customWidget: Padding(
+                    padding: EdgeInsets.all(2),
+                    child: _index == 3
                         ? Image.asset(
                             'assets/images/windows2.png',
-                            width: getSize(context) / 12,
-                            height: getSize(context) / 12,
+                            width: getSize(context) / 14,
+                            height: getSize(context) / 14,
                           )
                         : Image.asset(
                             'assets/images/windows.png',
-                            width: getSize(context) / 12,
-                            height: getSize(context) / 12,
+                            width: getSize(context) / 14,
+                            height: getSize(context) / 14,
                           ),
-                  ),
+                  )),
                 ],
                 onTap: (index) {
                   setState(() {

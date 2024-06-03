@@ -19,7 +19,10 @@ class EndPoints {
 
   static const String CoinsUrl = '${baseUrl}user/myCoins';
   static const String WalletUrl = '${baseUrl}user/myWallet';
+  static const String addHarag = '${baseUrl}user/storeAuction';
+  static const String logout = '${baseUrl}auth/logout';
 
+  static const String contactUs = '${baseUrl}user/sendContactUs';
 
   // static const String citiesUrl = '${baseUrl}cities';
   // static const String servicesUrl = '${baseUrl}services/';
