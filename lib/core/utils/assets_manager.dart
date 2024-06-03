@@ -5,6 +5,10 @@ const String iconsPath = 'assets/icons';
 class ImageAssets {
   //images
   static const String logoImage = '$imagePath/logo.png';
+  static const String totalAdsImage = '$imagePath/total_ads.png';
+  static const String totalOrderImage = '$imagePath/total_order.png';
+  static const String totalProductImage = '$imagePath/total_product.png';
+  static const String walletImage = '$imagePath/wallet.png';
   static const String appIconImage = '$imagePath/icon_app.png';
   static const String partnerImage = '$imagePath/partner.png';
   static const String customerImage = '$imagePath/customer.png';

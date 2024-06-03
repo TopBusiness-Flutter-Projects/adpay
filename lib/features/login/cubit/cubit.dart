@@ -57,7 +57,7 @@ class LoginCubit extends Cubit<LoginState> {
                     userModel?.data?.type != null)
                 ? Navigator.pushNamedAndRemoveUntil(
                     context,
-                    Routes.homeRouteDriver,
+                    Routes.floatVendor,
                     (route) => false,
                   )
                 : null;
@@ -96,7 +96,7 @@ class LoginCubit extends Cubit<LoginState> {
                     userModel?.data?.type != null)
                 ? Navigator.pushNamedAndRemoveUntil(
                     context,
-                    Routes.homeRouteDriver,
+                    Routes.floatVendor,
                     (route) => false,
                   )
                 : null;

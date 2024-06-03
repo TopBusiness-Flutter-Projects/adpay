@@ -86,13 +86,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       child: Swiper(
                                           autoplay: true,
                                           itemCount: cubit.productsModelDetails
-                                                  ?.data?.images!.length ??
+                                                  ?.data?.images.length ??
                                               1,
                                           pagination: const SwiperPagination(
                                             alignment: Alignment.bottomCenter,
                                             builder: DotSwiperPaginationBuilder(
                                               color: Colors.grey,
-                                              activeColor: Colors.green,
+                                              activeColor: Color(0xff205960),
                                             ),
                                           ),
                                           duration: 600,
@@ -119,7 +119,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 child: InkWell(
                                     onTap: () {
                                       cubit.AddAndRemoveFromFavourite(
-                                          isAuction: false,context: context,
+                                          isAuction: false,
+                                          context: context,
                                           productId: cubit
                                               .productsModelDetails?.data?.id
                                               .toString());
@@ -351,7 +352,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                         errorBuilder:
                                             (context, error, stackTrace) {
                                           return Image.asset(
-                                              'assets/images/chair.jpg',scale: 10,);
+                                            'assets/images/chair.jpg',
+                                            scale: 10,
+                                          );
                                         },
                                       )),
                                     ),

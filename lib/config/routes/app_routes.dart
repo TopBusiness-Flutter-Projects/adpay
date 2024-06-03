@@ -34,12 +34,14 @@ import '../../features/home_screen/product_details/screens/proudct_details_scree
 import '../../features/home_screen/products/screens/products-screen.dart';
 import '../../features/home_screen/shop/screens/theshop_screen.dart';
 import '../../features/home_screen/tager/screens/tager_screen.dart';
-import '../../features/home_screen_provider/screen/home_screen_driver.dart';
+import '../../features/home_screen_provider/main_screen/screen/main_screen_driver.dart';
+import '../../features/home_screen_provider/order_screen/screen/order_screen.dart';
 import '../../features/login/screen/login_screen.dart';
 import '../../features/on_boarding/screen/onboarding_screen.dart';
 import '../../features/register_user/screen/user_signup.dart';
 import '../../features/vendor_sign_up/screen/vendor_sign_up.dart';
 import '../../floating.dart';
+import '../../floating_vendor.dart';
 
 class Routes {
   static const String initialRoute = '/';
@@ -94,6 +96,8 @@ class Routes {
 
   static const String Main = '/Main';
   static const String usersignupscreen = '/usersignupscreen';
+  static const String floatVendor = '/floatVendor';
+  static const String orderScreenVendor = '/OrderScreenVendor';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -173,6 +177,13 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: Floating(), // Replace with your category screen widget
+        );
+      case Routes.floatVendor: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: FloatingVendor(), // Replace with your category screen widget
         );
       case Routes.editprofile: // Change this line
         return PageTransition(
@@ -414,6 +425,13 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: VendorSignupScreen(),
+        );
+      case Routes.orderScreenVendor:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: OrderScreenVendor(),
         );
       default:
         return undefinedRoute();
