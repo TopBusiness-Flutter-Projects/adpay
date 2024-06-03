@@ -23,6 +23,8 @@ class EditMyHaragDetails extends StatefulWidget {
 }
 
 class _EditMyHaragDetailsState extends State<EditMyHaragDetails> {
+  TextEditingController nameController = TextEditingController();
+
   String? imagePath;
   String? selectedCategory;
   final List<String> categories = ['Category 1', 'Category 2', 'Category 3'];
@@ -40,6 +42,7 @@ class _EditMyHaragDetailsState extends State<EditMyHaragDetails> {
   }
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

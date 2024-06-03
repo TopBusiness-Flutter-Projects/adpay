@@ -251,7 +251,7 @@ class Props {
 class Auctions {
   int? id;
   String? images;
-  int? price;
+ dynamic? price;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;

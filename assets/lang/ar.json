@@ -112,6 +112,8 @@
   "Detailedaddress": "العنوان بالتفصيل",
   "Sold": "تم البيع",
   "editproduct": "تعديل المنتج",
+"Createaccount": "انشاء حساب",
+  "send": "ارسال",
   "Createaccount": "انشاء حساب",
 
 
@@ -133,7 +135,8 @@
   "have_goals":"ليس لديك اي احصائيات",
   "complete_orders":  "الطلبات المكتملة",
   "inComplete_orders":  "الطلبات الجديدة",
-  "complete_ads":"الاعلانات المكتملة",  "incomplete_ads":"الاعلانات الجديدة"
+  "complete_ads":"الاعلانات المكتملة",
+  "incomplete_ads":"الاعلانات الجديدة"
 
 
 }

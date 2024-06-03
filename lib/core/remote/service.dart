@@ -17,19 +17,24 @@ import '../api/end_points.dart';
 import '../error/exceptions.dart';
 import '../error/failures.dart';
 import '../models/Home_models.dart';
+import '../models/add_harag_model.dart';
 import '../models/adsence_Model.dart';
 import '../models/catogrie_model.dart';
 import '../models/checkUser_model.dart';
+import '../models/coins_model.dart';
+import '../models/contact_us_model.dart';
 import '../models/favourite_model.dart';
 import '../models/get_myprofile_model.dart';
 import '../models/grage_details_model.dart';
 import '../models/grage_model.dart';
 import '../models/login_model.dart';
+import '../models/logout_model.dart';
 import '../models/my_auctions_model.dart';
 import '../models/product_details._modeldart';
 import '../models/products_model.dart';
 import '../models/register_model.dart';
 import '../models/shop_model.dart';
+import '../models/wallet_model.dart';
 import '../preferences/preferences.dart';
 
 class ServiceApi {
@@ -96,6 +101,59 @@ class ServiceApi {
         ),
       );
       return Right(LoginModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+//logout
+  Future<Either<Failure, LogoutModel>> logoutAuth() async {
+    LoginModel user = await Preferences.instance.getUserModel();
+
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.post(
+        EndPoints.logout,
+        body: {},
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+
+          },
+        ),
+      );
+      return Right(LogoutModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //contact us
+  Future<Either<Failure, ContactUsModel>> ContactUs({
+    required String subject,
+    required String message,
+}) async {
+    LoginModel user = await Preferences.instance.getUserModel();
+
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.post(
+        EndPoints.contactUs,
+        body: {
+          "subject":subject,
+          "message":message
+        },
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(ContactUsModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
@@ -252,6 +310,49 @@ class ServiceApi {
       );
 
       return Right(LoginModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //addharag
+  Future<Either<Failure, AddHaragModel>> AddHarag(
+      {
+        required String title_ar,
+        required File profileImage,
+        required String description_ar,
+        required String user_id,
+        required String price,
+        required String cat_id,
+        required String sub_cat_id
+      }
+      ) async {
+    try {
+      var fileName;
+      fileName = profileImage.path.split('/').last; // x.png
+      var data = await MultipartFile.fromFile(profileImage.path, filename: fileName);
+      String lan = await Preferences.instance.getSavedLang();
+      LoginModel user = await Preferences.instance.getUserModel();
+      var response = await dio.post(
+        EndPoints.addHarag,
+        formDataIsEnabled: true,
+        body: {
+          "images": data,
+          "title_ar":"dog",
+          "description_ar":"good",
+          "user_id": 20,
+          "price":20.2,
+          "cat_id":2,
+"sub_cat_id":1,
+        },
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+
+      return Right(AddHaragModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
@@ -463,6 +564,40 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+  //coinsurl
+  Future<Either<Failure, MyCoinsModel>> getCoins() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.CoinsUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      // print('Response data: ${response.data}');
+      return Right(MyCoinsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+//getwallet
+  Future<Either<Failure, MyWalletModel>> GetWallet() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(
+        EndPoints.WalletUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      // print('Response data: ${response.data}');
+      return Right(MyWalletModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
 
   //myauctions
   Future<Either<Failure, MyAuctionsModel>> GetMyAuctions() async {

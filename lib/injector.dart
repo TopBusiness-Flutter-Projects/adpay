@@ -1,13 +1,14 @@
+import 'package:adpay/features/home_screen/menue/cubit/logout_cubit.dart';
+import 'package:adpay/features/home_screen/menue/screens/pocket/cubit/pocket_cubit.dart';
 import 'package:adpay/features/on_boarding/cubit/onboarding_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:adpay/core/remote/service.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'core/api/app_interceptors.dart';
 import 'core/api/base_api_consumer.dart';
 import 'core/api/dio_consumer.dart';
+import 'features/home_screen/add_harag/cubit/add_harag_cubit.dart';
 import 'features/home_screen/advertisment/cubit/adsence_cubit.dart';
 import 'features/home_screen/catogries/cubit/catogries_cubit.dart';
 import 'features/home_screen/garage/cubit/grage_cubit.dart';
@@ -16,7 +17,9 @@ import 'features/home_screen/main_screen/cubit/home_cubit.dart';
 import 'features/home_screen/menue/myprofile/cubit/get_profile_cubit.dart';
 import 'features/home_screen/menue/myprofile/edit_profile/cubit/edit_profile_cubit.dart';
 import 'features/home_screen/menue/myprofile/myharag/cubit/my_harag_cubit.dart';
+import 'features/home_screen/menue/screens/contact_us/cubit/contact_us_cubit.dart';
 import 'features/home_screen/menue/screens/favourite/cubit/favourite_cubit.dart';
+import 'features/home_screen/menue/screens/mypoints/cubit/points_cubit.dart';
 import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 
 import 'features/home_screen/products/cubit/products_cubit.dart';
@@ -53,7 +56,21 @@ Future<void> setup() async {
     () => MyHaragCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-    () => EditProfileCubit(serviceLocator()),
+
+        () => PointsCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+        () => PocketCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+        () => EditProfileCubit(
+      serviceLocator(),
+    ),
+
   );
 
   serviceLocator.registerFactory(
@@ -91,6 +108,16 @@ Future<void> setup() async {
   serviceLocator.registerFactory(
     () => MainVendorCubit(serviceLocator()),
   );
+  serviceLocator.registerFactory(
+        () => LogoutCubit(serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+        () => ContactUsCubit(serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+        () => AddHaragCubit(serviceLocator()),
+  );
+
   // serviceLocator.registerFactory(
   //   () => FavoriteCubit(
   //     serviceLocator(),

@@ -12,7 +12,7 @@ class CustomElevatedButton extends StatelessWidget {
    String ?text;
   @override
   Widget build(BuildContext context) {
-    return       Padding(
+    return    Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Center(
         child: SizedBox(
