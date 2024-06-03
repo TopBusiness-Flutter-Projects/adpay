@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:adpay/core/models/comment_model.dart';
 import 'package:adpay/core/models/get_favourite_model.dart';
+import 'package:adpay/core/models/home_vendor_model.dart';
 import 'package:adpay/features/home_screen/grage_details/screen/grage_details_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -600,6 +601,22 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
+  //! getHomeVendor
+
+  Future<Either<Failure, HomeVendorScreenModel>> getVendorHomeData() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.homeVendorUrl,
+        options: Options(headers: {'Authorization': loginModel.data!.token}),
+      );
+      return Right(HomeVendorScreenModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 //   Future<Either<Failure, UpdatedModel>> editService(
 //       int catId,ServiceToUpdate serviceToUpdate) async {
 //     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -656,192 +673,4 @@ class ServiceApi {
 //     }
 //   }
 //
-//   Future<Either<Failure, CategoriesServicesModel>> servicesSearchData(
-//       int catId,searchKey) async {
-//     LoginModel loginModel = await Preferences.instance.getUserModel();
-//     try {
-//       final response = await dio.get(
-//         EndPoints.servicesUrl + catId.toString(),
-//         options: Options(
-//           headers: {'Authorization': loginModel.data!.accessToken!},
-//         ),
-//         queryParameters: {"search_key":searchKey}
-//       );
-//       return Right(CategoriesServicesModel.fromJson(response));
-//     } on ServerException {
-//       return Left(ServerFailure());
-//     }
-//   }
-//
-//   Future<Either<Failure, FavoriteModel>>getFavoriteData() async {
-//     LoginModel loginModel = await Preferences.instance.getUserModel();
-//     try {
-//       final response = await dio.get(
-//         EndPoints.favoriteUrl ,
-//         options: Options(
-//           headers: {'Authorization': loginModel.data!.accessToken!},
-//         ),
-//       );
-//       return Right(FavoriteModel.fromJson(response));
-//     } on ServerException {
-//       return Left(ServerFailure());
-//     }
-//   }
-//
-//   Future<Either<Failure,CitiesModel>> getCities()async{
-//     LoginModel loginModel = await Preferences.instance.getUserModel();
-//     try{
-//       final response = await dio.get(
-//           EndPoints.citiesUrl,
-//         options: Options(
-//           headers: {'Authorization': loginModel.data!.accessToken!},
-//         ),
-//       );
-//       return Right(CitiesModel.fromJson(response));
-//     } on ServerException{
-//       return Left(ServerFailure());
-//     }
-//   }
-//
-//   Future<Either<Failure, FavoriteModel>>getFavoriteSearchData(searchKey) async {
-//
-//     LoginModel loginModel = await Preferences.instance.getUserModel();
-//     try {
-//       final response = await dio.get(
-//         EndPoints.favoriteUrl ,
-//         options: Options(
-//           headers: {'Authorization': loginModel.data!.accessToken!},
-//         ),
-//         queryParameters: {"search_key":searchKey}
-//       );
-//
-//       return Right(FavoriteModel.fromJson(response));
-//     } on ServerException {
-//       return Left(ServerFailure());
-//     }
-//   }
-//
-//   Future<Either<Failure, MyServicesModel>>getMyServicesData() async {
-//
-//     LoginModel loginModel = await Preferences.instance.getUserModel();
-//     try {
-//       final response = await dio.get(
-//         EndPoints.myServicesUrl ,
-//         options: Options(
-//           headers: {'Authorization': loginModel.data!.accessToken!},
-//         ),
-//       );
-//       return Right(MyServicesModel.fromJson(response));
-//     } on ServerException {
-//       return Left(ServerFailure());
-//     }
-//   }
-//
-//
-//   Future<Either<Failure, MyServicesModel>>getMyServicesSearchData(searchKey) async {
-//
-//     LoginModel loginModel = await Preferences.instance.getUserModel();
-//     try {
-//
-//       final response = await dio.get(
-//         EndPoints.myServicesUrl ,
-//         options: Options(
-//           headers: {'Authorization': loginModel.data!.accessToken!},
-//         ),
-//         queryParameters: {"search_key":searchKey}
-//
-//       );
-//
-//       return Right(MyServicesModel.fromJson(response));
-//     } on ServerException {
-//       return Left(ServerFailure());
-//     }
-//   }
-//
-//   // Future<Either<Failure, NotificationModel>>getNotifications() async {
-//   //
-//   //   LoginModel loginModel = await Preferences.instance.getUserModel();
-//   //   try {
-//   //
-//   //     final response = await dio.get(
-//   //         EndPoints.notificationUrl ,
-//   //         options: Options(
-//   //           headers: {'Authorization': loginModel.data!.accessToken!},
-//   //         ),
-//   //
-//   //
-//   //     );
-//   //
-//   //     return Right(NotificationModel.fromJson(response));
-//   //   } on ServerException {
-//   //     return Left(ServerFailure());
-//   //   }
-//   // }
-//   //
-//
-//
-//
-//   Future<Either<Failure, CategoriesModel>>getCategoriesData() async {
-//     LoginModel loginModel = await Preferences.instance.getUserModel();
-//     try {
-//       final response = await dio.get(
-//         EndPoints.categoriesUrl ,
-//         options: Options(
-//           headers: {'Authorization': loginModel.data!.accessToken!},
-//         ),
-//       );
-//       return Right(CategoriesModel.fromJson(response));
-//     } on ServerException {
-//       return Left(ServerFailure());
-//     }
-//   }
-//
-//   Future<Either<Failure, SettingModel>> getSettingData() async {
-//     LoginModel loginModel = await Preferences.instance.getUserModel();
-//     try {
-//       final response = await dio.get(
-//         EndPoints.settingUrl,
-//         options: Options(
-//           headers: {'Authorization': loginModel.data!.accessToken!},
-//         ),
-//       );
-//
-//       return Right(SettingModel.fromJson(response));
-//     } on ServerException {
-//       return Left(ServerFailure());
-//     }
-//   }
-//
-//   Future<Either<Failure,AddToFavouriteResponseModel>> addToFavourite(serviceId) async {
-//     LoginModel loginModel = await Preferences.instance.getUserModel();
-// try{
-//
-//   final response = await dio.post(
-//       EndPoints.addToFavouriteUrl,
-//       options: Options(
-//         headers: {"Authorization":loginModel.data!.accessToken},
-//       ),
-//       body: {"service_id":serviceId}
-//   );
-//   return Right(AddToFavouriteResponseModel.fromJson(response));
-// } on ServerException{
-//   return Left(ServerFailure());
-// }
-//   }
-
-  // Future<Either<Failure, SearchModel>> search(searchKey) async {
-  //   LoginModel loginModel = await Preferences.instance.getUserModel();
-  //
-  //   try {
-  //     final response = await dio.get(
-  //       EndPoints.searchUrl+searchKey,
-  //       options: Options(
-  //         headers: {'Authorization': loginModel.data!.accessToken!},
-  //       ),
-  //     );
-  //     return Right(SearchModel.fromJson(response));
-  //   } on ServerException {
-  //     return Left(ServerFailure());
-  //   }
-  // }
 }

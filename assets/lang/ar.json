@@ -11,37 +11,32 @@
   "choose_login": "يمكنك الان اختيار تسجيل الدخول !",
   "login": "تسجيل الدخول",
   "signup": "انشاء حساب",
-  "password": "كلمة المرور", 
-  "confirm_password": "تأكيد كلمة المرور", 
+  "password": "كلمة المرور",
+  "confirm_password": "تأكيد كلمة المرور",
   "enter_password": "ادخل كلمة المرور",
   "phone": "رقم الجوال",
   "enter_phone": "ادخل رقم الجوال",
   "don't_have_an_account": "ليس لديك حساب معنا ؟",
   "forget_password": "هل نسيت كلمة المرور ؟",
-  "personal_info":"البيانات الشخصية",
-  "market_info":"بيانات المتجر",
+  "personal_info": "البيانات الشخصية",
+  "market_info": "بيانات المتجر",
   "no_data": "لا يوجد منتاجات",
-
-  "name":"الاسم",
-  "enter_name":"ادخل الأسم",
-  "store_ads":"متجر  & معلن",
-  "ads":" معلن",
-
-  "store_name":"اسم المتجر",
-  "enter_store_name":"ادخل اسم المتجر",
-  "store_adress":"عنوان المتجر",
-  "enter_store_adress":"ادخل عنوان المتجر",
-  "store_category":"تصنيف المتجر",
-  "choose_category":"اختر التصنيف " ,
-  "sub_categoty":"التصنيفات الفرعيه",
-
-  "add_sub_categoty":"اضف تصنيف",
-
-  "store_logo":"لوجو المتجر",
-  "banner_logo":"لوجو البانر",
-"advertisements": "الاعلانات",
+  "name": "الاسم",
+  "enter_name": "ادخل الأسم",
+  "store_ads": "متجر  & معلن",
+  "ads": " معلن",
+  "store_name": "اسم المتجر",
+  "enter_store_name": "ادخل اسم المتجر",
+  "store_adress": "عنوان المتجر",
+  "enter_store_adress": "ادخل عنوان المتجر",
+  "store_category": "تصنيف المتجر",
+  "choose_category": "اختر التصنيف ",
+  "sub_categoty": "التصنيفات الفرعيه",
+  "add_sub_categoty": "اضف تصنيف",
+  "store_logo": "لوجو المتجر",
+  "banner_logo": "لوجو البانر",
+  "advertisements": "الاعلانات",
   "advertisement": "اعلان",
-
   "Categories": "التصنيفات",
   "all": "الكل",
   "hello": "اهلا بك",
@@ -54,13 +49,13 @@
   "Discounts": "تخفيضات علي كل ملابس الاطفال",
   "AdvertisementStore": "اعلان.متجر الاصيل",
   "home": "الرئيسية",
- "Addtocart": "اضف للسله",
+  "Addtocart": "اضف للسله",
   "Productdetails": "تفاصيل المنتج",
   "colors": "الالوان المتاحه",
-"Availablesizes": "المقاسات المتاحة",
+  "Availablesizes": "المقاسات المتاحة",
   "comments": "التعليقات",
-"AllComments": "كل التعليقات",
-  "SendMessage":"ارسال رساله",
+  "AllComments": "كل التعليقات",
+  "SendMessage": "ارسال رساله",
   "reply": "اكتب ردك",
   "SendReply": "ارسل رسالتك",
   "basket": "السلة",
@@ -73,7 +68,7 @@
   "Merchantaccount": "حساب التاجر",
   "MerchantRating": "تقيم التاجر",
   "confirm": "تأكيد",
-        "writecomment": "اكتب تعليقك",
+  "writecomment": "اكتب تعليقك",
   "menue": "القائمة",
   "Mydata": "بياناتي",
   "Profilepersonly": "الملف الشخصي",
@@ -98,7 +93,7 @@
   "Selectcategory": "اختر الفئة",
   "Subcategory": "الفئة الفرعيه",
   "Productdetails": "تفاصيل المنتج",
-"add": "أضافه",
+  "add": "أضافه",
   "name": "الاسم",
   "phone": "رقم الجوال",
   "topic": "الموضوع",
@@ -117,7 +112,28 @@
   "Detailedaddress": "العنوان بالتفصيل",
   "Sold": "تم البيع",
   "editproduct": "تعديل المنتج",
-"Createaccount": "انشاء حساب"
+  "Createaccount": "انشاء حساب",
+
+
+
+
+
+
+
+
+
+
+
+
+  "wallet": "المحفظة",
+  "total_count": "اجمالى الطلبات",
+  "total_products": "اجمالى المنتجات",
+  "total_ads": "اجمالى الاعلانات",
+  "goal_statistics":"احصائيات الأهداف",
+  "have_goals":"ليس لديك اي احصائيات",
+  "complete_orders":  "الطلبات المكتملة",
+  "inComplete_orders":  "الطلبات الجديدة",
+  "complete_ads":"الاعلانات المكتملة",  "incomplete_ads":"الاعلانات الجديدة"
 
 
 }

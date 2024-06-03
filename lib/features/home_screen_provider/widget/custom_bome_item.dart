@@ -35,11 +35,8 @@ class CustomHomeScreenWidget extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: getSize(context) / 16,
-                child: CircleAvatar(
-                  radius: getSize(context) / 22,
-                  backgroundImage: AssetImage(
-                    imagePath,
-                  ),
+                backgroundImage: AssetImage(
+                  imagePath,
                 ),
               ),
               Padding(

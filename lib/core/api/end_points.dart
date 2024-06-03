@@ -16,6 +16,7 @@ class EndPoints {
   static const String ShopsList = '${baseUrl}user/getShops';
   static const String Favourite = '${baseUrl}user/storeFavorite';
   static const String CommentsUrl = '${baseUrl}user/storeComment';
+  static const String homeVendorUrl = '${baseUrl}vendor/home';
   // static const String citiesUrl = '${baseUrl}cities';
   // static const String servicesUrl = '${baseUrl}services/';
   // static const String editServicesUrl = '${baseUrl}services/update/';
