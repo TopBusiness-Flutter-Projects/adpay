@@ -1,7 +1,10 @@
 import 'package:adpay/core/utils/get_size.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:easy_localization/easy_localization.dart' as tr;
 import 'package:flutter/material.dart%20';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../core/api/end_points.dart';
 
@@ -27,7 +30,8 @@ class CustomSwiperVendor extends StatelessWidget {
             textDirection: TextDirection.rtl,
             child: Swiper(
                 autoplay: true,
-                itemCount: 5,
+                itemCount:
+                    cubit.homeVendorScreenModel?.data?.sliders?.length ?? 0,
                 pagination: const SwiperPagination(
                   alignment: Alignment.bottomCenter,
                   builder: DotSwiperPaginationBuilder(
@@ -37,20 +41,37 @@ class CustomSwiperVendor extends StatelessWidget {
                 ),
                 duration: 600,
                 itemBuilder: (context, index) {
-                  return Image.network(
-                    EndPoints.baseUrlImage +
-                        (
-                            // cubit.homeModel?.data?.sliders?[index].image
-                            //       .toString() ??
-                            ''),
-                    errorBuilder: (context, error, stackTrace) {
-                      return Image.asset('assets/images/logo.png');
+                  return GestureDetector(
+                    onTap: () async {
+                      await socialMedia(cubit
+                              .homeVendorScreenModel?.data?.sliders?[index].url
+                              ?.toString() ??
+                          'https://topbuziness.com/');
                     },
+                    child: Image.network(
+                      EndPoints.baseUrlImage +
+                          (cubit.homeVendorScreenModel?.data?.sliders?[index]
+                                  .image
+                                  .toString() ??
+                              ''),
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset('assets/images/logo.png');
+                      },
+                    ),
                   );
                 }),
           ),
         );
       },
     );
+  }
+
+  socialMedia(String url) async {
+    if (!await launchUrl(Uri.parse(url),
+        mode: LaunchMode.externalApplication)) {
+      Fluttertoast.showToast(msg: 'invalid_url'.tr());
+      throw Exception('Could not launch $url');
+    }
+    //!
   }
 }

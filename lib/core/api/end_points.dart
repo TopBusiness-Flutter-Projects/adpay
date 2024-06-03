@@ -24,6 +24,7 @@ class EndPoints {
 
   static const String contactUs = '${baseUrl}user/sendContactUs';
 
+  static const String homeVendorUrl = '${baseUrl}vendor/home';
   // static const String citiesUrl = '${baseUrl}cities';
   // static const String servicesUrl = '${baseUrl}services/';
   // static const String editServicesUrl = '${baseUrl}services/update/';

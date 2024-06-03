@@ -55,64 +55,64 @@ class _FloatingVendorState extends State<FloatingVendor> {
                 margin: EdgeInsets.zero,
                 items: [
                   FloatingNavbarItem(
-                      customWidget: Padding(
-                    padding: EdgeInsets.all(2),
-                    child: _index == 0
-                        ? Image.asset(
-                            'assets/images/Home2.png',
-                            width: getSize(context) / 14,
-                            height: getSize(context) / 14,
-                          )
-                        : Image.asset(
-                            'assets/images/Home.png',
-                            width: getSize(context) / 14,
-                            height: getSize(context) / 14,
-                          ),
+                      customWidget: CircleAvatar(
+                    radius: getSize(context) / 24,
+                    backgroundColor:
+                        _index == 0 ? AppColors.white : AppColors.secondPrimary,
+                    child: Padding(
+                      padding: EdgeInsets.all(_index == 0 ? 6.0 : 3),
+                      child: Image.asset(
+                        'assets/images/Home.png',
+                        width: getSize(context) / 14,
+                        height: getSize(context) / 14,
+                        color: _index == 0 ? AppColors.primary : null,
+                      ),
+                    ),
                   )),
                   FloatingNavbarItem(
-                      customWidget: Padding(
-                    padding: EdgeInsets.all(2),
-                    child: _index == 1
-                        ? Image.asset(
-                            'assets/images/catogries2.png',
-                            width: getSize(context) / 14,
-                            height: getSize(context) / 14,
-                          )
-                        : Image.asset(
-                            'assets/images/catogries.png',
-                            width: getSize(context) / 14,
-                            height: getSize(context) / 14,
-                          ),
+                      customWidget: CircleAvatar(
+                    radius: getSize(context) / 24,
+                    backgroundColor:
+                        _index == 1 ? AppColors.white : AppColors.secondPrimary,
+                    child: Padding(
+                      padding: EdgeInsets.all(_index == 1 ? 6.0 : 3),
+                      child: Image.asset(
+                        'assets/images/catogries.png',
+                        width: getSize(context) / 14,
+                        height: getSize(context) / 14,
+                        color: _index == 1 ? AppColors.primary : null,
+                      ),
+                    ),
                   )),
                   FloatingNavbarItem(
-                      customWidget: Padding(
-                    padding: EdgeInsets.all(2),
-                    child: _index == 2
-                        ? Image.asset(
-                            'assets/images/cart2.png',
-                            width: getSize(context) / 14,
-                            height: getSize(context) / 14,
-                          )
-                        : Image.asset(
-                            'assets/images/cart.png',
-                            width: getSize(context) / 14,
-                            height: getSize(context) / 14,
-                          ),
+                      customWidget: CircleAvatar(
+                    radius: getSize(context) / 24,
+                    backgroundColor:
+                        _index == 2 ? AppColors.white : AppColors.secondPrimary,
+                    child: Padding(
+                      padding: EdgeInsets.all(_index == 2 ? 6.0 : 3),
+                      child: Image.asset(
+                        'assets/images/notification.png',
+                        width: getSize(context) / 14,
+                        height: getSize(context) / 14,
+                        color: _index == 2 ? AppColors.primary : null,
+                      ),
+                    ),
                   )),
                   FloatingNavbarItem(
-                      customWidget: Padding(
-                    padding: EdgeInsets.all(2),
-                    child: _index == 3
-                        ? Image.asset(
-                            'assets/images/windows2.png',
-                            width: getSize(context) / 14,
-                            height: getSize(context) / 14,
-                          )
-                        : Image.asset(
-                            'assets/images/windows.png',
-                            width: getSize(context) / 14,
-                            height: getSize(context) / 14,
-                          ),
+                      customWidget: CircleAvatar(
+                    radius: getSize(context) / 24,
+                    backgroundColor:
+                        _index == 3 ? AppColors.white : AppColors.secondPrimary,
+                    child: Padding(
+                      padding: EdgeInsets.all(_index == 3 ? 6.0 : 3),
+                      child: Image.asset(
+                        'assets/images/windows.png',
+                        width: getSize(context) / 14,
+                        height: getSize(context) / 14,
+                        color: _index == 3 ? AppColors.primary : null,
+                      ),
+                    ),
                   )),
                 ],
                 onTap: (index) {
