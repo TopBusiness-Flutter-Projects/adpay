@@ -7,19 +7,17 @@ import '../../../../core/models/login_model.dart';
 import '../../../../core/preferences/preferences.dart';
 import 'home_state.dart';
 
-
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.api) : super(HomeInitial());
-ServiceApi api;
+  ServiceApi api;
   static HomeCubit get(context) => BlocProvider.of(context);
-  LoginModel ?userData;
+  LoginModel? userData;
   //عشان الاسم الي فوق
-  getUserModel(){
-
-     Preferences.instance.getUserModel().then((e){
-       userData = e;
-       emit(GetUserData());
-     });
+  getUserModel() {
+    Preferences.instance.getUserModel().then((e) {
+      userData = e;
+      emit(GetUserData());
+    });
   }
 
   // List<SliderModel>? sliderModel = [];
@@ -78,9 +76,7 @@ ServiceApi api;
 //     // }
 //   }
 
-
-
-  HomeModel? homeModel ;
+  HomeModel? homeModel;
 
   Future<void> getHome() async {
     emit(LoadingADS());
@@ -91,12 +87,11 @@ ServiceApi api;
     }, (r) async {
       getUserModel();
       print("sucess cubit");
-      homeModel =r;
-      print('homemodel : ${homeModel?.data?.ads?.first.descriptionAr
-          .toString()}');
+      homeModel = r;
+      print(
+          'homemodel : ${homeModel?.data?.ads?.first.descriptionAr.toString()}');
       print("loaded");
       emit(LoadedADS(homeModel: r));
     });
   }
-
 }

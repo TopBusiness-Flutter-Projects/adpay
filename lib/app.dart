@@ -23,6 +23,7 @@ import 'features/home_screen/menue/screens/favourite/cubit/favourite_cubit.dart'
 import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 import 'features/home_screen/products/cubit/products_cubit.dart';
 import 'features/home_screen/shop/cubit/shop_cubit.dart';
+import 'features/home_screen_provider/main_screen/cubit/cubit.dart';
 import 'features/login/cubit/cubit.dart';
 import 'features/register_user/cubit/register_user_cubit.dart';
 import 'features/vendor_sign_up/cubit/cubit.dart';
@@ -102,9 +103,9 @@ class _AdpayState extends State<Adpay> {
           BlocProvider(
             create: (_) => injector.serviceLocator<EditProfileCubit>(),
           ),
-          // BlocProvider(
-          //   create: (_) => injector.serviceLocator<PostsCubit>(),
-          // ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<MainVendorCubit>(),
+          ),
           // BlocProvider(
           //   create: (_) => injector.serviceLocator<ProfileCubit>(),
           // ),
@@ -125,7 +126,6 @@ class _AdpayState extends State<Adpay> {
             designSize: const Size(360, 690),
             minTextAdapt: true,
             splitScreenMode: true,
-            // Use builder only if you need to use library outside ScreenUtilInit context
             builder: (_, child) {
               return GetMaterialApp(
                 supportedLocales: context.supportedLocales,

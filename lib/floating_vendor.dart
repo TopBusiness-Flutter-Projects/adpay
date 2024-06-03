@@ -1,62 +1,29 @@
-import 'dart:io';
-
 import 'package:adpay/core/utils/app_colors.dart';
 import 'package:adpay/core/utils/get_size.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:floating_navbar/floating_navbar.dart';
-import 'package:floating_navbar/floating_navbar_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart%20';
 import 'package:flutter/services.dart';
-
-import 'features/home_screen/main_screen/screens/home_screen_user.dart';
-import 'features/home_screen/menue/screens/menue_screen.dart';
-import 'features/home_screen/orders/screen/oreders_screen.dart';
-import 'features/home_screen/presentation/salla.dart';
-
-// class floating extends StatelessWidget {
-//   const floating({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return FloatingNavBar(
-//       resizeToAvoidBottomInset: false,
-//       color: AppColors.secondPrimary,
-//       selectedIconColor: Colors.white,
-//       index: 0, // Index of the "Home" item
-//       unselectedIconColor: Colors.white.withOpacity(0.6),
-//       items: [
-//         FloatingNavBarItem(iconData: Icons.home_outlined, page: HomeScreen(), title: 'home'.tr()),
-//
-//         FloatingNavBarItem(iconData: Icons.category, page: OrderScreen(), title: 'hello',useImageIcon:true),
-//         FloatingNavBarItem(iconData: Icons.shopping_basket, page:SallaScreen(), title: 'Reminders'),
-//         FloatingNavBarItem(iconData: Icons.pending_actions_outlined, page: Container(color: Colors.blue), title: 'Records'),
-//       ],
-//       horizontalPadding: 10.0,
-//
-//       hapticFeedback: false,
-//       showTitle: false,
-//     );
-//   }
-// }
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'features/home_screen_provider/main_screen/screen/main_screen_driver.dart';
+import 'features/home_screen_provider/menu_vendor/screen/menu_screen.dart';
+import 'features/home_screen_provider/notification_vendor/screen/notification.dart';
+import 'features/home_screen_provider/order_screen/screen/order_screen.dart';
 
-class Floating extends StatefulWidget {
-  Floating({super.key});
+class FloatingVendor extends StatefulWidget {
+  FloatingVendor({super.key});
 
   @override
-  State<Floating> createState() => _FloatingState();
+  State<FloatingVendor> createState() => _FloatingVendorState();
 }
 
-class _FloatingState extends State<Floating> {
+class _FloatingVendorState extends State<FloatingVendor> {
   int _index = 0;
 
   final List<Widget> _pages = [
-    HomeScreen(), // Your home screen
-    OrderScreen(), // Your orders screen
-    SallaScreen(), // Your salla screen
-    MenueScreen() // Your settings page or any other page
+    HomeScreenDriver(),
+    OrderScreenVendor(),
+    NotificationScreenVendor(),
+    MenuScreenVendor()
   ];
 
   @override
@@ -79,13 +46,9 @@ class _FloatingState extends State<Floating> {
                 child: _pages[_index]),
             bottomNavigationBar: Container(
               color: Colors.transparent,
-              // width: getSize(context) / 14,
-              // height: getSize(context) / 4,
               child: FloatingNavbar(
                 borderRadius: getSize(context) / 4,
                 backgroundColor: AppColors.secondPrimary,
-                // selectedItemColor: purpleColor,
-                // unselectedItemColor: purpleColor,
                 selectedBackgroundColor: Colors.transparent,
                 elevation: 0,
                 padding: EdgeInsets.zero,

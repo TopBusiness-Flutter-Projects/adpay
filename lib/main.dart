@@ -36,7 +36,7 @@ void main() async {
   await getToken();
 }
 
-//!firebase
+//! Firebase
 getToken() async {
   String? token = await messaging.getToken();
   print('Token : $token');

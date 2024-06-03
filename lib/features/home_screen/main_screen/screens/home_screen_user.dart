@@ -1,10 +1,6 @@
-
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart%20';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/routes/app_routes.dart';
@@ -20,7 +16,6 @@ import '../../component/store.dart';
 import '../../component/swiper.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
-
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -62,14 +57,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: CircularProgressIndicator(),
                   )
                 : ConditionalBuilder(
-                    condition: state is! ShowSliderLoading && state is! ShowCategoryLoading && state is! ShowProductLoading,
+                    condition: state is! ShowSliderLoading &&
+                        state is! ShowCategoryLoading &&
+                        state is! ShowProductLoading,
                     builder: (context) {
                       return Padding(
                         padding: const EdgeInsets.all(10),
-                        child:RefreshIndicator(
-                          onRefresh: ()async {
-                            await   context.read<HomeCubit>().getHome();
-
+                        child: RefreshIndicator(
+                          onRefresh: () async {
+                            await context.read<HomeCubit>().getHome();
                           },
                           child: ListView(
                             shrinkWrap: true,
@@ -81,7 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               InkWell(
                                   onTap: () {
-                                    Navigator.pushNamed(context, Routes.CategoriesRoute);
+                                    Navigator.pushNamed(
+                                        context, Routes.CategoriesRoute);
                                   },
                                   child: CustomRow(
                                     text1: 'Categories'.tr(),
@@ -102,10 +99,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               advertisements(),
                               InkWell(
                                 onTap: () {
-                                  Navigator.pushNamed(context, Routes.bestSeller);
+                                  Navigator.pushNamed(
+                                      context, Routes.bestSeller);
                                 },
                                 child: CustomRow(
-                                    text1: 'BsetSeller'.tr(), text2: "all".tr()),
+                                    text1: 'BsetSeller'.tr(),
+                                    text2: "all".tr()),
                               ),
                               BestSeller(),
                               InkWell(
@@ -133,7 +132,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                         arguments: null);
                                   },
                                   child: CustomRow(
-                                      text1: 'products'.tr(), text2: "all".tr())),
+                                      text1: 'products'.tr(),
+                                      text2: "all".tr())),
                               BestSellerforProducts(),
                               SizedBox(
                                 height: 100.h,

@@ -1,4 +1,3 @@
-
 import 'package:adpay/features/on_boarding/cubit/onboarding_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -22,13 +21,14 @@ import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 
 import 'features/home_screen/products/cubit/products_cubit.dart';
 import 'features/home_screen/shop/cubit/shop_cubit.dart';
+import 'features/home_screen_provider/main_screen/cubit/cubit.dart';
 import 'features/login/cubit/cubit.dart';
 import 'features/register_user/cubit/register_user_cubit.dart';
 import 'features/vendor_sign_up/cubit/cubit.dart';
 
 // import 'features/downloads_videos/cubit/downloads_videos_cubit.dart';
 
-final serviceLocator  = GetIt.instance;
+final serviceLocator = GetIt.instance;
 
 Future<void> setup() async {
   //! Features
@@ -40,89 +40,57 @@ Future<void> setup() async {
       ));
 
   serviceLocator.registerFactory(
-    () => LoginCubit(
-      serviceLocator(),
-    ),
+    () => LoginCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => GetProfileCubit(
-      serviceLocator(),
-    ),
+    () => GetProfileCubit(serviceLocator()),
   );
 
   serviceLocator.registerFactory(
-        () => FavouriteCubit(
-      serviceLocator(),
-    ),
+    () => FavouriteCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => MyHaragCubit(
-      serviceLocator(),
-    ),
+    () => MyHaragCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => EditProfileCubit(
-      serviceLocator(),
-    ),
+    () => EditProfileCubit(serviceLocator()),
   );
 
   serviceLocator.registerFactory(
-    () => SignUpVendorCubit(
-      serviceLocator(),
-    ),
+    () => SignUpVendorCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => HomeCubit(
-     serviceLocator(),
-    ),
+    () => HomeCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => CatogriesCubit(
-      serviceLocator(),
-    ),
+    () => CatogriesCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => AdsenceCubit(
-      serviceLocator(),
-    ),
+    () => AdsenceCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => ProductsCubit(
-      serviceLocator(),
-    ),
+    () => ProductsCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => GrageCubit(
-      serviceLocator(),
-    ),
+    () => GrageCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => ShopCubit(
-      serviceLocator(),
-    ),
+    () => ShopCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => ProductsDetailsCubit(
-      serviceLocator(),
-    ),
+    () => ProductsDetailsCubit(serviceLocator()),
   );
 
   serviceLocator.registerFactory(
-        () => GrageDetailsCubit(
-      serviceLocator(),
-    ),
+    () => GrageDetailsCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => SignUpUserCubit(
-      serviceLocator(),
-    ),
+    () => SignUpUserCubit(serviceLocator()),
   );
 
-  // serviceLocator.registerFactory(
-  //   () => ProfileCubit(
-  //      serviceLocator(),
-  //   ),
-  // );
+  serviceLocator.registerFactory(
+    () => MainVendorCubit(serviceLocator()),
+  );
   // serviceLocator.registerFactory(
   //   () => FavoriteCubit(
   //     serviceLocator(),

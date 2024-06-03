@@ -115,7 +115,7 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                                           DotSwiperPaginationBuilder(
                                                         color: Colors.grey,
                                                         activeColor:
-                                                            Colors.green,
+                                                            Color(0xff205960),
                                                       ),
                                                     ),
                                                     duration: 600,
@@ -297,7 +297,9 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                                   errorBuilder: (context, error,
                                                       stackTrace) {
                                                     return Image.asset(
-                                                        'assets/images/chair.jpg',scale: 10,);
+                                                      'assets/images/chair.jpg',
+                                                      scale: 10,
+                                                    );
                                                   },
                                                 )),
                                               ),
@@ -323,8 +325,7 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                                     width: 20.w,
                                                   ),
                                                   CallIcon(
-                                                    phoneNumber:
-                                                        '01288143936',
+                                                    phoneNumber: '01288143936',
                                                   ),
                                                   SizedBox(width: 6.w),
                                                   InkWell(
