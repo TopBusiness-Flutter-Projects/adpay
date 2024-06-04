@@ -138,7 +138,9 @@
 
      "complete_ads":"Completed Ads",  "incomplete_ads":"New Ads"
 ,"no_notifications": "You don't have any notifications",
-"refused_order":"Refused Orders","order_details":"Order Details"
+"refused_order":"Refused Orders","order_details":"Order Details",
+"count":"quantity"
+
 
 
 }

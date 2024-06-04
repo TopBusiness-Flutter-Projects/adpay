@@ -173,6 +173,7 @@ class _OrderDetailsVendorState extends State<OrderDetailsVendor> {
                               ),
                               Flexible(
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Flexible(
                                       child: Row(
@@ -208,7 +209,7 @@ class _OrderDetailsVendorState extends State<OrderDetailsVendor> {
                                                         FontWeight.w400)),
                                           ),
                                           Text(
-                                              "${cubit.detailsModel!.data!.details![index].product!.price.toString()}",
+                                              "${'count'.tr()} : ${cubit.detailsModel!.data!.details![index].product!.price.toString()}",
                                               maxLines: 1,
                                               style: TextStyle(
                                                   color:
