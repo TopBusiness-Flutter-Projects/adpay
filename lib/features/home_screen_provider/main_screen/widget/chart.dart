@@ -126,7 +126,7 @@ class PieChart2State extends State {
                                     Flexible(
                                         fit: FlexFit.tight,
                                         child: Text(
-                                          'inComplete_orders'.tr(),
+                                          'incomplete_orders'.tr(),
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 16.sp,

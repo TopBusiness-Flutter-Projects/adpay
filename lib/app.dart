@@ -29,6 +29,8 @@ import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 import 'features/home_screen/products/cubit/products_cubit.dart';
 import 'features/home_screen/shop/cubit/shop_cubit.dart';
 import 'features/home_screen_provider/main_screen/cubit/cubit.dart';
+import 'features/home_screen_provider/notification_vendor/cubit/cubit.dart';
+import 'features/home_screen_provider/order_screen/cubit/cubit.dart';
 import 'features/login/cubit/cubit.dart';
 import 'features/register_user/cubit/register_user_cubit.dart';
 import 'features/vendor_sign_up/cubit/cubit.dart';
@@ -126,12 +128,12 @@ class _AdpayState extends State<Adpay> {
           BlocProvider(
             create: (_) => injector.serviceLocator<MainVendorCubit>(),
           ),
-          // BlocProvider(
-          //   create: (_) => injector.serviceLocator<ProfileCubit>(),
-          // ),
-          // BlocProvider(
-          //   create: (_) => injector.serviceLocator<FavoriteCubit>(),
-          // ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<NotificationVendorCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<VendorOrderCubit>(),
+          ),
           //
           // BlocProvider(
           //   create: (_) => injector.serviceLocator<PrivacyCubit>(),

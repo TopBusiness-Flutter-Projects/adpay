@@ -25,6 +25,8 @@ import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 import 'features/home_screen/products/cubit/products_cubit.dart';
 import 'features/home_screen/shop/cubit/shop_cubit.dart';
 import 'features/home_screen_provider/main_screen/cubit/cubit.dart';
+import 'features/home_screen_provider/notification_vendor/cubit/cubit.dart';
+import 'features/home_screen_provider/order_screen/cubit/cubit.dart';
 import 'features/login/cubit/cubit.dart';
 import 'features/register_user/cubit/register_user_cubit.dart';
 import 'features/vendor_sign_up/cubit/cubit.dart';
@@ -56,21 +58,19 @@ Future<void> setup() async {
     () => MyHaragCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-
-        () => PointsCubit(
+    () => PointsCubit(
       serviceLocator(),
     ),
   );
   serviceLocator.registerFactory(
-        () => PocketCubit(
+    () => PocketCubit(
       serviceLocator(),
     ),
   );
   serviceLocator.registerFactory(
-        () => EditProfileCubit(
+    () => EditProfileCubit(
       serviceLocator(),
     ),
-
   );
 
   serviceLocator.registerFactory(
@@ -109,25 +109,25 @@ Future<void> setup() async {
     () => MainVendorCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => LogoutCubit(serviceLocator()),
+    () => LogoutCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => ContactUsCubit(serviceLocator()),
+    () => ContactUsCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => AddHaragCubit(serviceLocator()),
+    () => AddHaragCubit(serviceLocator()),
   );
 
-  // serviceLocator.registerFactory(
-  //   () => FavoriteCubit(
-  //     serviceLocator(),
-  //   ),
-  // );
-  // serviceLocator.registerFactory(
-  //   () => HomeCubit(
-  //     serviceLocator(),
-  //   ),
-  // );
+  serviceLocator.registerFactory(
+    () => NotificationVendorCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+    () => VendorOrderCubit(
+      serviceLocator(),
+    ),
+  );
   // serviceLocator.registerFactory(
   //   () => PostsCubit(
   //     serviceLocator(),

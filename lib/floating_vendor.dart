@@ -4,6 +4,7 @@ import 'package:flutter/material.dart%20';
 import 'package:flutter/services.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'features/home_screen/menue/screens/menue_screen.dart';
 import 'features/home_screen_provider/main_screen/screen/main_screen_driver.dart';
 import 'features/home_screen_provider/menu_vendor/screen/menu_screen.dart';
 import 'features/home_screen_provider/notification_vendor/screen/notification.dart';
@@ -23,7 +24,7 @@ class _FloatingVendorState extends State<FloatingVendor> {
     HomeScreenDriver(),
     OrderScreenVendor(),
     NotificationScreenVendor(),
-    MenuScreenVendor()
+    MenueScreen()
   ];
 
   @override
