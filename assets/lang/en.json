@@ -134,8 +134,11 @@
      "total_products": "Total Products",
      "total_ads": "Total Ads",  "have_goals":"You don't have any stats.",
      "complete_orders":  "Completed Orders",
-     "inComplete_orders":  "New Orders",
+     "incomplete_orders":  "New Orders",  "total":"Total",
+
      "complete_ads":"Completed Ads",  "incomplete_ads":"New Ads"
+,"no_notifications": "You don't have any notifications",
+"refused_order":"Refused Orders","order_details":"Order Details"
 
 
 }

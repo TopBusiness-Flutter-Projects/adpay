@@ -1,6 +1,4 @@
 
-import 'products_model.dart';
-
 class ProductDetailsModel {
   Product? data;
   String? msg;
@@ -12,19 +10,19 @@ class ProductDetailsModel {
     this.status,
   });
 
-  factory ProductDetailsModel.fromJson(Map<String, dynamic> json) => ProductDetailsModel(
-    data: json["data"] == null ? null : Product.fromJson(json["data"]),
-    msg: json["msg"],
-    status: json["status"],
-  );
+  factory ProductDetailsModel.fromJson(Map<String, dynamic> json) =>
+      ProductDetailsModel(
+        data: json["data"] == null ? null : Product.fromJson(json["data"]),
+        msg: json["msg"],
+        status: json["status"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "data": data?.toJson(),
-    "msg": msg,
-    "status": status,
-  };
+        "data": data?.toJson(),
+        "msg": msg,
+        "status": status,
+      };
 }
-
 
 class Product {
   Product({
@@ -51,7 +49,7 @@ class Product {
   late final String descriptionAr;
   late final String descriptionEn;
   late final int price;
-  late  bool isFav;
+  late bool isFav;
   late final int rate;
   late final int discount;
   late final String type;
@@ -60,7 +58,7 @@ class Product {
   late final Props props;
   late final Vendor vendor;
 
-  Product.fromJson(Map<String, dynamic> json){
+  Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     images = List.castFrom<dynamic, String>(json['images']);
     titleAr = json['title_ar'];
@@ -129,7 +127,7 @@ class Props {
   late final String freeGift;
   late final String freeSupport;
 
-  Props.fromJson(Map<String, dynamic> json){
+  Props.fromJson(Map<String, dynamic> json) {
     color = json['color'];
     size = json['size'];
     material = json['material'];
@@ -196,7 +194,7 @@ class Vendor {
   late final List<String> shopSubCat;
   late final String token;
 
-  Vendor.fromJson(Map<String, dynamic> json){
+  Vendor.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     image = json['image'];
@@ -249,7 +247,7 @@ class ShopCat {
   late final String createdAt;
   late final String updatedAt;
 
-  ShopCat.fromJson(Map<String, dynamic> json){
+  ShopCat.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     titleAr = json['title_ar'];
     titleEn = json['title_en'];

@@ -130,13 +130,17 @@
   "wallet": "المحفظة",
   "total_count": "اجمالى الطلبات",
   "total_products": "اجمالى المنتجات",
+  "total":"الاجمالي",
   "total_ads": "اجمالى الاعلانات",
   "goal_statistics":"احصائيات الأهداف",
   "have_goals":"ليس لديك اي احصائيات",
   "complete_orders":  "الطلبات المكتملة",
-  "inComplete_orders":  "الطلبات الجديدة",
+  "incomplete_orders":  "الطلبات الجديدة",
   "complete_ads":"الاعلانات المكتملة",
-  "incomplete_ads":"الاعلانات الجديدة"
+  "incomplete_ads":"الاعلانات الجديدة","no_notifications":"ليس لديك اي اشعارات"
+,"refused_order":"الطلبات الموقوفة",
+"order_details":"تفاصيل الطلب"
+
 
 
 }

@@ -35,6 +35,7 @@ import '../../features/home_screen/products/screens/products-screen.dart';
 import '../../features/home_screen/shop/screens/theshop_screen.dart';
 import '../../features/home_screen/tager/screens/tager_screen.dart';
 import '../../features/home_screen_provider/main_screen/screen/main_screen_driver.dart';
+import '../../features/home_screen_provider/order_screen/screen/order_details.dart';
 import '../../features/home_screen_provider/order_screen/screen/order_screen.dart';
 import '../../features/login/screen/login_screen.dart';
 import '../../features/on_boarding/screen/onboarding_screen.dart';
@@ -98,6 +99,7 @@ class Routes {
   static const String usersignupscreen = '/usersignupscreen';
   static const String floatVendor = '/floatVendor';
   static const String orderScreenVendor = '/OrderScreenVendor';
+  static const String orderDetailsVendor = '/orderDetailsVendor';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -206,13 +208,7 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: FavouriteScreen(), // Replace with your category screen widget
         );
-      case Routes.favouritescreen: // Change this line
-        return PageTransition(
-          type: PageTransitionType.fade,
-          alignment: Alignment.center,
-          duration: const Duration(milliseconds: 800),
-          child: MyHaragDetails(), // Replace with your category screen widget
-        );
+
       case Routes.contactus: // Change this line
         return PageTransition(
           type: PageTransitionType.fade,
@@ -432,6 +428,16 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: OrderScreenVendor(),
+        );
+
+      case Routes.orderDetailsVendor:
+        String? id = settings.arguments as String?;
+
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: OrderDetailsVendor(id: id),
         );
       default:
         return undefinedRoute();

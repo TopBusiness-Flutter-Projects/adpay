@@ -1,10 +1,8 @@
+import 'package:adpay/core/models/product_details_model.dart';
 import 'package:adpay/core/utils/dialogs.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../core/models/product_details._modeldart';
 import '../../../../core/remote/service.dart';
 import '../../grage_details/cubit/grage_details_cubit.dart';
 part 'products_details_state.dart';
@@ -42,10 +40,11 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
     response.fold((l) {
       emit(ErrorProductsDetails());
     }, (r) async {
-      
       // print(';/')
       if (isAuction) {
-        context.read<GrageDetailsCubit>().grageModelDetails?.isFav = !(context.read<GrageDetailsCubit>().grageModelDetails?.isFav ?? false);
+        context.read<GrageDetailsCubit>().grageModelDetails?.isFav =
+            !(context.read<GrageDetailsCubit>().grageModelDetails?.isFav ??
+                false);
       } else {
         productsModelDetails?.data?.isFav =
             !(productsModelDetails?.data?.isFav ?? true);
