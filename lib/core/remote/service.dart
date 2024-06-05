@@ -789,6 +789,26 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
+  Future<Either<Failure, MainDetailsModel>> changVendorOrderStatus({
+    required String id,
+    String type = 'new',
+  }) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.post(
+        EndPoints.changOrderStatusUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+        formDataIsEnabled: true,
+        body: {"id": id, "type": type},
+      );
+      return Right(MainDetailsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 //   Future<Either<Failure, UpdatedModel>> editService(
 //       int catId,ServiceToUpdate serviceToUpdate) async {
 //     LoginModel loginModel = await Preferences.instance.getUserModel();

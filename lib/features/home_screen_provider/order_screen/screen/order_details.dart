@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_strings.dart';
 import '../../../home_screen/orders/widget/custom_order_widget.dart';
 import '../../../urllaunch.dart';
 import '../cubit/state.dart';
@@ -140,6 +141,7 @@ class _OrderDetailsVendorState extends State<OrderDetailsVendor> {
                     ),
                     SizedBox(height: 5.h),
                     ListView.builder(
+                      padding: EdgeInsets.only(top: getSize(context) / 32),
                       shrinkWrap: true,
                       itemCount: cubit.detailsModel!.data!.details!.length,
                       physics: const BouncingScrollPhysics(),
@@ -172,6 +174,7 @@ class _OrderDetailsVendorState extends State<OrderDetailsVendor> {
                                 },
                               ),
                               Flexible(
+                                fit: FlexFit.tight,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -209,21 +212,18 @@ class _OrderDetailsVendorState extends State<OrderDetailsVendor> {
                                                         FontWeight.w400)),
                                           ),
                                           Text(
-                                              "${'count'.tr()} : ${cubit.detailsModel!.data!.details![index].product!.price.toString()}",
+                                              "${AppStrings.currency} ${cubit.detailsModel!.data!.details![index].product!.price.toString()}",
                                               maxLines: 1,
                                               style: TextStyle(
-                                                  color:
-                                                      AppColors.secondPrimary,
+                                                  color: AppColors.primary,
                                                   fontSize:
                                                       getSize(context) / 20,
-                                                  fontWeight: FontWeight.w400)),
+                                                  fontWeight: FontWeight.bold)),
                                         ],
                                       ),
                                     ),
                                     Text(
-                                        cubit.detailsModel!.data!
-                                            .details![index].qty
-                                            .toString(),
+                                        "${'count'.tr()} : ${cubit.detailsModel!.data!.details![index].qty.toString()}",
                                         maxLines: 1,
                                         style: TextStyle(
                                             color: AppColors.secondPrimary,
@@ -239,6 +239,23 @@ class _OrderDetailsVendorState extends State<OrderDetailsVendor> {
                     )
                   ],
                 ),
+          bottomSheet: Container(
+            width: double.infinity,
+            alignment: Alignment.center,
+            height: getSize(context) / 8,
+            margin: EdgeInsets.all(getSize(context) / 44),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(getSize(context) / 32),
+              color: AppColors.primary,
+            ),
+            child: Text(
+              'send_order'.tr(),
+              style: TextStyle(
+                color: AppColors.white,
+                fontSize: getSize(context) / 20,
+              ),
+            ),
+          ),
         );
       },
     );
