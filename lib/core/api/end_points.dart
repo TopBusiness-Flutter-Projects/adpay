@@ -29,6 +29,7 @@ class EndPoints {
       '${baseUrl}vendor/getNotifications';
   static const String vendorOrdersUrl = '${baseUrl}vendor/orders';
   static const String vendorOrderDetailsUrl = '${baseUrl}vendor/order/d/';
+  static const String changOrderStatusUrl = '${baseUrl}vendor/changOrderStatus';
   // static const String citiesUrl = '${baseUrl}cities';
   // static const String servicesUrl = '${baseUrl}services/';
   // static const String editServicesUrl = '${baseUrl}services/update/';

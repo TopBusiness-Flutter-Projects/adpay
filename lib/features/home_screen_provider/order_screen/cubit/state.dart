@@ -13,3 +13,9 @@ class LoadingGetDetailsOrdersVendor extends VendorOrderState {}
 class LoadedGetDetailsOrdersVendor extends VendorOrderState {}
 
 class ErrorGetDetailsOrdersVendor extends VendorOrderState {}
+
+class LoadingChangeOrderStateVendor extends VendorOrderState {}
+
+class LoadedChangeOrderStateVendor extends VendorOrderState {}
+
+class ErrorChangeOrderStateVendor extends VendorOrderState {}

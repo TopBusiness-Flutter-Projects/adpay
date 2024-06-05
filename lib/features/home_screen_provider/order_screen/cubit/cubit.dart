@@ -54,4 +54,20 @@ class VendorOrderCubit extends Cubit<VendorOrderState> {
       emit(LoadedGetDetailsOrdersVendor());
     });
   }
+
+  changVendorOrderStatus({
+    required String id,
+    String type = 'new',
+  }) async {
+    emit(LoadingChangeOrderStateVendor());
+
+    final res = await api.changVendorOrderStatus(id: id, type: type);
+
+    res.fold((l) {
+      //!
+      emit(ErrorChangeOrderStateVendor());
+    }, (r) {
+      emit(LoadedChangeOrderStateVendor());
+    });
+  }
 }
