@@ -12,6 +12,7 @@ import 'package:page_transition/page_transition.dart';
 import '../../core/utils/app_strings.dart';
 import '../../features/choose_login/screen/choose_login_screen.dart';
 import '../../features/forget_password/screen/forget_pass.dart';
+import '../../features/forget_password/screen/newpass.dart';
 import '../../features/home_screen/add_harag/screens/add_harag.dart';
 import '../../features/home_screen/advertisment/screen/advertisment_screen.dart';
 import '../../features/home_screen/best_seller/screens/best_seller_screen.dart';
@@ -25,7 +26,7 @@ import '../../features/home_screen/menue/myprofile/screens/myprofile.dart';
 import '../../features/home_screen/menue/screens/contact_us/screens/contact_us.dart';
 import '../../features/home_screen/menue/screens/menue_screen.dart';
 import '../../features/home_screen/menue/screens/mypoints/screens/points.dart';
-import '../../features/home_screen/menue/screens/places/places.dart';
+import '../../features/home_screen/menue/screens/places/screens/places.dart';
 import '../../features/home_screen/menue/screens/pocket/pocket.dart';
 import '../../features/home_screen/notifications/screens/notification_screen.dart';
 import '../../features/home_screen/order_details/screens/order_details.dart';
@@ -100,6 +101,7 @@ class Routes {
   static const String floatVendor = '/floatVendor';
   static const String orderScreenVendor = '/OrderScreenVendor';
   static const String orderDetailsVendor = '/orderDetailsVendor';
+  static const String NewPass = '/newpass';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -406,7 +408,7 @@ class AppRoutes {
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: ForgetPasswordScreen(),
+          child: ForgetPaas(),
         );
       case Routes.addharag:
         return PageTransition(
@@ -429,7 +431,13 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: OrderScreenVendor(),
         );
-
+      case Routes.NewPass:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: NewPass(),
+        );
       case Routes.orderDetailsVendor:
         String? id = settings.arguments as String?;
 

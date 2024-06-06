@@ -4,10 +4,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart%20';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/utils/styles.dart';
-import '../../../add_harag/screens/widgets/custom_drop_down_menu.dart';
-import '../widgets/menue_widget.dart';
+import '../../../../../../core/utils/styles.dart';
+import '../../../../add_harag/screens/widgets/custom_drop_down_menu.dart';
+import '../../widgets/menue_widget.dart';
+import '../cubit/places_cubit.dart';
 
 class PlacesScreen extends StatefulWidget {
   PlacesScreen({super.key});
@@ -23,6 +25,9 @@ class _PlacesScreenState extends State<PlacesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<PlacesCubit>();
+    return BlocBuilder<PlacesCubit, PlacesState>(
+        builder: (context, state) {
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -234,23 +239,28 @@ class _PlacesScreenState extends State<PlacesScreen> {
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Center(
-                              child: Container(
-                                width: 120.w,
-                                height: 35.h,
-                                decoration: BoxDecoration(
-                                  color: AppColors.shadeColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(
-                                    color:
-                                        Colors.red, // Set the border color here
-                                    width: 1.0, // Set the border width here
+                              child: InkWell(
+                                onTap: (){
+                                  cubit.Places();
+                                },
+                                child: Container(
+                                  width: 120.w,
+                                  height: 35.h,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.shadeColor,
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                      color:
+                                          Colors.red, // Set the border color here
+                                      width: 1.0, // Set the border width here
+                                    ),
                                   ),
+                                  child: Center(
+                                      child: Text(
+                                    "add".tr(),
+                                    style: Styles.style16,
+                                  )),
                                 ),
-                                child: Center(
-                                    child: Text(
-                                  "add".tr(),
-                                  style: Styles.style16,
-                                )),
                               ),
                             ),
                           ),
@@ -268,4 +278,4 @@ class _PlacesScreenState extends State<PlacesScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
-}
+    );}}

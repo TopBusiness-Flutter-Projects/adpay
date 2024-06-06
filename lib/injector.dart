@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/api/app_interceptors.dart';
 import 'core/api/base_api_consumer.dart';
 import 'core/api/dio_consumer.dart';
+import 'features/forget_password/cubit/reset_pass_cubit.dart';
 import 'features/home_screen/add_harag/cubit/add_harag_cubit.dart';
 import 'features/home_screen/advertisment/cubit/adsence_cubit.dart';
 import 'features/home_screen/catogries/cubit/catogries_cubit.dart';
@@ -20,6 +21,7 @@ import 'features/home_screen/menue/myprofile/myharag/cubit/my_harag_cubit.dart';
 import 'features/home_screen/menue/screens/contact_us/cubit/contact_us_cubit.dart';
 import 'features/home_screen/menue/screens/favourite/cubit/favourite_cubit.dart';
 import 'features/home_screen/menue/screens/mypoints/cubit/points_cubit.dart';
+import 'features/home_screen/menue/screens/places/cubit/places_cubit.dart';
 import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 
 import 'features/home_screen/products/cubit/products_cubit.dart';
@@ -69,6 +71,11 @@ Future<void> setup() async {
   );
   serviceLocator.registerFactory(
     () => EditProfileCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+        () => PlacesCubit(
       serviceLocator(),
     ),
   );
@@ -128,6 +135,12 @@ Future<void> setup() async {
       serviceLocator(),
     ),
   );
+  serviceLocator.registerFactory(
+        () => ResetPassCubit(
+      serviceLocator(),
+    ),
+  );
+
   // serviceLocator.registerFactory(
   //   () => PostsCubit(
   //     serviceLocator(),

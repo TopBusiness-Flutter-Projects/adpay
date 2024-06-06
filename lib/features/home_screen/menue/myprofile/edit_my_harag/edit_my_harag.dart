@@ -4,17 +4,11 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path/path.dart';
-
 import '../../../../../config/routes/app_routes.dart';
 import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/assets_manager.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../add_harag/screens/widgets/custom_drop_down_menu.dart';
 import '../../../add_harag/screens/widgets/custom_text_field.dart';
-
-
-
-
 class EditMyHaragDetails extends StatefulWidget {
   const EditMyHaragDetails({super.key});
 

@@ -11,6 +11,7 @@ import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
 import 'core/utils/app_strings.dart';
 import 'package:adpay/injector.dart' as injector;
+import 'features/forget_password/cubit/reset_pass_cubit.dart';
 import 'features/home_screen/add_harag/cubit/add_harag_cubit.dart';
 import 'features/home_screen/advertisment/cubit/adsence_cubit.dart';
 import 'features/home_screen/catogries/cubit/catogries_cubit.dart';
@@ -25,6 +26,7 @@ import 'features/home_screen/menue/myprofile/myharag/cubit/my_harag_cubit.dart';
 import 'features/home_screen/menue/screens/contact_us/cubit/contact_us_cubit.dart';
 import 'features/home_screen/menue/screens/favourite/cubit/favourite_cubit.dart';
 import 'features/home_screen/menue/screens/mypoints/cubit/points_cubit.dart';
+import 'features/home_screen/menue/screens/places/cubit/places_cubit.dart';
 import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 import 'features/home_screen/products/cubit/products_cubit.dart';
 import 'features/home_screen/shop/cubit/shop_cubit.dart';
@@ -97,6 +99,10 @@ class _AdpayState extends State<Adpay> {
             create: (_) => injector.serviceLocator<GrageDetailsCubit>(),
           ),
           BlocProvider(
+            create: (_) => injector.serviceLocator<ResetPassCubit>(),
+          ),
+
+          BlocProvider(
             create: (_) => injector.serviceLocator<AddHaragCubit>(),
           ),
 
@@ -134,6 +140,10 @@ class _AdpayState extends State<Adpay> {
           BlocProvider(
             create: (_) => injector.serviceLocator<VendorOrderCubit>(),
           ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<PlacesCubit>(),
+          ),
+
           //
           // BlocProvider(
           //   create: (_) => injector.serviceLocator<PrivacyCubit>(),
