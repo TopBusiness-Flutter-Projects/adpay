@@ -11,7 +11,9 @@ class MyAuctionsModel {
 
   factory MyAuctionsModel.fromJson(Map<String, dynamic> json) {
     return MyAuctionsModel(
-      data: (json['data'] as List).map((item) => AuctionData.fromJson(item)).toList(),
+      data: (json['data'] as List)
+          .map((item) => AuctionData.fromJson(item))
+          .toList(),
       msg: json['msg'],
       status: json['status'],
     );

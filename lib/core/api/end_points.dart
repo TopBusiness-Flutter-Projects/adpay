@@ -30,6 +30,9 @@ class EndPoints {
   static const String vendorOrdersUrl = '${baseUrl}vendor/orders';
   static const String vendorOrderDetailsUrl = '${baseUrl}vendor/order/d/';
   static const String changOrderStatusUrl = '${baseUrl}vendor/changOrderStatus';
+  static const String vendorMyWallet = '${baseUrl}vendor/myWallet';
+  static const String vendorGetShopCategories =
+      '${baseUrl}vendor/getShopCategories';
   // static const String citiesUrl = '${baseUrl}cities';
   // static const String servicesUrl = '${baseUrl}services/';
   // static const String editServicesUrl = '${baseUrl}services/update/';

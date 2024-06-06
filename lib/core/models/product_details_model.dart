@@ -1,3 +1,4 @@
+import 'home_vendor_model.dart';
 
 class ProductDetailsModel {
   Product? data;
@@ -158,112 +159,6 @@ class Props {
     _data['free_cancellation'] = freeCancellation;
     _data['free_gift'] = freeGift;
     _data['free_support'] = freeSupport;
-    return _data;
-  }
-}
-
-class Vendor {
-  Vendor({
-    required this.id,
-    required this.name,
-    required this.image,
-    required this.phone,
-    required this.type,
-    required this.deviceToken,
-    this.session,
-    required this.logo,
-    required this.banner,
-    required this.titleAr,
-    required this.titleEn,
-    required this.shopCat,
-    required this.shopSubCat,
-    required this.token,
-  });
-  late final int id;
-  late final String name;
-  late final String image;
-  late final int phone;
-  late final String type;
-  late final String deviceToken;
-  late final Null session;
-  late final String logo;
-  late final String banner;
-  late final String titleAr;
-  late final String titleEn;
-  late final ShopCat shopCat;
-  late final List<String> shopSubCat;
-  late final String token;
-
-  Vendor.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    image = json['image'];
-    phone = json['phone'];
-    type = json['type'];
-    deviceToken = json['device_token'];
-    session = null;
-    logo = json['logo'];
-    banner = json['banner'];
-    titleAr = json['title_ar'];
-    titleEn = json['title_en'];
-    shopCat = ShopCat.fromJson(json['shop_cat']);
-    shopSubCat = List.castFrom<dynamic, String>(json['shop_sub_cat']);
-    token = json['token'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['name'] = name;
-    _data['image'] = image;
-    _data['phone'] = phone;
-    _data['type'] = type;
-    _data['device_token'] = deviceToken;
-    _data['session'] = session;
-    _data['logo'] = logo;
-    _data['banner'] = banner;
-    _data['title_ar'] = titleAr;
-    _data['title_en'] = titleEn;
-    _data['shop_cat'] = shopCat.toJson();
-    _data['shop_sub_cat'] = shopSubCat;
-    _data['token'] = token;
-    return _data;
-  }
-}
-
-class ShopCat {
-  ShopCat({
-    required this.id,
-    required this.titleAr,
-    required this.titleEn,
-    required this.status,
-    required this.createdAt,
-    required this.updatedAt,
-  });
-  late final int id;
-  late final String titleAr;
-  late final String titleEn;
-  late final int status;
-  late final String createdAt;
-  late final String updatedAt;
-
-  ShopCat.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    titleAr = json['title_ar'];
-    titleEn = json['title_en'];
-    status = json['status'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['title_ar'] = titleAr;
-    _data['title_en'] = titleEn;
-    _data['status'] = status;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
     return _data;
   }
 }

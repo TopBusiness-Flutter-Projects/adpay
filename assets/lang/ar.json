@@ -116,6 +116,7 @@
   "send": "ارسال",
   "Createaccount": "انشاء حساب",
   "wallet": "المحفظة",
+  "wallety": "محفظتى",
   "total_count": "اجمالى الطلبات",
   "total_products": "اجمالى المنتجات",
   "total": "الاجمالي",
@@ -130,6 +131,13 @@
   "refused_order": "الطلبات الموقوفة",
   "order_details": "تفاصيل الطلب",
   "count": "عدد",
-  "current":"ريال",
-  "send_order":"ارسال الطلب"
+  "current": "ريال",
+  "send_order": "ارسال الطلب",
+  "resend_order": "اعادة ارسال الطلب",
+  "complete_order": "اكتمال الطلب",
+  "reset_ordre": "استرجاع الطلب",
+  "myCredit": "رصيدى",
+  "last_transfer": "التحويلات الاخيرة",
+  "used_products":"المنتجات المستعملة",
+  "new_products":"المنتجات الجديدة"
 }

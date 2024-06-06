@@ -1,5 +1,9 @@
+import 'package:adpay/config/routes/app_routes.dart';
 import 'package:adpay/core/remote/service.dart';
+import 'package:adpay/features/home_screen_provider/main_screen/cubit/cubit.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../core/models/order_details.dart';
 import '../../../../core/models/vendor_order_model.dart';
@@ -25,11 +29,14 @@ class VendorOrderCubit extends Cubit<VendorOrderState> {
     }, (r) {
       vendorOrdersModel = r;
       for (int i = 0; i < r.data!.length; i++) {
-        if (r.data![i].type == 'cancelled') {
+        if (r.data![i].type == 'cancelled' &&
+            (!vendorOrdersCancelled.contains(r.data![i]))) {
           vendorOrdersCancelled.add(r.data![i]);
-        } else if (r.data![i].type == 'complete') {
+        } else if (r.data![i].type == 'complete' &&
+            (!vendorOrdersComplete.contains(r.data![i]))) {
           vendorOrdersComplete.add(r.data![i]);
-        } else if (r.data![i].type == 'new') {
+        } else if ((r.data![i].type == 'new' || r.data![i].type == 'pending') &&
+            (!vendorOrdersNew.contains(r.data![i]))) {
           vendorOrdersNew.add(r.data![i]);
         } else {
           //!
@@ -58,6 +65,7 @@ class VendorOrderCubit extends Cubit<VendorOrderState> {
   changVendorOrderStatus({
     required String id,
     String type = 'new',
+    required BuildContext context,
   }) async {
     emit(LoadingChangeOrderStateVendor());
 
@@ -67,6 +75,22 @@ class VendorOrderCubit extends Cubit<VendorOrderState> {
       //!
       emit(ErrorChangeOrderStateVendor());
     }, (r) {
+      if (r.data!.type == 'pwnding') {
+        currentOrderIndex = 0;
+      } else if (r.data!.type == 'complete') {
+        currentOrderIndex = 1;
+      } else if (r.data!.type == 'cancelled') {
+        currentOrderIndex = 2;
+      } else {
+        currentOrderIndex = 0;
+      }
+
+      context.read<MainVendorCubit>().currentIndex = 1;
+
+      Navigator.pushNamed(context, Routes.floatVendor);
+
+      Fluttertoast.showToast(msg: r.msg ?? '');
+
       emit(LoadedChangeOrderStateVendor());
     });
   }

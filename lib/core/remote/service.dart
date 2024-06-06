@@ -27,10 +27,12 @@ import '../models/grage_model.dart';
 import '../models/login_model.dart';
 import '../models/logout_model.dart';
 import '../models/my_auctions_model.dart';
+import '../models/my_wallet_vendor_model.dart';
 import '../models/notification_model.dart';
 import '../models/order_details.dart';
 import '../models/product_details_model.dart';
 import '../models/products_model.dart';
+import '../models/shop_category_vendor_model.dart';
 import '../models/shop_model.dart';
 import '../models/vendor_order_model.dart';
 import '../models/wallet_model.dart';
@@ -805,6 +807,29 @@ class ServiceApi {
         body: {"id": id, "type": type},
       );
       return Right(MainDetailsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, MyWalletVendorModel>> myWalletVendorModel() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(EndPoints.vendorMyWallet,
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(MyWalletVendorModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, ShopCategoryVendorModel>>
+      getVendorGetShopCategories() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(EndPoints.vendorGetShopCategories,
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(ShopCategoryVendorModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
