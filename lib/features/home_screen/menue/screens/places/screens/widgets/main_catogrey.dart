@@ -2,10 +2,10 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/models/shopcatogriesmodel.dart';
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/get_size.dart';
-import '../../cubit/add_harag_cubit.dart';
+import '../../../../../../../core/models/getregion_model.dart';
+import '../../../../../../../core/utils/app_colors.dart';
+import '../../../../../../../core/utils/get_size.dart';
+
 import '../../cubit/places_cubit.dart';
 
 class MainCatogreyWidget extends StatefulWidget {
@@ -25,10 +25,9 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddHaragCubit, AddHaragState>(
+    return BlocBuilder<PlacesCubit, PlacesState>(
       builder: (context, state) {
-        AddHaragCubit cubit = context.read<AddHaragCubit>();
-
+        PlacesCubit cubit = context.read<PlacesCubit>();
         if (state is LoadingGetCatogreyModel) {
           return Center(
             child: CircularProgressIndicator(),
@@ -45,7 +44,7 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
                 padding: EdgeInsets.symmetric(
                   horizontal: getSize(context) / 44,
                 ),
-                child: DropdownButtonFormField2<Category>(
+                child: DropdownButtonFormField2<Region>(
                   isExpanded: true,
                   decoration: InputDecoration(
                     filled: true,
@@ -84,17 +83,17 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
                   ),
                   // value: cubit.currentMainCategories,
                   items: categories?.map((item) {
-                    return DropdownMenuItem<Category>(
+                    return DropdownMenuItem<Region>(
                       value: item,
                       child: Text(
-                        EasyLocalization.of(context)!.locale.languageCode ==
-                                'ar'
-                            ? (item.titleAr)
-                            : (item.titleEn),
+                        EasyLocalization.of(context)!.locale.languageCode == 'ar'
+                            ? (item.nameAr ?? 'Default Arabic Name')
+                            : (item.nameEn ?? 'Default English Name'),
                         style: TextStyle(
                           fontSize: getSize(context) / 24,
                         ),
-                      ),
+                      )
+
                     );
                   }).toList(),
                   validator: (value) {
