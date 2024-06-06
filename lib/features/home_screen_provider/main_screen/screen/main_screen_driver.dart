@@ -1,14 +1,18 @@
+import 'package:adpay/config/routes/app_routes.dart';
 import 'package:adpay/core/utils/app_colors.dart';
 import 'package:adpay/core/utils/get_size.dart';
 import 'package:adpay/features/home_screen_provider/main_screen/cubit/state.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/assets_manager.dart';
 import '../../../home_screen/component/custom_Appbar.dart';
+import '../../order_screen/cubit/cubit.dart';
 import '../../widget/custom_bome_item.dart';
 import '../widget/chart.dart';
 import '../widget/custom_Appbar_vendor.dart';
@@ -82,23 +86,51 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                                 physics: const BouncingScrollPhysics(),
                                 children: [
                                   //!
-                                  CustomHomeScreenWidget(
-                                    imagePath: ImageAssets.walletImage,
-                                    title: 'wallet'.tr(),
-                                    count:
-                                        "${cubit.homeVendorScreenModel?.data?.walletTotal.toString() ?? ''}",
+                                  Hero(
+                                    tag: 'wallet_vendor',
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, Routes.walletVendorScreen);
+                                      },
+                                      child: CustomHomeScreenWidget(
+                                        imagePath: ImageAssets.walletImage,
+                                        title: 'wallet'.tr(),
+                                        count:
+                                            "${cubit.homeVendorScreenModel?.data?.walletTotal.toString() ?? ''}",
+                                      ),
+                                    ),
                                   ),
-                                  CustomHomeScreenWidget(
-                                    imagePath: ImageAssets.totalOrderImage,
-                                    title: 'total_count'.tr(),
-                                    count:
-                                        "${cubit.homeVendorScreenModel?.data?.ordersCount.toString() ?? ''}",
+                                  GestureDetector(
+                                    onTap: () {
+                                      context
+                                          .read<VendorOrderCubit>()
+                                          .currentOrderIndex = 0;
+                                      Navigator.pushNamed(
+                                          context, Routes.orderScreenVendor);
+                                    },
+                                    child: CustomHomeScreenWidget(
+                                      imagePath: ImageAssets.totalOrderImage,
+                                      title: 'total_count'.tr(),
+                                      count:
+                                          "${cubit.homeVendorScreenModel?.data?.ordersCount.toString() ?? ''}",
+                                    ),
                                   ),
-                                  CustomHomeScreenWidget(
-                                    imagePath: ImageAssets.totalProductImage,
-                                    title: 'total_products'.tr(),
-                                    count:
-                                        "${cubit.homeVendorScreenModel?.data?.productsCount.toString() ?? ''}",
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(context,
+                                          Routes.totalProductsVendorScreen);
+                                    },
+                                    child: Hero(
+                                      tag: 'total_products',
+                                      child: CustomHomeScreenWidget(
+                                        imagePath:
+                                            ImageAssets.totalProductImage,
+                                        title: 'total_products'.tr(),
+                                        count:
+                                            "${cubit.homeVendorScreenModel?.data?.productsCount.toString() ?? ''}",
+                                      ),
+                                    ),
                                   ),
                                   CustomHomeScreenWidget(
                                     imagePath: ImageAssets.totalAdsImage,

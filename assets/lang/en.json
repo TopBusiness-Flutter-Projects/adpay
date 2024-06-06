@@ -129,7 +129,14 @@
      "refused_order": "Refused Orders",
      "order_details": "Order Details",
      "count": "quantity",
-     "current":"SAR",  "send_order":"Send Order"
-
+     "current": "SAR",
+     "send_order": "Send Order",
+     "resend_order": "Resend order",
+     "complete_order": "Order completed",
+     "reset_ordre": "Reset order",
+     "wallety": "my wallet",
+     "myCredit": "My Credit",
+     "last_transfer": "Last transfers",  "used_products":"Used products", 
+      "new_products":"New Products"
 
 }
