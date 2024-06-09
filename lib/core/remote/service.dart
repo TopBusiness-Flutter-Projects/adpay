@@ -15,6 +15,7 @@ import '../error/exceptions.dart';
 import '../error/failures.dart';
 import '../models/Home_models.dart';
 import '../models/add_harag_model.dart';
+import '../models/ads_vendor_model.dart';
 import '../models/adsence_Model.dart';
 import '../models/catogrie_model.dart';
 import '../models/checkUser_model.dart';
@@ -830,6 +831,40 @@ class ServiceApi {
       final response = await dio.get(EndPoints.vendorGetShopCategories,
           options: Options(headers: {'Authorization': loginModel.data!.token}));
       return Right(ShopCategoryVendorModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, ProductModel>> getMyProductsVendor({
+    required String type,
+    required String categoryId,
+  }) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(
+          EndPoints.getMyProductsVendor + "?type=$type&category_id=$categoryId",
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      print('555555555555555 ${response['status'] == 1}');
+      if (response['status'] == 1) {
+        return Right(ProductModel.fromJson(response));
+      } else {
+        return Right(ProductModel(data: [], msg: '', status: 0));
+      }
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, AdsVendorModel>> getVendorMyAdvertise({
+    String type = 'new',
+  }) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(
+          EndPoints.getMyAdvertiseVendor + "?type=$type",
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(AdsVendorModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }

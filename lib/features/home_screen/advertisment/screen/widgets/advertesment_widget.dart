@@ -11,14 +11,14 @@ import '../../../../../core/utils/styles.dart';
 import '../../../main_screen/cubit/home_cubit.dart';
 
 class AdvertesmentWidet extends StatelessWidget {
-   AdvertesmentWidet({super.key,required this.ads});
-Ads ads;
+  AdvertesmentWidet({super.key, required this.ads});
+  Ads ads;
   @override
   Widget build(BuildContext context) {
     HomeCubit cubit = HomeCubit.get(context);
 
     return Container(
-      width: getSize(context)/1.08,
+      width: getSize(context) / 1.08,
       height: 300.h,
       margin: EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -26,37 +26,35 @@ Ads ads;
             color: Colors.grey.shade300,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(getSize(context)/32)),
+          borderRadius: BorderRadius.circular(getSize(context) / 32)),
       child: Padding(
         padding: const EdgeInsets.all(0.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment
-              .start, // Align children to the start
+          crossAxisAlignment:
+              CrossAxisAlignment.start, // Align children to the start
           children: [
-            Flexible(fit: FlexFit.tight,
+            Flexible(
+              fit: FlexFit.tight,
               child: Align(
                 alignment: Alignment.topRight,
                 child: Container(
-
-                    width:
-                    MediaQuery.of(context).size.width,
+                    width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                      // color: Color(0xfff6f6f6),
+                        // color: Color(0xfff6f6f6),
                         color: Colors.blue,
                         borderRadius:
-                        BorderRadius.circular(getSize(context)/32)),
+                            BorderRadius.circular(getSize(context) / 32)),
                     child: Image.network(
-                      EndPoints.baseUrlImage +
-                          (ads.image.toString() ??
-                              ''),
-                      errorBuilder:
-                          (context, error, stackTrace) {
+                      EndPoints.baseUrlImage + (ads.image.toString() ?? ''),
+                      errorBuilder: (context, error, stackTrace) {
                         return Image.asset(
-                          'assets/images/chair.jpg',fit: BoxFit.cover,);
+                          'assets/images/chair.jpg',
+                          fit: BoxFit.cover,
+                        );
                       },
                     )
-                  //  }),
-                ),
+                    //  }),
+                    ),
               ),
             ),
             Padding(
@@ -70,21 +68,16 @@ Ads ads;
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color: Colors.white60,
-                        borderRadius:
-                        BorderRadius.circular(200),
+                        borderRadius: BorderRadius.circular(200),
                         border: Border.all(
                           color: Colors.black.withOpacity(.3),
                           width: 2,
                         ),
                       ),
                       child: Image.network(
-                        EndPoints.baseUrlImage +
-                            (ads.image.toString() ??
-                                ''),
-                        errorBuilder:
-                            (context, error, stackTrace) {
-                          return Image.asset(
-                              'assets/images/chair.jpg');
+                        EndPoints.baseUrlImage + (ads.image.toString() ?? ''),
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset('assets/images/chair.jpg');
                         },
                       ),
                     ),
@@ -96,20 +89,22 @@ Ads ads;
                         crossAxisAlignment: CrossAxisAlignment
                             .start, // Align children to the start
                         children: [
-                          Text("birthday".tr(),
-                              style: Styles.style18.copyWith(
-                                  color:
-                                  AppColors.secondPrimary)),
+                          Text(
+                              (EasyLocalization.of(context)!
+                                          .locale
+                                          .languageCode ==
+                                      'ar')
+                                  ? (ads.titleAr ?? '')
+                                  : (ads.titleEn ?? ''),
+                              style: Styles.style18
+                                  .copyWith(color: AppColors.secondPrimary)),
                           Text(
                             (EasyLocalization.of(context)!
-                                .locale
-                                .languageCode ==
-                                'ar')
-                                ? (ads.descriptionAr ??
-                                '')
-                                : (ads
-                                .descriptionEn ??
-                                ''),
+                                        .locale
+                                        .languageCode ==
+                                    'ar')
+                                ? (ads.descriptionAr ?? '')
+                                : (ads.descriptionEn ?? ''),
                             maxLines: 2,
                             textAlign: TextAlign.start,
                             style: TextStyle(
@@ -119,9 +114,8 @@ Ads ads;
                             ),
                           ),
                           Text("advertisement".tr(),
-                              style: Styles.style18.copyWith(
-                                  color:
-                                  AppColors.secondPrimary)),
+                              style: Styles.style18
+                                  .copyWith(color: AppColors.secondPrimary)),
                         ],
                       ),
                     ),
@@ -132,6 +126,6 @@ Ads ads;
           ],
         ),
       ),
-    );;
+    );
   }
 }
