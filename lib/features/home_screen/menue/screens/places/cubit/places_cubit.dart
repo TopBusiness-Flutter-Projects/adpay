@@ -21,7 +21,7 @@ class PlacesCubit extends Cubit<PlacesState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController SubcatIdController = TextEditingController();
 
-  GetRegionsModel? maincatogreyModel;
+  GetRegionsModel? mainRegion;
 
 
   GetCityByRegionModel? subCatogreyModel;
@@ -30,15 +30,16 @@ class PlacesCubit extends Cubit<PlacesState> {
   ServiceApi api;
   AddAddressModel ?addressmodel;
 
-  Future<void> Places() async {
+  Future<void> addNewPlace(BuildContext context) async {
     var pref = await SharedPreferences.getInstance();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     emit(LoadingPlaces());
-    final response = await api.postAdress( region: 'منطقة الرياض', city: 'الرياض', defaultt: '1', details: '13 شارع الملك فيصل');
+    final response = await api.postAdress( region:currentMainCategories?.nameAr??"" , city: currentSubCategory?.nameAr??"", defaultt: '1', details:discriptoionController.text);
     //
     response.fold((l) {
       emit(ErrorPlaces());
     }, (r) async {
+      Navigator.pop(context);
       addressmodel=r;
       print("loaded");
       successGetBar(r.msg);
@@ -46,13 +47,13 @@ class PlacesCubit extends Cubit<PlacesState> {
     emit(LoadedPlaces());
   }
   //
-  Future<void> getMainCatogrey(BuildContext context) async {
+  Future<void> getMainRegion(BuildContext context) async {
     emit(LoadingGetCatogreyModel());
     final response = await api.getRegions();
     response.fold((l) {
       emit(ErrorGetCatogreyModel());
     }, (r) async {
-      maincatogreyModel = r;
+      mainRegion = r;
       print("loaded");
       // currentMainCategories = r.data.first;
       successGetBar(r.msg);
@@ -61,11 +62,11 @@ class PlacesCubit extends Cubit<PlacesState> {
   }
   Region? currentMainCategories;
 
-  onChangeMain(Region? category) {
-    subcategoriesModel = null;
-
+  onChangeMainRegion(Region? category) {
+      subcategoriesModel = null;
+print('assssssssssssssss :${currentMainCategories?.nameAr}');
     currentMainCategories = category;
-    subcatogrey(id: category?.id.toString());
+    subcatogrey(id: category?.regionId.toString());
     emit(ONChangeMainCategory());
   }
 
@@ -88,4 +89,4 @@ class PlacesCubit extends Cubit<PlacesState> {
     });
   }
 }
-}
+

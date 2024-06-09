@@ -208,7 +208,7 @@ class ServiceApi {
     // Devicetoken = prefs.getString('checkUser');
     try {
       var response = await dio.get(
-        EndPoints.getCityByRegion,
+        EndPoints.getCityByRegion +'?region_id=${(id1 == null) ? '' : id1}',
         options: Options(
           headers: {
             'Accept-Language': lan,

@@ -2,31 +2,34 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../../../core/models/getCity_ byRegion_model.dart';
+import '../../../../../../../core/utils/app_colors.dart';
+import '../../../../../../../core/utils/get_size.dart';
+import '../../cubit/places_cubit.dart';
 
 
-class SubCatogreyWidget extends StatefulWidget {
-  const SubCatogreyWidget({super.key});
+class SubRegionWidget extends StatefulWidget {
+  const SubRegionWidget({super.key});
 
   @override
-  State<SubCatogreyWidget> createState() => _SubCatogreyWidgetState();
+  State<SubRegionWidget> createState() => _SubRegionWidgetState();
 }
 
-class _SubCatogreyWidgetState extends State<SubCatogreyWidget> {
+class _SubRegionWidgetState extends State<SubRegionWidget> {
   void initState() {
     super.initState();
-    context.read<AddHaragCubit>().subcatogrey(
+    context.read<PlacesCubit>().subcatogrey(
         id: context
-                .read<AddHaragCubit>()
-                .maincatogreyModel
-                ?.data[0]
-                .id.toString() ?? "1");
+                .read<PlacesCubit>()
+                .mainRegion
+                ?.data![0].regionId.toString() ?? "1");
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddHaragCubit, AddHaragState>(
+    return BlocBuilder<PlacesCubit, PlacesState>(
       builder: (context, state) {
-        AddHaragCubit cubit = context.read<AddHaragCubit>();
+        PlacesCubit cubit = context.read<PlacesCubit>();
 
         if (state is LoadingSubCatogreyModel) {
           return Center(
@@ -44,7 +47,7 @@ class _SubCatogreyWidgetState extends State<SubCatogreyWidget> {
                   : Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: getSize(context) / 44),
-                      child: DropdownButtonFormField2<SubCategory>(
+                      child: DropdownButtonFormField2<Datum>(
                         isExpanded: true,
                         decoration: InputDecoration(
                           filled: true,
@@ -82,15 +85,15 @@ class _SubCatogreyWidgetState extends State<SubCatogreyWidget> {
                           style: TextStyle(fontSize: getSize(context) / 24),
                         ),
                         items: cubit.subcategoriesModel?.data?.map((item) {
-                          return DropdownMenuItem<SubCategory>(
-                            value: item ?? SubCategory(),
+                          return DropdownMenuItem<Datum>(
+                            value: item ,
                             child: Text(
                               EasyLocalization.of(context)!
                                           .locale
                                           .languageCode ==
                                       'ar'
-                                  ? (item.titleAr ?? '')
-                                  : (item.titleEn ?? ''),
+                                  ? (item.nameAr ?? '')
+                                  : (item.nameEn ?? ''),
                               style: TextStyle(
                                 fontSize: getSize(context) / 24,
                               ),
@@ -105,9 +108,14 @@ class _SubCatogreyWidgetState extends State<SubCatogreyWidget> {
                         },
                         onChanged: (value) {
                           cubit.onchangeSubCategory(value);
+                          //cubit.onChangeMain(value);
+
                         },
                         onSaved: (value) {
-                          cubit.onchangeSubCategory(value);
+                          setState(() {
+
+                          });
+                          // cubit.onchangeSubCategory(value);
                         },
                         buttonStyleData: const ButtonStyleData(
                           padding: EdgeInsets.only(right: 8),

@@ -8,19 +8,19 @@ import '../../../../../../../core/utils/get_size.dart';
 
 import '../../cubit/places_cubit.dart';
 
-class MainCatogreyWidget extends StatefulWidget {
-  const MainCatogreyWidget({super.key});
+class MainRegionWidget extends StatefulWidget {
+  const MainRegionWidget({super.key});
 
   @override
-  State<MainCatogreyWidget> createState() => _MainCatogreyWidgetState();
+  State<MainRegionWidget> createState() => _MainRegionWidgetState();
 }
 
-class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
+class _MainRegionWidgetState extends State<MainRegionWidget> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<PlacesCubit>().getMainCatogrey(context);
+    context.read<PlacesCubit>().getMainRegion(context);
   }
 
   @override
@@ -37,7 +37,7 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
             child: Text('Failed to load categories'.tr()),
           );
         } else {
-          var categories = cubit.maincatogreyModel?.data;
+          var categories = cubit.mainRegion?.data;
           return Column(
             children: [
               Padding(
@@ -103,7 +103,9 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
                     return null;
                   },
                   onChanged: (value) {
-                    cubit.onChangeMain(value);
+
+                    print('assssssssssssssss');
+                    cubit.onChangeMainRegion(value);
                     // setState(() {
                     //   // context.read<AddHaragCubit>().subcatogrey(id:state.categoriesModel.data![0].id.toString()??"");
                     // });
