@@ -34,6 +34,7 @@ class _FloatingVendorState extends State<FloatingVendor> {
         var cubit = context.read<MainVendorCubit>();
         return SafeArea(
             top: false,
+            bottom: true,
             child: Scaffold(
                 resizeToAvoidBottomInset: true,
                 extendBody: true,
@@ -49,14 +50,15 @@ class _FloatingVendorState extends State<FloatingVendor> {
                     },
                     child: _pages[cubit.currentIndex]),
                 bottomNavigationBar: Container(
+                  margin: EdgeInsets.all(8),
                   color: Colors.transparent,
                   child: FloatingNavbar(
                     borderRadius: getSize(context) / 4,
                     backgroundColor: AppColors.secondPrimary,
                     selectedBackgroundColor: Colors.transparent,
                     elevation: 0,
-                    padding: EdgeInsets.zero,
-                    margin: EdgeInsets.zero,
+                    padding: EdgeInsets.all(3),
+                    margin: EdgeInsets.all(3),
                     items: [
                       FloatingNavbarItem(
                           customWidget: CircleAvatar(

@@ -21,3 +21,17 @@ class LoadingGetShopCategoryVendorState extends MainVendorState {}
 class LoadedGetShopCategoryVendorState extends MainVendorState {}
 
 class ErrorGetShopCategoryVendorState extends MainVendorState {}
+
+class OnChangeCategoryVendorState extends MainVendorState {}
+
+class LoadingGetProductsOfVendorState extends MainVendorState {}
+
+class LoadedGetProductsOfVendorState extends MainVendorState {}
+
+class ErrorGetProductsOfVendorState extends MainVendorState {}
+
+class LoadingGetAdsOfVendorState extends MainVendorState {}
+
+class LoadedGetAdsOfVendorState extends MainVendorState {}
+
+class ErrorGetAdsOfVendorState extends MainVendorState {}

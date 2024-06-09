@@ -139,5 +139,10 @@
   "myCredit": "رصيدى",
   "last_transfer": "التحويلات الاخيرة",
   "used_products":"المنتجات المستعملة",
-  "new_products":"المنتجات الجديدة"
+  "new_products":"المنتجات الجديدة",
+  "new":"جديد",
+  "pending":"ف الانتظار",
+  "complete":"مكتملة",
+  "choose_type":"اختر النوع",      "no_ads":"لا يوجد إعلانات"
+
 }

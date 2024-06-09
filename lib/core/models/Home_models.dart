@@ -1,4 +1,3 @@
-
 class HomeModel {
   Data? data;
   String? msg;
@@ -14,7 +13,7 @@ class HomeModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
-    if(data != null) {
+    if (data != null) {
       _data["data"] = data?.toJson();
     }
     _data["msg"] = msg;
@@ -33,43 +32,70 @@ class Data {
   List<Products>? products;
   User? user;
 
-  Data({this.sliders, this.categories, this.ads, this.productMostSell, this.shops, this.auctions, this.products, this.user});
+  Data(
+      {this.sliders,
+      this.categories,
+      this.ads,
+      this.productMostSell,
+      this.shops,
+      this.auctions,
+      this.products,
+      this.user});
 
   Data.fromJson(Map<String, dynamic> json) {
-    sliders = json["sliders"] == null ? null : (json["sliders"] as List).map((e) => Sliders.fromJson(e)).toList();
-    categories = json["categories"] == null ? null : (json["categories"] as List).map((e) => Categories.fromJson(e)).toList();
-    ads = json["ads"] == null ? null : (json["ads"] as List).map((e) => Ads.fromJson(e)).toList();
-    productMostSell = json["product_most_sell"] == null ? null : (json["product_most_sell"] as List).map((e) => Products.fromJson(e)).toList();;
-    shops = json["shops"] == null ? null : (json["shops"] as List).map((e) => Shops.fromJson(e)).toList();
-    auctions = json["auctions"] == null ? null : (json["auctions"] as List).map((e) => Auctions.fromJson(e)).toList();
-    products = json["products"] == null ? null : (json["products"] as List).map((e) => Products.fromJson(e)).toList();
+    sliders = json["sliders"] == null
+        ? null
+        : (json["sliders"] as List).map((e) => Sliders.fromJson(e)).toList();
+    categories = json["categories"] == null
+        ? null
+        : (json["categories"] as List)
+            .map((e) => Categories.fromJson(e))
+            .toList();
+    ads = json["ads"] == null
+        ? null
+        : (json["ads"] as List).map((e) => Ads.fromJson(e)).toList();
+    productMostSell = json["product_most_sell"] == null
+        ? null
+        : (json["product_most_sell"] as List)
+            .map((e) => Products.fromJson(e))
+            .toList();
+    ;
+    shops = json["shops"] == null
+        ? null
+        : (json["shops"] as List).map((e) => Shops.fromJson(e)).toList();
+    auctions = json["auctions"] == null
+        ? null
+        : (json["auctions"] as List).map((e) => Auctions.fromJson(e)).toList();
+    products = json["products"] == null
+        ? null
+        : (json["products"] as List).map((e) => Products.fromJson(e)).toList();
     user = json["user"] == null ? null : User.fromJson(json["user"]);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
-    if(sliders != null) {
+    if (sliders != null) {
       _data["sliders"] = sliders?.map((e) => e.toJson()).toList();
     }
-    if(categories != null) {
+    if (categories != null) {
       _data["categories"] = categories?.map((e) => e.toJson()).toList();
     }
-    if(ads != null) {
+    if (ads != null) {
       _data["ads"] = ads?.map((e) => e.toJson()).toList();
     }
-    if(productMostSell != null) {
+    if (productMostSell != null) {
       _data["product_most_sell"] = productMostSell;
     }
-    if(shops != null) {
+    if (shops != null) {
       _data["shops"] = shops?.map((e) => e.toJson()).toList();
     }
-    if(auctions != null) {
+    if (auctions != null) {
       _data["auctions"] = auctions?.map((e) => e.toJson()).toList();
     }
-    if(products != null) {
+    if (products != null) {
       _data["products"] = products?.map((e) => e.toJson()).toList();
     }
-    if(user != null) {
+    if (user != null) {
       _data["user"] = user?.toJson();
     }
     return _data;
@@ -91,7 +117,20 @@ class User {
   String? createdAt;
   String? updatedAt;
 
-  User({this.id, this.name, this.image, this.phone, this.password, this.verifiedAt, this.points, this.type, this.deviceToken, this.status, this.session, this.createdAt, this.updatedAt});
+  User(
+      {this.id,
+      this.name,
+      this.image,
+      this.phone,
+      this.password,
+      this.verifiedAt,
+      this.points,
+      this.type,
+      this.deviceToken,
+      this.status,
+      this.session,
+      this.createdAt,
+      this.updatedAt});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -147,7 +186,24 @@ class Products {
   String? createdAt;
   String? updatedAt;
 
-  Products({this.id, this.vendorId, this.images, this.titleAr, this.titleEn, this.descriptionAr, this.descriptionEn, this.price, this.discount, this.type, this.shopCatId, this.shopSubCat, this.stock, this.props, this.status, this.createdAt, this.updatedAt});
+  Products(
+      {this.id,
+      this.vendorId,
+      this.images,
+      this.titleAr,
+      this.titleEn,
+      this.descriptionAr,
+      this.descriptionEn,
+      this.price,
+      this.discount,
+      this.type,
+      this.shopCatId,
+      this.shopSubCat,
+      this.stock,
+      this.props,
+      this.status,
+      this.createdAt,
+      this.updatedAt});
 
   Products.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -173,7 +229,7 @@ class Products {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["id"] = id;
     _data["vendor_id"] = vendorId;
-    if(images != null) {
+    if (images != null) {
       _data["images"] = images;
     }
     _data["title_ar"] = titleAr;
@@ -186,7 +242,7 @@ class Products {
     _data["shop_cat_id"] = shopCatId;
     _data["shop_sub_cat"] = shopSubCat;
     _data["stock"] = stock;
-    if(props != null) {
+    if (props != null) {
       _data["props"] = props?.toJson();
     }
     _data["status"] = status;
@@ -211,7 +267,20 @@ class Props {
   String? freeGift;
   String? freeSupport;
 
-  Props({this.color, this.size, this.material, this.condition, this.warranty, this.delivery, this.freeShipping, this.freeReturn, this.freeInstallation, this.freeExchange, this.freeCancellation, this.freeGift, this.freeSupport});
+  Props(
+      {this.color,
+      this.size,
+      this.material,
+      this.condition,
+      this.warranty,
+      this.delivery,
+      this.freeShipping,
+      this.freeReturn,
+      this.freeInstallation,
+      this.freeExchange,
+      this.freeCancellation,
+      this.freeGift,
+      this.freeSupport});
 
   Props.fromJson(Map<String, dynamic> json) {
     color = json["color"];
@@ -251,7 +320,7 @@ class Props {
 class Auctions {
   int? id;
   String? images;
- dynamic? price;
+  dynamic? price;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
@@ -264,7 +333,21 @@ class Auctions {
   String? createdAt;
   String? updatedAt;
 
-  Auctions({this.id, this.images, this.price, this.titleAr, this.titleEn, this.descriptionAr, this.descriptionEn, this.isSold, this.userId, this.video, this.catId, this.subCatId, this.createdAt, this.updatedAt});
+  Auctions(
+      {this.id,
+      this.images,
+      this.price,
+      this.titleAr,
+      this.titleEn,
+      this.descriptionAr,
+      this.descriptionEn,
+      this.isSold,
+      this.userId,
+      this.video,
+      this.catId,
+      this.subCatId,
+      this.createdAt,
+      this.updatedAt});
 
   Auctions.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -315,7 +398,17 @@ class Shops {
   String? createdAt;
   String? updatedAt;
 
-  Shops({this.id, this.logo, this.banner, this.titleAr, this.titleEn, this.shopCatId, this.shopSubCat, this.vendorId, this.createdAt, this.updatedAt});
+  Shops(
+      {this.id,
+      this.logo,
+      this.banner,
+      this.titleAr,
+      this.titleEn,
+      this.shopCatId,
+      this.shopSubCat,
+      this.vendorId,
+      this.createdAt,
+      this.updatedAt});
 
   Shops.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -324,7 +417,9 @@ class Shops {
     titleAr = json["title_ar"];
     titleEn = json["title_en"];
     shopCatId = json["shop_cat_id"];
-    shopSubCat = json["shop_sub_cat"] == null ? null : List<String>.from(json["shop_sub_cat"]);
+    shopSubCat = json["shop_sub_cat"] == null
+        ? null
+        : List<String>.from(json["shop_sub_cat"]);
     vendorId = json["vendor_id"];
     createdAt = json["created_at"];
     updatedAt = json["updated_at"];
@@ -338,7 +433,7 @@ class Shops {
     _data["title_ar"] = titleAr;
     _data["title_en"] = titleEn;
     _data["shop_cat_id"] = shopCatId;
-    if(shopSubCat != null) {
+    if (shopSubCat != null) {
       _data["shop_sub_cat"] = shopSubCat;
     }
     _data["vendor_id"] = vendorId;
@@ -366,7 +461,23 @@ class Ads {
   String? createdAt;
   String? updatedAt;
 
-  Ads({this.id, this.image, this.titleAr, this.titleEn, this.descriptionAr, this.descriptionEn, this.userId, this.status, this.paymentStatus, this.countViews, this.packageId, this.views, this.complete, this.video, this.createdAt, this.updatedAt});
+  Ads(
+      {this.id,
+      this.image,
+      this.titleAr,
+      this.titleEn,
+      this.descriptionAr,
+      this.descriptionEn,
+      this.userId,
+      this.status,
+      this.paymentStatus,
+      this.countViews,
+      this.packageId,
+      this.views,
+      this.complete,
+      this.video,
+      this.createdAt,
+      this.updatedAt});
 
   Ads.fromJson(Map<String, dynamic> json) {
     id = json["id"];

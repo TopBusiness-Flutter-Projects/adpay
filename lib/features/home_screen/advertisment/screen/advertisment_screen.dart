@@ -29,12 +29,12 @@ class _Advertesment_ScreenState extends State<Advertesment_Screen> {
     return BlocConsumer<AdsenceCubit, AdsenceState>(
       listener: (context, state) {},
       builder: (context, statee) {
-          AdsenceCubit cubit = AdsenceCubit.get(context);
-          return SafeArea(
-            child: Scaffold(
-              body: Column(
-                children: [
-                  Padding(
+        AdsenceCubit cubit = AdsenceCubit.get(context);
+        return SafeArea(
+          child: Scaffold(
+            body: Column(
+              children: [
+                Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
                       leading: Padding(
@@ -46,33 +46,28 @@ class _Advertesment_ScreenState extends State<Advertesment_Screen> {
                             child: Icon(Icons.arrow_back)),
                       ),
                       title: Text("advertisements".tr(),
-                          style:
-                              Styles.style20.copyWith(color: Colors.black)),
+                          style: Styles.style20.copyWith(color: Colors.black)),
                     )),
-            statee is LoadedAdsence?
-        Flexible(
-        fit: FlexFit.tight,
-                    child: ListView.builder(
-                      padding: EdgeInsets.all(5),
-                      physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: cubit.adesnceModel!.data!.length,
-                      itemBuilder: (context, index) {
-                        return AdvertesmentWidet(
-                          ads: cubit.adesnceModel!.data![index],
-                        );
-                      },
-                    ),
-        )
-
-
-
-                  : Container()
-                ],
-              ),
+                statee is LoadedAdsence
+                    ? Flexible(
+                        fit: FlexFit.tight,
+                        child: ListView.builder(
+                          padding: EdgeInsets.all(5),
+                          physics: const BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: cubit.adesnceModel!.data!.length,
+                          itemBuilder: (context, index) {
+                            return AdvertesmentWidet(
+                              ads: cubit.adesnceModel!.data![index],
+                            );
+                          },
+                        ),
+                      )
+                    : Container()
+              ],
             ),
-          );
-
+          ),
+        );
       },
     );
   }

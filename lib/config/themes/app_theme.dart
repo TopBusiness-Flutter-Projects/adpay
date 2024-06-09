@@ -10,6 +10,7 @@ ThemeData appTheme() {
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.white,
     fontFamily: AppStrings.fontFamily,
+    useMaterial3: false,
     textTheme: const TextTheme(
       bodyMedium: TextStyle(
         height: 1.5,
@@ -18,9 +19,10 @@ ThemeData appTheme() {
       ),
     ),
     appBarTheme: AppBarTheme(
-      centerTitle: true,
-      elevation: 0.0,
+      centerTitle: false,
+      foregroundColor: AppColors.black,
       backgroundColor: AppColors.white,
+      elevation: 0.0,
       titleTextStyle: const TextStyle(
         fontSize: 22.0,
         letterSpacing: 1.5,
@@ -34,6 +36,7 @@ ThemeData appDarkTheme() {
   return ThemeData(
     primaryColor: AppColors.white,
     hintColor: AppColors.hint,
+    useMaterial3: false,
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.blackLite,
     fontFamily: AppStrings.fontFamily,
@@ -45,9 +48,10 @@ ThemeData appDarkTheme() {
       ),
     ),
     appBarTheme: AppBarTheme(
-      centerTitle: true,
+      centerTitle: false,
+      foregroundColor: AppColors.white,
+      backgroundColor: AppColors.blackLite,
       elevation: 0.0,
-      backgroundColor: AppColors.transparent,
       titleTextStyle: const TextStyle(
         fontSize: 22.0,
         letterSpacing: 1.5,

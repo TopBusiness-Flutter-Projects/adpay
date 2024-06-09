@@ -137,6 +137,19 @@
      "wallety": "my wallet",
      "myCredit": "My Credit",
      "last_transfer": "Last transfers",  "used_products":"Used products", 
-      "new_products":"New Products"
+      "new_products":"New Products",
+
+
+
+
+
+
+
+      "new":"new",
+      "pending":"pending",
+      "complete":"complete",
+      "choose_type":"Choose Type",
+      "no_ads":"No Ads"
+
 
 }

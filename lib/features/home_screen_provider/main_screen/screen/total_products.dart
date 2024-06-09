@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../home_screen/component/custom_product_widget.dart';
 import '../cubit/cubit.dart';
 import '../cubit/state.dart';
 
@@ -20,6 +21,8 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
   @override
   void initState() {
     context.read<MainVendorCubit>().getVendorGetShopCategories();
+    context.read<MainVendorCubit>().getTotalProductsVendor();
+
     super.initState();
   }
 
@@ -53,6 +56,10 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
                         onTap: () {
                           setState(() {
                             cubit.currentTotalProductsIndex = 0;
+                            //! 0 >>used
+                            cubit.getTotalProductsVendor();
+
+                            //! get
                           });
                         },
                         child: Container(
@@ -88,6 +95,8 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
                         onTap: () {
                           setState(() {
                             cubit.currentTotalProductsIndex = 1;
+                            cubit.getTotalProductsVendor();
+                            //! get
                           });
                         },
                         child: Container(
@@ -125,23 +134,72 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
               (state is LoadingGetShopCategoryVendorState)
                   ? Container()
                   : Container(
-                      height: getSize(context) / 6,
+                      height: getSize(context) / 12,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: cubit.shopCategoryVendorModel?.data?.length,
                         itemBuilder: (context, index) {
                           var item =
                               cubit.shopCategoryVendorModel?.data?[index];
-                          return Container(
-                            child: Text(
-                              item?.titleAr ?? '',
-                              style: TextStyle(
-                                color: AppColors.black,
+                          return GestureDetector(
+                            onTap: () {
+                              cubit.onChangeCategory(item!);
+                            },
+                            child: Container(
+                              margin: EdgeInsets.symmetric(
+                                horizontal: getSize(context) / 44,
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: getSize(context) / 44,
+                              ),
+                              decoration: BoxDecoration(
+                                color: (cubit.currentSelectedCategory?.id ==
+                                        item?.id)
+                                    ? AppColors.primary
+                                    : AppColors.white,
+                                border: Border.all(
+                                  color: AppColors.greyColor,
+                                  width: 1,
+                                ),
+                                // boxShadow: [BoxShadow(offset: Offset(1, 1))],
+                                borderRadius: BorderRadius.circular(
+                                    getSize(context) / 32),
+                                // color: AppColors.red,
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                item?.titleAr ?? '',
+                                style: TextStyle(
+                                  color: (cubit.currentSelectedCategory?.id ==
+                                          item?.id)
+                                      ? AppColors.white
+                                      : AppColors.black,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                           );
                         },
                       ),
+                    ),
+              (state is LoadingGetProductsOfVendorState)
+                  ? Center(child: RefreshProgressIndicator())
+                  : GridView.builder(
+                      padding: EdgeInsets.only(top: 15, right: 8, left: 8),
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 5,
+                          mainAxisSpacing: 5,
+                          childAspectRatio: 1 / 1),
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: cubit.allProductsModel?.data?.length,
+                      itemBuilder: (context, index) {
+                        return CustomProductWidget(
+                          product: cubit.allProductsModel?.data?[index],
+                        );
+                      },
                     )
             ],
           ),

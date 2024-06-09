@@ -1,175 +1,134 @@
-class ProductDetailsModel {
-  Product? data;
+class AdsVendorModel {
+  List<AdsVendorModelData>? data;
   String? msg;
   int? status;
 
-  ProductDetailsModel({
+  AdsVendorModel({
     this.data,
     this.msg,
     this.status,
   });
 
-  factory ProductDetailsModel.fromJson(Map<String, dynamic> json) =>
-      ProductDetailsModel(
-        data: json["data"] == null ? null : Product.fromJson(json["data"]),
+  factory AdsVendorModel.fromJson(Map<String, dynamic> json) => AdsVendorModel(
+        data: json["data"] == null
+            ? []
+            : List<AdsVendorModelData>.from(
+                json["data"]!.map((x) => AdsVendorModelData.fromJson(x))),
         msg: json["msg"],
         status: json["status"],
       );
 
   Map<String, dynamic> toJson() => {
-        "data": data?.toJson(),
+        "data": data == null
+            ? []
+            : List<dynamic>.from(data!.map((x) => x.toJson())),
         "msg": msg,
         "status": status,
       };
 }
 
-class Product {
+class AdsVendorModelData {
   int? id;
-  List<String>? images;
+  String? image;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? price;
-  bool? isFav;
-  int? rate;
-  int? discount;
-  String? type;
-  String? shopSubCat;
-  int? stock;
-  Props? props;
-  Vendor? vendor;
+  int? status;
+  int? countViews;
+  Package? package;
+  int? views;
+  int? complete;
+  String? video;
+  int? paymentStatus;
+  User? user;
 
-  Product({
+  AdsVendorModelData({
     this.id,
-    this.images,
+    this.image,
     this.titleAr,
     this.titleEn,
     this.descriptionAr,
     this.descriptionEn,
-    this.price,
-    this.isFav,
-    this.rate,
-    this.discount,
-    this.type,
-    this.shopSubCat,
-    this.stock,
-    this.props,
-    this.vendor,
+    this.status,
+    this.countViews,
+    this.package,
+    this.views,
+    this.complete,
+    this.video,
+    this.paymentStatus,
+    this.user,
   });
 
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
+  factory AdsVendorModelData.fromJson(Map<String, dynamic> json) =>
+      AdsVendorModelData(
         id: json["id"],
-        images: json["images"] == null
-            ? []
-            : List<String>.from(json["images"]!.map((x) => x)),
+        image: json["image"],
         titleAr: json["title_ar"],
         titleEn: json["title_en"],
         descriptionAr: json["description_ar"],
         descriptionEn: json["description_en"],
-        price: json["price"],
-        isFav: json["is_fav"],
-        rate: json["rate"],
-        discount: json["discount"],
-        type: json["type"],
-        shopSubCat: json["shop_sub_cat"],
-        stock: json["stock"],
-        props: json["props"] == null ? null : Props.fromJson(json["props"]),
-        vendor: json["vendor"] == null ? null : Vendor.fromJson(json["vendor"]),
+        status: json["status"],
+        countViews: json["count_views"],
+        package:
+            json["package"] == null ? null : Package.fromJson(json["package"]),
+        views: json["views"],
+        complete: json["complete"],
+        video: json["video"],
+        paymentStatus: json["payment_status"],
+        user: json["user"] == null ? null : User.fromJson(json["user"]),
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "images":
-            images == null ? [] : List<dynamic>.from(images!.map((x) => x)),
+        "image": image,
         "title_ar": titleAr,
         "title_en": titleEn,
         "description_ar": descriptionAr,
         "description_en": descriptionEn,
-        "price": price,
-        "is_fav": isFav,
-        "rate": rate,
-        "discount": discount,
-        "type": type,
-        "shop_sub_cat": shopSubCat,
-        "stock": stock,
-        "props": props?.toJson(),
-        "vendor": vendor?.toJson(),
+        "status": status,
+        "count_views": countViews,
+        "package": package?.toJson(),
+        "views": views,
+        "complete": complete,
+        "video": video,
+        "payment_status": paymentStatus,
+        "user": user?.toJson(),
       };
 }
 
-class Props {
-  String? color;
-  String? size;
-  String? material;
-  String? condition;
-  String? warranty;
-  String? delivery;
-  String? freeShipping;
-  String? freeReturn;
-  String? freeInstallation;
-  String? freeExchange;
-  String? freeCancellation;
-  String? freeGift;
-  String? freeSupport;
+class Package {
+  int? id;
+  int? count;
+  int? price;
 
-  Props({
-    this.color,
-    this.size,
-    this.material,
-    this.condition,
-    this.warranty,
-    this.delivery,
-    this.freeShipping,
-    this.freeReturn,
-    this.freeInstallation,
-    this.freeExchange,
-    this.freeCancellation,
-    this.freeGift,
-    this.freeSupport,
+  Package({
+    this.id,
+    this.count,
+    this.price,
   });
 
-  factory Props.fromJson(Map<String, dynamic> json) => Props(
-        color: json["color"],
-        size: json["size"],
-        material: json["material"],
-        condition: json["condition"],
-        warranty: json["warranty"],
-        delivery: json["delivery"],
-        freeShipping: json["free_shipping"],
-        freeReturn: json["free_return"],
-        freeInstallation: json["free_installation"],
-        freeExchange: json["free_exchange"],
-        freeCancellation: json["free_cancellation"],
-        freeGift: json["free_gift"],
-        freeSupport: json["free_support"],
+  factory Package.fromJson(Map<String, dynamic> json) => Package(
+        id: json["id"],
+        count: json["count"],
+        price: json["price"],
       );
 
   Map<String, dynamic> toJson() => {
-        "color": color,
-        "size": size,
-        "material": material,
-        "condition": condition,
-        "warranty": warranty,
-        "delivery": delivery,
-        "free_shipping": freeShipping,
-        "free_return": freeReturn,
-        "free_installation": freeInstallation,
-        "free_exchange": freeExchange,
-        "free_cancellation": freeCancellation,
-        "free_gift": freeGift,
-        "free_support": freeSupport,
+        "id": id,
+        "count": count,
+        "price": price,
       };
 }
 
-class Vendor {
+class User {
   int? id;
   String? name;
   String? image;
   int? phone;
   String? type;
   String? deviceToken;
-  dynamic session;
+  String? session;
   String? logo;
   String? banner;
   String? titleAr;
@@ -178,7 +137,7 @@ class Vendor {
   List<String>? shopSubCat;
   String? token;
 
-  Vendor({
+  User({
     this.id,
     this.name,
     this.image,
@@ -195,7 +154,7 @@ class Vendor {
     this.token,
   });
 
-  factory Vendor.fromJson(Map<String, dynamic> json) => Vendor(
+  factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
         name: json["name"],
         image: json["image"],
