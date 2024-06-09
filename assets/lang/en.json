@@ -11,7 +11,6 @@
      "choose_login": "You can now choose to log in!",
      "login": "login",
      "no_data": "there are no products",
-
      "signup": "signup",
      "password": "password",
      "phone": "phone",
@@ -115,21 +114,56 @@
      "editproduct": "editproduct",
      "Createaccount": "Create an account",
      "send": "send",
+<<<<<<< HEAD
      "goal_statistics":"Goal statistics",
+=======
+     "goal_statistics": "Goal statistics",
+>>>>>>> 29e78e53e6b6c98572747bdb11cef4571c126f54
      "wallet": "Wallet",
      "total_count": "Total Orders",
      "total_products": "Total Products",
-     "total_ads": "Total Ads",  "have_goals":"You don't have any stats.",
-     "complete_orders":  "Completed Orders",
-     "incomplete_orders":  "New Orders",  "total":"Total",
+     "total_ads": "Total Ads",
+     "have_goals": "You don't have any stats.",
+     "complete_orders": "Completed Orders",
+     "incomplete_orders": "New Orders",
+     "total": "Total",
+     "complete_ads": "Completed Ads",
+     "incomplete_ads": "New Ads",
+     "no_notifications": "You don't have any notifications",
+     "refused_order": "Refused Orders",
+     "order_details": "Order Details",
+     "count": "quantity",
+     "current": "SAR",
+     "send_order": "Send Order",
+     "resend_order": "Resend order",
+     "complete_order": "Order completed",
+     "reset_ordre": "Reset order",
+     "wallety": "my wallet",
+     "myCredit": "My Credit",
+     "last_transfer": "Last transfers",  "used_products":"Used products", 
+      "new_products":"New Products",
 
+<<<<<<< HEAD
      "complete_ads":"Completed Ads",  "incomplete_ads":"New Ads"
 ,"no_notifications": "You don't have any notifications",
 "refused_order":"Refused Orders","order_details":"Order Details",
 "count":"quantity",
      "forgetpass": "ForgetPassword",
      "newpass": "New Password",
+=======
+
+>>>>>>> 29e78e53e6b6c98572747bdb11cef4571c126f54
 
 "confirm": "confirm"
+
+
+
+
+      "new":"new",
+      "pending":"pending",
+      "complete":"complete",
+      "choose_type":"Choose Type",
+      "no_ads":"No Ads"
+
 
 }

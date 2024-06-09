@@ -1,9 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
+
 class AppStrings {
   static const String appName = 'app_name';
 
   // static const String googleApiKey = '';
   static const String fontFamily = 'Tajawal';
   static const String noRouteFound = 'No Route Found';
+  static String currency = 'current'.tr();
+
   static const String ok = 'Ok';
   static const String contentType = 'Content-Type';
   static const String applicationJson = 'application/json';

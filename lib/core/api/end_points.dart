@@ -36,6 +36,12 @@ class EndPoints {
   static const String subCatogreyUrl = '${baseUrl}vendor/getShopSubCategories';
   static const String getRegions = '${baseUrl}user/getRegions';
   static const String getCityByRegion = '${baseUrl}user/getCityByRegion';
+  static const String changOrderStatusUrl = '${baseUrl}vendor/changOrderStatus';
+  static const String vendorMyWallet = '${baseUrl}vendor/myWallet';
+  static const String vendorGetShopCategories =
+      '${baseUrl}vendor/getShopCategories';
+  static const String getMyProductsVendor = '${baseUrl}vendor/myProducts';
+  static const String getMyAdvertiseVendor = '${baseUrl}vendor/myAdvertise';
   // static const String citiesUrl = '${baseUrl}cities';
   // static const String servicesUrl = '${baseUrl}services/';
   // static const String editServicesUrl = '${baseUrl}services/update/';

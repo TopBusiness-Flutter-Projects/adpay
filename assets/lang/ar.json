@@ -112,9 +112,10 @@
   "Detailedaddress": "العنوان بالتفصيل",
   "Sold": "تم البيع",
   "editproduct": "تعديل المنتج",
-"Createaccount": "انشاء حساب",
+  "Createaccount": "انشاء حساب",
   "send": "ارسال",
   "Createaccount": "انشاء حساب",
+<<<<<<< HEAD
   "confirm": "التأكيد",
 
 
@@ -128,11 +129,15 @@
 
 
 
+=======
+>>>>>>> 29e78e53e6b6c98572747bdb11cef4571c126f54
   "wallet": "المحفظة",
+  "wallety": "محفظتى",
   "total_count": "اجمالى الطلبات",
   "total_products": "اجمالى المنتجات",
-  "total":"الاجمالي",
+  "total": "الاجمالي",
   "total_ads": "اجمالى الاعلانات",
+<<<<<<< HEAD
   "goal_statistics":"احصائيات الأهداف",
   "have_goals":"ليس لديك اي احصائيات",
   "complete_orders":  "الطلبات المكتملة",
@@ -145,5 +150,30 @@
 "forgetpass": "نسيت كلمة المرور",
   "newpass": "كلمة المرور الجديدة "
 
+=======
+  "goal_statistics": "احصائيات الأهداف",
+  "have_goals": "ليس لديك اي احصائيات",
+  "complete_orders": "الطلبات المكتملة",
+  "incomplete_orders": "الطلبات الجديدة",
+  "complete_ads": "الاعلانات المكتملة",
+  "incomplete_ads": "الاعلانات الجديدة",
+  "no_notifications": "ليس لديك اي اشعارات",
+  "refused_order": "الطلبات الموقوفة",
+  "order_details": "تفاصيل الطلب",
+  "count": "عدد",
+  "current": "ريال",
+  "send_order": "ارسال الطلب",
+  "resend_order": "اعادة ارسال الطلب",
+  "complete_order": "اكتمال الطلب",
+  "reset_ordre": "استرجاع الطلب",
+  "myCredit": "رصيدى",
+  "last_transfer": "التحويلات الاخيرة",
+  "used_products":"المنتجات المستعملة",
+  "new_products":"المنتجات الجديدة",
+  "new":"جديد",
+  "pending":"ف الانتظار",
+  "complete":"مكتملة",
+  "choose_type":"اختر النوع",      "no_ads":"لا يوجد إعلانات"
+>>>>>>> 29e78e53e6b6c98572747bdb11cef4571c126f54
 
 }

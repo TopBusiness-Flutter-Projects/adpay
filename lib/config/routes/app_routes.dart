@@ -35,7 +35,10 @@ import '../../features/home_screen/product_details/screens/proudct_details_scree
 import '../../features/home_screen/products/screens/products-screen.dart';
 import '../../features/home_screen/shop/screens/theshop_screen.dart';
 import '../../features/home_screen/tager/screens/tager_screen.dart';
+import '../../features/home_screen_provider/main_screen/screen/ads_vendor_screen.dart';
 import '../../features/home_screen_provider/main_screen/screen/main_screen_driver.dart';
+import '../../features/home_screen_provider/main_screen/screen/total_products.dart';
+import '../../features/home_screen_provider/main_screen/screen/wallet_screen.dart';
 import '../../features/home_screen_provider/order_screen/screen/order_details.dart';
 import '../../features/home_screen_provider/order_screen/screen/order_screen.dart';
 import '../../features/login/screen/login_screen.dart';
@@ -102,6 +105,9 @@ class Routes {
   static const String orderScreenVendor = '/OrderScreenVendor';
   static const String orderDetailsVendor = '/orderDetailsVendor';
   static const String NewPass = '/newpass';
+  static const String walletVendorScreen = '/walletVendorScreen';
+  static const String totalProductsVendorScreen = '/totalProductsVendorScreen';
+  static const String adsVendorScreen = '/adsVendorScreen';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -446,6 +452,27 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: OrderDetailsVendor(id: id),
+        );
+      case Routes.walletVendorScreen:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: WalletVendorScreen(),
+        );
+      case Routes.totalProductsVendorScreen:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: TotalProductsVendorScreen(),
+        );
+      case Routes.adsVendorScreen:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: AdsVendorScreen(),
         );
       default:
         return undefinedRoute();

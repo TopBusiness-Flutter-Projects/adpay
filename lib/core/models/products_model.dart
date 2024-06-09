@@ -6,7 +6,7 @@ class ProductModel {
     required this.msg,
     required this.status,
   });
-  late final List<Products> data;
+  late final List<Products>? data;
   late final String msg;
   late final int status;
 
@@ -18,7 +18,7 @@ class ProductModel {
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['data'] = data.map((e) => e.toJson()).toList();
+    _data['data'] = data?.map((e) => e.toJson()).toList();
     _data['msg'] = msg;
     _data['status'] = status;
     return _data;

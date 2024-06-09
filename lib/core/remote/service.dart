@@ -16,6 +16,7 @@ import '../error/failures.dart';
 import '../models/Home_models.dart';
 import '../models/add_harag_model.dart';
 import '../models/addadressmodel.dart';
+import '../models/ads_vendor_model.dart';
 import '../models/adsence_Model.dart';
 import '../models/catogrie_model.dart';
 import '../models/checkUser_model.dart';
@@ -30,11 +31,13 @@ import '../models/grage_model.dart';
 import '../models/login_model.dart';
 import '../models/logout_model.dart';
 import '../models/my_auctions_model.dart';
+import '../models/my_wallet_vendor_model.dart';
 import '../models/notification_model.dart';
 import '../models/order_details.dart';
 import '../models/product_details_model.dart';
 import '../models/products_model.dart';
 import '../models/reset_model.dart';
+import '../models/shop_category_vendor_model.dart';
 import '../models/shop_model.dart';
 import '../models/shopcatogriesmodel.dart';
 import '../models/subcatogrey_model.dart';
@@ -937,6 +940,83 @@ class ServiceApi {
         options: Options(headers: {'Authorization': loginModel.data!.token}),
       );
       return Right(MainDetailsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, MainDetailsModel>> changVendorOrderStatus({
+    required String id,
+    String type = 'new',
+  }) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.post(
+        EndPoints.changOrderStatusUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+        formDataIsEnabled: true,
+        body: {"id": id, "type": type},
+      );
+      return Right(MainDetailsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, MyWalletVendorModel>> myWalletVendorModel() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(EndPoints.vendorMyWallet,
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(MyWalletVendorModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, ShopCategoryVendorModel>>
+      getVendorGetShopCategories() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(EndPoints.vendorGetShopCategories,
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(ShopCategoryVendorModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, ProductModel>> getMyProductsVendor({
+    required String type,
+    required String categoryId,
+  }) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(
+          EndPoints.getMyProductsVendor + "?type=$type&category_id=$categoryId",
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      print('555555555555555 ${response['status'] == 1}');
+      if (response['status'] == 1) {
+        return Right(ProductModel.fromJson(response));
+      } else {
+        return Right(ProductModel(data: [], msg: '', status: 0));
+      }
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, AdsVendorModel>> getVendorMyAdvertise({
+    String type = 'new',
+  }) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(
+          EndPoints.getMyAdvertiseVendor + "?type=$type",
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(AdsVendorModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }

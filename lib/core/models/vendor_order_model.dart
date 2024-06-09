@@ -1,3 +1,5 @@
+import 'home_vendor_model.dart';
+
 class VendorOrdersModel {
   List<VendorOrderData>? data;
   String? msg;
@@ -398,42 +400,3 @@ class Vendor {
       };
 }
 
-class ShopCat {
-  int? id;
-  String? titleAr;
-  String? titleEn;
-  int? status;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-
-  ShopCat({
-    this.id,
-    this.titleAr,
-    this.titleEn,
-    this.status,
-    this.createdAt,
-    this.updatedAt,
-  });
-
-  factory ShopCat.fromJson(Map<String, dynamic> json) => ShopCat(
-        id: json["id"],
-        titleAr: json["title_ar"],
-        titleEn: json["title_en"],
-        status: json["status"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null
-            ? null
-            : DateTime.parse(json["updated_at"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "title_ar": titleAr,
-        "title_en": titleEn,
-        "status": status,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-      };
-}

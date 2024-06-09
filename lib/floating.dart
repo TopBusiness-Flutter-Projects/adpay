@@ -79,17 +79,17 @@ class _FloatingState extends State<Floating> {
                 child: _pages[_index]),
             bottomNavigationBar: Container(
               color: Colors.transparent,
-              // width: getSize(context) / 14,
-              // height: getSize(context) / 4,
+              margin: EdgeInsets.all(8),
               child: FloatingNavbar(
+                padding: EdgeInsets.all(3),
+                margin: EdgeInsets.all(3),
                 borderRadius: getSize(context) / 4,
                 backgroundColor: AppColors.secondPrimary,
                 // selectedItemColor: purpleColor,
                 // unselectedItemColor: purpleColor,
                 selectedBackgroundColor: Colors.transparent,
                 elevation: 0,
-                padding: EdgeInsets.zero,
-                margin: EdgeInsets.zero,
+
                 items: [
                   FloatingNavbarItem(
                       customWidget: Padding(
