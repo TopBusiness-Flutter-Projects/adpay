@@ -3,24 +3,34 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import '../../../config/routes/app_routes.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/assets_manager.dart';
 import '../../../core/utils/get_size.dart';
 import '../cubit/reset_pass_cubit.dart';
-
-class ForgetPaas extends StatefulWidget {
-  ForgetPaas({ super.key});
+class NewPass extends StatefulWidget {
+  NewPass({ super.key});
   @override
-  State<ForgetPaas> createState() => _ForgetPaasState();
+  State<NewPass> createState() => _NewPassState();
 }
-
-class _ForgetPaasState extends State<ForgetPaas> {
-  GlobalKey<FormState> loginKey = GlobalKey();
+class _NewPassState extends State<NewPass> {
+  GlobalKey<FormState> loginKey2 = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ResetPassCubit, ResetPassState>(
       listener: (context, state) {
+        if (state is LoadingResetAuth ) {
+          EasyLoading.show(status: 'loading...');
+        } else if (state is LoadedResetAuth) {
+          EasyLoading.dismiss();
+          EasyLoading.showSuccess('Login Success');
+        } else if (state is ErrorResetAuth) {
+          EasyLoading.showError("state.toString()");
+        } else if (state is ErrorResetAuth) {
+          EasyLoading.dismiss();
+          EasyLoading.showError("${state.toString()}");
+        } else {
+          EasyLoading.dismiss();
+        }
       },
       builder: (context, state) {
         var cubit = context.read<ResetPassCubit>();
@@ -28,13 +38,13 @@ class _ForgetPaasState extends State<ForgetPaas> {
           appBar: AppBar(
             centerTitle: false,
             title: Text(
-              'forgetpass'.tr(),
+              'newpass'.tr(),
               style: TextStyle(
                   color: AppColors.grayColor, fontWeight: FontWeight.w700),
             ),
           ),
           body: Form(
-            key: loginKey,
+            key: loginKey2,
             child: ListView(
               padding: EdgeInsets.symmetric(horizontal: getSize(context) / 16),
               shrinkWrap: true,
@@ -44,28 +54,45 @@ class _ForgetPaasState extends State<ForgetPaas> {
                   padding:
                   EdgeInsets.symmetric(vertical: getSize(context) / 22),
                   child: Image.asset(
-                         ImageAssets.appIconImage,
+                    ImageAssets.appIconImage,
                     width: getSize(context) / 2.5,
                     height: getSize(context) / 2.5,
                   ),
                 ),
                 CustomTextField(
-                  controller: cubit.phoneController,
-                  message: 'enter_phone'.tr(),
-                  title: 'phone'.tr(),
-                  hintTitle: 'enter_phone'.tr(),
-                  keyboardType: TextInputType.phone,
+                  isPass: true,
+                  onPressed: () {
+                    cubit.togglePassword();
+                  },
+                  obscureText: cubit.isPassword,
+                  controller: cubit.passwprdController,
+                  title: 'password'.tr(),
+                  hintTitle: 'enter_password'.tr(),
+                  message: 'enter_password'.tr(),
+                  keyboardType: TextInputType.visiblePassword,
+                ),
+                CustomTextField(
+                  isPass: true,
+                  onPressed: () {
+                     cubit.toggleConfirmPassword();
+                  },
+                  obscureText: cubit.isPassword,
+                  controller: cubit.passwprdConfirmController,
+                  title: 'ConfirmPass'.tr(),
+                  hintTitle: 'enter_password'.tr(),
+                  message: 'enter_password'.tr(),
+                  keyboardType: TextInputType.visiblePassword,
                 ),
                 SizedBox(height: getSize(context) / 12),
                 GestureDetector(
                   onTap: () {
-                    if (loginKey.currentState!.validate()) {
-                      Navigator.pushNamed(context, Routes.NewPass);
-                    }
+
+                      print("screen");
+cubit.resetAuth(context);
+
                   },
                   child: Container(
-                    margin:
-                    EdgeInsets.symmetric(horizontal: getSize(context) / 22),
+                    margin: EdgeInsets.symmetric(horizontal: getSize(context) / 22),
                     alignment: Alignment.center,
                     padding: EdgeInsets.symmetric(
                         horizontal: getSize(context) / 22, vertical: 5),
@@ -76,7 +103,7 @@ class _ForgetPaasState extends State<ForgetPaas> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2.0),
                       child: Text(
-                        'send'.tr(),
+                        'confirm'.tr(),
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: getSize(context) / 18),

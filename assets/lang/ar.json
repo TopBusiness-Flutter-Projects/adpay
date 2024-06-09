@@ -115,12 +115,42 @@
   "Createaccount": "انشاء حساب",
   "send": "ارسال",
   "Createaccount": "انشاء حساب",
+<<<<<<< HEAD
+  "confirm": "التأكيد",
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+>>>>>>> 29e78e53e6b6c98572747bdb11cef4571c126f54
   "wallet": "المحفظة",
   "wallety": "محفظتى",
   "total_count": "اجمالى الطلبات",
   "total_products": "اجمالى المنتجات",
   "total": "الاجمالي",
   "total_ads": "اجمالى الاعلانات",
+<<<<<<< HEAD
+  "goal_statistics":"احصائيات الأهداف",
+  "have_goals":"ليس لديك اي احصائيات",
+  "complete_orders":  "الطلبات المكتملة",
+  "incomplete_orders":  "الطلبات الجديدة",
+  "complete_ads":"الاعلانات المكتملة",
+  "incomplete_ads":"الاعلانات الجديدة","no_notifications":"ليس لديك اي اشعارات"
+,"refused_order":"الطلبات الموقوفة",
+"order_details":"تفاصيل الطلب",
+"count":"عدد",
+"forgetpass": "نسيت كلمة المرور",
+  "newpass": "كلمة المرور الجديدة "
+
+=======
   "goal_statistics": "احصائيات الأهداف",
   "have_goals": "ليس لديك اي احصائيات",
   "complete_orders": "الطلبات المكتملة",
@@ -144,5 +174,6 @@
   "pending":"ف الانتظار",
   "complete":"مكتملة",
   "choose_type":"اختر النوع",      "no_ads":"لا يوجد إعلانات"
+>>>>>>> 29e78e53e6b6c98572747bdb11cef4571c126f54
 
 }

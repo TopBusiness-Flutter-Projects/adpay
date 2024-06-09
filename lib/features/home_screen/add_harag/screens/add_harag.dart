@@ -1,17 +1,14 @@
 import 'dart:io';
+import 'package:adpay/features/home_screen/add_harag/screens/widgets/sub_catogrey.dart';
+import 'package:adpay/features/home_screen/add_harag/screens/widgets/main_catogrey.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:path/path.dart';
-
-import '../../../../../config/routes/app_routes.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/styles.dart';
 import '../cubit/add_harag_cubit.dart';
 import 'widgets/custom_text_field.dart';
-import 'widgets/dropdown2.dart';
 
 
 
@@ -23,6 +20,16 @@ class AddHarag extends StatefulWidget {
 }
 
 class _AddHaragState extends State<AddHarag> {
+
+  void initState() {
+    super.initState();
+
+   
+  
+    // Use read method from context in initState
+
+    // context.read<AddHaragCubit>().subcatogrey(id:"1");
+  }
   // String? imagePath;
   String? selectedCategory;
   final List<String> categories = ['Category 1', 'Category 2', 'Category 3'];
@@ -40,11 +47,10 @@ class _AddHaragState extends State<AddHarag> {
   //
 
 
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<AddHaragCubit, AddHaragState>(
         builder: (context, state) {
-          AddHaragCubit cubit = AddHaragCubit.get(context);
+          AddHaragCubit cubit = context.read<AddHaragCubit>();
           return SafeArea(
             child: Scaffold(
               body: SingleChildScrollView(
@@ -97,23 +103,6 @@ class _AddHaragState extends State<AddHarag> {
                                     "assets/images/uploadimages.png"),
                               ),
                             ),
-                            // if (imagePath != null) ...[
-                            //   SizedBox(height: 10.h),
-                            //   Image.file(
-                            //     File(imagePath!),
-                            //     height: 100.h,
-                            //     width: 100.w,
-                            //     fit: BoxFit.cover,
-                            //   ),
-                            //   SizedBox(height: 10.h),
-                            //   // Text(
-                            //   //   basename(imagePath!),
-                            //   //   style: TextStyle(
-                            //   //     color: Colors.black,
-                            //   //     fontSize: 12.sp,
-                            //   //   ),
-                            //   // ),
-                            // ],
                           ],
                         ),
                       ),
@@ -187,42 +176,7 @@ class _AddHaragState extends State<AddHarag> {
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Text(
-                        "Subcategory".tr(),
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: CustomDropDownMenu(
-                        text: 'Select Category',
-                        items: categories.map((String category) {
-                          return DropdownMenuItem<String>(
-                            value: category,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(category,
-                                  style: TextStyle(color: Colors.blue),),
-                                SizedBox(width: 150.w),
-                                Image.asset('assets/images/down.png', width: 24,
-                                    height: 24),
-                              ],
-                            ),
-                          );
-                        }).toList(),
-                        dropdownValue: selectedCategory,
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            selectedCategory = newValue;
-                          });
-                        },
-                      ),),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Text(
+
                         "Category".tr(),
                         style: TextStyle(
                           color: Colors.black,
@@ -230,33 +184,71 @@ class _AddHaragState extends State<AddHarag> {
                         ),
                       ),
                     ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(10.0),
+                    //   child: CustomDropDownMenu(
+                    //     text: 'Select Category',
+                    //     items: categories.map((String category) {
+                    //       return DropdownMenuItem<String>(
+                    //         value: category,
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.end,
+                    //           children: [
+                    //             Text(category,
+                    //               style: TextStyle(color: Colors.blue),),
+                    //             SizedBox(width: 150.w),
+                    //             Image.asset('assets/images/down.png', width: 24,
+                    //                 height: 24),
+                    //           ],
+                    //         ),
+                    //       );
+                    //     }).toList(),
+                    //     dropdownValue: selectedCategory,
+                    //     onChanged: (String? newValue) {
+                    //       setState(() {
+                    //         selectedCategory = newValue;
+                    //       });
+                    //     },
+                    //   ),),
+                    MainCatogreyWidget(),
                     Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: CustomDropDownMenu(
-                        text: 'Select Category',
-                        items: categories.map((String category) {
-                          return DropdownMenuItem<String>(
-                            value: category,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(category,
-                                  style: TextStyle(color: Colors.blue),),
-                                SizedBox(width: 150.w),
-                                Image.asset('assets/images/down.png', width: 24,
-                                    height: 24),
-                              ],
-                            ),
-                          );
-                        }).toList(),
-                        dropdownValue: selectedCategory,
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            selectedCategory = newValue;
-                          });
-                        },
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Text(
+                        "Subcategory".tr(),
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(10.0),
+                    //   child: CustomDropDownMenu(
+                    //     text: 'Select Category',
+                    //     items: categories.map((String category) {
+                    //       return DropdownMenuItem<String>(
+                    //         value: category,
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.end,
+                    //           children: [
+                    //             Text(category,
+                    //               style: TextStyle(color: Colors.blue),),
+                    //             SizedBox(width: 150.w),
+                    //             Image.asset('assets/images/down.png', width: 24,
+                    //                 height: 24),
+                    //           ],
+                    //         ),
+                    //       );
+                    //     }).toList(),
+                    //     dropdownValue: selectedCategory,
+                    //     onChanged: (String? newValue) {
+                    //       setState(() {
+                    //         selectedCategory = newValue;
+                    //       });
+                    //     },
+                    //   ),
+                    // ),
+                    SubCatogreyWidget(),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Text(
@@ -328,7 +320,7 @@ class _AddHaragState extends State<AddHarag> {
                               if(cubit.selectedImage !=null){
                                cubit.addharag(context);
                               }
-// context.read<AddHaragCubit>().addharag(context);
+ context.read<AddHaragCubit>().addharag(context);
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary, // لون الزر

@@ -1,13 +1,17 @@
 import 'package:adpay/core/utils/app_colors.dart';
-import 'package:adpay/floating.dart';
+import 'package:adpay/features/home_screen/menue/screens/places/screens/widgets/main_catogrey.dart';
+import 'package:adpay/features/home_screen/menue/screens/places/screens/widgets/sub_catogrey.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart%20';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/utils/styles.dart';
-import '../../../add_harag/screens/widgets/custom_drop_down_menu.dart';
-import '../widgets/menue_widget.dart';
+import '../../../../../../core/utils/styles.dart';
+import '../../../../add_harag/screens/widgets/main_catogrey.dart';
+import '../../../../add_harag/screens/widgets/sub_catogrey.dart';
+import '../../widgets/menue_widget.dart';
+import '../cubit/places_cubit.dart';
 
 class PlacesScreen extends StatefulWidget {
   PlacesScreen({super.key});
@@ -23,6 +27,9 @@ class _PlacesScreenState extends State<PlacesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<PlacesCubit>();
+    return BlocBuilder<PlacesCubit, PlacesState>(
+        builder: (context, state) {
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -106,42 +113,14 @@ class _PlacesScreenState extends State<PlacesScreen> {
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0),
                             child: Text(
-                              "Subcategory".tr(),
+                              "Category".tr(),
                               style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: CustomDropDownMenu(
-                              text: 'Select Category',
-                              items: categories.map((String category) {
-                                return DropdownMenuItem<String>(
-                                  value: category,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        category,
-                                        style: TextStyle(color: Colors.blue),
-                                      ),
-                                      SizedBox(width: 150.w),
-                                      Image.asset('assets/images/down.png',
-                                          width: 24, height: 24),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
-                              dropdownValue: selectedCategory,
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  selectedCategory = newValue;
-                                });
-                              },
-                            ),
-                          ),
+                          MainRegionWidget()     ,
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0),
                             child: Text(
@@ -152,35 +131,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: CustomDropDownMenu(
-                              text: 'Select Category',
-                              items: categories.map((String category) {
-                                return DropdownMenuItem<String>(
-                                  value: category,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        category,
-                                        style: TextStyle(color: Colors.blue),
-                                      ),
-                                      SizedBox(width: 150.w),
-                                      Image.asset('assets/images/down.png',
-                                          width: 24, height: 24),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
-                              dropdownValue: selectedCategory,
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  selectedCategory = newValue;
-                                });
-                              },
-                            ),
-                          ),
+                          SubRegionWidget(),
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0, top: 10),
                             child: Text(
@@ -194,12 +145,12 @@ class _PlacesScreenState extends State<PlacesScreen> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextField(
+                              controller:cubit.discriptoionController ,
                               onSubmitted: (data) async {},
                               decoration: InputDecoration(
                                 hintText: "SendMessage".tr(),
                                 filled: true,
-                                fillColor: Colors
-                                    .white, // Set the background color to white
+                                fillColor: Colors.white, // Set the background color to white
                                 contentPadding: EdgeInsets.symmetric(
                                   vertical: 20,
                                   horizontal: 15,
@@ -234,23 +185,28 @@ class _PlacesScreenState extends State<PlacesScreen> {
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Center(
-                              child: Container(
-                                width: 120.w,
-                                height: 35.h,
-                                decoration: BoxDecoration(
-                                  color: AppColors.shadeColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(
-                                    color:
-                                        Colors.red, // Set the border color here
-                                    width: 1.0, // Set the border width here
+                              child: InkWell(
+                                onTap: (){
+                                  cubit.addNewPlace(context);
+                                },
+                                child: Container(
+                                  width: 120.w,
+                                  height: 35.h,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.shadeColor,
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                      color:
+                                          Colors.red, // Set the border color here
+                                      width: 1.0, // Set the border width here
+                                    ),
                                   ),
+                                  child: Center(
+                                      child: Text(
+                                    "add".tr(),
+                                    style: Styles.style16,
+                                  )),
                                 ),
-                                child: Center(
-                                    child: Text(
-                                  "add".tr(),
-                                  style: Styles.style16,
-                                )),
                               ),
                             ),
                           ),
@@ -268,4 +224,4 @@ class _PlacesScreenState extends State<PlacesScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
-}
+    );}}

@@ -29,6 +29,13 @@ class EndPoints {
       '${baseUrl}vendor/getNotifications';
   static const String vendorOrdersUrl = '${baseUrl}vendor/orders';
   static const String vendorOrderDetailsUrl = '${baseUrl}vendor/order/d/';
+
+  static const String resetUrl = '${baseUrl}auth/resetPassword';
+
+  static const String getshopctogreyUrl = '${baseUrl}vendor/getShopCategories';
+  static const String subCatogreyUrl = '${baseUrl}vendor/getShopSubCategories';
+  static const String getRegions = '${baseUrl}user/getRegions';
+  static const String getCityByRegion = '${baseUrl}user/getCityByRegion';
   static const String changOrderStatusUrl = '${baseUrl}vendor/changOrderStatus';
   static const String vendorMyWallet = '${baseUrl}vendor/myWallet';
   static const String vendorGetShopCategories =
@@ -58,4 +65,5 @@ class EndPoints {
   static const String getprofileUrl = '${baseUrl}user/myAccount';
   static const String getmyauctionsUrl = '${baseUrl}user/getMyAuctions';
   static const String EditProfileUrl = '${baseUrl}user/updateProfile';
+  static const String postaddressUrl = '${baseUrl}user/addAddress';
 }

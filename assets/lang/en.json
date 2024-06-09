@@ -114,7 +114,11 @@
      "editproduct": "editproduct",
      "Createaccount": "Create an account",
      "send": "send",
+<<<<<<< HEAD
+     "goal_statistics":"Goal statistics",
+=======
      "goal_statistics": "Goal statistics",
+>>>>>>> 29e78e53e6b6c98572747bdb11cef4571c126f54
      "wallet": "Wallet",
      "total_count": "Total Orders",
      "total_products": "Total Products",
@@ -139,8 +143,18 @@
      "last_transfer": "Last transfers",  "used_products":"Used products", 
       "new_products":"New Products",
 
+<<<<<<< HEAD
+     "complete_ads":"Completed Ads",  "incomplete_ads":"New Ads"
+,"no_notifications": "You don't have any notifications",
+"refused_order":"Refused Orders","order_details":"Order Details",
+"count":"quantity",
+     "forgetpass": "ForgetPassword",
+     "newpass": "New Password",
+=======
 
+>>>>>>> 29e78e53e6b6c98572747bdb11cef4571c126f54
 
+"confirm": "confirm"
 
 
 

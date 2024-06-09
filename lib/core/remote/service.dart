@@ -15,6 +15,7 @@ import '../error/exceptions.dart';
 import '../error/failures.dart';
 import '../models/Home_models.dart';
 import '../models/add_harag_model.dart';
+import '../models/addadressmodel.dart';
 import '../models/ads_vendor_model.dart';
 import '../models/adsence_Model.dart';
 import '../models/catogrie_model.dart';
@@ -22,7 +23,9 @@ import '../models/checkUser_model.dart';
 import '../models/coins_model.dart';
 import '../models/contact_us_model.dart';
 import '../models/favourite_model.dart';
+import '../models/getCity_ byRegion_model.dart';
 import '../models/get_myprofile_model.dart';
+import '../models/getregion_model.dart';
 import '../models/grage_details_model.dart';
 import '../models/grage_model.dart';
 import '../models/login_model.dart';
@@ -33,8 +36,11 @@ import '../models/notification_model.dart';
 import '../models/order_details.dart';
 import '../models/product_details_model.dart';
 import '../models/products_model.dart';
+import '../models/reset_model.dart';
 import '../models/shop_category_vendor_model.dart';
 import '../models/shop_model.dart';
+import '../models/shopcatogriesmodel.dart';
+import '../models/subcatogrey_model.dart';
 import '../models/vendor_order_model.dart';
 import '../models/wallet_model.dart';
 import '../preferences/preferences.dart';
@@ -131,6 +137,125 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+  //shopcatogrey
+  Future<Either<Failure, GetShopCategoriesModel>> getshopcatogrey() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.getshopctogreyUrl,
+        options: Options(
+          headers: {
+            'Authorization': loginModel.data!.token
+          },
+        ),
+      );
+      return Right(GetShopCategoriesModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //postsubcatogrey
+  Future<Either<Failure, SubCatogreyModel>> postSubCtogrey({
+    required String ?id1,
+}) async {
+    LoginModel user = await Preferences.instance.getUserModel();
+
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.post(
+        EndPoints.subCatogreyUrl,
+        body: {
+          "id":id1,
+        },
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(SubCatogreyModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //getregions
+  Future<Either<Failure, GetRegionsModel>> getRegions() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.getRegions,
+        options: Options(
+          headers: {
+            'Authorization': loginModel.data!.token
+          },
+        ),
+      );
+      return Right(GetRegionsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+//postsubcatogre
+  Future<Either<Failure, GetCityByRegionModel>> getCityByRegion({
+    required String ?id1,
+  }) async {
+    LoginModel user = await Preferences.instance.getUserModel();
+
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.get(
+        EndPoints.getCityByRegion +'?region_id=${(id1 == null) ? '' : id1}',
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(GetCityByRegionModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+//resetpass
+  Future<Either<Failure, ResetPassModel>> Reset({
+    required String phone,
+    required String password,
+    required String  password_confirmation,
+
+  }) async {
+    LoginModel user = await Preferences.instance.getUserModel();
+
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.post(
+        EndPoints.resetUrl,
+        body: {
+          "phone": phone,
+          "password": password,
+          "password_confirmation": password_confirmation,
+        },
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            // 'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(ResetPassModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 
   //contact us
   Future<Either<Failure, ContactUsModel>> ContactUs({
@@ -154,6 +279,33 @@ class ServiceApi {
         ),
       );
       return Right(ContactUsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //postaddress
+  Future<Either<Failure,AddAddressModel>> postAdress({
+    required String region,
+    required String city,
+    required String defaultt,
+    required String details,
+  }) async {
+    LoginModel user = await Preferences.instance.getUserModel();
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.post(
+        EndPoints.postaddressUrl,
+        body: {"region": region, "city": city,"default":defaultt,"details":details},
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(AddAddressModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
