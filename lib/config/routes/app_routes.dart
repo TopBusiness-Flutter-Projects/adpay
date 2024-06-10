@@ -42,6 +42,7 @@ import '../../features/home_screen_provider/main_screen/screen/wallet_screen.dar
 import '../../features/home_screen_provider/order_screen/screen/order_details.dart';
 import '../../features/home_screen_provider/order_screen/screen/order_screen.dart';
 import '../../features/login/screen/login_screen.dart';
+import '../../features/login/screen/otp_verify.dart';
 import '../../features/on_boarding/screen/onboarding_screen.dart';
 import '../../features/register_user/screen/user_signup.dart';
 import '../../features/vendor_sign_up/screen/vendor_sign_up.dart';
@@ -108,6 +109,7 @@ class Routes {
   static const String walletVendorScreen = '/walletVendorScreen';
   static const String totalProductsVendorScreen = '/totalProductsVendorScreen';
   static const String adsVendorScreen = '/adsVendorScreen';
+  static const String otpScreen = '/otpScreen';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -473,6 +475,13 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: AdsVendorScreen(),
+        );
+      case Routes.otpScreen:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: OTPVerifyScreen(),
         );
       default:
         return undefinedRoute();
