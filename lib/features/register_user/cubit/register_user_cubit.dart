@@ -78,15 +78,19 @@ class SignUpUserCubit extends Cubit<SignUpUserState> {
     var pref = await SharedPreferences.getInstance();
     emit(LoadingSignUpAuth());
     final response = await api.postRegister(
-      phone: phoneController.text, profileImage:selectedImage! , phoneCode: phoneController.text, name: nameController.text,
+      phone: passwprdController.text, profileImage:selectedImage! , phoneCode: phoneController.text, name: nameController.text,
     );
     //
+    print(phoneController.text);
+    print(passwprdController.text);
+    print(nameController.text);
     response.fold((l) {
       emit(ErrorSignUpAuth());
     }, (r) async {
       userModel = r;
       Preferences.instance.setUser(r).then((value) {
         print("loaded");
+
         Navigator.pushNamedAndRemoveUntil(
           context,
           Routes.float,

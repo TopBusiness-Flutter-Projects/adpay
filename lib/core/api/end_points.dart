@@ -32,14 +32,13 @@ class EndPoints {
 
   static const String resetUrl = '${baseUrl}auth/resetPassword';
 
-  static const String getshopctogreyUrl = '${baseUrl}vendor/getShopCategories';
+  static const String getshopctogreyUrl = '${baseUrl}getShopCategories';
   static const String subCatogreyUrl = '${baseUrl}vendor/getShopSubCategories';
   static const String getRegions = '${baseUrl}user/getRegions';
   static const String getCityByRegion = '${baseUrl}user/getCityByRegion';
   static const String changOrderStatusUrl = '${baseUrl}vendor/changOrderStatus';
   static const String vendorMyWallet = '${baseUrl}vendor/myWallet';
-  static const String vendorGetShopCategories =
-      '${baseUrl}vendor/getShopCategories';
+  static const String vendorGetShopCategories = '${baseUrl}vendor/getShopCategories';
   static const String getMyProductsVendor = '${baseUrl}vendor/myProducts';
   static const String getMyAdvertiseVendor = '${baseUrl}vendor/myAdvertise';
   // static const String citiesUrl = '${baseUrl}cities';
@@ -66,4 +65,14 @@ class EndPoints {
   static const String getmyauctionsUrl = '${baseUrl}user/getMyAuctions';
   static const String EditProfileUrl = '${baseUrl}user/updateProfile';
   static const String postaddressUrl = '${baseUrl}user/addAddress';
+  static const String getaddressUrl = '${baseUrl}user/myAddresses';
+
+  static const String getChatroomUrl = '${baseUrl}vendor/getChatRooms';
+  static const String getroombyid = '${baseUrl}vendor/getRoom';
+  static const String sendMessage = '${baseUrl}vendor/room/';
+
+
+
+
+
 }

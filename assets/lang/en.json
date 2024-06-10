@@ -153,5 +153,7 @@
       "pending": "pending",
       "complete": "complete",
       "choose_type": "Choose Type",
-      "no_ads": "No Ads"
+      "no_ads": "No Ads",
+      "region": "region",
+      "city": "The City"
 }

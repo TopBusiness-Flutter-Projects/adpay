@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:adpay/features/home_screen/add_harag/screens/widgets/sub_catogrey.dart';
 import 'package:adpay/features/home_screen/add_harag/screens/widgets/main_catogrey.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -171,12 +170,49 @@ class _AddHaragState extends State<AddHarag> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: CustomTextFieldHarag(),
+                      child: TextField(
+                        controller: cubit.priceController,
+                        onSubmitted: (data) async {},
+                        decoration: InputDecoration(
+                          hintText: "SendMessage".tr(),
+                          filled: true,
+                          fillColor: Colors.white,
+                          // Set the background color to white
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 15,
+                          ),
+                          // Adjust the content padding
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              // Set the border color to grey
+                              width: 1.0, // Set the border width
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              // Set the border color to grey
+                              width: 1.0, // Set the border width
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              // Set the border color to grey
+                              width: 1.0, // Set the border width
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Text(
-
                         "Category".tr(),
                         style: TextStyle(
                           color: Colors.black,

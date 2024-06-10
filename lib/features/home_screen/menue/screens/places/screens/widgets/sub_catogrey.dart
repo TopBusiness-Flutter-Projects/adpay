@@ -81,7 +81,7 @@ class _SubRegionWidgetState extends State<SubRegionWidget> {
                           ),
                         ),
                         hint: Text(
-                          'nationality_select'.tr(),
+                          'city'.tr(),
                           style: TextStyle(fontSize: getSize(context) / 24),
                         ),
                         items: cubit.subcategoriesModel?.data?.map((item) {

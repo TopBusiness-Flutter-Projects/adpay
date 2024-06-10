@@ -10,7 +10,7 @@ class GetShopCategoriesModel {
   });
 
   factory GetShopCategoriesModel.fromJson(Map<String, dynamic> json) {
-    var dataList = json['data'] as List<dynamic>;
+    var dataList = json['data']==null?[]: json['data'] as List<dynamic>;
     List<Category> categoriesList = dataList.map((item) => Category.fromJson(item as Map<String, dynamic>)).toList();
 
     return GetShopCategoriesModel(

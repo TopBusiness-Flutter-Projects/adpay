@@ -324,11 +324,12 @@ class AppRoutes {
           child: BestSellerScreen(),
         );
       case Routes.chatapp:
+        String? id = settings.arguments as String?;
         return PageTransition(
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: chatpage(),
+          child: ChatPageScreen(id:id),
         );
       case Routes.Main:
         return PageTransition(
