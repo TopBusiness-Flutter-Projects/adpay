@@ -62,7 +62,7 @@ class AddHaragCubit extends Cubit<AddHaragState> {
         user_id: currentMainCategories?.id.toString()??"",
         price: priceController.text,
         cat_id: currentSubCategory?.id.toString()??"",
-        sub_cat_id: SubcatIdController.text,
+        sub_cat_id: subcategoriesModel?.data[0].id.toString()??"",
     );
     response.fold((l) {
       emit(ErrorHarag());

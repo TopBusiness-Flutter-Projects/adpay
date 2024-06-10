@@ -27,3 +27,11 @@ class LoadedSubCatogreyModel extends PlacesState {
 class ErrorsubCatogreyModel extends PlacesState {}
 class ONChangeMainCategory extends PlacesState {}
 class ONChangeSubMainCategory extends PlacesState {}
+//
+class ErrorGetAdress extends PlacesState{}
+class LoadedGetAdress extends PlacesState{
+  final GetAddressModel ?adressmodel;
+  LoadedGetAdress({required this.adressmodel});
+}
+class LoadingAdress extends PlacesState{}
+

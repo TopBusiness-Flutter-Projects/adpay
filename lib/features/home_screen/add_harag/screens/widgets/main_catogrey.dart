@@ -78,7 +78,7 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
                     ),
                   ),
                   hint: Text(
-                    'nationality_select'.tr(),
+                    'Category'.tr(),
                     style: TextStyle(fontSize: getSize(context) / 24),
                   ),
                   // value: cubit.currentMainCategories,
