@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
       "skip": "skip",
       "next": "next",
       "our_app": "our application",
@@ -156,8 +155,7 @@
       "choose_type": "Choose Type",
       "no_ads": "No Ads",
       "region": "region",
-      "city": "The City"
-=======
+      "city": "The City",
   "skip": "skip",
   "next": "next",
   "our_app": "our application",
@@ -317,5 +315,4 @@
   "enter_category": "Enter category",
   "enter_your_verification_code": "Enter your verification code",
   "we_sent_an_code_to_verify_your_phone": "We sent an code to verify your phone "
->>>>>>> e4ad825c87712f3508a8aa898dc8caf1e893caf7
 }
