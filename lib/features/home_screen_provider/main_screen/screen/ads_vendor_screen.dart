@@ -233,27 +233,43 @@ class _AdsVendorScreenState extends State<AdsVendorScreen> {
                                                     CrossAxisAlignment
                                                         .start, // Align children to the start
                                                 children: [
-                                                  Text(
-                                                      (EasyLocalization.of(
-                                                                      context)!
-                                                                  .locale
-                                                                  .languageCode ==
-                                                              'ar')
-                                                          ? (ads?.titleAr ?? '')
-                                                          : (ads
-                                                                  ?.titleEn ??
-                                                              ''),
-                                                      maxLines: 1,
-                                                      style: Styles.style18
-                                                          .copyWith(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                          (EasyLocalization.of(
+                                                                          context)!
+                                                                      .locale
+                                                                      .languageCode ==
+                                                                  'ar')
+                                                              ? (ads?.titleAr ??
+                                                                  '')
+                                                              : (ads?.titleEn ??
+                                                                  ''),
+                                                          maxLines: 1,
+                                                          style: Styles.style18.copyWith(
+                                                              fontWeight: FontWeight
+                                                                  .w700,
                                                               fontSize: getSize(
                                                                       context) /
                                                                   24,
                                                               color: AppColors
                                                                   .secondPrimary)),
+                                                      // Text(
+                                                      //     (ads?.complete
+                                                      //             .toString() ??
+                                                      //         ''),
+                                                      //     maxLines: 1,
+                                                      //     style: Styles.style18.copyWith(
+                                                      //         fontWeight:
+                                                      //             FontWeight
+                                                      //                 .w700,
+                                                      //         fontSize: getSize(
+                                                      //                 context) /
+                                                      //             24,
+                                                      //         color: AppColors
+                                                      //             .secondPrimary)),
+                                                    ],
+                                                  ),
                                                   Text(
                                                     (EasyLocalization
                                                                     .of(

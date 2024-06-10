@@ -8,6 +8,7 @@ import '../../../../core/models/login_model.dart';
 import '../../../../core/models/my_wallet_vendor_model.dart';
 import '../../../../core/models/products_model.dart';
 import '../../../../core/models/shop_category_vendor_model.dart';
+import '../../../../core/models/shopcatogriesmodel.dart';
 import '../../../../core/preferences/preferences.dart';
 import 'state.dart';
 
@@ -54,16 +55,16 @@ class MainVendorCubit extends Cubit<MainVendorState> {
     });
   }
 
-  ShopCategoryVendorModel? shopCategoryVendorModel;
-  ShopCategoryVendorModelData? currentSelectedCategory;
-
-  onChangeCategory(ShopCategoryVendorModelData category) {
+  onChangeCategory(Category category) {
     currentSelectedCategory = category;
     //! getData depend on category
 
     emit(OnChangeCategoryVendorState());
     getTotalProductsVendor();
   }
+
+  GetShopCategoriesModel? shopCategoryVendorModel;
+  Category? currentSelectedCategory;
 
   getVendorGetShopCategories() async {
     emit(LoadingGetShopCategoryVendorState());

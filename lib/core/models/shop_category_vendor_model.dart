@@ -13,7 +13,7 @@ class ShopCategoryVendorModel {
       ShopCategoryVendorModel(
         data: json["data"] == null
             ? []
-            : List<ShopCategoryVendorModelData>.from(json["data"]!
+            : List<ShopCategoryVendorModelData>.from(json["data"]
                 .map((x) => ShopCategoryVendorModelData.fromJson(x))),
         msg: json["msg"],
         status: json["status"],

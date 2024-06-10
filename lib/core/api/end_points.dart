@@ -33,6 +33,7 @@ class EndPoints {
   static const String resetUrl = '${baseUrl}auth/resetPassword';
 
   static const String getshopctogreyUrl = '${baseUrl}getShopCategories';
+  static const String getShopCtogreyUrl = '${baseUrl}getShopCategories';
   static const String subCatogreyUrl = '${baseUrl}vendor/getShopSubCategories';
   static const String getRegions = '${baseUrl}user/getRegions';
   static const String getCityByRegion = '${baseUrl}user/getCityByRegion';
@@ -44,6 +45,8 @@ class EndPoints {
 
   static const String AddToCart = '${baseUrl}user/addToCart';
 
+
+  static const String vendorRegister = '${baseUrl}vendor/register';
   // static const String citiesUrl = '${baseUrl}cities';
   // static const String servicesUrl = '${baseUrl}services/';
   // static const String editServicesUrl = '${baseUrl}services/update/';

@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../config/routes/app_routes.dart';
+import '../../../core/models/shop_category_vendor_model.dart';
 import '../../../core/preferences/preferences.dart';
 
 class SignUpUserCubit extends Cubit<SignUpUserState> {
@@ -71,14 +72,13 @@ class SignUpUserCubit extends Cubit<SignUpUserState> {
   }
 
   int? selectedOption = 1;
-  final List<String> genderItems = ['Male', 'Female'];
-  String? selectedValue;
   //post register
   Future<void> PostRegister(BuildContext context) async {
     var pref = await SharedPreferences.getInstance();
     emit(LoadingSignUpAuth());
     final response = await api.postRegister(
       phone: passwprdController.text, profileImage:selectedImage! , phoneCode: phoneController.text, name: nameController.text,
+
     );
     //
     print(phoneController.text);
@@ -94,14 +94,12 @@ class SignUpUserCubit extends Cubit<SignUpUserState> {
         Navigator.pushNamedAndRemoveUntil(
           context,
           Routes.float,
-              (route) => false,
-        );      pref.setBool('onBoarding', true);
+          (route) => false,
+        );
+        pref.setBool('onBoarding', true);
 
         emit(LoadedSignUpAuth());
-
       });
-    }
-    );
+    });
   }
-
 }

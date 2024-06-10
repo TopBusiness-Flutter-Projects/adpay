@@ -148,7 +148,7 @@ class ServiceApi {
 
     try {
       final response = await dio.get(
-        EndPoints.getshopctogreyUrl,
+        EndPoints.getShopCtogreyUrl,
         options: Options(
           headers: {'Authorization': loginModel.data!.token},
         ),
@@ -158,7 +158,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
-  //postcart
+
 
 
   //getchatrooms
@@ -195,6 +195,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
 
   //postsubcatogrey
   Future<Either<Failure, SubCatogreyModel>> postSubCtogrey({
@@ -253,7 +254,7 @@ class ServiceApi {
     }
   }
 
-  //getregions
+
   Future<Either<Failure, GetRegionsModel>> getRegions() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
 
@@ -1068,13 +1069,15 @@ class ServiceApi {
     }
   }
 
-  Future<Either<Failure, ShopCategoryVendorModel>>
+  Future<Either<Failure, GetShopCategoriesModel>>
       getVendorGetShopCategories() async {
-    LoginModel loginModel = await Preferences.instance.getUserModel();
+    // LoginModel loginModel = await Preferences.instance.getUserModel();
     try {
-      final response = await dio.get(EndPoints.vendorGetShopCategories,
-          options: Options(headers: {'Authorization': loginModel.data!.token}));
-      return Right(ShopCategoryVendorModel.fromJson(response));
+      final response = await dio.get(EndPoints.getShopCtogreyUrl,
+          options: Options(headers: {
+            // 'Authorization': loginModel.data!.token,
+          }));
+      return Right(GetShopCategoriesModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
@@ -1109,6 +1112,63 @@ class ServiceApi {
           EndPoints.getMyAdvertiseVendor + "?type=$type",
           options: Options(headers: {'Authorization': loginModel.data!.token}));
       return Right(AdsVendorModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+//! vendor sign up
+  Future<Either<Failure, LoginModel>> vendorRegister(
+      {required String phone,
+      required File profileImage,
+      required File logo,
+      required File banner,
+      required String password,
+      required String type,
+      required String titleAr,
+      required int shopCatId,
+      required List<String> subCategory,
+      required String name}) async {
+    String? deviceToken = await Preferences.instance.getDeviceToken();
+
+    try {
+      //! images >>Multipare.
+
+      var fileName;
+      fileName = profileImage.path.split('/').last; // x.png
+      var data =
+          await MultipartFile.fromFile(profileImage.path, filename: fileName);
+      var fileNameBanner;
+      fileNameBanner = banner.path.split('/').last; // x.png
+      var dataFileNameBanner =
+          await MultipartFile.fromFile(banner.path, filename: fileNameBanner);
+
+      var fileNameLogo;
+      fileNameLogo = logo.path.split('/').last; // x.png
+      var dataLogo =
+          await MultipartFile.fromFile(logo.path, filename: fileNameLogo);
+
+      var response = await dio.post(
+        EndPoints.registerUrl,
+        formDataIsEnabled: true,
+        body: {
+          "image": data,
+          'name': name,
+          'phone': phone,
+          'password': password,
+          'type': type,
+          'logo': dataLogo,
+          'banner': dataFileNameBanner,
+          'title_ar': titleAr,
+          'title_en': titleAr,
+          'shop_cat_id': shopCatId,
+          for (int i = 1; i < subCategory.length; i++)
+            'sub_cat_id[$i]': subCategory[i],
+          'device_token': deviceToken,
+        },
+      );
+
+      return Right(LoginModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }

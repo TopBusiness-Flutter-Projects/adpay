@@ -158,6 +158,13 @@
   "complete": "مكتملة",
   "choose_type": "اختر النوع",
   "no_ads": "لا يوجد إعلانات",
+<<<<<<< HEAD
   "region": "المنطقة",
   "city": "المدينة"
+=======
+  "add_new_sub": "اضافة تصنيف فرعى",
+  "enter_category": "ادخل التصنيف",
+  "enter_your_verification_code": "ادخل رمز التحقق الخاص بك",
+  "we_sent_an_code_to_verify_your_phone": "تم ارسال رمز التحقق الى رقم الجوال الخاص بك"
+>>>>>>> e4ad825c87712f3508a8aa898dc8caf1e893caf7
 }
