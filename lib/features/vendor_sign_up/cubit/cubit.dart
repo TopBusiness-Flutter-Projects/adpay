@@ -7,6 +7,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../core/models/shop_category_vendor_model.dart';
+import '../../../core/models/shopcatogriesmodel.dart';
+import '../../../core/utils/dialogs.dart';
+
 class SignUpVendorCubit extends Cubit<SignUpVendorState> {
   SignUpVendorCubit(this.api) : super(SignUpVendorInitial());
   ServiceApi api;
@@ -30,6 +34,7 @@ class SignUpVendorCubit extends Cubit<SignUpVendorState> {
   TextEditingController confirmPasswprdController = TextEditingController();
   TextEditingController storeNameController = TextEditingController();
   TextEditingController adressNameController = TextEditingController();
+  TextEditingController subCategoryController = TextEditingController();
   togglePassword() {
     isPassword = !isPassword;
     emit(ChangePasswordState());
@@ -64,11 +69,60 @@ class SignUpVendorCubit extends Cubit<SignUpVendorState> {
     }
   }
 
-  int? selectedOption = 1;
+  int? selectedOption = 1; //
 
   //TODO after add male selectedImage null
 
-  final List<String> genderItems = ['Male', 'Female'];
-
   String? selectedValue;
+  List<String> subCategoryList = [];
+
+  addNewSubCategory(BuildContext context) {
+    emit(LoadingAddNewSubCategory());
+    subCategoryList.add(subCategoryController.text);
+    Navigator.pop(context);
+    emit(LoadedAddNewSubCategory());
+    subCategoryController.clear();
+  }
+
+  getVendorGetShopCategories() async {
+    emit(LoadingGetShopCategoryVendorState());
+    final res = await api.getVendorGetShopCategories();
+    res.fold((l) {
+      emit(ErrorGetShopCategoryVendorState());
+    }, (r) {
+      shopCategoryVendorModel = r;
+      selectedCategoryValue = r.data.first;
+
+      emit(LoadedGetShopCategoryVendorState());
+    });
+  }
+
+  GetShopCategoriesModel? shopCategoryVendorModel;
+  Category? selectedCategoryValue;
+  //! sign up vendor
+
+  //!
+  vendorRegister() async {
+    emit(LoadingRgisterVendorState());
+    final res = await api.vendorRegister(
+      banner: bannerImage ?? File(''),
+      logo: logoImage ?? File(''),
+      profileImage: logoImage ?? File(''),
+      name: nameController.text,
+      password: passwprdController.text,
+      phone: phoneController.text,
+      shopCatId: selectedCategoryValue?.id ?? 1,
+      subCategory: subCategoryList,
+      titleAr: "",
+      type: selectedOption == 1 ? 'vendor' : 'advertise',
+    );
+    res.fold((l) {
+      emit(ErrorRgisterVendorState());
+    }, (r) {
+      successGetBar(r.msg);
+
+      emit(LoadedRgisterVendorState());
+    });
+  }
+  //!
 }

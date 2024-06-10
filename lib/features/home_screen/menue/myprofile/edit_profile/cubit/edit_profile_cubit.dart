@@ -80,7 +80,10 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     var pref = await SharedPreferences.getInstance();
     emit(LoadingEdit());
     final response = await api.postRegister(
-      phone: phoneController.text, profileImage:selectedImage! , phoneCode: phoneController.text, name: nameController.text,
+      phone: phoneController.text,
+      profileImage: selectedImage!,
+      phoneCode: phoneController.text,
+      name: nameController.text,
     );
     //
     response.fold((l) {
@@ -92,16 +95,12 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         Navigator.pushNamedAndRemoveUntil(
           context,
           Routes.float,
-              (route) => false,
-        );      pref.setBool('onBoarding', true);
+          (route) => false,
+        );
+        pref.setBool('onBoarding', true);
 
         emit(LoadedEdit());
-
       });
-    }
-    );
+    });
   }
-
 }
-
-

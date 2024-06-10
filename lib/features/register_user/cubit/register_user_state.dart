@@ -17,8 +17,9 @@ class LoadinglogoNewImage extends SignUpUserState {}
 class LoadedlogoNewImage extends SignUpUserState {}
 
 class ChangeToStoreInfo extends SignUpUserState {}
+
 class ErrorSignUpAuth extends SignUpUserState {}
+
 class LoadedSignUpAuth extends SignUpUserState {}
+
 class LoadingSignUpAuth extends SignUpUserState {}
-
-

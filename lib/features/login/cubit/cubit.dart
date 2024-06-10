@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:adpay/core/models/login_model.dart';
@@ -68,45 +69,45 @@ class LoginCubit extends Cubit<LoginState> {
     });
   }
 
-  Future<void> loginAuthProvider(BuildContext context) async {
-    var pref = await SharedPreferences.getInstance();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    deviceToken = prefs.getString('checkUser');
-    emit(LoadingLoginAuth());
-    final response = await api.loginAuthProvider(
-        phone: phoneController.text,
-        password: passwprdController.text,
-        device_token: '$deviceToken');
-    //
-    response.fold((l) {
-      emit(ErrorLoginAuth());
-    }, (r) async {
-      print("loaded");
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('auth-token', r.data?.token.toString() ?? "");
-      Preferences.instance.setUser(r).then((value) {
-        userModel = r;
-        (userModel?.data?.type == 'user' && userModel?.data?.type != null)
-            ? Navigator.pushNamedAndRemoveUntil(
-                context,
-                Routes.homeRoute,
-                (route) => false,
-              )
-            : (userModel?.data?.type == 'vendor' &&
-                    userModel?.data?.type != null)
-                ? Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    Routes.floatVendor,
-                    (route) => false,
-                  )
-                : null;
-        successGetBar(r.msg);
-      });
-      emit(LoadedLoginAuth());
+  // Future<void> loginAuthProvider(BuildContext context) async {
+  //   var pref = await SharedPreferences.getInstance();
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   deviceToken = prefs.getString('checkUser');
+  //   emit(LoadingLoginAuth());
+  //   final response = await api.loginAuthProvider(
+  //       phone: phoneController.text,
+  //       password: passwprdController.text,
+  //       device_token: '$deviceToken');
+  //   //
+  //   response.fold((l) {
+  //     emit(ErrorLoginAuth());
+  //   }, (r) async {
+  //     print("loaded");
+  //     SharedPreferences prefs = await SharedPreferences.getInstance();
+  //     prefs.setString('auth-token', r.data?.token.toString() ?? "");
+  //     Preferences.instance.setUser(r).then((value) {
+  //       userModel = r;
+  //       (userModel?.data?.type == 'user' && userModel?.data?.type != null)
+  //           ? Navigator.pushNamedAndRemoveUntil(
+  //               context,
+  //               Routes.homeRoute,
+  //               (route) => false,
+  //             )
+  //           : (userModel?.data?.type == 'vendor' &&
+  //                   userModel?.data?.type != null)
+  //               ? Navigator.pushNamedAndRemoveUntil(
+  //                   context,
+  //                   Routes.floatVendor,
+  //                   (route) => false,
+  //                 )
+  //               : null;
+  //       successGetBar(r.msg);
+  //     });
+  //     emit(LoadedLoginAuth());
 
-      pref.setBool('onBoarding', true);
-    });
-  }
+  //     pref.setBool('onBoarding', true);
+  //   });
+  // }
 
   Future<void> CheckUser(BuildContext context) async {
     var pref = await SharedPreferences.getInstance();
@@ -128,10 +129,75 @@ class LoginCubit extends Cubit<LoginState> {
         emit(LoadedCheckUserAuth());
       } else if (r.status == 0) {
         errorGetBar(r.msg ?? '');
+
+        Navigator.pop(context);
         emit(ErrorCheckUserAuth());
       } else {
         errorGetBar(r.msg ?? '');
       }
+    });
+  }
+
+  //! OTP
+  TextEditingController otpController = TextEditingController();
+  final FirebaseAuth _mAuth = FirebaseAuth.instance;
+  String? verificationId;
+  String? smsCode;
+  int? resendToken;
+  sendOTP(BuildContext context) async {
+    emit(SendCodeLoading());
+    //
+    await _mAuth
+        .verifyPhoneNumber(
+      phoneNumber: '+2' + phoneController.text,
+      verificationCompleted: (PhoneAuthCredential credential) {
+        print('=========================================');
+        print("verificationId=>$verificationId");
+        print('smsCode : $smsCode');
+        print('=========================================');
+        smsCode = credential.smsCode;
+        verificationId = credential.verificationId;
+
+        //! check verify
+
+        emit(OnSmsCodeSent(smsCode ?? ''));
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        emit(CheckCodeInvalidCode());
+        print("Errrrorrrrr : ${e.message}");
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        this.resendToken = resendToken;
+        this.verificationId = verificationId;
+        print("verificationId=>$verificationId");
+        emit(OnSmsCodeSent(''));
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        this.verificationId = verificationId;
+        print('*************************************');
+        print("verificationId=>$verificationId");
+        print('smsCode : $smsCode');
+        print('*************************************');
+      },
+    )
+        .then((value) {
+      Navigator.pushNamed(context, Routes.otpScreen);
+    });
+  }
+
+  verifyOtp(String smsCode, BuildContext context) async {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId!, smsCode: smsCode);
+    //!  OTP validate true or false
+    await _mAuth.signInWithCredential(credential).then((value) {
+      emit(CheckCodeSuccessfully());
+      //
+      //! loginAuth
+      CheckUser(context);
+    }).catchError((error) {
+      errorGetBar(error.toString());
+
+      emit(CheckCodeErrorfully());
     });
   }
 }

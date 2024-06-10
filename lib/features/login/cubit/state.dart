@@ -19,3 +19,16 @@ class LoadingCheckUserAuth extends LoginState {}
 class LoadedCheckUserAuth extends LoginState {}
 
 class ErrorCheckUserAuth extends LoginState {}
+
+class SendCodeLoading extends LoginState {}
+
+class OnSmsCodeSent extends LoginState {
+  String smsCode;
+  OnSmsCodeSent(this.smsCode);
+}
+
+class CheckCodeInvalidCode extends LoginState {}
+
+class CheckCodeSuccessfully extends LoginState {}
+
+class CheckCodeErrorfully extends LoginState {}

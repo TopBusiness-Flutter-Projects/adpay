@@ -3,8 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import '../../../config/routes/app_routes.dart';
-import '../../login/cubit/state.dart';
 import '../cubit/register_user_cubit.dart';
 import '../cubit/register_user_state.dart';
 import '../widget/user_info_user.dart';
@@ -14,14 +12,20 @@ class UserSignUpScreen extends StatefulWidget {
   @override
   State<UserSignUpScreen> createState() => _UserSignUpScreenState();
 }
+
 class _UserSignUpScreenState extends State<UserSignUpScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpUserCubit, SignUpUserState>(
       listener: (context, state) {
         if (state is LoadingSignUpAuth) {
           EasyLoading.show(status: 'loading...');
-        }   else if (state is LoadedSignUpAuth) {
+        } else if (state is LoadedSignUpAuth) {
           EasyLoading.dismiss();
           EasyLoading.showSuccess('Register Success');
         } else if (state is ErrorSignUpAuth) {
@@ -39,11 +43,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
             ),
           ),
           body: Column(
-            children: [
-              Flexible(
-                child: UserInfoWidgetUser(cubit: cubit)
-              )
-            ],
+            children: [Flexible(child: UserInfoWidgetUser(cubit: cubit))],
           ),
         );
       },

@@ -114,7 +114,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       print("screen");
 
                       //   cubit.loginAuth(context);
-                      cubit.CheckUser(context);
+                      // cubit.CheckUser(context);
+                      cubit.sendOTP(context);
                     }
                   },
                   child: Container(

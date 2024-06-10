@@ -157,5 +157,9 @@
   "pending": "ف الانتظار",
   "complete": "مكتملة",
   "choose_type": "اختر النوع",
-  "no_ads": "لا يوجد إعلانات"
+  "no_ads": "لا يوجد إعلانات",
+  "add_new_sub": "اضافة تصنيف فرعى",
+  "enter_category": "ادخل التصنيف",
+  "enter_your_verification_code": "ادخل رمز التحقق الخاص بك",
+  "we_sent_an_code_to_verify_your_phone": "تم ارسال رمز التحقق الى رقم الجوال الخاص بك"
 }

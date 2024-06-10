@@ -17,3 +17,18 @@ class LoadinglogoNewImage extends SignUpVendorState {}
 class LoadedlogoNewImage extends SignUpVendorState {}
 
 class ChangeToStoreInfo extends SignUpVendorState {}
+
+class LoadingAddNewSubCategory extends SignUpVendorState {}
+
+class LoadedAddNewSubCategory extends SignUpVendorState {}
+
+class ErrorGetShopCategoryVendorState extends SignUpVendorState {}
+
+class LoadedGetShopCategoryVendorState extends SignUpVendorState {}
+
+class LoadingGetShopCategoryVendorState extends SignUpVendorState {}
+
+class LoadingRgisterVendorState extends SignUpVendorState {}
+
+class LoadedRgisterVendorState extends SignUpVendorState {}
+class ErrorRgisterVendorState extends SignUpVendorState {}
