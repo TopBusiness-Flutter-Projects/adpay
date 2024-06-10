@@ -4,6 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../core/models/addadressmodel.dart';
 import '../../../../../../core/models/getCity_ byRegion_model.dart';
+import '../../../../../../core/models/getaddress_model.dart';
 import '../../../../../../core/models/getregion_model.dart';
 import '../../../../../../core/remote/service.dart';
 import '../../../../../../core/utils/dialogs.dart';
@@ -42,6 +43,7 @@ class PlacesCubit extends Cubit<PlacesState> {
       Navigator.pop(context);
       addressmodel=r;
       print("loaded");
+      getPlaces();
       successGetBar(r.msg);
     });
     emit(LoadedPlaces());
@@ -88,5 +90,23 @@ print('assssssssssssssss :${currentMainCategories?.nameAr}');
       emit(LoadedSubCatogreyModel(subcategoriesModel: r));
     });
   }
+  //getplaces
+  GetAddressModel? getadressmodel;
+
+  Future<void> getPlaces() async {
+    emit(LoadingAdress());
+    final response = await api.getaddress();
+    //
+    response.fold((l) {
+      emit(ErrorGetAdress());
+    }, (r) async {
+
+      print("sucess cubit");
+      getadressmodel = r;
+      print("loaded");
+      emit(LoadedGetAdress( adressmodel: getadressmodel));
+    });
+  }
+
 }
 

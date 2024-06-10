@@ -70,7 +70,7 @@ class _MainRegionWidgetState extends State<MainRegionWidget> {
                         Radius.circular(getSize(context) / 44),
                       ),
                     ),
-                    hintText: 'nationality_select'.tr(),
+                    hintText: 'region'.tr(),
                     hintStyle: TextStyle(
                       color: AppColors.blackLite,
                       fontFamily: 'tahoma',
@@ -78,7 +78,7 @@ class _MainRegionWidgetState extends State<MainRegionWidget> {
                     ),
                   ),
                   hint: Text(
-                    'nationality_select'.tr(),
+                    'region'.tr(),
                     style: TextStyle(fontSize: getSize(context) / 24),
                   ),
                   // value: cubit.currentMainCategories,

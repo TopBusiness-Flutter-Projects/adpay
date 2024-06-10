@@ -25,6 +25,9 @@ import '../models/contact_us_model.dart';
 import '../models/favourite_model.dart';
 import '../models/getCity_ byRegion_model.dart';
 import '../models/get_myprofile_model.dart';
+import '../models/getaddress_model.dart';
+import '../models/getchat_room_byid.dart';
+import '../models/getchat_rooms_model.dart';
 import '../models/getregion_model.dart';
 import '../models/grage_details_model.dart';
 import '../models/grage_model.dart';
@@ -37,6 +40,7 @@ import '../models/order_details.dart';
 import '../models/product_details_model.dart';
 import '../models/products_model.dart';
 import '../models/reset_model.dart';
+import '../models/send_message_model.dart';
 import '../models/shop_category_vendor_model.dart';
 import '../models/shop_model.dart';
 import '../models/shopcatogriesmodel.dart';
@@ -155,6 +159,44 @@ class ServiceApi {
     }
   }
 
+
+
+  //getchatrooms
+  Future<Either<Failure, GetChatRoomsModel>> getChatRooms() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(
+        EndPoints.getChatroomUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(GetChatRoomsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+//getchatroombyid
+
+  Future<Either<Failure, GetChatRoomById>> getRoomById(
+      {required String? id}) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    String? id;
+
+    try {
+      final response = await dio.get(
+        EndPoints.getroombyid + '/${(id == null) ? 1 : id}',
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(GetChatRoomById.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+
   //postsubcatogrey
   Future<Either<Failure, SubCatogreyModel>> postSubCtogrey({
     required String? id1,
@@ -183,7 +225,36 @@ class ServiceApi {
     }
   }
 
-  //getregions
+  //postMessage
+  Future<Either<Failure, SendMessageModel>> postMessage({
+    required String? message,
+    required String roomId,
+  }) async {
+    LoginModel user = await Preferences.instance.getUserModel();
+
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.post(
+        EndPoints.sendMessage + '$roomId/sendMessage',
+        body: {
+          "message": message,
+        },
+        options: Options(
+          headers: {
+            // 'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(SendMessageModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+
   Future<Either<Failure, GetRegionsModel>> getRegions() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
 
@@ -494,12 +565,12 @@ class ServiceApi {
         formDataIsEnabled: true,
         body: {
           "images": data,
-          "title_ar": "dog",
-          "description_ar": "good",
-          "user_id": 20,
-          "price": 20.2,
-          "cat_id": 2,
-          "sub_cat_id": 1,
+          "title_ar": title_ar,
+          "description_ar": description_ar,
+          "user_id": user_id,
+          "price": price,
+          "cat_id": cat_id,
+          "sub_cat_id": sub_cat_id,
         },
         options: Options(
           headers: {
@@ -681,6 +752,22 @@ class ServiceApi {
         ),
       );
       return Right(HomeModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, GetAddressModel>> getaddress() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.getaddressUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(GetAddressModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }

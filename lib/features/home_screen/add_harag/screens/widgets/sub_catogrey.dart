@@ -73,7 +73,7 @@ class _SubCatogreyWidgetState extends State<SubCatogreyWidget> {
                               Radius.circular(getSize(context) / 44),
                             ),
                           ),
-                          hintText: 'nationality_select'.tr(),
+                          hintText: 'Subcategory'.tr(),
                           hintStyle: TextStyle(
                             color: AppColors.blackLite,
                             fontFamily: 'tahoma',
@@ -81,7 +81,7 @@ class _SubCatogreyWidgetState extends State<SubCatogreyWidget> {
                           ),
                         ),
                         hint: Text(
-                          'nationality_select'.tr(),
+                          'Subcategory'.tr(),
                           style: TextStyle(fontSize: getSize(context) / 24),
                         ),
                         items: cubit.subcategoriesModel?.data?.map((item) {
