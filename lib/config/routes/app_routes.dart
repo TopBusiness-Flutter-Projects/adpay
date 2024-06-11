@@ -13,6 +13,7 @@ import '../../core/utils/app_strings.dart';
 import '../../features/choose_login/screen/choose_login_screen.dart';
 import '../../features/forget_password/screen/forget_pass.dart';
 import '../../features/forget_password/screen/newpass.dart';
+import '../../features/forget_password/screen/otp_verify_pass.dart';
 import '../../features/home_screen/add_harag/screens/add_harag.dart';
 import '../../features/home_screen/advertisment/screen/advertisment_screen.dart';
 import '../../features/home_screen/best_seller/screens/best_seller_screen.dart';
@@ -35,6 +36,8 @@ import '../../features/home_screen/product_details/screens/proudct_details_scree
 import '../../features/home_screen/products/screens/products-screen.dart';
 import '../../features/home_screen/shop/screens/theshop_screen.dart';
 import '../../features/home_screen/tager/screens/tager_screen.dart';
+import '../../features/home_screen_provider/add_new_ads/screen/add_new_products.dart';
+import '../../features/home_screen_provider/add_new_product/screen/add_new_products.dart';
 import '../../features/home_screen_provider/main_screen/screen/ads_vendor_screen.dart';
 import '../../features/home_screen_provider/main_screen/screen/main_screen_driver.dart';
 import '../../features/home_screen_provider/main_screen/screen/total_products.dart';
@@ -45,6 +48,7 @@ import '../../features/login/screen/login_screen.dart';
 import '../../features/login/screen/otp_verify.dart';
 import '../../features/on_boarding/screen/onboarding_screen.dart';
 import '../../features/register_user/screen/user_signup.dart';
+import '../../features/vendor_sign_up/screen/otp_verify.dart';
 import '../../features/vendor_sign_up/screen/vendor_sign_up.dart';
 import '../../floating.dart';
 import '../../floating_vendor.dart';
@@ -110,6 +114,10 @@ class Routes {
   static const String totalProductsVendorScreen = '/totalProductsVendorScreen';
   static const String adsVendorScreen = '/adsVendorScreen';
   static const String otpScreen = '/otpScreen';
+  static const String oTPVerifyRegisterScreen = '/oTPVerifyRegisterScreen';
+  static const String oTPVerifyrResetScreen = '/oTPVerifyrResetScreen';
+  static const String addNewProductScreen = '/AddNewProductScreen';
+  static const String addNewAdsScreen = '/addNewAdsScreen';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -331,7 +339,7 @@ class AppRoutes {
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: ChatPageScreen(id:id),
+          child: ChatPageScreen(id: id),
         );
       case Routes.Main:
         return PageTransition(
@@ -484,6 +492,35 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: OTPVerifyScreen(),
         );
+      case Routes.oTPVerifyRegisterScreen:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: OTPVerifyRegisterScreen(),
+        );
+      case Routes.oTPVerifyrResetScreen:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: OTPVerifyPasswordScreen(),
+        );
+      case Routes.addNewProductScreen:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: AddNewProductScreen(),
+        );
+      case Routes.addNewAdsScreen:
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: AddNewAdsScreen(),
+        );
+
       default:
         return undefinedRoute();
     }

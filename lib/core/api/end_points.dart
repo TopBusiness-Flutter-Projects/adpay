@@ -39,12 +39,12 @@ class EndPoints {
   static const String getCityByRegion = '${baseUrl}user/getCityByRegion';
   static const String changOrderStatusUrl = '${baseUrl}vendor/changOrderStatus';
   static const String vendorMyWallet = '${baseUrl}vendor/myWallet';
-  static const String vendorGetShopCategories = '${baseUrl}vendor/getShopCategories';
+  static const String vendorGetShopCategories =
+      '${baseUrl}vendor/getShopCategories';
   static const String getMyProductsVendor = '${baseUrl}vendor/myProducts';
   static const String getMyAdvertiseVendor = '${baseUrl}vendor/myAdvertise';
 
   static const String AddToCart = '${baseUrl}user/addToCart';
-
 
   static const String vendorRegister = '${baseUrl}vendor/register';
   // static const String citiesUrl = '${baseUrl}cities';
@@ -76,9 +76,4 @@ class EndPoints {
   static const String getChatroomUrl = '${baseUrl}vendor/getChatRooms';
   static const String getroombyid = '${baseUrl}vendor/getRoom';
   static const String sendMessage = '${baseUrl}vendor/room/';
-
-
-
-
-
 }

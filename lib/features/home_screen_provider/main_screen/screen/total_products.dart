@@ -21,7 +21,6 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
   @override
   void initState() {
     context.read<MainVendorCubit>().getVendorGetShopCategories();
-    context.read<MainVendorCubit>().getTotalProductsVendor();
 
     super.initState();
   }
@@ -34,21 +33,19 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
         return Scaffold(
           appBar: AppBar(
             centerTitle: false,
-            title: Hero(
-              tag: 'total_products',
-              child: Text(
-                'products'.tr(),
-                style: TextStyle(
-                  color: AppColors.black,
-                  fontSize: getSize(context) / 20,
-                  fontWeight: FontWeight.bold,
-                ),
+            title: Text(
+              'products'.tr(),
+              style: TextStyle(
+                color: AppColors.black,
+                fontSize: getSize(context) / 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
           body: Column(
             children: [
               Container(
+                height: getSize(context) / 6,
                 child: Row(
                   children: [
                     Expanded(
@@ -131,21 +128,23 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
                   ],
                 ),
               ),
-              (state is LoadingGetShopCategoryVendorState)
+              (state is LoadingGetShopCategoryVendorState ||
+                      cubit.shopCategoryVendorModel == null)
                   ? Container()
                   : Container(
                       height: getSize(context) / 12,
+                      width: getSize(context),
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: cubit.shopCategoryVendorModel?.data?.length,
+                        itemCount: cubit.shopCategoryVendorModel?.data.length,
                         itemBuilder: (context, index) {
-                          var item =
-                              cubit.shopCategoryVendorModel?.data?[index];
+                          var item = cubit.shopCategoryVendorModel?.data[index];
                           return GestureDetector(
                             onTap: () {
                               cubit.onChangeCategory(item!);
                             },
                             child: Container(
+                              height: getSize(context) / 12,
                               margin: EdgeInsets.symmetric(
                                 horizontal: getSize(context) / 44,
                               ),
@@ -185,21 +184,24 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
                     ),
               (state is LoadingGetProductsOfVendorState)
                   ? Center(child: RefreshProgressIndicator())
-                  : GridView.builder(
-                      padding: EdgeInsets.only(top: 15, right: 8, left: 8),
-                      shrinkWrap: true,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 5,
-                          mainAxisSpacing: 5,
-                          childAspectRatio: 1 / 1),
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: cubit.allProductsModel?.data?.length,
-                      itemBuilder: (context, index) {
-                        return CustomProductWidget(
-                          product: cubit.allProductsModel?.data?[index],
-                        );
-                      },
+                  : Flexible(
+                      fit: FlexFit.tight,
+                      child: GridView.builder(
+                        padding: EdgeInsets.only(top: 15, right: 8, left: 8),
+                        shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 5,
+                            mainAxisSpacing: 5,
+                            childAspectRatio: 1 / 1),
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: cubit.allProductsModel?.data?.length,
+                        itemBuilder: (context, index) {
+                          return CustomProductWidget(
+                            product: cubit.allProductsModel?.data?[index],
+                          );
+                        },
+                      ),
                     )
             ],
           ),

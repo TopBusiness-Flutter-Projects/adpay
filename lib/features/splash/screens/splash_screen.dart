@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     if (prefs.getBool('onBoarding') == true) {
-      if (prefs.getString('user') != null) {
+      if (await prefs.getString('user') != null) {
         Preferences.instance.getUserModel().then((value) {
           if (value.data?.type == 'user') {
             Navigator.pushNamedAndRemoveUntil(
@@ -44,11 +44,20 @@ class _SplashScreenState extends State<SplashScreen> {
               Routes.floatingRote,
               (route) => false,
             );
-          } else {
+          } else if (value.data?.type == 'vendor' ||
+              value.data?.type == 'advertise') {
             Navigator.pushNamedAndRemoveUntil(
               context,
               Routes.floatVendor,
               (route) => false,
+            );
+          } else {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.choosLogin,
+              ModalRoute.withName(
+                Routes.loginRoute,
+              ),
             );
           }
         });
@@ -57,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen> {
           context,
           Routes.choosLogin,
           ModalRoute.withName(
-            Routes.initialRoute,
+            Routes.loginRoute,
           ),
         );
       }

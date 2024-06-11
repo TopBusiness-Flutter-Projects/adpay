@@ -27,6 +27,8 @@ import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 
 import 'features/home_screen/products/cubit/products_cubit.dart';
 import 'features/home_screen/shop/cubit/shop_cubit.dart';
+import 'features/home_screen_provider/add_new_ads/cubit/cubit.dart';
+import 'features/home_screen_provider/add_new_product/cubit/cubit.dart';
 import 'features/home_screen_provider/main_screen/cubit/cubit.dart';
 import 'features/home_screen_provider/notification_vendor/cubit/cubit.dart';
 import 'features/home_screen_provider/order_screen/cubit/cubit.dart';
@@ -76,12 +78,12 @@ Future<void> setup() async {
     ),
   );
   serviceLocator.registerFactory(
-        () => PlacesCubit(
+    () => PlacesCubit(
       serviceLocator(),
     ),
   );
   serviceLocator.registerFactory(
-        () => MessagesCubit(
+    () => MessagesCubit(
       serviceLocator(),
     ),
   );
@@ -142,22 +144,21 @@ Future<void> setup() async {
     ),
   );
   serviceLocator.registerFactory(
-        () => ResetPassCubit(
+    () => ResetPassCubit(
       serviceLocator(),
     ),
   );
 
-  // serviceLocator.registerFactory(
-  //   () => PostsCubit(
-  //     serviceLocator(),
-  //   ),
-  // );
-  // serviceLocator.registerFactory(
-  //       () => EditProfileCubit(
-  //     serviceLocator(),
-  //   ),
-  //
-  // );
+  serviceLocator.registerFactory(
+    () => AddNewProductCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+    () => AddNewAdsCubit(
+      serviceLocator(),
+    ),
+  );
   // serviceLocator.registerFactory(
   //       () => MyPostsCubit(
   //     serviceLocator(),

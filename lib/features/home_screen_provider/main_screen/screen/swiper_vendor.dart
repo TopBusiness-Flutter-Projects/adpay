@@ -49,11 +49,9 @@ class CustomSwiperVendor extends StatelessWidget {
                           'https://topbuziness.com/');
                     },
                     child: Image.network(
-                      EndPoints.baseUrlImage +
-                          (cubit.homeVendorScreenModel?.data?.sliders?[index]
-                                  .image
-                                  .toString() ??
-                              ''),
+                      (cubit.homeVendorScreenModel?.data?.sliders?[index].image
+                              .toString() ??
+                          ''),
                       errorBuilder: (context, error, stackTrace) {
                         return Image.asset('assets/images/logo.png');
                       },

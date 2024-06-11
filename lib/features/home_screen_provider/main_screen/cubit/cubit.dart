@@ -66,15 +66,15 @@ class MainVendorCubit extends Cubit<MainVendorState> {
   GetShopCategoriesModel? shopCategoryVendorModel;
   Category? currentSelectedCategory;
 
-  getVendorGetShopCategories() async {
+  Future getVendorGetShopCategories() async {
     emit(LoadingGetShopCategoryVendorState());
     final res = await api.getVendorGetShopCategories();
     res.fold((l) {
       emit(ErrorGetShopCategoryVendorState());
     }, (r) {
       shopCategoryVendorModel = r;
-      currentSelectedCategory = r.data?.first;
-
+      currentSelectedCategory = r.data.first;
+      getTotalProductsVendor();
       emit(LoadedGetShopCategoryVendorState());
     });
   }
@@ -89,7 +89,6 @@ class MainVendorCubit extends Cubit<MainVendorState> {
     final res = await api.getMyProductsVendor(
         type: currentTotalProductsIndex == 1 ? "new" : "used",
         categoryId: currentSelectedCategory?.id.toString() ?? '');
-
     res.fold((l) {
       emit(ErrorGetProductsOfVendorState());
     }, (r) {
