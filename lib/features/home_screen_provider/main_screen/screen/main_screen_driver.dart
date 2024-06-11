@@ -67,63 +67,63 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                         onRefresh: () async {
                           await cubit.getVendorHomeData();
                         },
-                        child: ListView(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          children: [
-                            Container(child: CustomSwiperVendor()),
-                            SizedBox(height: getSize(context) / 28),
-                            Container(
-                              // height: getSize(context) / 2,
-                              width: getSize(context),
-                              child: GridView(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisSpacing: 10,
-                                        mainAxisSpacing: 10,
-                                        crossAxisCount: 2,
-                                        childAspectRatio: 7 / 5),
-                                shrinkWrap: true,
-                                physics: const BouncingScrollPhysics(),
-                                children: [
-                                  //!
-                                  Hero(
-                                    tag: 'wallet_vendor',
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, Routes.walletVendorScreen);
-                                      },
-                                      child: CustomHomeScreenWidget(
-                                        imagePath: ImageAssets.walletImage,
-                                        title: 'wallet'.tr(),
-                                        count:
-                                            "${cubit.homeVendorScreenModel?.data?.walletTotal.toString() ?? ''}",
+                        child: SingleChildScrollView(
+                          child: Column(
+                            // shrinkWrap: true,
+                            // physics: const BouncingScrollPhysics(),
+                            children: [
+                              Container(child: CustomSwiperVendor()),
+                              SizedBox(height: getSize(context) / 28),
+                              Container(
+                                // height: getSize(context) / 2,
+                                width: getSize(context),
+                                child: GridView(
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisSpacing: 10,
+                                          mainAxisSpacing: 10,
+                                          crossAxisCount: 2,
+                                          childAspectRatio: 7 / 5),
+                                  shrinkWrap: true,
+                                  physics: const BouncingScrollPhysics(),
+                                  children: [
+                                    //!
+                                    Hero(
+                                      tag: 'wallet_vendor',
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.pushNamed(context,
+                                              Routes.walletVendorScreen);
+                                        },
+                                        child: CustomHomeScreenWidget(
+                                          imagePath: ImageAssets.walletImage,
+                                          title: 'wallet'.tr(),
+                                          count:
+                                              "${cubit.homeVendorScreenModel?.data?.walletTotal.toString() ?? ''}",
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      context
-                                          .read<VendorOrderCubit>()
-                                          .currentOrderIndex = 0;
-                                      Navigator.pushNamed(
-                                          context, Routes.orderScreenVendor);
-                                    },
-                                    child: CustomHomeScreenWidget(
-                                      imagePath: ImageAssets.totalOrderImage,
-                                      title: 'total_count'.tr(),
-                                      count:
-                                          "${cubit.homeVendorScreenModel?.data?.ordersCount.toString() ?? ''}",
+                                    GestureDetector(
+                                      onTap: () {
+                                        context
+                                            .read<VendorOrderCubit>()
+                                            .currentOrderIndex = 0;
+                                        Navigator.pushNamed(
+                                            context, Routes.orderScreenVendor);
+                                      },
+                                      child: CustomHomeScreenWidget(
+                                        imagePath: ImageAssets.totalOrderImage,
+                                        title: 'total_count'.tr(),
+                                        count:
+                                            "${cubit.homeVendorScreenModel?.data?.ordersCount.toString() ?? ''}",
+                                      ),
                                     ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.pushNamed(context,
-                                          Routes.totalProductsVendorScreen);
-                                    },
-                                    child: Hero(
-                                      tag: 'total_products',
+                                    InkWell(
+                                      onTap: () {
+                                        print("ssssssssss");
+                                        Navigator.pushNamed(context,
+                                            Routes.totalProductsVendorScreen);
+                                      },
                                       child: CustomHomeScreenWidget(
                                         imagePath:
                                             ImageAssets.totalProductImage,
@@ -132,43 +132,43 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                                             "${cubit.homeVendorScreenModel?.data?.productsCount.toString() ?? ''}",
                                       ),
                                     ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      context
-                                              .read<MainVendorCubit>()
-                                              .currentSelectedTypeOfAds ==
-                                          'new'.tr();
+                                    GestureDetector(
+                                      onTap: () {
+                                        context
+                                                .read<MainVendorCubit>()
+                                                .currentSelectedTypeOfAds ==
+                                            'new'.tr();
 
-                                      Navigator.pushNamed(
-                                          context, Routes.adsVendorScreen);
-                                    },
-                                    child: Hero(
-                                      tag: 'ads_vendor',
-                                      child: CustomHomeScreenWidget(
-                                        imagePath: ImageAssets.totalAdsImage,
-                                        title: 'total_ads'.tr(),
-                                        count:
-                                            "${cubit.homeVendorScreenModel?.data?.adsCount.toString() ?? ''}",
+                                        Navigator.pushNamed(
+                                            context, Routes.adsVendorScreen);
+                                      },
+                                      child: Hero(
+                                        tag: 'ads_vendor',
+                                        child: CustomHomeScreenWidget(
+                                          imagePath: ImageAssets.totalAdsImage,
+                                          title: 'total_ads'.tr(),
+                                          count:
+                                              "${cubit.homeVendorScreenModel?.data?.adsCount.toString() ?? ''}",
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                  vertical: getSize(context) / 22),
-                              child: Text(
-                                'goal_statistics'.tr(),
-                                style: TextStyle(
-                                    color: AppColors.secondPrimary,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: getSize(context) / 16),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                    vertical: getSize(context) / 22),
+                                child: Text(
+                                  'goal_statistics'.tr(),
+                                  style: TextStyle(
+                                      color: AppColors.secondPrimary,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: getSize(context) / 16),
+                                ),
                               ),
-                            ),
-                            CustomFlowChartOfStatisticsGoal()
-                          ],
+                              CustomFlowChartOfStatisticsGoal()
+                            ],
+                          ),
                         ),
                       ),
                     )),

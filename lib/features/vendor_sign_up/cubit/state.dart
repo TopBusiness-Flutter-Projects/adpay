@@ -31,4 +31,17 @@ class LoadingGetShopCategoryVendorState extends SignUpVendorState {}
 class LoadingRgisterVendorState extends SignUpVendorState {}
 
 class LoadedRgisterVendorState extends SignUpVendorState {}
+
 class ErrorRgisterVendorState extends SignUpVendorState {}
+
+class SendCodeLoading extends SignUpVendorState {}
+
+class OnSmsCodeSent extends SignUpVendorState {
+  String smsCode;
+  OnSmsCodeSent(this.smsCode);
+}
+
+class CheckCodeInvalidCode extends SignUpVendorState {}
+
+class CheckCodeSuccessfully extends SignUpVendorState {}
+class CheckCodeErrorfully extends SignUpVendorState {}

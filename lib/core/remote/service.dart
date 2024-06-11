@@ -159,8 +159,6 @@ class ServiceApi {
     }
   }
 
-
-
   //getchatrooms
   Future<Either<Failure, GetChatRoomsModel>> getChatRooms() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -195,7 +193,6 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
-
 
   //postsubcatogrey
   Future<Either<Failure, SubCatogreyModel>> postSubCtogrey({
@@ -253,7 +250,6 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
-
 
   Future<Either<Failure, GetRegionsModel>> getRegions() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -1121,51 +1117,68 @@ class ServiceApi {
   Future<Either<Failure, LoginModel>> vendorRegister(
       {required String phone,
       required File profileImage,
-      required File logo,
-      required File banner,
+      File? logo,
+      File? banner,
       required String password,
       required String type,
-      required String titleAr,
-      required int shopCatId,
-      required List<String> subCategory,
+      String? storeName,
+      String? address,
+      int? shopCatId,
+      List<String>? subCategory,
       required String name}) async {
     String? deviceToken = await Preferences.instance.getDeviceToken();
-
+    print('=====================${deviceToken}');
     try {
       //! images >>Multipare.
-
+      //! profileImage
       var fileName;
       fileName = profileImage.path.split('/').last; // x.png
       var data =
           await MultipartFile.fromFile(profileImage.path, filename: fileName);
-      var fileNameBanner;
-      fileNameBanner = banner.path.split('/').last; // x.png
-      var dataFileNameBanner =
-          await MultipartFile.fromFile(banner.path, filename: fileNameBanner);
+      //!
+      var dataFileNameBanner;
+      var dataLogo;
+      if (type == 'vendor') {
+        //! banner
+        var fileNameBanner;
+        fileNameBanner = banner?.path.split('/').last; // x.png
+        dataFileNameBanner = await MultipartFile.fromFile(banner!.path,
+            filename: fileNameBanner);
 
-      var fileNameLogo;
-      fileNameLogo = logo.path.split('/').last; // x.png
-      var dataLogo =
-          await MultipartFile.fromFile(logo.path, filename: fileNameLogo);
+        //! logo
+        var fileNameLogo;
+        fileNameLogo = logo!.path.split('/').last; // x.png
+        dataLogo =
+            await MultipartFile.fromFile(logo.path, filename: fileNameLogo);
+      }
 
       var response = await dio.post(
-        EndPoints.registerUrl,
+        EndPoints.vendorRegister,
         formDataIsEnabled: true,
-        body: {
-          "image": data,
-          'name': name,
-          'phone': phone,
-          'password': password,
-          'type': type,
-          'logo': dataLogo,
-          'banner': dataFileNameBanner,
-          'title_ar': titleAr,
-          'title_en': titleAr,
-          'shop_cat_id': shopCatId,
-          for (int i = 1; i < subCategory.length; i++)
-            'sub_cat_id[$i]': subCategory[i],
-          'device_token': deviceToken,
-        },
+        body: type == 'vendor'
+            ? {
+                "image": data,
+                'name': name,
+                'phone': phone,
+                'password': password,
+                'type': type,
+                'logo': dataLogo,
+                'banner': dataFileNameBanner,
+                'store_name': storeName,
+                'address': address,
+                'device_token': deviceToken ?? '123',
+                'shop_cat_id': shopCatId,
+                for (int i = 1; i < subCategory!.length; i++)
+                  'sub_cat_id[$i]': subCategory[i],
+              }
+            : {
+                "image": data,
+                'device_token': deviceToken,
+                'name': name,
+                'phone': phone,
+                'password': password,
+                'type': type,
+              },
       );
 
       return Right(LoginModel.fromJson(response));

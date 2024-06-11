@@ -2,7 +2,6 @@ import 'package:adpay/features/login/widgets/custom_text_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/assets_manager.dart';
@@ -10,7 +9,7 @@ import '../../../core/utils/get_size.dart';
 import '../cubit/reset_pass_cubit.dart';
 
 class ForgetPaas extends StatefulWidget {
-  ForgetPaas({ super.key});
+  ForgetPaas({super.key});
   @override
   State<ForgetPaas> createState() => _ForgetPaasState();
 }
@@ -20,8 +19,7 @@ class _ForgetPaasState extends State<ForgetPaas> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ResetPassCubit, ResetPassState>(
-      listener: (context, state) {
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         var cubit = context.read<ResetPassCubit>();
         return Scaffold(
@@ -42,9 +40,9 @@ class _ForgetPaasState extends State<ForgetPaas> {
               children: [
                 Padding(
                   padding:
-                  EdgeInsets.symmetric(vertical: getSize(context) / 22),
+                      EdgeInsets.symmetric(vertical: getSize(context) / 22),
                   child: Image.asset(
-                         ImageAssets.appIconImage,
+                    ImageAssets.appIconImage,
                     width: getSize(context) / 2.5,
                     height: getSize(context) / 2.5,
                   ),
@@ -60,19 +58,20 @@ class _ForgetPaasState extends State<ForgetPaas> {
                 GestureDetector(
                   onTap: () {
                     if (loginKey.currentState!.validate()) {
-                      Navigator.pushNamed(context, Routes.NewPass);
+                      ///! OTP then nav
+                      cubit.sendOTP(context);
                     }
                   },
                   child: Container(
                     margin:
-                    EdgeInsets.symmetric(horizontal: getSize(context) / 22),
+                        EdgeInsets.symmetric(horizontal: getSize(context) / 22),
                     alignment: Alignment.center,
                     padding: EdgeInsets.symmetric(
                         horizontal: getSize(context) / 22, vertical: 5),
                     decoration: BoxDecoration(
                         color: AppColors.primary,
                         borderRadius:
-                        BorderRadius.circular(getSize(context) / 12)),
+                            BorderRadius.circular(getSize(context) / 12)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2.0),
                       child: Text(

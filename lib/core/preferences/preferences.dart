@@ -86,11 +86,13 @@ class Preferences {
 
   Future<String?> getDeviceToken() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-
     if (await preferences.getString('device_token') != null) {
+      print('===============${await preferences.getString('device_token')}');
       return await preferences.getString('device_token');
     } else {
-      return null;
+      print('===============${await preferences.getString('device_token')}');
+
+      return '';
     }
   }
 

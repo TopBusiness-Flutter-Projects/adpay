@@ -7,18 +7,20 @@ import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/assets_manager.dart';
 import '../../../core/utils/get_size.dart';
 import '../cubit/reset_pass_cubit.dart';
+
 class NewPass extends StatefulWidget {
-  NewPass({ super.key});
+  NewPass({super.key});
   @override
   State<NewPass> createState() => _NewPassState();
 }
+
 class _NewPassState extends State<NewPass> {
   GlobalKey<FormState> loginKey2 = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ResetPassCubit, ResetPassState>(
       listener: (context, state) {
-        if (state is LoadingResetAuth ) {
+        if (state is LoadingResetAuth) {
           EasyLoading.show(status: 'loading...');
         } else if (state is LoadedResetAuth) {
           EasyLoading.dismiss();
@@ -52,7 +54,7 @@ class _NewPassState extends State<NewPass> {
               children: [
                 Padding(
                   padding:
-                  EdgeInsets.symmetric(vertical: getSize(context) / 22),
+                      EdgeInsets.symmetric(vertical: getSize(context) / 22),
                   child: Image.asset(
                     ImageAssets.appIconImage,
                     width: getSize(context) / 2.5,
@@ -74,7 +76,7 @@ class _NewPassState extends State<NewPass> {
                 CustomTextField(
                   isPass: true,
                   onPressed: () {
-                     cubit.toggleConfirmPassword();
+                    cubit.toggleConfirmPassword();
                   },
                   obscureText: cubit.isPassword,
                   controller: cubit.passwprdConfirmController,
@@ -86,20 +88,19 @@ class _NewPassState extends State<NewPass> {
                 SizedBox(height: getSize(context) / 12),
                 GestureDetector(
                   onTap: () {
-
-                      print("screen");
-cubit.resetAuth(context);
-
+                    print("screen");
+                    cubit.resetAuth(context);
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: getSize(context) / 22),
+                    margin:
+                        EdgeInsets.symmetric(horizontal: getSize(context) / 22),
                     alignment: Alignment.center,
                     padding: EdgeInsets.symmetric(
                         horizontal: getSize(context) / 22, vertical: 5),
                     decoration: BoxDecoration(
                         color: AppColors.primary,
                         borderRadius:
-                        BorderRadius.circular(getSize(context) / 12)),
+                            BorderRadius.circular(getSize(context) / 12)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2.0),
                       child: Text(

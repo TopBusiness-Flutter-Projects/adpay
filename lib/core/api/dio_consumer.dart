@@ -39,7 +39,8 @@ class DioConsumer implements BaseApiConsumer {
   }
 
   @override
-  Future<dynamic> get(String path, {Map<String, dynamic>? queryParameters, Options? options}) async {
+  Future<dynamic> get(String path,
+      {Map<String, dynamic>? queryParameters, Options? options}) async {
     try {
       final response = await client.get(
         path,
@@ -53,7 +54,11 @@ class DioConsumer implements BaseApiConsumer {
   }
 
   @override
-  Future<dynamic> post(String path, {Map<String, dynamic>? body, bool formDataIsEnabled = false, Map<String, dynamic>? queryParameters, Options? options}) async {
+  Future<dynamic> post(String path,
+      {Map<String, dynamic>? body,
+      bool formDataIsEnabled = false,
+      Map<String, dynamic>? queryParameters,
+      Options? options}) async {
     try {
       final response = await client.post(
         path,
@@ -68,7 +73,10 @@ class DioConsumer implements BaseApiConsumer {
   }
 
   @override
-  Future<dynamic> put(String path, {Map<String, dynamic>? body, Map<String, dynamic>? queryParameters, Options? options}) async {
+  Future<dynamic> put(String path,
+      {Map<String, dynamic>? body,
+      Map<String, dynamic>? queryParameters,
+      Options? options}) async {
     try {
       final response = await client.put(
         path,
@@ -115,7 +123,11 @@ class DioConsumer implements BaseApiConsumer {
   }
 
   @override
-  Future<dynamic> newPost(String path, {bool formDataIsEnabled = false, Map<String, dynamic>? body, Map<String, dynamic>? queryParameters, Options? options}) async {
+  Future<dynamic> newPost(String path,
+      {bool formDataIsEnabled = false,
+      Map<String, dynamic>? body,
+      Map<String, dynamic>? queryParameters,
+      Options? options}) async {
     try {
       final response = await client.post(
         path,
@@ -130,7 +142,11 @@ class DioConsumer implements BaseApiConsumer {
   }
 
   @override
-  Future<dynamic> delete(String path, {bool formDataIsEnabled = false, Map<String, dynamic>? body, Map<String, dynamic>? queryParameters, Options? options}) async {
+  Future<dynamic> delete(String path,
+      {bool formDataIsEnabled = false,
+      Map<String, dynamic>? body,
+      Map<String, dynamic>? queryParameters,
+      Options? options}) async {
     try {
       final response = await client.delete(
         path,

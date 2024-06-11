@@ -1,26 +1,32 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:adpay/core/utils/get_size.dart';
+
 import 'package:flutter/material.dart%20';
 
 class MenueWidget extends StatelessWidget {
-   MenueWidget({super.key, required this.text,required this.path});
-String? text;
-String? path;
+  MenueWidget({super.key, required this.text, required this.path});
+  String? text;
+  String? path;
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
         Row(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Image.asset('${path}'),
+              child: Image.asset(
+                '${path}',
+                width: getSize(context) / 12,
+                height: getSize(context) / 12,
+              ),
             ),
             Text("${text}"),
             Spacer(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Image.asset("assets/images/arrow.png"),
+              child: Image.asset(
+                "assets/images/arrow.png",
+              ),
             )
           ],
         ),

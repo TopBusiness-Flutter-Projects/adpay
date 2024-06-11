@@ -1,6 +1,5 @@
 import 'package:adpay/core/remote/service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/models/Home_models.dart';
 import '../../../../core/models/login_model.dart';
@@ -8,7 +7,9 @@ import '../../../../core/preferences/preferences.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit(this.api) : super(HomeInitial());
+  HomeCubit(this.api) : super(HomeInitial()){
+    getUserModel();
+    }
   ServiceApi api;
   static HomeCubit get(context) => BlocProvider.of(context);
   LoginModel? userData;
