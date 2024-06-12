@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:adpay/core/models/login_model.dart';
 import 'package:adpay/core/utils/app_colors.dart';
 import 'package:adpay/features/home_screen/menue/screens/widgets/menue_widget.dart';
 import 'package:adpay/features/home_screen_provider/main_screen/cubit/state.dart';
@@ -106,7 +105,7 @@ class _MenueScreenState extends State<MenueScreen> {
                 ? Container()
                 : InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, Routes.addNewProductScreen);
+                      Navigator.pushNamed(context, Routes.addNewAdsScreen);
                     },
                     child: MenueWidget(
                         text: 'add_ads'.tr(), path: 'assets/images/ads.png')),

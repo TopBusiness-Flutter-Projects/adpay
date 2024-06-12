@@ -12,7 +12,7 @@ class SubCatogreyModel {
   factory SubCatogreyModel.fromJson(Map<String, dynamic> json) {
     var dataList = json['data'] as List;
     List<SubCategory> subCategoriesList =
-    dataList.map((item) => SubCategory.fromJson(item)).toList();
+        dataList.map((item) => SubCategory.fromJson(item)).toList();
 
     return SubCatogreyModel(
       data: subCategoriesList,
@@ -23,14 +23,14 @@ class SubCatogreyModel {
 }
 
 class SubCategory {
-   int ?id;
-   String? titleAr;
-   String? titleEn;
+  int? id;
+  String? titleAr;
+  String? titleEn;
 
   SubCategory({
-     this.id,
-     this.titleAr,
-     this.titleEn,
+    this.id,
+    this.titleAr,
+    this.titleEn,
   });
 
   factory SubCategory.fromJson(Map<String, dynamic> json) {

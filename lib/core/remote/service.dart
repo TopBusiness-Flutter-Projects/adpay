@@ -15,7 +15,9 @@ import '../error/exceptions.dart';
 import '../error/failures.dart';
 import '../models/Home_models.dart';
 import '../models/add_harag_model.dart';
+import '../models/add_new_product.dart';
 import '../models/addadressmodel.dart';
+import '../models/ads_packages_model.dart';
 import '../models/ads_vendor_model.dart';
 import '../models/adsence_Model.dart';
 import '../models/catogrie_model.dart';
@@ -1186,12 +1188,99 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
+  //! add new Product
+  Future<Either<Failure, AddNewProductModel>> addNewProduct({
+    required List<File> images,
+    required String title,
+    required String describtion,
+    required String price,
+    required String shopCatId,
+    required String shopSubCat,
+    required String stock,
+    String discount = '0',
+    String type = 'new',
+  }) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      // var formData = FormData();
+      // for (int i = 0; i < images.length; i++) {
+      //   formData.files.add(MapEntry(
+      //     'images[$i]',
+      //     await MultipartFile.fromFile(images[i].path,
+      //         filename: images[i].path.split('/').last),
+      //   ));
+      // }
+
+      final response = await dio.post(EndPoints.vendorAddProduct,
+          formDataIsEnabled: true,
+          body: {
+            "title_ar": title,
+            "title_en": title,
+            "description_ar": describtion,
+            "description_en": describtion,
+            "price": price,
+            "discount": discount,
+            "stock": stock,
+            "type": type,
+            "shop_cat_id": shopCatId,
+            "shop_sub_cat": shopSubCat,
+            for (int i = 0; i < images.length; i++)
+              'images[$i]': await MultipartFile.fromFile(images[i].path,
+                  filename: images[i].path.split('/').last),
+          },
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(AddNewProductModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, GetAdPackagesModel>> getAdPackagesModel() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(EndPoints.getAdPackages,
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(GetAdPackagesModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, AddNewProductModel>> addNewAds({
+    required File image,
+    required String title,
+    required String describtion,
+    required String video,
+    String countViews = '0',
+    String packageId = '0',
+  }) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.post(EndPoints.addAdvertise,
+          formDataIsEnabled: true,
+          body: {
+            "title_ar": title,
+            "title_en": title,
+            "description_ar": describtion,
+            "description_en": describtion,
+            "count_views": countViews,
+            "video": video,
+            "package_id": packageId,
+            'image': await MultipartFile.fromFile(image.path,
+                filename: image.path.split('/').last),
+          },
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(AddNewProductModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 //   Future<Either<Failure, UpdatedModel>> editService(
 //       int catId,ServiceToUpdate serviceToUpdate) async {
 //     LoginModel loginModel = await Preferences.instance.getUserModel();
 //
 //     try {
-//
 //       List<MultipartFile> images = [];
 //       for (int i = 0; i < serviceToUpdate.images!.length; i++) {
 //

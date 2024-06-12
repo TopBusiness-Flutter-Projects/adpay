@@ -181,7 +181,7 @@ class Products {
   int? shopCatId;
   String? shopSubCat;
   int? stock;
-  Props? props;
+  // Props? props;
   int? status;
   String? createdAt;
   String? updatedAt;
@@ -200,7 +200,7 @@ class Products {
       this.shopCatId,
       this.shopSubCat,
       this.stock,
-      this.props,
+      // this.props,
       this.status,
       this.createdAt,
       this.updatedAt});
@@ -219,7 +219,7 @@ class Products {
     shopCatId = json["shop_cat_id"];
     shopSubCat = json["shop_sub_cat"];
     stock = json["stock"];
-    props = json["props"] == null ? null : Props.fromJson(json["props"]);
+    // props = json["props"] == null ? null : Props.fromJson(json["props"]);
     status = json["status"];
     createdAt = json["created_at"];
     updatedAt = json["updated_at"];
@@ -242,9 +242,9 @@ class Products {
     _data["shop_cat_id"] = shopCatId;
     _data["shop_sub_cat"] = shopSubCat;
     _data["stock"] = stock;
-    if (props != null) {
-      _data["props"] = props?.toJson();
-    }
+    // if (props != null) {
+    //   _data["props"] = props?.toJson();
+    // }
     _data["status"] = status;
     _data["created_at"] = createdAt;
     _data["updated_at"] = updatedAt;
@@ -252,70 +252,70 @@ class Products {
   }
 }
 
-class Props {
-  String? color;
-  String? size;
-  String? material;
-  String? condition;
-  String? warranty;
-  String? delivery;
-  String? freeShipping;
-  String? freeReturn;
-  String? freeInstallation;
-  String? freeExchange;
-  String? freeCancellation;
-  String? freeGift;
-  String? freeSupport;
+// class Props {
+//   String? color;
+//   String? size;
+//   String? material;
+//   String? condition;
+//   String? warranty;
+//   String? delivery;
+//   String? freeShipping;
+//   String? freeReturn;
+//   String? freeInstallation;
+//   String? freeExchange;
+//   String? freeCancellation;
+//   String? freeGift;
+//   String? freeSupport;
 
-  Props(
-      {this.color,
-      this.size,
-      this.material,
-      this.condition,
-      this.warranty,
-      this.delivery,
-      this.freeShipping,
-      this.freeReturn,
-      this.freeInstallation,
-      this.freeExchange,
-      this.freeCancellation,
-      this.freeGift,
-      this.freeSupport});
+//   Props(
+//       {this.color,
+//       this.size,
+//       this.material,
+//       this.condition,
+//       this.warranty,
+//       this.delivery,
+//       this.freeShipping,
+//       this.freeReturn,
+//       this.freeInstallation,
+//       this.freeExchange,
+//       this.freeCancellation,
+//       this.freeGift,
+//       this.freeSupport});
 
-  Props.fromJson(Map<String, dynamic> json) {
-    color = json["color"];
-    size = json["size"];
-    material = json["material"];
-    condition = json["condition"];
-    warranty = json["warranty"];
-    delivery = json["delivery"];
-    freeShipping = json["free_shipping"];
-    freeReturn = json["free_return"];
-    freeInstallation = json["free_installation"];
-    freeExchange = json["free_exchange"];
-    freeCancellation = json["free_cancellation"];
-    freeGift = json["free_gift"];
-    freeSupport = json["free_support"];
-  }
+//   Props.fromJson(Map<String, dynamic> json) {
+//     color = json["color"];
+//     size = json["size"];
+//     material = json["material"];
+//     condition = json["condition"];
+//     warranty = json["warranty"];
+//     delivery = json["delivery"];
+//     freeShipping = json["free_shipping"];
+//     freeReturn = json["free_return"];
+//     freeInstallation = json["free_installation"];
+//     freeExchange = json["free_exchange"];
+//     freeCancellation = json["free_cancellation"];
+//     freeGift = json["free_gift"];
+//     freeSupport = json["free_support"];
+//   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["color"] = color;
-    _data["size"] = size;
-    _data["material"] = material;
-    _data["condition"] = condition;
-    _data["warranty"] = warranty;
-    _data["delivery"] = delivery;
-    _data["free_shipping"] = freeShipping;
-    _data["free_return"] = freeReturn;
-    _data["free_installation"] = freeInstallation;
-    _data["free_exchange"] = freeExchange;
-    _data["free_cancellation"] = freeCancellation;
-    _data["free_gift"] = freeGift;
-    _data["free_support"] = freeSupport;
-    return _data;
-  }
-}
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> _data = <String, dynamic>{};
+//     _data["color"] = color;
+//     _data["size"] = size;
+//     _data["material"] = material;
+//     _data["condition"] = condition;
+//     _data["warranty"] = warranty;
+//     _data["delivery"] = delivery;
+//     _data["free_shipping"] = freeShipping;
+//     _data["free_return"] = freeReturn;
+//     _data["free_installation"] = freeInstallation;
+//     _data["free_exchange"] = freeExchange;
+//     _data["free_cancellation"] = freeCancellation;
+//     _data["free_gift"] = freeGift;
+//     _data["free_support"] = freeSupport;
+//     return _data;
+//   }
+// }
 
 class Auctions {
   int? id;

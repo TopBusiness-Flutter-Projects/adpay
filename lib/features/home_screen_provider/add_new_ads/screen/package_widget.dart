@@ -1,49 +1,52 @@
+import 'package:adpay/core/utils/app_strings.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/models/shopcatogriesmodel.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/get_size.dart';
-import '../../cubit/add_harag_cubit.dart';
+import '../../../../core/models/ads_packages_model.dart';
+import '../cubit/cubit.dart';
+import '../cubit/state.dart';
 
-class MainCatogreyWidget extends StatefulWidget {
-  const MainCatogreyWidget({super.key});
+class AdPackageWidget extends StatefulWidget {
+  const AdPackageWidget({super.key});
 
   @override
-  State<MainCatogreyWidget> createState() => _MainCatogreyWidgetState();
+  State<AdPackageWidget> createState() => _AdPackageWidgetState();
 }
 
-class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
+class _AdPackageWidgetState extends State<AdPackageWidget> {
   @override
   void initState() {
+    context.read<AddNewAdsCubit>().getAdPackagesModel();
+
     super.initState();
-    context.read<AddHaragCubit>().getMainCatogrey(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddHaragCubit, AddHaragState>(
+    return BlocBuilder<AddNewAdsCubit, AddNewAdsState>(
       builder: (context, state) {
-        AddHaragCubit cubit = context.read<AddHaragCubit>();
+        AddNewAdsCubit cubit = context.read<AddNewAdsCubit>();
 
-        if (state is LoadingGetCatogreyModel) {
+        if (state is LoadingGetAdPackages) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is ErrorGetCatogreyModel) {
+        } else if (state is ErrorGetAdPackages) {
           return Center(
-            child: Text('Failed to load categories'.tr()),
+            child: Container(),
           );
         } else {
-          var categories = cubit.maincatogreyModel?.data;
+          var categories = cubit.adPackagesModel!.data;
           return Column(
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: getSize(context) / 44,
                 ),
-                child: DropdownButtonFormField2<Category>(
+                child: DropdownButtonFormField2<GetAdPackagesModelData>(
                   isExpanded: true,
                   decoration: InputDecoration(
                     filled: true,
@@ -69,7 +72,7 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
                         Radius.circular(getSize(context) / 44),
                       ),
                     ),
-                    hintText: 'please_enter_data'.tr() + 'Category'.tr(),
+                    hintText: 'package'.tr(),
                     hintStyle: TextStyle(
                       color: AppColors.blackLite,
                       fontFamily: 'tahoma',
@@ -77,39 +80,47 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
                     ),
                   ),
                   hint: Text(
-                    'Category'.tr(),
+                    'package'.tr(),
                     style: TextStyle(fontSize: getSize(context) / 24),
                   ),
                   // value: cubit.currentMainCategories,
                   items: categories?.map((item) {
-                    return DropdownMenuItem<Category>(
+                    return DropdownMenuItem<GetAdPackagesModelData>(
                       value: item,
-                      child: Text(
-                        EasyLocalization.of(context)!.locale.languageCode ==
-                                'ar'
-                            ? (item.titleAr)
-                            : (item.titleEn),
-                        style: TextStyle(
-                          fontSize: getSize(context) / 24,
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            fit: FlexFit.tight,
+                            child: Text(
+                              "${item.count.toString()} ${'watch'.tr()}",
+                              style: TextStyle(
+                                fontSize: getSize(context) / 24,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "${item.price.toString()} ${AppStrings.currency}",
+                            style: TextStyle(
+                              fontSize: getSize(context) / 24,
+                            ),
+                          ),
+                        ],
                       ),
                     );
                   }).toList(),
                   validator: (value) {
                     if (value == null) {
-                      return 'please_enter_data'.tr();
+                      return 'please_enter_data'.tr() + 'package'.tr();
                     }
                     return null;
                   },
                   onChanged: (value) {
-                    cubit.onChangeMain(value);
-                    // setState(() {
-                    //   // context.read<AddHaragCubit>().subcatogrey(id:state.categoriesModel.data![0].id.toString()??"");
-                    // });
+                    cubit.onChangePackage(value);
                   },
                   onSaved: (value) {
                     setState(() {
-                      // cubit.changeNationality(value);
+                      cubit.onChangePackage(value);
                     });
                   },
                   buttonStyleData: const ButtonStyleData(

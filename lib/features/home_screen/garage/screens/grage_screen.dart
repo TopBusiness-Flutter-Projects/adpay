@@ -1,7 +1,6 @@
 import 'package:adpay/core/utils/get_size.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart%20';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/styles.dart';
@@ -9,8 +8,6 @@ import '../../component/catogreyCard.dart';
 import '../../component/custom_grage_widget.dart';
 import '../../main_screen/cubit/home_cubit.dart';
 import '../cubit/grage_cubit.dart';
-
-
 
 class GrageScreen extends StatefulWidget {
   GrageScreen({super.key});
@@ -69,8 +66,7 @@ class _GrageScreenState extends State<GrageScreen> {
                               child: Text("no_data".tr())),
                         )
                       : Flexible(
-                          child:
-                          GridView.builder(
+                          child: GridView.builder(
                             shrinkWrap: true,
                             padding: EdgeInsets.all(16),
                             gridDelegate:
@@ -81,7 +77,12 @@ class _GrageScreenState extends State<GrageScreen> {
                             ),
                             itemCount: cubit.grageModel?.data.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return CustomGrageWidget(auctions:context.read<HomeCubit>().homeModel?.data?.auctions?[index]);
+                              return CustomGrageWidget(
+                                  auctions: context
+                                      .read<HomeCubit>()
+                                      .homeModel
+                                      ?.data
+                                      ?.auctions?[index]);
                             },
                           ),
                         )
