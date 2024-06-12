@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../core/models/add_harag_model.dart';
 import '../../../../core/models/shopcatogriesmodel.dart';
@@ -16,19 +15,16 @@ part 'add_harag_state.dart';
 class AddHaragCubit extends Cubit<AddHaragState> {
   AddHaragCubit(this.api) : super(AddHaragInitial());
   ServiceApi api;
-  // static AddHaragCubit get(context) => BlocProvider.of(context);
-  TextEditingController catIdController = TextEditingController();
-  TextEditingController titleController = TextEditingController();
+
   TextEditingController discriptoionController = TextEditingController();
-  TextEditingController useridController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController nameController = TextEditingController();
-  TextEditingController SubcatIdController = TextEditingController();
   File? selectedImage;
+  SubCatogreyModel? subCatogreyModel;
+
   GetShopCategoriesModel? maincatogreyModel;
   File? logoImage;
   File? bannerImage;
-  SubCatogreyModel? subCatogreyModel;
   SubCatogreyModel? subcategoriesModel;
   Future pickLogoImage({required String imageName}) async {
     emit(LoadinglogoNewImage());
@@ -56,13 +52,13 @@ class AddHaragCubit extends Cubit<AddHaragState> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     emit(LoadingHarag());
     final response = await api.AddHarag(
-        title_ar: nameController.text,
-        profileImage: selectedImage ?? File('00'),
-        description_ar: discriptoionController.text,
-        user_id: currentMainCategories?.id.toString()??"",
-        price: priceController.text,
-        cat_id: currentSubCategory?.id.toString()??"",
-        sub_cat_id: subcategoriesModel?.data[0].id.toString()??"",
+      title_ar: nameController.text,
+      profileImage: selectedImage ?? File('00'),
+      description_ar: discriptoionController.text,
+      user_id: currentMainCategories?.id.toString() ?? "",
+      price: priceController.text,
+      cat_id: currentSubCategory?.id.toString() ?? "",
+      sub_cat_id: subcategoriesModel?.data[0].id.toString() ?? "",
     );
     response.fold((l) {
       emit(ErrorHarag());
@@ -70,6 +66,11 @@ class AddHaragCubit extends Cubit<AddHaragState> {
       print("loaded");
       SharedPreferences prefs = await SharedPreferences.getInstance();
       successGetBar(r.msg);
+      Navigator.pop(context);
+      nameController.clear();
+      discriptoionController.clear();
+      priceController.clear();
+      selectedImage = null;
       emit(LoadedHarag(addharagModel: r));
     });
   }
@@ -85,10 +86,10 @@ class AddHaragCubit extends Cubit<AddHaragState> {
       maincatogreyModel = r;
       print("loaded");
       // currentMainCategories = r.data.first;
-      successGetBar(r.msg);
       emit(LoadedGetCatogreyModel(categoriesModel: r));
     });
   }
+
   Category? currentMainCategories;
 
   onChangeMain(Category? category) {
@@ -113,7 +114,6 @@ class AddHaragCubit extends Cubit<AddHaragState> {
     }, (r) async {
       subcategoriesModel = r;
       print("loaded");
-      successGetBar(r.msg);
       emit(LoadedSubCatogreyModel(subcategoriesModel: r));
     });
   }

@@ -1,17 +1,17 @@
-class ProductDetailsModel {
-  Product? data;
+class AddNewProductModel {
+  Data? data;
   String? msg;
   int? status;
 
-  ProductDetailsModel({
+  AddNewProductModel({
     this.data,
     this.msg,
     this.status,
   });
 
-  factory ProductDetailsModel.fromJson(Map<String, dynamic> json) =>
-      ProductDetailsModel(
-        data: json["data"] == null ? null : Product.fromJson(json["data"]),
+  factory AddNewProductModel.fromJson(Map<String, dynamic> json) =>
+      AddNewProductModel(
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
         msg: json["msg"],
         status: json["status"],
       );
@@ -23,24 +23,23 @@ class ProductDetailsModel {
       };
 }
 
-class Product {
+class Data {
   int? id;
   List<String>? images;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? price;
+  String? price;
   bool? isFav;
   int? rate;
-  int? discount;
+  String? discount;
   String? type;
   String? shopSubCat;
-  int? stock;
-  // Props? props;
+  String? stock;
   Vendor? vendor;
 
-  Product({
+  Data({
     this.id,
     this.images,
     this.titleAr,
@@ -54,11 +53,10 @@ class Product {
     this.type,
     this.shopSubCat,
     this.stock,
-    // this.props,
     this.vendor,
   });
 
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["id"],
         images: json["images"] == null
             ? []
@@ -74,7 +72,6 @@ class Product {
         type: json["type"],
         shopSubCat: json["shop_sub_cat"],
         stock: json["stock"],
-        // props: json["props"] == null ? null : Props.fromJson(json["props"]),
         vendor: json["vendor"] == null ? null : Vendor.fromJson(json["vendor"]),
       );
 
@@ -93,7 +90,6 @@ class Product {
         "type": type,
         "shop_sub_cat": shopSubCat,
         "stock": stock,
-        // "props": props?.toJson(),
         "vendor": vendor?.toJson(),
       };
 }
@@ -108,8 +104,8 @@ class Vendor {
   dynamic session;
   String? logo;
   String? banner;
-  String? titleAr;
-  String? titleEn;
+  String? storeName;
+  String? address;
   ShopCat? shopCat;
   List<String>? shopSubCat;
   String? token;
@@ -124,8 +120,8 @@ class Vendor {
     this.session,
     this.logo,
     this.banner,
-    this.titleAr,
-    this.titleEn,
+    this.storeName,
+    this.address,
     this.shopCat,
     this.shopSubCat,
     this.token,
@@ -141,8 +137,8 @@ class Vendor {
         session: json["session"],
         logo: json["logo"],
         banner: json["banner"],
-        titleAr: json["title_ar"],
-        titleEn: json["title_en"],
+        storeName: json["store_name"],
+        address: json["address"],
         shopCat: json["shop_cat"] == null
             ? null
             : ShopCat.fromJson(json["shop_cat"]),
@@ -162,8 +158,8 @@ class Vendor {
         "session": session,
         "logo": logo,
         "banner": banner,
-        "title_ar": titleAr,
-        "title_en": titleEn,
+        "store_name": storeName,
+        "address": address,
         "shop_cat": shopCat?.toJson(),
         "shop_sub_cat": shopSubCat == null
             ? []

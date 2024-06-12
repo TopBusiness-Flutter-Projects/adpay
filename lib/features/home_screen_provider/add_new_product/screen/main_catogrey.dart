@@ -1,3 +1,4 @@
+import 'package:adpay/features/home_screen_provider/add_new_product/cubit/state.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -5,27 +6,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/models/shopcatogriesmodel.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/get_size.dart';
-import '../../cubit/add_harag_cubit.dart';
+import '../cubit/cubit.dart';
 
-class MainCatogreyWidget extends StatefulWidget {
-  const MainCatogreyWidget({super.key});
+class MainCatogreyAddProductWidget extends StatefulWidget {
+  const MainCatogreyAddProductWidget({super.key});
 
   @override
-  State<MainCatogreyWidget> createState() => _MainCatogreyWidgetState();
+  State<MainCatogreyAddProductWidget> createState() =>
+      _MainCatogreyAddProductWidgetState();
 }
 
-class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
+class _MainCatogreyAddProductWidgetState
+    extends State<MainCatogreyAddProductWidget> {
   @override
   void initState() {
     super.initState();
-    context.read<AddHaragCubit>().getMainCatogrey(context);
+    context.read<AddNewProductCubit>().getMainCatogrey(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddHaragCubit, AddHaragState>(
+    return BlocBuilder<AddNewProductCubit, AddNewProductState>(
       builder: (context, state) {
-        AddHaragCubit cubit = context.read<AddHaragCubit>();
+        AddNewProductCubit cubit = context.read<AddNewProductCubit>();
 
         if (state is LoadingGetCatogreyModel) {
           return Center(
@@ -69,7 +72,7 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
                         Radius.circular(getSize(context) / 44),
                       ),
                     ),
-                    hintText: 'please_enter_data'.tr() + 'Category'.tr(),
+                    hintText: 'nationality_select'.tr(),
                     hintStyle: TextStyle(
                       color: AppColors.blackLite,
                       fontFamily: 'tahoma',
@@ -97,7 +100,7 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
                   }).toList(),
                   validator: (value) {
                     if (value == null) {
-                      return 'please_enter_data'.tr();
+                      return 'please_enter_data'.tr() + 'Category'.tr();
                     }
                     return null;
                   },

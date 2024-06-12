@@ -1,3 +1,4 @@
+import 'package:adpay/features/home_screen_provider/add_new_product/cubit/state.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -5,27 +6,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/models/shopcatogriesmodel.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/get_size.dart';
-import '../../cubit/add_harag_cubit.dart';
+import '../cubit/cubit.dart';
 
-class MainCatogreyWidget extends StatefulWidget {
-  const MainCatogreyWidget({super.key});
+class TypeCategoryAddProduct extends StatefulWidget {
+  const TypeCategoryAddProduct({super.key});
 
   @override
-  State<MainCatogreyWidget> createState() => _MainCatogreyWidgetState();
+  State<TypeCategoryAddProduct> createState() => _TypeCategoryAddProductState();
 }
 
-class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
+class _TypeCategoryAddProductState extends State<TypeCategoryAddProduct> {
   @override
   void initState() {
     super.initState();
-    context.read<AddHaragCubit>().getMainCatogrey(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddHaragCubit, AddHaragState>(
+    return BlocBuilder<AddNewProductCubit, AddNewProductState>(
       builder: (context, state) {
-        AddHaragCubit cubit = context.read<AddHaragCubit>();
+        AddNewProductCubit cubit = context.read<AddNewProductCubit>();
 
         if (state is LoadingGetCatogreyModel) {
           return Center(
@@ -36,14 +36,14 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
             child: Text('Failed to load categories'.tr()),
           );
         } else {
-          var categories = cubit.maincatogreyModel?.data;
+          var categories = cubit.typeList;
           return Column(
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: getSize(context) / 44,
                 ),
-                child: DropdownButtonFormField2<Category>(
+                child: DropdownButtonFormField2<String>(
                   isExpanded: true,
                   decoration: InputDecoration(
                     filled: true,
@@ -69,7 +69,7 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
                         Radius.circular(getSize(context) / 44),
                       ),
                     ),
-                    hintText: 'please_enter_data'.tr() + 'Category'.tr(),
+                    hintText: 'nationality_select'.tr(),
                     hintStyle: TextStyle(
                       color: AppColors.blackLite,
                       fontFamily: 'tahoma',
@@ -82,13 +82,10 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
                   ),
                   // value: cubit.currentMainCategories,
                   items: categories?.map((item) {
-                    return DropdownMenuItem<Category>(
+                    return DropdownMenuItem<String>(
                       value: item,
                       child: Text(
-                        EasyLocalization.of(context)!.locale.languageCode ==
-                                'ar'
-                            ? (item.titleAr)
-                            : (item.titleEn),
+                        item,
                         style: TextStyle(
                           fontSize: getSize(context) / 24,
                         ),
@@ -97,15 +94,12 @@ class _MainCatogreyWidgetState extends State<MainCatogreyWidget> {
                   }).toList(),
                   validator: (value) {
                     if (value == null) {
-                      return 'please_enter_data'.tr();
+                      return 'please_enter_data'.tr() + 'Category'.tr();
                     }
                     return null;
                   },
                   onChanged: (value) {
-                    cubit.onChangeMain(value);
-                    // setState(() {
-                    //   // context.read<AddHaragCubit>().subcatogrey(id:state.categoriesModel.data![0].id.toString()??"");
-                    // });
+                    cubit.onChangeType(value);
                   },
                   onSaved: (value) {
                     setState(() {

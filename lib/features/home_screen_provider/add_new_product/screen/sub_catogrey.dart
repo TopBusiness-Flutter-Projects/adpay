@@ -1,3 +1,4 @@
+import 'package:adpay/features/home_screen_provider/add_new_product/cubit/state.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -5,21 +6,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/models/subcatogrey_model.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/get_size.dart';
-import '../../cubit/add_harag_cubit.dart';
+import '../cubit/cubit.dart';
 
-class SubCatogreyWidget extends StatefulWidget {
-  const SubCatogreyWidget({super.key});
+class SubCatogreyAddProductWidget extends StatefulWidget {
+  const SubCatogreyAddProductWidget({super.key});
 
   @override
-  State<SubCatogreyWidget> createState() => _SubCatogreyWidgetState();
+  State<SubCatogreyAddProductWidget> createState() =>
+      _SubCatogreyAddProductWidgetState();
 }
 
-class _SubCatogreyWidgetState extends State<SubCatogreyWidget> {
+class _SubCatogreyAddProductWidgetState
+    extends State<SubCatogreyAddProductWidget> {
   void initState() {
     super.initState();
-    context.read<AddHaragCubit>().subcatogrey(
+    context.read<AddNewProductCubit>().subcatogrey(
         id: context
-                .read<AddHaragCubit>()
+                .read<AddNewProductCubit>()
                 .maincatogreyModel
                 ?.data[0]
                 .id
@@ -29,9 +32,9 @@ class _SubCatogreyWidgetState extends State<SubCatogreyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddHaragCubit, AddHaragState>(
+    return BlocBuilder<AddNewProductCubit, AddNewProductState>(
       builder: (context, state) {
-        AddHaragCubit cubit = context.read<AddHaragCubit>();
+        AddNewProductCubit cubit = context.read<AddNewProductCubit>();
 
         if (state is LoadingSubCatogreyModel) {
           return Center(
@@ -106,8 +109,9 @@ class _SubCatogreyWidgetState extends State<SubCatogreyWidget> {
                           if (value == null) {
                             return 'please_enter_data'.tr() +
                                 'Subcategory'.tr();
+                          } else {
+                            return null;
                           }
-                          return null;
                         },
                         onChanged: (value) {
                           cubit.onchangeSubCategory(value);

@@ -86,6 +86,7 @@
   "messages": "الرسائل",
   "addharag": "اضافة حراج",
   "Productimage": "صورة المنتج",
+  "Productimages": "صور المنتج",
   "productname": "اسم المنتج",
   "price": "السعر",
   "Category": "الفئة",
@@ -136,6 +137,7 @@
   "used_products": "المنتجات المستعملة",
   "new_products": "المنتجات الجديدة",
   "new": "جديد",
+  "used":"مستعمل",
   "pending": "ف الانتظار",
   "complete": "مكتملة",
   "choose_type": "اختر النوع",
@@ -146,6 +148,12 @@
   "enter_category": "ادخل التصنيف",
   "enter_your_verification_code": "ادخل رمز التحقق الخاص بك",
   "we_sent_an_code_to_verify_your_phone": "تم ارسال رمز التحقق الى رقم الجوال الخاص بك",
-  "add_product": "اضافة منتج",  "add_ads":"اضافة اعلان"
+  "add_product": "اضافة منتج",  "add_ads":"اضافة اعلان",
+  "please_enter_data":" من فضلك أدخل ",
+  "discount":"نسبة التخفيض",
+  "limit":"حدد المخزون",
+  "watch":"مشاهدة",
+  "package":"اختر الباقة",
+  "video_title":"ضع لينك الفيديو"
 
 }

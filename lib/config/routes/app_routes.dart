@@ -36,7 +36,7 @@ import '../../features/home_screen/product_details/screens/proudct_details_scree
 import '../../features/home_screen/products/screens/products-screen.dart';
 import '../../features/home_screen/shop/screens/theshop_screen.dart';
 import '../../features/home_screen/tager/screens/tager_screen.dart';
-import '../../features/home_screen_provider/add_new_ads/screen/add_new_products.dart';
+import '../../features/home_screen_provider/add_new_ads/screen/add_new_ad.dart';
 import '../../features/home_screen_provider/add_new_product/screen/add_new_products.dart';
 import '../../features/home_screen_provider/main_screen/screen/ads_vendor_screen.dart';
 import '../../features/home_screen_provider/main_screen/screen/main_screen_driver.dart';

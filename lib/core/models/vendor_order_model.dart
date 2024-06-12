@@ -189,7 +189,7 @@ class Product {
   int? shopCatId;
   String? shopSubCat;
   int? stock;
-  Props? props;
+  // Props? props;
   int? status;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -208,7 +208,7 @@ class Product {
     this.shopCatId,
     this.shopSubCat,
     this.stock,
-    this.props,
+    // this.props,
     this.status,
     this.createdAt,
     this.updatedAt,
@@ -230,7 +230,7 @@ class Product {
         shopCatId: json["shop_cat_id"],
         shopSubCat: json["shop_sub_cat"],
         stock: json["stock"],
-        props: json["props"] == null ? null : Props.fromJson(json["props"]),
+        // props: json["props"] == null ? null : Props.fromJson(json["props"]),
         status: json["status"],
         createdAt: json["created_at"] == null
             ? null
@@ -255,76 +255,76 @@ class Product {
         "shop_cat_id": shopCatId,
         "shop_sub_cat": shopSubCat,
         "stock": stock,
-        "props": props?.toJson(),
+        // "props": props?.toJson(),
         "status": status,
         "created_at": createdAt?.toIso8601String(),
         "updated_at": updatedAt?.toIso8601String(),
       };
 }
 
-class Props {
-  String? color;
-  String? size;
-  String? material;
-  String? condition;
-  String? warranty;
-  String? delivery;
-  String? freeShipping;
-  String? freeReturn;
-  String? freeInstallation;
-  String? freeExchange;
-  String? freeCancellation;
-  String? freeGift;
-  String? freeSupport;
+// class Props {
+//   String? color;
+//   String? size;
+//   String? material;
+//   String? condition;
+//   String? warranty;
+//   String? delivery;
+//   String? freeShipping;
+//   String? freeReturn;
+//   String? freeInstallation;
+//   String? freeExchange;
+//   String? freeCancellation;
+//   String? freeGift;
+//   String? freeSupport;
 
-  Props({
-    this.color,
-    this.size,
-    this.material,
-    this.condition,
-    this.warranty,
-    this.delivery,
-    this.freeShipping,
-    this.freeReturn,
-    this.freeInstallation,
-    this.freeExchange,
-    this.freeCancellation,
-    this.freeGift,
-    this.freeSupport,
-  });
+//   Props({
+//     this.color,
+//     this.size,
+//     this.material,
+//     this.condition,
+//     this.warranty,
+//     this.delivery,
+//     this.freeShipping,
+//     this.freeReturn,
+//     this.freeInstallation,
+//     this.freeExchange,
+//     this.freeCancellation,
+//     this.freeGift,
+//     this.freeSupport,
+//   });
 
-  factory Props.fromJson(Map<String, dynamic> json) => Props(
-        color: json["color"],
-        size: json["size"],
-        material: json["material"],
-        condition: json["condition"],
-        warranty: json["warranty"],
-        delivery: json["delivery"],
-        freeShipping: json["free_shipping"],
-        freeReturn: json["free_return"],
-        freeInstallation: json["free_installation"],
-        freeExchange: json["free_exchange"],
-        freeCancellation: json["free_cancellation"],
-        freeGift: json["free_gift"],
-        freeSupport: json["free_support"],
-      );
+//   factory Props.fromJson(Map<String, dynamic> json) => Props(
+//         color: json["color"],
+//         size: json["size"],
+//         material: json["material"],
+//         condition: json["condition"],
+//         warranty: json["warranty"],
+//         delivery: json["delivery"],
+//         freeShipping: json["free_shipping"],
+//         freeReturn: json["free_return"],
+//         freeInstallation: json["free_installation"],
+//         freeExchange: json["free_exchange"],
+//         freeCancellation: json["free_cancellation"],
+//         freeGift: json["free_gift"],
+//         freeSupport: json["free_support"],
+//       );
 
-  Map<String, dynamic> toJson() => {
-        "color": color,
-        "size": size,
-        "material": material,
-        "condition": condition,
-        "warranty": warranty,
-        "delivery": delivery,
-        "free_shipping": freeShipping,
-        "free_return": freeReturn,
-        "free_installation": freeInstallation,
-        "free_exchange": freeExchange,
-        "free_cancellation": freeCancellation,
-        "free_gift": freeGift,
-        "free_support": freeSupport,
-      };
-}
+//   Map<String, dynamic> toJson() => {
+//         "color": color,
+//         "size": size,
+//         "material": material,
+//         "condition": condition,
+//         "warranty": warranty,
+//         "delivery": delivery,
+//         "free_shipping": freeShipping,
+//         "free_return": freeReturn,
+//         "free_installation": freeInstallation,
+//         "free_exchange": freeExchange,
+//         "free_cancellation": freeCancellation,
+//         "free_gift": freeGift,
+//         "free_support": freeSupport,
+//       };
+// }
 
 class Vendor {
   int? id;
@@ -399,4 +399,3 @@ class Vendor {
         "token": token,
       };
 }
-
