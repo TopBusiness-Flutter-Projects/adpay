@@ -40,6 +40,7 @@ import '../../features/home_screen_provider/add_new_ads/screen/add_new_ad.dart';
 import '../../features/home_screen_provider/add_new_product/screen/add_new_products.dart';
 import '../../features/home_screen_provider/main_screen/screen/ads_vendor_screen.dart';
 import '../../features/home_screen_provider/main_screen/screen/main_screen_driver.dart';
+import '../../features/home_screen_provider/main_screen/screen/product_details_vendor.dart';
 import '../../features/home_screen_provider/main_screen/screen/total_products.dart';
 import '../../features/home_screen_provider/main_screen/screen/wallet_screen.dart';
 import '../../features/home_screen_provider/order_screen/screen/order_details.dart';
@@ -59,6 +60,8 @@ class Routes {
   static const String CategoriesRoute = '/categories'; // Change this line
   static const String ProductssRoute = '/products';
   static const String ProductsDetails = '/productsDetails'; // Change this line
+  static const String productDetailsVendorScreen =
+      '/productDetailsVendorScreen'; // Change this line
 
   static const String float = '/float'; // Change this line
 
@@ -373,6 +376,14 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: ProductDetailsScreen(id: id),
         );
+      case Routes.productDetailsVendorScreen:
+        String? id = settings.arguments as String?;
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: ProductDetailsVendorScreen(id: id),
+        );
       case Routes.gragedetails:
         String? id = settings.arguments as String?;
 
@@ -507,11 +518,12 @@ class AppRoutes {
           child: OTPVerifyPasswordScreen(),
         );
       case Routes.addNewProductScreen:
+        bool isUpdate = settings.arguments as bool;
         return PageTransition(
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: AddNewProductScreen(),
+          child: AddNewProductScreen(isUpdate: isUpdate),
         );
       case Routes.addNewAdsScreen:
         return PageTransition(

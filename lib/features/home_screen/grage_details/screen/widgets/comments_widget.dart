@@ -45,7 +45,7 @@ class CommentsWidget extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     child: Image.network(
-                      EndPoints.baseUrlImage + (comment.toString() ?? ''),
+   (comment.toString() ?? ''),
                       errorBuilder: (context, error, stackTrace) {
                         return Image.asset(
                           'assets/images/chair.jpg',

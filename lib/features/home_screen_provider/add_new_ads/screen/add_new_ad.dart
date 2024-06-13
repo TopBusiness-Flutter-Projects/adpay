@@ -167,7 +167,7 @@ class _AddNewAdsScreenState extends State<AddNewAdsScreen> {
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               if (cubit.selectedImage != null) {
-                                // cubit.addNewAd(context);
+                                cubit.addNewAd(context);
                               } else {
                                 Fluttertoast.showToast(
                                     msg: 'Productimage'.tr());

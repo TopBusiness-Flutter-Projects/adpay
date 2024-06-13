@@ -44,6 +44,7 @@ import '../models/order_details.dart';
 import '../models/product_details_model.dart';
 import '../models/products_model.dart';
 import '../models/reset_model.dart';
+import '../models/response_null_delete.dart';
 import '../models/send_message_model.dart';
 import '../models/shop_model.dart';
 import '../models/shopcatogriesmodel.dart';
@@ -974,6 +975,23 @@ class ServiceApi {
     }
   }
 
+  Future<Either<Failure, ProductDetailsModel>> productsDetailsVendor(
+      {String? id}) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.vendorProductDetails + '${id}',
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(ProductDetailsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
 //gragedetails
   Future<Either<Failure, GradeDetailsModel>> GrageDetails({String? id}) async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -1248,18 +1266,48 @@ class ServiceApi {
   }) async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
     try {
-      // var formData = FormData();
-      // for (int i = 0; i < images.length; i++) {
-      //   formData.files.add(MapEntry(
-      //     'images[$i]',
-      //     await MultipartFile.fromFile(images[i].path,
-      //         filename: images[i].path.split('/').last),
-      //   ));
-      // }
-
       final response = await dio.post(EndPoints.vendorAddProduct,
           formDataIsEnabled: true,
           body: {
+            "title_ar": title,
+            "title_en": title,
+            "description_ar": describtion,
+            "description_en": describtion,
+            "price": price,
+            "discount": discount,
+            "stock": stock,
+            "type": type,
+            "shop_cat_id": shopCatId,
+            "shop_sub_cat": shopSubCat,
+            for (int i = 0; i < images.length; i++)
+              'images[$i]': await MultipartFile.fromFile(images[i].path,
+                  filename: images[i].path.split('/').last),
+          },
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(AddNewProductModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, AddNewProductModel>> updateProduct({
+    required int productId,
+    required List<File> images,
+    required String title,
+    required String describtion,
+    required String price,
+    required String shopCatId,
+    required String shopSubCat,
+    required String stock,
+    String discount = '0',
+    String type = 'new',
+  }) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.post(EndPoints.vendorUpdateProduct,
+          formDataIsEnabled: true,
+          body: {
+            "product_id": productId,
             "title_ar": title,
             "title_en": title,
             "description_ar": describtion,
@@ -1287,6 +1335,20 @@ class ServiceApi {
       final response = await dio.get(EndPoints.getAdPackages,
           options: Options(headers: {'Authorization': loginModel.data!.token}));
       return Right(GetAdPackagesModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, ResponseNullModel>> vendorDeleteProduct(
+      {required int productId}) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.post(EndPoints.vendorDeleteProduct,
+          formDataIsEnabled: true,
+          body: {"product_id": productId},
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(ResponseNullModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
