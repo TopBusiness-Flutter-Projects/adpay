@@ -14,3 +14,12 @@ class LoadedProductsDEtails extends ProductsDetailsState{
 class LoadedFavorite extends ProductsDetailsState{
   LoadedFavorite();
 }
+//state
+class LoadingCart extends ProductsDetailsState {}
+
+class LoadedCart extends ProductsDetailsState {
+  final AddToCartModel addtocartModel;
+  LoadedCart({required this.addtocartModel});
+}
+
+class ErrorCart extends ProductsDetailsState {}

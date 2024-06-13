@@ -3,6 +3,7 @@ import 'package:adpay/core/utils/dialogs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../core/models/add_to_cart_model.dart';
 import '../../../../core/remote/service.dart';
 import '../../grage_details/cubit/grage_details_cubit.dart';
 part 'products_details_state.dart';
@@ -28,6 +29,7 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
   }
 
   //favourite
+
   Future<void> AddAndRemoveFromFavourite(
       {required BuildContext context,
       bool isAuction = false,
@@ -55,4 +57,20 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
       emit(LoadedFavorite());
     });
   }
+  //addcart
+  AddToCartModel? addtocartModel;
+  Future<void> addCart() async {
+    emit(LoadingCart());
+    final response = await api.addCart(product_id: productsModelDetails?.data?.id.toString()??"19", qty: '1');
+    response.fold((l) {
+      emit(ErrorCart());
+    }, (r) async {
+      print("sucess cubit");
+      successGetBar(r.msg);
+      addtocartModel = r;
+      print("loaded");
+      emit(LoadedCart(addtocartModel: r));
+    });
+  }
+
 }
