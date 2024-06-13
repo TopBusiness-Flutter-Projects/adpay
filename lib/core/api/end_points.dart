@@ -44,7 +44,9 @@ class EndPoints {
   static const String getMyProductsVendor = '${baseUrl}vendor/myProducts';
   static const String getMyAdvertiseVendor = '${baseUrl}vendor/myAdvertise';
 
-  static const String AddToCart = '${baseUrl}user/addToCart';
+  static const String addToCart = '${baseUrl}user/addToCart';
+
+  static const String getCart = '${baseUrl}user/getCart';
 
   static const String vendorRegister = '${baseUrl}vendor/register';
 
@@ -52,6 +54,8 @@ class EndPoints {
   static const String vendorUpdateProduct = '${baseUrl}vendor/updateProduct';
   static const String getAdPackages = '${baseUrl}vendor/getAdPackages';
   static const String addAdvertise = '${baseUrl}vendor/addAdvertise';
+
+
 
   // static const String citiesUrl = '${baseUrl}cities';
   // static const String servicesUrl = '${baseUrl}services/';

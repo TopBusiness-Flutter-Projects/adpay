@@ -31,7 +31,7 @@ import '../../features/home_screen/menue/screens/places/screens/places.dart';
 import '../../features/home_screen/menue/screens/pocket/pocket.dart';
 import '../../features/home_screen/notifications/screens/notification_screen.dart';
 import '../../features/home_screen/order_details/screens/order_details.dart';
-import '../../features/home_screen/presentation/salla.dart';
+import '../../features/home_screen/presentation/salla/presentation/salla.dart';
 import '../../features/home_screen/product_details/screens/proudct_details_screen.dart';
 import '../../features/home_screen/products/screens/products-screen.dart';
 import '../../features/home_screen/shop/screens/theshop_screen.dart';

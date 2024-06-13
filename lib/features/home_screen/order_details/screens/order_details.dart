@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/get_size.dart';
 import '../../../../core/utils/styles.dart';
-import '../../presentation/salla.dart';
+import '../../presentation/salla/presentation/salla.dart';
 import 'custom_cart_widget_details.dart';
 
 class OrderDetails extends StatelessWidget {

@@ -16,6 +16,7 @@ import '../error/failures.dart';
 import '../models/Home_models.dart';
 import '../models/add_harag_model.dart';
 import '../models/add_new_product.dart';
+import '../models/add_to_cart_model.dart';
 import '../models/addadressmodel.dart';
 import '../models/ads_packages_model.dart';
 import '../models/ads_vendor_model.dart';
@@ -26,6 +27,7 @@ import '../models/coins_model.dart';
 import '../models/contact_us_model.dart';
 import '../models/favourite_model.dart';
 import '../models/getCity_ byRegion_model.dart';
+import '../models/get_cart_model.dart';
 import '../models/get_myprofile_model.dart';
 import '../models/getaddress_model.dart';
 import '../models/getchat_room_byid.dart';
@@ -44,7 +46,6 @@ import '../models/products_model.dart';
 import '../models/reset_model.dart';
 import '../models/response_null_delete.dart';
 import '../models/send_message_model.dart';
-import '../models/shop_category_vendor_model.dart';
 import '../models/shop_model.dart';
 import '../models/shopcatogriesmodel.dart';
 import '../models/subcatogrey_model.dart';
@@ -144,7 +145,35 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+//addcart
+  Future<Either<Failure, AddToCartModel>> addCart({
+    required String product_id,
+    required String qty,
+  }) async {
+    LoginModel user = await Preferences.instance.getUserModel();
 
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.post(
+        EndPoints.addToCart,
+        body: {
+          "product_id": product_id,
+          "qty": qty,
+        },
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(AddToCartModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
   //shopcatogrey
   Future<Either<Failure, GetShopCategoriesModel>> getshopcatogrey() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -157,6 +186,22 @@ class ServiceApi {
         ),
       );
       return Right(GetShopCategoriesModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //getcart
+  Future<Either<Failure, GetCartModel>> getCart() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.getCart,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(GetCartModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
