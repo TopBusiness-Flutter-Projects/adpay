@@ -57,11 +57,14 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
       emit(LoadedFavorite());
     });
   }
+
   //addcart
   AddToCartModel? addtocartModel;
   Future<void> addCart() async {
     emit(LoadingCart());
-    final response = await api.addCart(product_id: productsModelDetails?.data?.id.toString()??"19", qty: '1');
+    final response = await api.addCart(
+        product_id: productsModelDetails?.data?.id.toString() ?? "19",
+        qty: '1');
     response.fold((l) {
       emit(ErrorCart());
     }, (r) async {
@@ -72,5 +75,4 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
       emit(LoadedCart(addtocartModel: r));
     });
   }
-
 }

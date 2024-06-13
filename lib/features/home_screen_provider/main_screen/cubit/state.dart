@@ -35,9 +35,15 @@ class LoadingGetAdsOfVendorState extends MainVendorState {}
 class LoadedGetAdsOfVendorState extends MainVendorState {}
 
 class ErrorGetAdsOfVendorState extends MainVendorState {}
+
 class LoadingProductsDetails extends MainVendorState {}
+
 class LoadedProductsDEtails extends MainVendorState {}
+
 class ErrorProductsDetails extends MainVendorState {}
+
 class LoadingDeleteProductsDetails extends MainVendorState {}
+
 class LoadedDeleteProductsDEtails extends MainVendorState {}
+
 class ErrorDeleteProductsDetails extends MainVendorState {}
