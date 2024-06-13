@@ -23,6 +23,7 @@ import 'features/home_screen/menue/screens/favourite/cubit/favourite_cubit.dart'
 import 'features/home_screen/menue/screens/mypoints/cubit/points_cubit.dart';
 import 'features/home_screen/menue/screens/places/cubit/places_cubit.dart';
 import 'features/home_screen/messgaes/cubit/messages_cubit.dart';
+import 'features/home_screen/presentation/salla/cubit/salla_cubit.dart';
 import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 
 import 'features/home_screen/products/cubit/products_cubit.dart';
@@ -74,6 +75,11 @@ Future<void> setup() async {
   );
   serviceLocator.registerFactory(
     () => EditProfileCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+        () => SallaCubit(
       serviceLocator(),
     ),
   );
