@@ -226,6 +226,22 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+//getorderdetails
+  Future<Either<Failure, GetCartModel>> getOrdersDetails() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.getorderDetails,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(GetCartModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 
   //getchatrooms
   Future<Either<Failure, GetChatRoomsModel>> getChatRooms() async {
