@@ -153,7 +153,8 @@
   "please_enter_data":" Please enter ",
   "discount":"discount percentage",
   "limit":"Select stock",  "watch":"Views",  "package":"choose package",
-  "video_title":"Video  Link",
+  "video_title":"Video  Link",  "new_orders": "New Orders",
+
   "ordercomplete": "Order Complete",
   "cancel": "Cancel",
   "total": "total"

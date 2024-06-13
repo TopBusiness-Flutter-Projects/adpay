@@ -28,6 +28,7 @@ import '../models/contact_us_model.dart';
 import '../models/favourite_model.dart';
 import '../models/getCity_ byRegion_model.dart';
 import '../models/get_cart_model.dart';
+import '../models/get_my_orders_model.dart';
 import '../models/get_myprofile_model.dart';
 import '../models/getaddress_model.dart';
 import '../models/getchat_room_byid.dart';
@@ -189,6 +190,25 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+  //getmyorderes
+  Future<Either<Failure, GetMyOrderModel>> getMyorders({
+    String ?text ='complete '
+}) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.getmyOrder +'?type=$text',
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(GetMyOrderModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
   //getcart
   Future<Either<Failure, GetCartModel>> getCart() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();

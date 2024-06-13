@@ -4,16 +4,19 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/routes/app_routes.dart';
+import '../../../../core/models/get_my_orders_model.dart';
 import '../../../../core/models/vendor_order_model.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/get_size.dart';
 
 class CustomOrderWidget extends StatelessWidget {
   CustomOrderWidget({
+     this.orderModel,
     this.item,
     this.onTap,
     super.key,
   });
+  OrderData ?orderModel;
   void Function()? onTap;
   VendorOrderData? item;
   @override

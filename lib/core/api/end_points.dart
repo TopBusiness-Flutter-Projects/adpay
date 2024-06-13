@@ -53,6 +53,8 @@ class EndPoints {
   static const String vendorAddProduct = '${baseUrl}vendor/addProduct';
   static const String getAdPackages = '${baseUrl}vendor/getAdPackages';
   static const String addAdvertise = '${baseUrl}vendor/addAdvertise';
+  // user/myOrders?type=complete
+  static const String getmyOrder = '${baseUrl}user/myOrders';
 
 
 
