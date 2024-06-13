@@ -155,10 +155,26 @@
   "limit":"Select stock",  "watch":"Views",  "package":"choose package",
   "video_title":"Video  Link",  "new_orders": "New Orders",
 
+  "add_product": "Add Product",
+  "add_ads": "Add Ads",
+  "please_enter_data": " Please enter ",
+  "discount": "discount percentage",
+  "limit": "Select stock",
+  "watch": "Views",
+  "package": "choose package",
+  "video_title": "Video  Link",
+  "no_orders": "No Orders",
+  "edit_product": "Update Product",
+  "delete_product": "Delete Product",
+  "add_product": "Add Product",
+  "add_ads": "Add Ads",
+  "please_enter_data": " Please enter ",
+  "discount": "discount percentage",
+  "limit": "Select stock",
+  "watch": "Views",
+  "package": "choose package",
+  "video_title": "Video  Link",
   "ordercomplete": "Order Complete",
   "cancel": "Cancel",
   "total": "total"
-
-
-
 }

@@ -198,6 +198,7 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
                         itemCount: cubit.allProductsModel?.data?.length,
                         itemBuilder: (context, index) {
                           return CustomProductWidget(
+                            isVendor: true,
                             product: cubit.allProductsModel?.data?[index],
                           );
                         },

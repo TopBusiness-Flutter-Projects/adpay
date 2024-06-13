@@ -70,7 +70,10 @@ class AddNewAdsCubit extends Cubit<AddNewAdsState> {
       emit(ErrorAddNewAd());
     }, (r) {
       Navigator.pop(context);
-
+      selectedImage = null;
+      nameController.clear();
+      discriptoionController.clear();
+      videoLinkController.clear();
       successGetBar(r.msg);
       emit(LoadedAddNewAd());
     });

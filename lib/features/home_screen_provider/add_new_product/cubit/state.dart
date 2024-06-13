@@ -36,6 +36,11 @@ class ONChangeMainCategory extends AddNewProductState {}
 class ONChangeSubMainCategory extends AddNewProductState {}
 
 class ONChangeType extends AddNewProductState {}
+
 class LoadingAddNewProduct extends AddNewProductState {}
+
 class LoadedAddNewProduct extends AddNewProductState {}
+
 class ErrorAddNewProduct extends AddNewProductState {}
+
+class ONUpdateProduct extends AddNewProductState {}

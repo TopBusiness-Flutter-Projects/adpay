@@ -173,7 +173,7 @@ class _AdsVendorScreenState extends State<AdsVendorScreen> {
                                                     BorderRadius.circular(
                                                         getSize(context) / 32)),
                                             child: Image.network(
-                                              EndPoints.baseUrlImage +
+                               
                                                   (ads?.image.toString() ?? ''),
                                               errorBuilder:
                                                   (context, error, stackTrace) {
@@ -219,7 +219,7 @@ class _AdsVendorScreenState extends State<AdsVendorScreen> {
                                                 ),
                                                 child: CircleAvatar(
                                                   backgroundImage: NetworkImage(
-                                                    EndPoints.baseUrlImage +
+                                            
                                                         (ads?.image
                                                                 .toString() ??
                                                             ''),
@@ -254,20 +254,43 @@ class _AdsVendorScreenState extends State<AdsVendorScreen> {
                                                                   24,
                                                               color: AppColors
                                                                   .secondPrimary)),
-                                                      // Text(
-                                                      //     (ads?.complete
-                                                      //             .toString() ??
-                                                      //         ''),
-                                                      //     maxLines: 1,
-                                                      //     style: Styles.style18.copyWith(
-                                                      //         fontWeight:
-                                                      //             FontWeight
-                                                      //                 .w700,
-                                                      //         fontSize: getSize(
-                                                      //                 context) /
-                                                      //             24,
-                                                      //         color: AppColors
-                                                      //             .secondPrimary)),
+                                                      (ads?.status == 0 &&
+                                                              ads?.complete ==
+                                                                  0)
+                                                          ? Container(
+                                                              child:
+                                                                  Image.asset(
+                                                                'assets/images/new_ads.png',
+                                                                width: getSize(
+                                                                        context) /
+                                                                    16,
+                                                              ),
+                                                            )
+                                                          : (ads?.status == 1 &&
+                                                                  ads?.complete ==
+                                                                      1)
+                                                              ? Container(
+                                                                  child: Image
+                                                                      .asset(
+                                                                    'assets/images/complete_ads.png',
+                                                                    width: getSize(
+                                                                            context) /
+                                                                        16,
+                                                                  ),
+                                                                )
+                                                              : (ads?.status ==
+                                                                          1 &&
+                                                                      ads?.complete ==
+                                                                          0)
+                                                                  ? Container(
+                                                                      child: Image
+                                                                          .asset(
+                                                                        'assets/images/pending_ads.png',
+                                                                        width: getSize(context) /
+                                                                            16,
+                                                                      ),
+                                                                    )
+                                                                  : Container()
                                                     ],
                                                   ),
                                                   Text(
@@ -294,15 +317,15 @@ class _AdsVendorScreenState extends State<AdsVendorScreen> {
                                                   ),
                                                 ],
                                               ),
-                                            )
+                                            ),
                                           ],
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 );
                               },
-                            ))
+                            )),
             ],
           ),
         );

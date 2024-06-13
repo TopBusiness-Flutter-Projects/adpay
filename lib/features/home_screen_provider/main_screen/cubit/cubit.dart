@@ -1,11 +1,14 @@
 import 'package:adpay/core/remote/service.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/models/ads_vendor_model.dart';
 import '../../../../core/models/home_vendor_model.dart';
 import '../../../../core/models/login_model.dart';
 import '../../../../core/models/my_wallet_vendor_model.dart';
+import '../../../../core/models/product_details_model.dart';
 import '../../../../core/models/products_model.dart';
 import '../../../../core/models/shop_category_vendor_model.dart';
 import '../../../../core/models/shopcatogriesmodel.dart';
@@ -123,6 +126,36 @@ class MainVendorCubit extends Cubit<MainVendorState> {
     }, (r) {
       adsVendorModel = r;
       emit(LoadedGetAdsOfVendorState());
+    });
+  }
+
+  ProductDetailsModel? productsModelDetails;
+  Future<void> getProductsDetils({String? id}) async {
+    emit(LoadingProductsDetails());
+    final response = await api.productsDetailsVendor(id: id);
+    response.fold((l) {
+      emit(ErrorProductsDetails());
+    }, (right) async {
+      print("sucess cubit");
+      productsModelDetails = right;
+
+      print("loaded");
+      emit(LoadedProductsDEtails());
+    });
+  }
+
+  Future<void> vendorDeleteProduct(
+      {required int id, required BuildContext context}) async {
+    emit(LoadingDeleteProductsDetails());
+    final response = await api.vendorDeleteProduct(productId: id);
+    response.fold((l) {
+      emit(ErrorDeleteProductsDetails());
+    }, (right) async {
+      print("sucess cubit");
+      Navigator.pop(context);
+
+      print("loaded");
+      emit(LoadedDeleteProductsDEtails());
     });
   }
 }

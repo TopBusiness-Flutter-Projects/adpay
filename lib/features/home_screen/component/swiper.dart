@@ -38,7 +38,7 @@ class CustomSwiper extends StatelessWidget {
                   duration: 600,
                   itemBuilder: (context, index) {
                     return Image.network(
-                      EndPoints.baseUrlImage +
+           
                           (cubit.homeModel?.data?.sliders?[index].image
                                   .toString() ??
                               ''),

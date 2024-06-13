@@ -14,8 +14,11 @@ import 'sub_catogrey.dart';
 import 'type_category.dart';
 
 class AddNewProductScreen extends StatefulWidget {
-  const AddNewProductScreen({super.key});
-
+  AddNewProductScreen({
+    super.key,
+    this.isUpdate = false,
+  });
+  bool isUpdate;
   @override
   State<AddNewProductScreen> createState() => _AddNewProductScreenState();
 }
@@ -94,8 +97,30 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                                           },
                                         ),
                                       )
-                                    : Image.asset(
-                                        "assets/images/uploadimages.png"),
+                                    : cubit.updatedimages.isNotEmpty
+                                        ? Container(
+                                            height: getSize(context) / 6,
+                                            child: ListView.builder(
+                                              scrollDirection: Axis.horizontal,
+                                              itemCount:
+                                                  cubit.updatedimages.length,
+                                              itemBuilder: (context, index) {
+                                                return Image.network(
+                                                  cubit.updatedimages[index],
+                                                  height: getSize(context) / 6,
+                                                  width: getSize(context) / 6,
+                                                  fit: BoxFit.cover,
+                                                  errorBuilder: (context, error,
+                                                      stackTrace) {
+                                                    return Image.asset(
+                                                        "assets/images/uploadimages.png");
+                                                  },
+                                                );
+                                              },
+                                            ),
+                                          )
+                                        : Image.asset(
+                                            "assets/images/uploadimages.png"),
                               ),
                             ),
                           ),
@@ -228,17 +253,18 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              if (cubit.selectedImages.isNotEmpty) {
-                                cubit.addNewProduct(context);
+                              if (cubit.selectedImages.isNotEmpty ||
+                                  cubit.updatedimages.isNotEmpty) {
+                                if (widget.isUpdate) {
+                                  cubit.updateProduct(context);
+                                } else {
+                                  cubit.addNewProduct(context);
+                                }
                               } else {
                                 Fluttertoast.showToast(
                                     msg: 'Productimages'.tr());
                               }
                             }
-                            // if (cubit.selectedImage != null) {
-                            //   cubit.addharag(context);
-                            // }
-                            // context.read<AddHaragCubit>().addharag(context);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.primary, // لون الزر
@@ -251,7 +277,9 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                                     ),
                                   )
                                 : Text(
-                                    "add".tr(),
+                                    widget.isUpdate
+                                        ? 'edit_product'.tr()
+                                        : "add".tr(),
                                     style: TextStyle(
                                       color: AppColors.white,
                                       fontSize: 16.sp,

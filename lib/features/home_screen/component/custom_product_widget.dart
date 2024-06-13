@@ -7,16 +7,26 @@ import '../../../../config/routes/app_routes.dart';
 import '../../../../core/widgets/network_image.dart';
 
 class CustomProductWidget extends StatelessWidget {
-  CustomProductWidget({super.key, required this.product});
+  CustomProductWidget({
+    super.key,
+    required this.product,
+    this.isVendor = false,
+  });
   Products? product;
+  bool isVendor;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, Routes.ProductsDetails,
-              arguments: product?.id.toString() ?? "1");
+          if (isVendor) {
+            Navigator.pushNamed(context, Routes.productDetailsVendorScreen,
+                arguments: product?.id.toString() ?? "1");
+          } else {
+            Navigator.pushNamed(context, Routes.ProductsDetails,
+                arguments: product?.id.toString() ?? "1");
+          }
         },
         child: Container(
           width: 150.w,
@@ -55,7 +65,7 @@ class CustomProductWidget extends StatelessWidget {
                   maxLines: 1,
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.bold,
                   ),
