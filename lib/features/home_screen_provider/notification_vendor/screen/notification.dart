@@ -85,8 +85,7 @@ class _NotificationScreenVendorState extends State<NotificationScreenVendor> {
                                   CircleAvatar(
                                     backgroundColor: AppColors.secondPrimary,
                                     backgroundImage: NetworkImage(
-                                      EndPoints.baseUrlImage +
-                                          (noti.logo ?? ''),
+                                      (noti.logo ?? ''),
                                     ),
                                   ),
                                   Flexible(

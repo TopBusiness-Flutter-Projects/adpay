@@ -45,7 +45,7 @@ class AdvertesmentWidet extends StatelessWidget {
                         borderRadius:
                             BorderRadius.circular(getSize(context) / 32)),
                     child: Image.network(
-                      EndPoints.baseUrlImage + (ads.image.toString() ?? ''),
+         (ads.image.toString() ?? ''),
                       errorBuilder: (context, error, stackTrace) {
                         return Image.asset(
                           'assets/images/chair.jpg',
@@ -75,7 +75,7 @@ class AdvertesmentWidet extends StatelessWidget {
                         ),
                       ),
                       child: Image.network(
-                        EndPoints.baseUrlImage + (ads.image.toString() ?? ''),
+        (ads.image.toString() ?? ''),
                         errorBuilder: (context, error, stackTrace) {
                           return Image.asset('assets/images/chair.jpg');
                         },

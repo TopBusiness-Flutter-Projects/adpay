@@ -46,7 +46,7 @@ class _OrderScreenVendorState extends State<OrderScreenVendor> {
                 )
               : cubit.vendorOrdersModel!.data!.isEmpty
                   ? Center(
-                      child: Text('no_notifications'.tr()),
+                      child: Text('no_orders'.tr()),
                     )
                   : RefreshIndicator(
                       onRefresh: () async {

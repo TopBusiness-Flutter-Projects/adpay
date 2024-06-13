@@ -49,6 +49,7 @@ class EndPoints {
   static const String vendorRegister = '${baseUrl}vendor/register';
 
   static const String vendorAddProduct = '${baseUrl}vendor/addProduct';
+  static const String vendorUpdateProduct = '${baseUrl}vendor/updateProduct';
   static const String getAdPackages = '${baseUrl}vendor/getAdPackages';
   static const String addAdvertise = '${baseUrl}vendor/addAdvertise';
 
@@ -81,4 +82,6 @@ class EndPoints {
   static const String getChatroomUrl = '${baseUrl}vendor/getChatRooms';
   static const String getroombyid = '${baseUrl}vendor/getRoom';
   static const String sendMessage = '${baseUrl}vendor/room/';
+  static const String vendorProductDetails = '${baseUrl}vendor/productDetails/';
+  static const String vendorDeleteProduct = '${baseUrl}vendor/deleteProduct';
 }

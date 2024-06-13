@@ -93,7 +93,7 @@ class ShopsCategory extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: Image.network(
-                        EndPoints.baseUrlImage +
+              
                             (cubit.shopModel?.data?[index].image.toString() ?? ''),
                         errorBuilder: (context, error, stackTrace) {
                           return Image.asset('assets/images/chair.jpg');

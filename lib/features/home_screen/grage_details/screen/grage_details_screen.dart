@@ -289,7 +289,7 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                                 ),
                                                 child: ClipRRect(
                                                     child: Image.network(
-                                                  EndPoints.baseUrlImage +
+                                             
                                                       (cubit.grageModelDetails
                                                               ?.id
                                                               ?.toString() ??
