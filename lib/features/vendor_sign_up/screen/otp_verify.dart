@@ -34,7 +34,8 @@ class _OTPVerifyRegisterScreenState extends State<OTPVerifyRegisterScreen> {
               textAlign: TextAlign.center,
               text: TextSpan(children: [
                 TextSpan(
-                    text: '${'we_sent_an_code_to_verify_your_phone'.tr()}(+2)',
+                    text:
+                        '${'we_sent_an_code_to_verify_your_phone'.tr()}(+966)',
                     style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: AppColors.blackColor,

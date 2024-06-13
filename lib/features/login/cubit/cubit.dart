@@ -149,7 +149,7 @@ class LoginCubit extends Cubit<LoginState> {
     //
     await _mAuth
         .verifyPhoneNumber(
-      phoneNumber: '+2' + phoneController.text,
+      phoneNumber: '+966' + phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) {
         print('=========================================');
         print("verificationId=>$verificationId");
