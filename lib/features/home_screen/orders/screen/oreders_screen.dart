@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart%20';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/styles.dart';
+import '../cubit/orders_cubit.dart';
 import '../widget/custom_order_widget.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -20,12 +20,29 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
+  void initState() {
+    super.initState();
+
+    // Use read method from context in initState
+
+     context.read<OrdersCubit>().GetOrders();
+  }
   bool? colors = true;
   bool colors2 = true;
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<OrdersCubit, OrdersState>(
+        builder: (context, state) {
+      var cubit = context.read<OrdersCubit>();
     return Scaffold(
-        body: ListView(children: [
+
+        body:
+        (state is OrdersLoading)
+            ? Center(
+          child: CircularProgressIndicator(),
+        )
+            :
+        Column(children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
@@ -38,16 +55,14 @@ class _OrderScreenState extends State<OrderScreen> {
           Expanded(
             child: InkWell(
               onTap: () {
-                setState(() {
-                  colors == true ? colors = false : colors = true;
-                });
-              },
+
+        cubit.onChangeUserOrder('complete');              },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
                 width: getSize(context) / 3,
                 decoration: BoxDecoration(
-                  color: colors == true
+                  color: cubit.currentUserOrder=='complete'
                       ? AppColors.primary
                       : AppColors.secondPrimary,
                   borderRadius: BorderRadius.circular(15),
@@ -71,24 +86,22 @@ class _OrderScreenState extends State<OrderScreen> {
           Expanded(
             child: InkWell(
               onTap: () {
-                setState(() {
-                  colors2 == true ? colors2 = false : colors2 = true;
-                });
+
+                cubit.onChangeUserOrder('new');
               },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
                 width: getSize(context) / 3,
                 decoration: BoxDecoration(
-                  color: colors2 == true
-                      ? AppColors.primary
+                  color:cubit.currentUserOrder=='new'                      ? AppColors.primary
                       : AppColors.secondPrimary,
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'complete_orders'.tr(),
+                    'new_orders'.tr(),
                     maxLines: 1,
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -103,17 +116,25 @@ class _OrderScreenState extends State<OrderScreen> {
           ),
         ],
       ),
-      Container(
-        //TODO: don't set height value nahel >> Please remove it  !
-        height: 3000.h,
-        child: ListView.builder(
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: CustomOrderWidget(),
-            );
-          },
-          itemCount: 3,
+      Flexible(
+        child: Container(
+          //TODO: don't set height value nahel >> Please remove it  !
+          // height: 3000.h,
+          child:( cubit.getMyOrderModel!.data!.isEmpty)?
+        
+              Center(
+                child:Text('no_data'.tr()),
+              )
+              : ListView.builder(
+            shrinkWrap: true,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: CustomOrderWidget( orderModel: cubit.getMyOrderModel!.data?[index],),
+              );
+            },
+            itemCount: cubit.getMyOrderModel!.data!.length
+          ),
         ),
       ),
       SizedBox(
@@ -121,4 +142,4 @@ class _OrderScreenState extends State<OrderScreen> {
       )
     ]));
   }
-}
+    );}}
