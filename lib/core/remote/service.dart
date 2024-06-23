@@ -30,6 +30,7 @@ import '../models/getCity_ byRegion_model.dart';
 import '../models/get_cart_model.dart';
 import '../models/get_my_orders_model.dart';
 import '../models/get_myprofile_model.dart';
+import '../models/get_order_details.dart';
 import '../models/getaddress_model.dart';
 import '../models/getchat_room_byid.dart';
 import '../models/getchat_rooms_model.dart';
@@ -227,17 +228,18 @@ class ServiceApi {
     }
   }
 //getorderdetails
-  Future<Either<Failure, GetCartModel>> getOrdersDetails() async {
+  Future<Either<Failure, GetOrderDetails>> getOrdersDetails({
+    int? intt
+}) async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
-
     try {
       final response = await dio.get(
-        EndPoints.getorderDetails,
+        EndPoints.getorderDetails+'?id=$intt',
         options: Options(
           headers: {'Authorization': loginModel.data!.token},
         ),
       );
-      return Right(GetCartModel.fromJson(response));
+      return Right(GetOrderDetails.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
