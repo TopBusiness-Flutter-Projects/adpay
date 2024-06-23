@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/remote/service.dart';
+import '../../../core/utils/app_strings.dart';
 import '../../../core/utils/dialogs.dart';
 part 'reset_pass_state.dart';
 
@@ -69,7 +70,7 @@ class ResetPassCubit extends Cubit<ResetPassState> {
     //
     await _mAuth
         .verifyPhoneNumber(
-      phoneNumber: '+966' + phoneController.text,
+      phoneNumber: AppStrings.phoneCode + phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) {
         print('=========================================');
         print("verificationId=>$verificationId");
