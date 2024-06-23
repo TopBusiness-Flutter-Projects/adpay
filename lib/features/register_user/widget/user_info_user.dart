@@ -134,7 +134,7 @@ class _UserInfoWidgetUserState extends State<UserInfoWidgetUser> {
                 ),
               ),
               child: Text(
-                'Createaccount'.tr(),
+                'createaccount'.tr(),
                 style: TextStyle(
                   fontSize: getSize(context) / 18,
                   color: AppColors.white,

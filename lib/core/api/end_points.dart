@@ -56,6 +56,8 @@ class EndPoints {
   static const String addAdvertise = '${baseUrl}vendor/addAdvertise';
   // user/myOrders?type=complete
   static const String getmyOrder = '${baseUrl}user/myOrders';
+  static const String getorderDetails = '${baseUrl}user/order/d';
+
 
 
 

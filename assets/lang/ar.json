@@ -159,5 +159,10 @@
   "new_orders": "الطلبات الجديده",
   "ordercomplete": "اكمال الطلب",
   "cancel": "الغاء",
+  "total": "total",
+  "createaccount": "انئاء حساب",
   "no_orders": "لا يوجد طلبات"
+
+
+
 }
