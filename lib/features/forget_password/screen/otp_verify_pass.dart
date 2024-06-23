@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 
 import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/app_strings.dart';
 import '../../../core/utils/get_size.dart';
 import '../cubit/reset_pass_cubit.dart';
 
@@ -34,7 +35,7 @@ class _OTPVerifyPasswordScreenState extends State<OTPVerifyPasswordScreen> {
               text: TextSpan(children: [
                 TextSpan(
                     text:
-                        '${'we_sent_an_code_to_verify_your_phone'.tr()}(+966)',
+                        '${'we_sent_an_code_to_verify_your_phone'.tr()}(${AppStrings.phoneCode})',
                     style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: AppColors.blackColor,
