@@ -146,6 +146,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
 //addcart
   Future<Either<Failure, AddToCartModel>> addCart({
     required String product_id,
@@ -175,6 +176,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
   //shopcatogrey
   Future<Either<Failure, GetShopCategoriesModel>> getshopcatogrey() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -191,15 +193,15 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
   //getmyorderes
-  Future<Either<Failure, GetMyOrderModel>> getMyorders({
-    String ?text ='complete '
-}) async {
+  Future<Either<Failure, GetMyOrderModel>> getMyorders(
+      {String? text = 'complete '}) async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
 
     try {
       final response = await dio.get(
-        EndPoints.getmyOrder +'?type=$text',
+        EndPoints.getmyOrder + '?type=$text',
         options: Options(
           headers: {'Authorization': loginModel.data!.token},
         ),

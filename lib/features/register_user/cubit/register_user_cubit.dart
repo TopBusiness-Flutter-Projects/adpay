@@ -77,8 +77,10 @@ class SignUpUserCubit extends Cubit<SignUpUserState> {
     var pref = await SharedPreferences.getInstance();
     emit(LoadingSignUpAuth());
     final response = await api.postRegister(
-      phone: passwprdController.text, profileImage:selectedImage! , phoneCode: phoneController.text, name: nameController.text,
-
+      phone: passwprdController.text,
+      profileImage: selectedImage!,
+      phoneCode: phoneController.text,
+      name: nameController.text,
     );
     //
     print(phoneController.text);

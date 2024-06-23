@@ -8,6 +8,7 @@ import 'package:adpay/features/login/cubit/state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../config/routes/app_routes.dart';
+import '../../../core/utils/app_strings.dart';
 import '../../../core/utils/dialogs.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -149,7 +150,7 @@ class LoginCubit extends Cubit<LoginState> {
     //
     await _mAuth
         .verifyPhoneNumber(
-      phoneNumber: '+966' + phoneController.text,
+      phoneNumber: AppStrings.phoneCode + phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) {
         print('=========================================');
         print("verificationId=>$verificationId");

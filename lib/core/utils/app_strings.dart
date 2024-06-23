@@ -19,7 +19,7 @@ class AppStrings {
   static const String arabicCode = 'ar';
   static const String locale = 'locale';
 
-  static const String phoneCode = '+20';
+  static const String phoneCode = '+2'; //+966
 
   static const String verificationTitle = 'verification_title_text';
   static const String verificationDesc = 'verification_desc_text';

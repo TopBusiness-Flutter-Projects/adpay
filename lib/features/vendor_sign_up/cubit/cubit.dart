@@ -14,6 +14,7 @@ import '../../../core/models/login_model.dart';
 import '../../../core/models/shop_category_vendor_model.dart';
 import '../../../core/models/shopcatogriesmodel.dart';
 import '../../../core/preferences/preferences.dart';
+import '../../../core/utils/app_strings.dart';
 import '../../../core/utils/dialogs.dart';
 
 class SignUpVendorCubit extends Cubit<SignUpVendorState> {
@@ -164,7 +165,7 @@ class SignUpVendorCubit extends Cubit<SignUpVendorState> {
     //
     await _mAuth
         .verifyPhoneNumber(
-      phoneNumber: '+966' + phoneController.text,
+      phoneNumber: AppStrings.phoneCode + phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) {
         print('=========================================');
         print("verificationId=>$verificationId");
