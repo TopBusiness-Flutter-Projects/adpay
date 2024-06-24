@@ -14,7 +14,6 @@ class OrdersCubit extends Cubit<OrdersState> {
     currentUserOrder = name;
     GetOrders();
     emit(OnChangeUserOrder());
-
   }
   static OrdersCubit get(context) => BlocProvider.of(context);
   Future<void> GetOrders() async {

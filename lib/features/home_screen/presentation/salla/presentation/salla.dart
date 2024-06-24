@@ -47,6 +47,7 @@ class _SallaScreenState extends State<SallaScreen> {
                           ),
                         ),
                         Flexible(
+                          fit:FlexFit.tight,
                           //main scrooll >>have
                           child: ListView.builder(
                             itemCount: cubit.cartModel?.data!.length,
@@ -77,7 +78,8 @@ class _SallaScreenState extends State<SallaScreen> {
                                         .copyWith(color: Colors.black),
                                   ),
                                   Text(
-                                   cubit.cartModel?.data![0].carts?[0].total.toString()??"",
+                                    "total",
+                                    // cubit.cartModel?.data![index].carts?[index].total.toString()??"",
                                     style: Styles.style16
                                         .copyWith(color: Colors.black),
                                   )
@@ -110,16 +112,13 @@ class _SallaScreenState extends State<SallaScreen> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: ElevatedButton(
                                           onPressed: () {
-                                            Navigator.pushNamed(
-                                              context,
-                                              Routes.completeorder,
-                                            );
+                                            cubit.onTapConfirm(context);
                                           },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: AppColors
                                                 .secondPrimary, // لون الزر
                                           ),
-                                          child: Text("اكمال الطلب",
+                                          child: Text("completeorder".tr(),
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 15.sp))),
@@ -144,7 +143,8 @@ class CustomCartWidget extends StatefulWidget {
     super.key,
     required this.model,
   });
-  GetCartModelData model;
+GetCartModelData model;
+
   @override
   State<CustomCartWidget> createState() => _CustomCartWidgetState();
 }
@@ -167,6 +167,8 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<SallaCubit>();
+
     return Stack(
       alignment: Alignment.topCenter,
       children: [
@@ -233,7 +235,7 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                                     ),
                                     Column(
                                       children: [
-                                        Text("تيشيرت رصاصي"),
+                                        Text(widget.model.carts?[index].name.toString()??""),
                                         // ElevatedButton(onPressed: (){}, child: Text("hi"))
                                         Container(
                                           height: 30.h,
@@ -268,22 +270,32 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                                               // ),
                                               InkWell(
                                                   onTap: () {
-                                                    setState(() {
-                                                      _counter++;
-                                                    });
+                                                    // setState(() {
+                                                    //   _counter++;
+                                                    // });
+                                                 cubit.increment(
+                                                   //  model:widget.model?.carts?[index]
+                                                   model:widget.model?.carts?[index]
+                                                 );
+                                                 //     .then((value) =>     cubit.getCart()
+                                                 // );
                                                   },
                                                   child: Image.asset(
                                                       "assets/images/add.png")),
                                               Text(
-                                                context.read<SallaCubit>().cartModel?.data![0].carts![0].qty.toString()??"",
+                                              widget.model.carts![index].qty.toString()??"",
                                                 style:
                                                     TextStyle(fontSize: 24.0),
                                               ),
                                               InkWell(
                                                   onTap: () {
-                                                    setState(() {
-                                                      _counter--;
-                                                    });
+                                                    // setState(() {
+                                                    //   _counter--;
+                                                    // });
+                                                    cubit.decrement(
+                                                      //  model:widget.model?.carts?[index]
+                                                        model:widget.model?.carts?[index]
+                                                    );
                                                   },
                                                   child: Image.asset(
                                                       "assets/images/minus.png")),
@@ -302,14 +314,19 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                                             style: Styles.style16,
                                           ),
                                         ),
-                                        Icon(Icons.delete_outline,
-                                            color: AppColors.primary)
+                                        InkWell(
+                                        onTap:(){
+                                     cubit.postDelete(product_id:widget.model.carts?[index].productId.toString() , user_id: widget.model.carts?[index].userId.toString());
+                                        },
+                                          child: Icon(Icons.delete_outline,
+                                              color: AppColors.primary),
+                                        )
                                       ],
                                     )
                                   ])),
                         );
                       },
-                      itemCount: context.read<SallaCubit>().cartModel?.data!.length,
+                      itemCount: widget.model.carts?.length,
                     ),
                   ),
                   Padding(
@@ -332,7 +349,8 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                     height: 10.h,
                   )
                 ],
-              )),
+              )
+          ),
         ),
         Positioned(
           top: 0,
@@ -355,18 +373,41 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'محلات كبدز',
+                    widget.model.vendor?.name.toString()??"",
                       style: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(width: 8.0),
+                    // CircleAvatar(
+                    //
+                    //   child: Image.network(
+                    //     (widget.model.vendor?.image
+                    //         .toString() ??
+                    //         ''),
+                    //     errorBuilder: (context, error, stackTrace) {
+                    //       return Image.asset('assets/images/logo.png',
+                    //         // width: 50.0,
+                    //         // height: 50.0,
+                    //       );
+                    //     },
+                    //
+                    //   ),
+                    // ),
                     CircleAvatar(
-                      child: Image.asset(
-                        'assets/images/chair.jpg', // Replace with your image asset path
-                        width: 50.0,
-                        height: 50.0,
+                      radius: 50, // You can adjust the radius as needed
+                      child: ClipOval(
+                        child: Image.network(
+                          widget.model.vendor?.image.toString() ?? '',
+                          fit: BoxFit.cover, // Ensures the image covers the CircleAvatar
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/images/logo.png',
+                              fit: BoxFit.cover,
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ],

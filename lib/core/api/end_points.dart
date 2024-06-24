@@ -56,8 +56,12 @@ class EndPoints {
   static const String addAdvertise = '${baseUrl}vendor/addAdvertise';
   // user/myOrders?type=complete
   static const String getmyOrder = '${baseUrl}user/myOrders';
-  static const String getorderDetails = '${baseUrl}user/order/d';
+  // static const String getorderDetails = '${baseUrl}user/order/d';
+  static const String confrimOrder = '${baseUrl}user/conformOrder';
 
+  static const String emptycard = '${baseUrl}user/emptyCard';
+
+  static const String deleteCard = '${baseUrl}user/deleteFromCart';
 
 
 
@@ -92,4 +96,7 @@ class EndPoints {
   static const String sendMessage = '${baseUrl}vendor/room/';
   static const String vendorProductDetails = '${baseUrl}vendor/productDetails/';
   static const String vendorDeleteProduct = '${baseUrl}vendor/deleteProduct';
+
+  static const String orderDetails = '${baseUrl}user/order/d/?id=';
+
 }

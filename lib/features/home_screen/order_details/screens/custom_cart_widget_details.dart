@@ -1,12 +1,15 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart%20';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/get_size.dart';
 import '../../../../core/utils/hex_color.dart';
 import '../../../../core/utils/styles.dart';
+import '../cubit/order_details_cubit.dart';
 class CustomCartWidgetdetails extends StatefulWidget {
    CustomCartWidgetdetails({super.key, required this.itemCount});
   int itemCount;
@@ -41,7 +44,8 @@ class _CustomCartWidgetdetailsState extends State<CustomCartWidgetdetails> {
                       blurRadius: 7, // Blur radius
                       offset: Offset(0, 2), // Shadow position
                     ),
-                  ]),
+                  ]
+              ),
               // didnt have scroll
               child: Column(
                 children: [
@@ -91,17 +95,25 @@ class _CustomCartWidgetdetailsState extends State<CustomCartWidgetdetails> {
                                       children: [
                                         Row(
                                           children: [
-                                            Text("تيشيرت رصاصي"),
+                                            Text(
+                                    (EasyLocalization.of(context)!
+                                        .locale
+                                        .languageCode ==
+                                        'ar')
+                            ? (context.read<OrderDetailsCubit>().getMyOrderModel?.data?.details?[index].product?.titleAr.toString()??"title ar")
+                            : (context.read<OrderDetailsCubit>().getMyOrderModel?.data?.details?[index].product?.titleEn.toString()??"title en")
+
+                                            ),
 SizedBox(width: 15.w,),
                                             Padding(
                                               padding: const EdgeInsets.all(8.0),
-                                              child: Text("200 ريال",style: Styles.style16,),
+                                              child: Text(context.read<OrderDetailsCubit>().getMyOrderModel?.data?.details?[index].product?.price?.toString()??"22",style: Styles.style16,),
                                             ),
                                           ],
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text(" عدد 2"),
+                                          child: Text(context.read<OrderDetailsCubit>().getMyOrderModel?.data?.details?[index].amount?.toString()??"22"),
                                         ),
                                       ],
                                     ),
@@ -119,8 +131,9 @@ SizedBox(width: 15.w,),
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("الاجمالي",style: Styles.style16.copyWith(color: Colors.black),),
-                        Text("900 ريال",style: Styles.style16.copyWith(color: Colors.black),)
-                      ],),
+                        Text(context.read<OrderDetailsCubit>().getMyOrderModel?.data?.total.toString()??"22",style: Styles.style16.copyWith(color: Colors.black),)
+                      ],
+                    ),
                   ),
                   SizedBox(height: 10.h,)
                 ],

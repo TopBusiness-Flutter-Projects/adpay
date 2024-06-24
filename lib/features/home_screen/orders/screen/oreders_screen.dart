@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/styles.dart';
 import '../cubit/orders_cubit.dart';
@@ -42,7 +43,8 @@ class _OrderScreenState extends State<OrderScreen> {
           child: CircularProgressIndicator(),
         )
             :
-        Column(children: [
+        Column(
+            children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
@@ -118,8 +120,6 @@ class _OrderScreenState extends State<OrderScreen> {
       ),
       Flexible(
         child: Container(
-          //TODO: don't set height value nahel >> Please remove it  !
-          // height: 3000.h,
           child:( cubit.getMyOrderModel!.data!.isEmpty)?
         
               Center(
@@ -130,7 +130,17 @@ class _OrderScreenState extends State<OrderScreen> {
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: const EdgeInsets.all(3.0),
-                child: CustomOrderWidget( orderModel: cubit.getMyOrderModel!.data?[index],),
+
+                child: CustomOrderWidget(
+                  orderModel: cubit.getMyOrderModel!.data?[index], onTap: () {
+
+
+                    print('...............${cubit.getMyOrderModel?.data?[index].id.toString()}');
+                  Navigator.pushNamed(
+                      context, Routes.orderDetails,
+                      arguments: cubit.getMyOrderModel?.data?[index].id.toString());
+                  //!20000000
+                },),
               );
             },
             itemCount: cubit.getMyOrderModel!.data!.length
