@@ -1,14 +1,12 @@
 // import 'package:http/http.dart' as http;
 
 import 'dart:io';
-
 import 'package:adpay/core/models/comment_model.dart';
 import 'package:adpay/core/models/get_favourite_model.dart';
 import 'package:adpay/core/models/home_vendor_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../api/base_api_consumer.dart';
 import '../api/end_points.dart';
 import '../error/exceptions.dart';
@@ -24,13 +22,15 @@ import '../models/adsence_Model.dart';
 import '../models/catogrie_model.dart';
 import '../models/checkUser_model.dart';
 import '../models/coins_model.dart';
+import '../models/confirm_order.dart';
 import '../models/contact_us_model.dart';
+import '../models/delete_card_model.dart';
+import '../models/emptycard.dart';
 import '../models/favourite_model.dart';
 import '../models/getCity_ byRegion_model.dart';
 import '../models/get_cart_model.dart';
 import '../models/get_my_orders_model.dart';
 import '../models/get_myprofile_model.dart';
-import '../models/get_order_details.dart';
 import '../models/getaddress_model.dart';
 import '../models/getchat_room_byid.dart';
 import '../models/getchat_rooms_model.dart';
@@ -41,8 +41,10 @@ import '../models/login_model.dart';
 import '../models/logout_model.dart';
 import '../models/my_auctions_model.dart';
 import '../models/my_wallet_vendor_model.dart';
+import '../models/new_order_details_model.dart';
 import '../models/notification_model.dart';
 import '../models/order_details.dart';
+import '../models/order_details_model.dart';
 import '../models/product_details_model.dart';
 import '../models/products_model.dart';
 import '../models/reset_model.dart';
@@ -147,6 +149,35 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+//delete card
+  Future<Either<Failure, DeleteCardModel>> deleteCard({
+    required String  product_id,
+    required String user_id
+}) async {
+    LoginModel user = await Preferences.instance.getUserModel();
+
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.post(
+        EndPoints.deleteCard,
+        body: {
+          "product_id":product_id,
+          "user_id":user_id
+        },
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(DeleteCardModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 
 //addcart
   Future<Either<Failure, AddToCartModel>> addCart({
@@ -173,6 +204,59 @@ class ServiceApi {
         ),
       );
       return Right(AddToCartModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //confirmOrder
+  Future<Either<Failure, ConfirmOrderModel>> confirmOrder({
+ required List <Cart> confirmList
+  }) async {
+    LoginModel user = await Preferences.instance.getUserModel();
+
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.post(
+        EndPoints.confrimOrder,
+        body: {
+
+          for(int i =0;i<confirmList.length ; i++ )
+          "products[$i][product_id]":confirmList[i].productId ,
+          for(int i =0;i<confirmList.length ; i++ )
+            "products[$i][qty]": confirmList[i].qty,
+        },formDataIsEnabled: true,
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(ConfirmOrderModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //emptycard
+  Future<Either<Failure, CartEmptyResponse>> emptycard() async {
+    LoginModel user = await Preferences.instance.getUserModel();
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.post(
+        EndPoints.emptycard,
+        body: {},formDataIsEnabled: true,
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(CartEmptyResponse.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
@@ -207,6 +291,8 @@ class ServiceApi {
           headers: {'Authorization': loginModel.data!.token},
         ),
       );
+      print("nononnonononononononononononon");
+      print(loginModel.data!.token);
       return Right(GetMyOrderModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
@@ -230,22 +316,22 @@ class ServiceApi {
     }
   }
 //getorderdetails
-  Future<Either<Failure, GetOrderDetails>> getOrdersDetails({
-    int? intt
-}) async {
-    LoginModel loginModel = await Preferences.instance.getUserModel();
-    try {
-      final response = await dio.get(
-        EndPoints.getorderDetails+'?id=$intt',
-        options: Options(
-          headers: {'Authorization': loginModel.data!.token},
-        ),
-      );
-      return Right(GetOrderDetails.fromJson(response));
-    } on ServerException {
-      return Left(ServerFailure());
-    }
-  }
+//   Future<Either<Failure, GetOrderDetails>> getOrdersDetails({
+//     int? intt
+// }) async {
+//     LoginModel loginModel = await Preferences.instance.getUserModel();
+//     try {
+//       final response = await dio.get(
+//         EndPoints.getorderDetails+'?id=$intt',
+//         options: Options(
+//           headers: {'Authorization': loginModel.data!.token},
+//         ),
+//       );
+//       return Right(GetOrderDetails.fromJson(response));
+//     } on ServerException {
+//       return Left(ServerFailure());
+//     }
+//   }
 
   //getchatrooms
   Future<Either<Failure, GetChatRoomsModel>> getChatRooms() async {
@@ -835,6 +921,8 @@ class ServiceApi {
           headers: {'Authorization': loginModel.data!.token},
         ),
       );
+      print("nononnonononononononononononon");
+      print(loginModel.data!.token);
       return Right(HomeModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
@@ -996,6 +1084,44 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
+  Future<Either<Failure, OrdersDetailsNewModel>> newDetailsOfOrder(
+      {String id = '1'}) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await Dio(
+      ).get(
+        EndPoints.orderDetails + id,
+        options: Options(
+          headers: {
+            'Authorization': loginModel.data!.token,
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+      print(response.data.toString());
+
+      return Right(OrdersDetailsNewModel.fromJson(response.data));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+//order details
+//   Future<Either<Failure, OrdersDetailsNewModel>> getOrderDetails({String? id}) async {
+//     LoginModel loginModel = await Preferences.instance.getUserModel();
+//     try {
+//       final response = await dio.get(
+//         EndPoints.orderDetails+ '${id}',
+//         options: Options(
+//           headers: {'Authorization': loginModel.data!.token},
+//         ),
+//       );
+//       return Right(OrdersDetailsNewModel.fromJson(response));
+//     } on ServerException {
+//       return Left(ServerFailure());
+//     }
+//   }
 
   //productdetails
   Future<Either<Failure, ProductDetailsModel>> ProductsDetails(

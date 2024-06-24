@@ -121,6 +121,7 @@ class Routes {
   static const String oTPVerifyrResetScreen = '/oTPVerifyrResetScreen';
   static const String addNewProductScreen = '/AddNewProductScreen';
   static const String addNewAdsScreen = '/addNewAdsScreen';
+   static const String orderdetails = '/orderdetails';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -268,13 +269,13 @@ class AppRoutes {
           child:
               NotificationScreen(), // Replace with your category screen widget
         );
-      case Routes.orderDetails: // Change this line
-        return PageTransition(
-          type: PageTransitionType.fade,
-          alignment: Alignment.center,
-          duration: const Duration(milliseconds: 800),
-          child: OrderDetails(), // Replace with your category screen widget
-        );
+      // case Routes.orderDetails: // Change this line
+      //   return PageTransition(
+      //     type: PageTransitionType.fade,
+      //     alignment: Alignment.center,
+      //     duration: const Duration(milliseconds: 800),
+      //     child: OrderDetails(), // Replace with your category screen widget
+      //   );
       case Routes.advertisement:
         return PageTransition(
           type: PageTransitionType.fade,
@@ -375,6 +376,15 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: ProductDetailsScreen(id: id),
+        );
+        //get order details
+      case Routes.orderDetails:
+        String? id = settings.arguments as String;
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: OrderDetails(id: id),
         );
       case Routes.productDetailsVendorScreen:
         String? id = settings.arguments as String?;

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/routes/app_routes.dart';
@@ -8,8 +9,9 @@ import '../../../../core/models/get_my_orders_model.dart';
 import '../../../../core/models/vendor_order_model.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/get_size.dart';
+import '../cubit/orders_cubit.dart';
 
-class CustomOrderWidget extends StatelessWidget {
+class CustomOrderWidget extends StatefulWidget {
   CustomOrderWidget({
      this.orderModel,
     this.item,
@@ -19,13 +21,26 @@ class CustomOrderWidget extends StatelessWidget {
   OrderData ?orderModel;
   void Function()? onTap;
   VendorOrderData? item;
+
+  @override
+  State<CustomOrderWidget> createState() => _CustomOrderWidgetState();
+}
+
+class _CustomOrderWidgetState extends State<CustomOrderWidget> {
+  // void initState() {
+  //   super.initState();
+  //
+  //   // Use read method from context in initState
+  //
+  //   context.read<OrdersCubit>().GetOrders();
+  // }
   @override
   Widget build(BuildContext context) {
     return Container(
       // height: 300.h,
       margin: EdgeInsets.only(top: getSize(context) / 40),
       decoration: BoxDecoration(
-          color: item?.vendor != null
+          color: widget.item?.vendor != null
               ? AppColors.primary.withOpacity(0.1)
               : Colors.white,
           border: Border.all(
@@ -54,7 +69,7 @@ class CustomOrderWidget extends StatelessWidget {
               Spacer(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("#${item?.reference ?? '235345435'}"),
+                child: Text("#${widget.item?.reference ?? '235345435'}"),
               )
             ],
           ),
@@ -65,7 +80,7 @@ class CustomOrderWidget extends StatelessWidget {
                 child: Image.asset("assets/images/calender.png"),
               ),
               Text(
-                  "${DateFormat('yyyy/MM/dd').format(item?.createdAt ?? DateTime.now())}"),
+                  "${DateFormat('yyyy/MM/dd').format(widget.item?.createdAt ?? DateTime.now())}"),
               SizedBox(
                 width: 30.w,
               ),
@@ -74,7 +89,7 @@ class CustomOrderWidget extends StatelessWidget {
                 child: Image.asset("assets/images/watch.png"),
               ),
               Text(
-                  "${DateFormat('hh:mm a').format(item?.createdAt ?? DateTime.now())}"),
+                  "${DateFormat('hh:mm a').format(widget.item?.createdAt ?? DateTime.now())}"),
             ],
           ),
           Row(
@@ -86,14 +101,13 @@ class CustomOrderWidget extends StatelessWidget {
               Flexible(
                   fit: FlexFit.tight,
                   child: Text(
-                      "${'total'.tr()}: ${item?.total.toString() ?? '0'}")),
-              item?.vendor != null
+                      "${'total'.tr()}: ${widget.item?.total.toString() ?? '0'}")),
+              widget.item?.vendor != null
                   ? Container()
                   : Row(children: [
                       InkWell(
-                        onTap: onTap ??
+                        onTap: widget.onTap ??
                             () {
-                              Navigator.pushNamed(context, Routes.orderDetails);
                             },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

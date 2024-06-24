@@ -161,5 +161,6 @@
   "edit_product": "Update Product",
   "delete_product": "Delete Product",
   "ordercomplete": "Order Complete",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "completeorder": "Compelete Oreder"
 }

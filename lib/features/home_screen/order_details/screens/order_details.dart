@@ -1,26 +1,41 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart%20';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/get_size.dart';
 import '../../../../core/utils/styles.dart';
-import '../../presentation/salla/presentation/salla.dart';
+import '../../orders/cubit/orders_cubit.dart';
+import '../cubit/order_details_cubit.dart';
 import 'custom_cart_widget_details.dart';
 
-class OrderDetails extends StatelessWidget {
-  const OrderDetails({super.key});
+class OrderDetails extends StatefulWidget {
+   OrderDetails({super.key,this.id});
+  String ?id;
 
   @override
+  State<OrderDetails> createState() => _OrderDetailsState();
+}
+
+class _OrderDetailsState extends State<OrderDetails> {
+  void initState() {
+    super.initState();
+    context.read<OrderDetailsCubit>().GetOrdersDetails(id:widget.id);
+  }
+  @override
   Widget build(BuildContext context) {
-    return
-      SafeArea(
+    return BlocBuilder<OrderDetailsCubit, OrderDetailsState>(
+        builder: (context, state) {
+
+      var cubit = context.read<OrderDetailsCubit>();
+      return Scaffold(
+        body: (state is OrdersDetailsLoading)
+            ? Center(
+          child: CircularProgressIndicator(),)
+            : SafeArea(
         bottom: true,
         child: Scaffold(
-
         body:  ListView(
-
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -72,12 +87,13 @@ class OrderDetails extends StatelessWidget {
                         Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("#235345435",style: Styles.style16.copyWith(color: Colors.black),),
+                          child: Text(
+                            cubit?.getMyOrderModel?.data?.total?.toString()??"nehal"
+                            ,style: Styles.style16.copyWith(color: Colors.black),),
                         )
                       ],),
                     Row(
                       children: [
-
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Image.asset("assets/images/calender.png"),
@@ -88,7 +104,7 @@ class OrderDetails extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Image.asset("assets/images/watch.png"),
                         ),
-                        Text("pm 3:23"),
+                        Text(cubit?.getMyOrderModel?.data?.date.toString()??"3:30"),
                       ],),
                     Row(
                       children: [
@@ -104,14 +120,14 @@ class OrderDetails extends StatelessWidget {
                 ),
               ),
             ),
-            CustomCartWidgetdetails(itemCount: 1,),
-            CustomCartWidgetdetails(itemCount: 2,),
+
+            CustomCartWidgetdetails(itemCount: cubit.getMyOrderModel?.data?.details?.length??0,),
+            // CustomCartWidgetdetails(itemCount: 2,),
             SizedBox(height: 300.h,)
 
           ],
         ),
-        bottomSheet:
-        Container(
+        bottomSheet: Container(
           height: 130.h,
             decoration: BoxDecoration(
               color:Colors.grey[300],
@@ -127,7 +143,7 @@ class OrderDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("الاجمالي",style: Styles.style16.copyWith(color: Colors.black),),
-                    Text("900 ريال",style: Styles.style16.copyWith(color: Colors.black),)
+                    Text(cubit.getMyOrderModel?.data?.details?[0]?.total?.toString()??"",style: Styles.style16.copyWith(color: Colors.black),)
                   ],),
               ),
               Padding(
@@ -154,6 +170,8 @@ class OrderDetails extends StatelessWidget {
           ),
         ) ,
             ),
+      )
       );
   }
+    );}
 }

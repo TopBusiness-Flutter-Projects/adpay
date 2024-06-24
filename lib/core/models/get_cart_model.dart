@@ -35,7 +35,6 @@ class GetCartModel {
 class GetCartModelData {
   Vendor? vendor;
   List<Cart>? carts;
-
   GetCartModelData({
     this.vendor,
     this.carts,
@@ -62,6 +61,7 @@ class Cart {
   DateTime? createdAt;
   DateTime? updatedAt;
   int? price;
+  String? name;
 
   Cart({
     this.id,
@@ -73,6 +73,7 @@ class Cart {
     this.createdAt,
     this.updatedAt,
     this.price,
+    this.name
   });
 
   factory Cart.fromJson(Map<String, dynamic> json) => Cart(
@@ -85,6 +86,7 @@ class Cart {
     createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
     price: json["price"],
+      name:json["name"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -97,6 +99,7 @@ class Cart {
     "created_at": createdAt?.toIso8601String(),
     "updated_at": updatedAt?.toIso8601String(),
     "price": price,
+    "name":name
   };
 }
 
