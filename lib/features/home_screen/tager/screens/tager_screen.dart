@@ -135,7 +135,7 @@ class _TagerScreenState extends State<TagerScreen> {
               child: SizedBox(
                 height: 30.h,
                 child: ListView.builder(
-                  itemCount: cubit.vendorModel?.data?.products?.length,
+                  itemCount: cubit.vendorModel?.data?.vendor?.shopSubCat?.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => GestureDetector(
                     onTap: () {},
@@ -149,7 +149,7 @@ class _TagerScreenState extends State<TagerScreen> {
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                         cubit.vendorModel?.data?.products?[index].vendor?.shopSubCat.toString()??"",
+                          cubit.vendorModel?.data?.vendor?.shopSubCat?[index].toString()??"",
                           maxLines: 1,
                           textAlign: TextAlign.center,
                           style: TextStyle(

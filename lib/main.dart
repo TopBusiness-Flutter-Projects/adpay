@@ -42,6 +42,5 @@ getToken() async {
   print('Token : $token');
   await Preferences.instance.setDeviceToken(token);
   await Preferences.instance.getDeviceToken();
-
   return token;
 }

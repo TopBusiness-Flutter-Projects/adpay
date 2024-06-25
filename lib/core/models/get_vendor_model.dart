@@ -64,7 +64,7 @@ class Product {
   int? rate;
   int? discount;
   String? type;
-  ShopSubCat? shopSubCat;
+  String? shopSubCat;
   int? stock;
   Vendor? vendor;
 
@@ -97,7 +97,7 @@ class Product {
     rate: json["rate"],
     discount: json["discount"],
     type: json["type"],
-    shopSubCat: shopSubCatValues.map[json["shop_sub_cat"]]!,
+    shopSubCat: json["shop_sub_cat"]!,
     stock: json["stock"],
     vendor: json["vendor"] == null ? null : Vendor.fromJson(json["vendor"]),
   );
@@ -114,23 +114,12 @@ class Product {
     "rate": rate,
     "discount": discount,
     "type": type,
-    "shop_sub_cat": shopSubCatValues.reverse[shopSubCat],
+    "shop_sub_cat": shopSubCat,
     "stock": stock,
     "vendor": vendor?.toJson(),
   };
 }
 
-enum ShopSubCat {
-  KIDS,
-  MEN,
-  WOMEN
-}
-
-final shopSubCatValues = EnumValues({
-  "kids": ShopSubCat.KIDS,
-  "men": ShopSubCat.MEN,
-  "women": ShopSubCat.WOMEN
-});
 
 class Vendor {
   int? id;
@@ -145,7 +134,7 @@ class Vendor {
   String? storeName;
   String? address;
   ShopCat? shopCat;
-  List<ShopSubCat>? shopSubCat;
+  List<String>? shopSubCat;
   String? token;
 
   Vendor({
@@ -178,7 +167,7 @@ class Vendor {
     storeName: json["store_name"],
     address: json["address"],
     shopCat: json["shop_cat"] == null ? null : ShopCat.fromJson(json["shop_cat"]),
-    shopSubCat: json["shop_sub_cat"] == null ? [] : List<ShopSubCat>.from(json["shop_sub_cat"]!.map((x) => shopSubCatValues.map[x]!)),
+    shopSubCat: json["shop_sub_cat"] == null ? [] : List<String>.from(json["shop_sub_cat"]!.map((x) => x!)),
     token: json["token"],
   );
 
@@ -195,7 +184,7 @@ class Vendor {
     "store_name": storeName,
     "address": address,
     "shop_cat": shopCat?.toJson(),
-    "shop_sub_cat": shopSubCat == null ? [] : List<dynamic>.from(shopSubCat!.map((x) => shopSubCatValues.reverse[x])),
+    "shop_sub_cat": shopSubCat == null ? [] : List<dynamic>.from(shopSubCat!.map((x) => x)),
     "token": token,
   };
 }
