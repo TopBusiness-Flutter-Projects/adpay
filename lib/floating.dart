@@ -2,13 +2,9 @@ import 'dart:io';
 
 import 'package:adpay/core/utils/app_colors.dart';
 import 'package:adpay/core/utils/get_size.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:floating_navbar/floating_navbar.dart';
-import 'package:floating_navbar/floating_navbar_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart%20';
 import 'package:flutter/services.dart';
-
 import 'features/home_screen/main_screen/screens/home_screen_user.dart';
 import 'features/home_screen/menue/screens/menue_screen.dart';
 import 'features/home_screen/orders/screen/oreders_screen.dart';
@@ -54,7 +50,8 @@ class _FloatingState extends State<Floating> {
 
   final List<Widget> _pages = [
     HomeScreen(), // Your home screen
-    OrderScreen(), // Your orders screen
+    OrderScreen(),
+   // Your orders screen
     SallaScreen(), // Your salla screen
     MenueScreen() // Your settings page or any other page
   ];
@@ -136,6 +133,7 @@ class _FloatingState extends State<Floating> {
                             height: getSize(context) / 14,
                           ),
                   )),
+
                   FloatingNavbarItem(
                       customWidget: Padding(
                     padding: EdgeInsets.all(2),

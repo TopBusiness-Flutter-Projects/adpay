@@ -35,9 +35,11 @@ class GetCartModel {
 class GetCartModelData {
   Vendor? vendor;
   List<Cart>? carts;
+  double total;
   GetCartModelData({
     this.vendor,
     this.carts,
+    this.total=0,
   });
 
   factory GetCartModelData.fromJson(Map<String, dynamic> json) => GetCartModelData(

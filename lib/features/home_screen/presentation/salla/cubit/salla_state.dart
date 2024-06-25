@@ -34,5 +34,9 @@ final class DeleteLoading extends SallaState {}
 final class DeleteError extends SallaState {}
 final class DeleteDone extends SallaState {}
 
+final class totalstate extends SallaState {}
+final class GetTotalstate extends SallaState {}
+
+
 
 

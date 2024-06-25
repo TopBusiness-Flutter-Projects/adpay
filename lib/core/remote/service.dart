@@ -31,6 +31,7 @@ import '../models/getCity_ byRegion_model.dart';
 import '../models/get_cart_model.dart';
 import '../models/get_my_orders_model.dart';
 import '../models/get_myprofile_model.dart';
+import '../models/get_vendor_model.dart';
 import '../models/getaddress_model.dart';
 import '../models/getchat_room_byid.dart';
 import '../models/getchat_rooms_model.dart';
@@ -274,6 +275,22 @@ class ServiceApi {
         ),
       );
       return Right(GetShopCategoriesModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+//getVendorProfile
+  Future<Either<Failure,MainVendorHomeModel >> getVendorProfile() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.vendorProfile,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(MainVendorHomeModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }

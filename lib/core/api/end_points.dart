@@ -62,6 +62,7 @@ class EndPoints {
   static const String emptycard = '${baseUrl}user/emptyCard';
 
   static const String deleteCard = '${baseUrl}user/deleteFromCart';
+  static const String vendorProfile = '${baseUrl}user/vendorProfile/18?key=';
 
 
 

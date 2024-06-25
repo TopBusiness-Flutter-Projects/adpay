@@ -121,23 +121,24 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                                     duration: 600,
                                                     itemBuilder:
                                                         (context, index) {
-                                                      // return Image.network(
-                                                      //   EndPoints.baseUrlImage +
-                                                      //       (cubit.productsModelDetails
-                                                      //           ?.data?.images[index]
-                                                      //           .toString() ??
-                                                      //           'assets/images/chair.jpg'),
-                                                      //   errorBuilder:
-                                                      //       (context, error, stackTrace) {
-                                                      //     return Image.asset(
-                                                      //         'assets/images/chair.jpg');
-                                                      //   },
-                                                      // );
+                                                      return
+                                                        Image.network(
+                                                        EndPoints.baseUrlImage +
+                                                            (cubit.grageModelDetails?.images[index]
+                                                                .toString() ??
+                                                                'assets/images/chair.jpg'),
+                                                        errorBuilder:
+                                                            (context, error, stackTrace) {
+                                                          return Image.asset(
+                                                              'assets/images/chair.jpg');
+                                                        },
+                                                      );
                                                       // Image.asset(
                                                       //     'assets/images/chair.jpg');
-                                                      return Image.asset(
-                                                          'assets/images/chair.jpg');
-                                                    }),
+                                                      // return Image.asset(
+                                                      //     'assets/images/chair.jpg');
+                                                    }
+                                                    ),
                                               )),
                                         ),
                                         Padding(
@@ -387,7 +388,8 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                     SizedBox(
                                       height: 100.h,
                                     )
-                                  ]),
+                                  ]
+                              ),
                             ))
                           ],
                         ),

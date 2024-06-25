@@ -21,7 +21,7 @@ class GradeDetailsModel {
     required this.titleEn,
     required this.descriptionAr,
     required this.descriptionEn,
-    required this.video,
+    this.video,
     required this.category,
     required this.subCategory,
     required this.createdAt,
@@ -34,7 +34,9 @@ class GradeDetailsModel {
 
     return GradeDetailsModel(
       id: data['id'] ?? 0,
-      images: List<String>.from(data['images'] ?? []),
+      images: data['images'] is List
+          ? List<String>.from(data['images'])
+          : [], // Default to an empty list if not a list
       isFav: data['is_fav'] ?? false,
       titleAr: data['title_ar'] ?? '',
       titleEn: data['title_en'] ?? '',
@@ -44,8 +46,9 @@ class GradeDetailsModel {
       category: Category.fromJson(data['category'] ?? {}),
       subCategory: SubCategory.fromJson(data['sub_category'] ?? {}),
       createdAt: data['created_at'] ?? '',
-      comments: List<Comment>.from((data['comments'] as List<dynamic>? ?? [])
-          .map((x) => Comment.fromJson(x))),
+      comments: data['comments'] is List
+          ? List<Comment>.from((data['comments'] as List).map((x) => Comment.fromJson(x)))
+          : [], // Default to an empty list if not a list
       user: User.fromJson(data['user'] ?? {}),
     );
   }
@@ -120,8 +123,9 @@ class Comment {
       id: json['id'] ?? 0,
       comment: json['comment'] ?? '',
       user: User.fromJson(json['user_id'] ?? {}),
-      replies: List<Comment>.from((json['replies'] as List<dynamic>? ?? [])
-          .map((x) => Comment.fromJson(x))),
+      replies: json['replies'] is List
+          ? List<Comment>.from((json['replies'] as List).map((x) => Comment.fromJson(x)))
+          : [], // Default to an empty list if not a list
       createdAt: json['created_at'] ?? '',
     );
   }

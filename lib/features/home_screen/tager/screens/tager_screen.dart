@@ -1,25 +1,37 @@
-import 'package:adpay/core/utils/dialogs.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart%20';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/show_dialog.dart';
-import '../../../../core/utils/snackbar_method.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/network_image.dart';
 import '../../../urllaunch.dart';
-import '../../component/catogreyCard.dart';
-import '../../component/custom_grage_widget.dart';
+import '../../products/cubit/products_cubit.dart';
+import '../cubit/tager_cubit.dart';
 
-class TagerScreen extends StatelessWidget {
+
+class TagerScreen extends StatefulWidget {
   const TagerScreen({super.key});
+
+  @override
+  State<TagerScreen> createState() => _TagerScreenState();
+}
+
+class _TagerScreenState extends State<TagerScreen> {
+  void initState() {
+    super.initState();
+    context.read<TagerCubit>().getVendor();
+  }
+
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<TagerCubit, TagerState>(
+        listener: (context, state) {},
+    builder: (context, statee) {
+      TagerCubit cubit = TagerCubit.get(context);
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -80,12 +92,13 @@ class TagerScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0, top: 6),
-                    child: Text("محلات كيدز"),
+                    child: Text(cubit.vendorModel?.data?.vendor?.name.toString()??""),
                   ),
                   Row(
                     children: [
                       RatingBar.builder(
                         initialRating: double.parse("0"),
+                        // initialRating:double.parse(cubit.vendorModel?.data?.products?[0].rate.toString()??"") ,
                         minRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
@@ -118,12 +131,11 @@ class TagerScreen extends StatelessWidget {
               ),
             ]),
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
               child: SizedBox(
                 height: 30.h,
                 child: ListView.builder(
-                  itemCount: 3,
+                  itemCount: cubit.vendorModel?.data?.products?.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => GestureDetector(
                     onTap: () {},
@@ -137,7 +149,7 @@ class TagerScreen extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          "",
+                         cubit.vendorModel?.data?.products?[index].vendor?.shopSubCat.toString()??"",
                           maxLines: 1,
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -161,7 +173,7 @@ class TagerScreen extends StatelessWidget {
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
                 ),
-                itemCount: 5,
+                itemCount: cubit.vendorModel?.data?.products?.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.all(4.0),
@@ -202,7 +214,14 @@ class TagerScreen extends StatelessWidget {
                               width: double.infinity,
                               padding: EdgeInsets.only(top: 2.0, right: 5.0),
                               child: Text(
-                                "T-Shirt",
+                                (EasyLocalization.of(context)!
+                                    .locale
+                                    .languageCode ==
+                                    'ar')
+                                    ? (cubit.vendorModel?.data?.products?[index].titleAr ??
+                                    'arabic')
+                                    : (cubit.vendorModel?.data?.products?[index].titleEn??
+                                    'english'),
                                 maxLines: 1,
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
@@ -221,7 +240,14 @@ class TagerScreen extends StatelessWidget {
                                   Flexible(
                                     fit: FlexFit.tight,
                                     child: Text(
-                                      "T-Shirt",
+                                      (EasyLocalization.of(context)!
+                                          .locale
+                                          .languageCode ==
+                                          'ar')
+                                          ? (cubit.vendorModel?.data?.products?[index].descriptionAr ??
+                                          'arabic')
+                                          : (cubit.vendorModel?.data?.products?[index].descriptionEn??
+                                          'english'),
                                       maxLines: 1,
                                       style: TextStyle(
                                         overflow: TextOverflow.ellipsis,
@@ -232,7 +258,7 @@ class TagerScreen extends StatelessWidget {
                                   ),
                                   SizedBox(width: 4),
                                   Text(
-                                    "T-Shirt",
+                                  cubit.vendorModel?.data?.products?[index]?.price?.toString()??""  ,
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -289,4 +315,4 @@ class TagerScreen extends StatelessWidget {
       ),
     );
   }
-}
+    );}}
