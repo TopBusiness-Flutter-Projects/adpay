@@ -5,8 +5,8 @@ import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_strings.dart';
-import '../../../core/utils/assets_manager.dart';
 import '../../../core/utils/get_size.dart';
+import '../../../core/utils/show_dialog.dart';
 import '../cubit/cubit.dart';
 import '../cubit/state.dart';
 
@@ -20,7 +20,13 @@ class OTPVerifyScreen extends StatefulWidget {
 class _OTPVerifyScreenState extends State<OTPVerifyScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(builder: (context, state) {
+    return BlocConsumer<LoginCubit, LoginState>(listener: (context, state) {
+      if (state is LoadingLoginAuth) {
+        createProgressDialog(context, 'loading'.tr());
+      } else if (state is LoadedLoginAuth || state is ErrorLoginAuth) {
+        Navigator.pop(context);
+      } else {}
+    }, builder: (context, state) {
       var cubit = context.read<LoginCubit>();
       return Scaffold(
         appBar: AppBar(),

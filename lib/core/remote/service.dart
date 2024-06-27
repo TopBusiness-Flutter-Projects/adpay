@@ -59,7 +59,6 @@ import '../models/wallet_model.dart';
 import '../preferences/preferences.dart';
 
 class ServiceApi {
-
   final BaseApiConsumer dio;
 
   ServiceApi(this.dio);
@@ -81,7 +80,7 @@ class ServiceApi {
   }) async {
     String lan = await Preferences.instance.getSavedLang();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-  String?  devicetoken = prefs.getString('checkUser')?? "";
+    String? devicetoken = prefs.getString('checkUser') ?? "";
     try {
       var response = await dio.post(
         EndPoints.loginUrl,
@@ -107,7 +106,7 @@ class ServiceApi {
   }) async {
     String lan = await Preferences.instance.getSavedLang();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String devicetoken = prefs.getString('checkUser')??"";
+    String devicetoken = prefs.getString('checkUser') ?? "";
     try {
       var response = await dio.post(
         EndPoints.loginUrlProvider,
@@ -149,11 +148,10 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
 //delete card
-  Future<Either<Failure, DeleteCardModel>> deleteCard({
-    required String  product_id,
-    required String user_id
-}) async {
+  Future<Either<Failure, DeleteCardModel>> deleteCard(
+      {required String product_id, required String user_id}) async {
     LoginModel user = await Preferences.instance.getUserModel();
 
     String lan = await Preferences.instance.getSavedLang();
@@ -162,10 +160,7 @@ class ServiceApi {
     try {
       var response = await dio.post(
         EndPoints.deleteCard,
-        body: {
-          "product_id":product_id,
-          "user_id":user_id
-        },
+        body: {"product_id": product_id, "user_id": user_id},
         options: Options(
           headers: {
             'Accept-Language': lan,
@@ -208,10 +203,10 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
   //confirmOrder
-  Future<Either<Failure, ConfirmOrderModel>> confirmOrder({
- required List <Cart> confirmList
-  }) async {
+  Future<Either<Failure, ConfirmOrderModel>> confirmOrder(
+      {required List<Cart> confirmList}) async {
     LoginModel user = await Preferences.instance.getUserModel();
 
     String lan = await Preferences.instance.getSavedLang();
@@ -221,12 +216,12 @@ class ServiceApi {
       var response = await dio.post(
         EndPoints.confrimOrder,
         body: {
-
-          for(int i =0;i<confirmList.length ; i++ )
-          "products[$i][product_id]":confirmList[i].productId ,
-          for(int i =0;i<confirmList.length ; i++ )
+          for (int i = 0; i < confirmList.length; i++)
+            "products[$i][product_id]": confirmList[i].productId,
+          for (int i = 0; i < confirmList.length; i++)
             "products[$i][qty]": confirmList[i].qty,
-        },formDataIsEnabled: true,
+        },
+        formDataIsEnabled: true,
         options: Options(
           headers: {
             'Accept-Language': lan,
@@ -239,6 +234,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
   //emptycard
   Future<Either<Failure, CartEmptyResponse>> emptycard() async {
     LoginModel user = await Preferences.instance.getUserModel();
@@ -248,7 +244,8 @@ class ServiceApi {
     try {
       var response = await dio.post(
         EndPoints.emptycard,
-        body: {},formDataIsEnabled: true,
+        body: {},
+        formDataIsEnabled: true,
         options: Options(
           headers: {
             'Accept-Language': lan,
@@ -278,15 +275,15 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
 //getVendorProfile
-  Future<Either<Failure,MainVendorHomeModel >> getVendorProfile({
-    required text
-}) async {
+  Future<Either<Failure, MainVendorHomeModel>> getVendorProfile(
+      {required text}) async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
 
     try {
       final response = await dio.get(
-        EndPoints.vendorProfile+'${(text == null) ? '' : text}',
+        EndPoints.vendorProfile + '${(text == null) ? '' : text}',
         options: Options(
           headers: {'Authorization': loginModel.data!.token},
         ),
@@ -665,13 +662,11 @@ class ServiceApi {
   }
 
   //register
-  Future<Either<Failure, LoginModel>> postRegister(
-      {
-        required String phone,
+  Future<Either<Failure, LoginModel>> userRegister(
+      {required String phone,
       required File profileImage,
       required String phoneCode,
-      required String name
-      }) async {
+      required String name}) async {
     String? deviceToken = await Preferences.instance.getDeviceToken();
 
     try {
@@ -1110,8 +1105,7 @@ class ServiceApi {
     LoginModel loginModel = await Preferences.instance.getUserModel();
 
     try {
-      final response = await Dio(
-      ).get(
+      final response = await Dio().get(
         EndPoints.orderDetails + id,
         options: Options(
           headers: {
@@ -1418,13 +1412,13 @@ class ServiceApi {
                 'store_name': storeName,
                 'address': address,
                 'device_token': deviceToken ?? '123',
-                'shop_cat_id': shopCatId,
+                'shop_cat_id': shopCatId ?? 1,
                 for (int i = 1; i < subCategory!.length; i++)
-                  'sub_cat_id[$i]': subCategory[i],
+                  'shop_sub_cat[$i]': subCategory[i],
               }
             : {
                 "image": data,
-                'device_token': deviceToken,
+                'device_token': deviceToken ?? '123',
                 'name': name,
                 'phone': phone,
                 'password': password,
