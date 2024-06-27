@@ -15,6 +15,7 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
   ProductDetailsModel? productsModelDetails;
   static ProductsDetailsCubit get(context) => BlocProvider.of(context);
   Future<void> getProductsDetils({String? id}) async {
+    productsModelDetails = null;
     emit(LoadingProductsDetails());
     final response = await api.ProductsDetails(id: id);
     response.fold((l) {
@@ -45,15 +46,18 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
       // print(';/')
       if (isAuction) {
         context.read<GrageDetailsCubit>().grageModelDetails?.isFav =
-            !(context.read<GrageDetailsCubit>().grageModelDetails?.isFav ??
-                false);
+            (context.read<GrageDetailsCubit>().grageModelDetails?.isFav == true)
+                ? false
+                : true;
       } else {
         productsModelDetails?.data?.isFav =
-            !(productsModelDetails?.data?.isFav ?? true);
+            (productsModelDetails?.data?.isFav == true) ? false : true;
       }
 
       // getProductsDetils(id: productId);
       successGetBar(r.msg);
+
+      context.read<GrageDetailsCubit>().grageModelDetails = null;
       emit(LoadedFavorite());
     });
   }

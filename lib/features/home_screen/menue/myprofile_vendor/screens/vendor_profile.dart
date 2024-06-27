@@ -2,20 +2,27 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart%20';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../config/routes/app_routes.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../../home_screen_provider/main_screen/cubit/cubit.dart';
+import '../../../../home_screen_provider/main_screen/cubit/state.dart';
 import '../../myprofile/cubit/get_profile_cubit.dart';
 import '../../screens/widgets/menue_widget.dart';
 
-class VendorProfile extends StatelessWidget {
+class VendorProfile extends StatefulWidget {
   const VendorProfile({super.key});
 
   @override
+  State<VendorProfile> createState() => _VendorProfileState();
+}
+
+class _VendorProfileState extends State<VendorProfile> {
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetProfileCubit, GetProfileState>(
+    return BlocBuilder<MainVendorCubit, MainVendorState>(
         builder: (context, state) {
-      GetProfileCubit cubit = GetProfileCubit.get(context);
+          MainVendorCubit cubit = MainVendorCubit.get(context);
       return SafeArea(
           child: Scaffold(
               body: SingleChildScrollView(
@@ -43,7 +50,7 @@ class VendorProfile extends StatelessWidget {
               padding: const EdgeInsets.only(right: 8.0),
               child: CircleAvatar(
                 backgroundImage: NetworkImage(
-                  (cubit.profileModel?.data?.first?.image.toString() ?? ''),
+                  (cubit.userData?.data?.image.toString() ?? ''),
                   //
                   // fit:  BoxFit.fill
                 ),
@@ -57,7 +64,7 @@ class VendorProfile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      cubit.profileModel?.data?.first.name ?? "adPay",
+                      cubit.userData?.data?.name ?? "adPay",
                       maxLines: 1,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
@@ -65,7 +72,7 @@ class VendorProfile extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(cubit.profileModel?.data?.first.phone.toString() ??
+                    Text(cubit.userData?.data?.phone.toString() ??
                         "-"),
                   ],
                 ),
@@ -77,7 +84,7 @@ class VendorProfile extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, Routes.myharag);
+                          Navigator.pushNamed(context, Routes.productVendor);
                         },
                         child: MenueWidget(
                           text: 'products'.tr(),
@@ -89,7 +96,7 @@ class VendorProfile extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, Routes.myharag);
+                          Navigator.pushNamed(context, Routes.vendorOrdersUrl);
                         },
                         child: MenueWidget(
                           text: 'orders'.tr(),
@@ -97,6 +104,44 @@ class VendorProfile extends StatelessWidget {
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, Routes.advVendor);
+                        },
+                        child: MenueWidget(
+                          text: 'advertisements'.tr(),
+                          path: 'assets/images/marketing.png',
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, Routes.advVendor);
+                        },
+                        child: MenueWidget(
+                          text: 'edit'.tr(),
+                          path: 'assets/images/editvendor.png',
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, Routes.myharag);
+                        },
+                        child: MenueWidget(
+                          text: 'delete'.tr(),
+                          path: 'assets/images/recycle.png',
+                        ),
+                      ),
+                    ),
+
+
       ])
               )));
     });

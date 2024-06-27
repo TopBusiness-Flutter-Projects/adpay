@@ -17,6 +17,7 @@ import 'state.dart';
 
 class MainVendorCubit extends Cubit<MainVendorState> {
   MainVendorCubit(this.api) : super(MainVendorInitial());
+  static MainVendorCubit get(context) => BlocProvider.of(context);
 
   ServiceApi api;
   //! screens
@@ -37,7 +38,6 @@ class MainVendorCubit extends Cubit<MainVendorState> {
   getVendorHomeData() async {
     emit(LoadingGetHomeVendorState());
     final res = await api.getVendorHomeData();
-
     res.fold((l) {
       emit(ErrorGetHomeVendorState());
     }, (r) {
@@ -159,4 +159,5 @@ class MainVendorCubit extends Cubit<MainVendorState> {
       emit(LoadedDeleteProductsDEtails());
     });
   }
+
 }

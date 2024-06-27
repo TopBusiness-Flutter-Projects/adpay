@@ -3,10 +3,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/styles.dart';
+import '../../../urllaunch.dart';
 import '../cubit/products_details_cubit.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
@@ -108,11 +110,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   },
                                   child: Icon(
                                     Icons.favorite,
-                                    color: cubit.productsModelDetails?.data
+                                    color: (cubit.productsModelDetails?.data
                                                 ?.isFav ==
-                                            true
+                                            true)
                                         ? AppColors.primary
-                                        : Colors.grey[400],
+                                        : (cubit.productsModelDetails?.data
+                                                    ?.isFav ==
+                                                false)
+                                            ? Colors.grey[400]
+                                            : null,
                                   )),
                             )
                           ],
@@ -143,19 +149,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             ?.data?.titleEn ??
                                                         'english'),
                                                 style: Styles.style18.copyWith(
-                                                    color:
-                                                        AppColors.secondPrimary)),
+                                                    color: AppColors
+                                                        .secondPrimary)),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(20.0),
-                                            child: Align(
-                                                alignment: Alignment.topLeft,
-                                                child: Flexible(
-                                                    child: Text(
-                                                  "${cubit.productsModelDetails?.data?.price.toString() ?? "T-Shirt"} ${AppStrings.currency}",
-                                                  style: Styles.style16,
-                                                ))),
-                                          )
+                                          Align(
+                                              alignment: Alignment.topLeft,
+                                              child: Flexible(
+                                                  child: Text(
+                                                "${cubit.productsModelDetails?.data?.price.toString() ?? "T-Shirt"} ${AppStrings.currency}",
+                                                style: Styles.style16,
+                                              )))
                                         ],
                                       ),
                                       Text(
@@ -205,7 +208,93 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               height: 2.0.sp,
                               color: Colors.grey[300]),
                         ),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Container(
+                            width: MediaQuery.sizeOf(context).width,
+                            height: 100.h,
+                            decoration: BoxDecoration(
+                              color: Colors.white60,
+                              borderRadius:
+                              BorderRadius.circular(20.0),
+                              border: Border.all(
+                                color: Colors.grey[
+                                300]!, // Set the color of the border
+                                width:
+                                2.0, // Set the width of the border
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                  const EdgeInsets.all(10.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Colors
+                                            .red, // Set the border color here
+                                        width:
+                                        1, // Set the border width here
+                                      ),
+                                    ),
+                                    child: ClipRRect(
+                                        child: Image.network(
 
+                                          (cubit.productsModelDetails?.data?.id
+                                              ?.toString() ??
+                                              ''),
+                                          errorBuilder: (context, error,
+                                              stackTrace) {
+                                            return Image.asset(
+                                              'assets/images/chair.jpg',
+                                              scale: 10,
+                                            );
+                                          },
+                                        )),
+                                  ),
+                                ),
+                                Flexible(
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                        const EdgeInsets.only(
+                                            right: 5.0, top: 6),
+                                        child: Flexible(
+                                          child: Text(
+                                              cubit.productsModelDetails?.data?.titleAr
+                                                  .toString() ??
+                                                  "محلات كيدز",
+                                              style:
+                                              Styles.style14),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 20.w,
+                                      ),
+                                      CallIcon(
+                                        phoneNumber: '01288143936',
+                                      ),
+                                      SizedBox(width: 6.w),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                            context,
+                                            Routes.chatapp,
+                                          );
+                                        },
+                                        child: Image.asset(
+                                            "assets/images/typing.png"),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: ElevatedButton(
@@ -235,9 +324,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
           ),
         );
-        // } else {
-        //   return const Center(child: Text("no data"));
-        // }
       },
     );
   }

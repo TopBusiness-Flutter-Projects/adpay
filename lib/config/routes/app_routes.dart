@@ -1,5 +1,4 @@
 import 'package:adpay/features/home_screen/grage_details/screen/grage_details_screen.dart';
-import 'package:adpay/features/home_screen/menue/myprofile/edit_profile/edit_profile.dart';
 import 'package:adpay/features/home_screen/menue/myprofile/edit_profile/screen/user_signup.dart';
 import 'package:adpay/features/home_screen/menue/myprofile/harag_details/screens/my_harag_details.dart';
 import 'package:adpay/features/home_screen/menue/screens/favourite/favoutite_screen.dart';
@@ -26,7 +25,6 @@ import '../../features/home_screen/menue/myprofile/myharag/screens/my_harag.dart
 import '../../features/home_screen/menue/myprofile/screens/myprofile.dart';
 import '../../features/home_screen/menue/myprofile_vendor/screens/vendor_profile.dart';
 import '../../features/home_screen/menue/screens/contact_us/screens/contact_us.dart';
-import '../../features/home_screen/menue/screens/menue_screen.dart';
 import '../../features/home_screen/menue/screens/mypoints/screens/points.dart';
 import '../../features/home_screen/menue/screens/places/screens/places.dart';
 import '../../features/home_screen/menue/screens/pocket/pocket.dart';
@@ -108,6 +106,8 @@ class Routes {
 
   static const String editmyharagdetails = '/editmyharagdetails';
 
+  static const String vendorOrdersUrl = '/vendorOrdersUrl';
+
   static const String Main = '/Main';
   static const String usersignupscreen = '/usersignupscreen';
   static const String floatVendor = '/floatVendor';
@@ -125,6 +125,11 @@ class Routes {
    static const String orderdetails = '/orderdetails';
 
   static const String vendorProfile = '/VendorProfile';
+  static const String productVendor = '/ProductVendor';
+
+  static const String orderVendor = '/orderVendor';
+  static const String advVendor = '/advsVendor';
+
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -162,6 +167,13 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: MyProfileScreen(), // Replace with your category screen widget
         );
+      case Routes.vendorOrdersUrl: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: OrderScreenVendor(), // Replace with your category screen widget
+        );
       case Routes.usersignupscreen: // Change this line
         return PageTransition(
           type: PageTransitionType.fade,
@@ -184,6 +196,15 @@ class AppRoutes {
           child:
               EditMyHaragDetails(), // Replace with your category screen widget
         );
+      case Routes.advVendor: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child:
+          Advertesment_Screen(), // Replace with your category screen widget
+        );
+
       case Routes.vendorProfile: // Change this line
         return PageTransition(
           type: PageTransitionType.fade,
@@ -191,6 +212,14 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child:
           VendorProfile(), // Replace with your category screen widget
+        );
+      case Routes.productVendor: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child:
+          TotalProductsVendorScreen(), // Replace with your category screen widget
         );
 
       case Routes.myharagdetails: // Change this line
@@ -207,6 +236,14 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: PocketScreen(), // Replace with your category screen widget
         );
+      case Routes.advVendor: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: OrderScreenVendor(), // Replace with your category screen widget
+        );
+
       case Routes.float: // Change this line
         return PageTransition(
           type: PageTransitionType.fade,

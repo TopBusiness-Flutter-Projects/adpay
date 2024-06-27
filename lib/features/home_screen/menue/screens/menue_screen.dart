@@ -37,193 +37,214 @@ class _MenueScreenState extends State<MenueScreen> {
           LogoutCubit cubit = LogoutCubit.get(context);
           return SafeArea(
               child: Scaffold(
-                  body:(state is LoadingGetUserData || cubit2.userData==null)?
-                      Center(
-                        child: RefreshProgressIndicator(),
-                      )
+                  body: (state is LoadingGetUserData || cubit2.userData == null)
+                      ? Center(
+                          child: RefreshProgressIndicator(),
+                        )
                       : SingleChildScrollView(
-                      child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                title: Text("menue".tr(),
-                    style: Styles.style20.copyWith(color: Colors.black)),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                //  width: MediaQuery.sizeOf(context).width,
-                decoration: BoxDecoration(
-                  color: AppColors.shadeColor,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                width: double.infinity,
-                height: 50.h,
-                child: Padding(
-                  padding: const EdgeInsets.all(7.0),
-                  child: Text(
-                    "Mydata".tr(),
-                    style: Styles.style16,
-                  ),
-                ),
-              ),
-            ),
-            InkWell(
-                onTap: () {
-                  cubit2.userData!.data!.type == 'vendor'?
-                  Navigator.pushNamed(context, Routes.vendorProfile) :                  Navigator.pushNamed(context, Routes.profile);
-                },
-                child: MenueWidget(
-                    text: 'Profilepersonly'.tr(),
-                    path: 'assets/images/profile2.png')),
-            InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, Routes.messagescreen);
-                },
-                child: MenueWidget(
-                    text: 'Mymessages'.tr(),
-                    path: 'assets/images/message2.png')),
-            InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, Routes.addharag);
-                },
-                child: MenueWidget(
-                    text: 'AddHaraj'.tr(), path: 'assets/images/Harag.png')),
-                        cubit2.userData!.data!.type == 'vendor'
-                            ?
-            InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, Routes.favouritescreen);
-                },
-                child: MenueWidget(
-                    text: 'Favorite'.tr(),
-                    path: 'assets/images/favourite.png')):Container(),
-            cubit2.userData!.data!.type == 'vendor'
-                ? InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, Routes.addNewProductScreen,arguments: false);
-                    },
-                    child: MenueWidget(
-                        text: 'add_product'.tr(),
-                        path: 'assets/images/add_new_product.png'))
-                : Container(),
-            cubit2.userData!.data!.type == 'user'
-                ? Container()
-                : InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, Routes.addNewAdsScreen);
-                    },
-                    child: MenueWidget(
-                        text: 'add_ads'.tr(), path: 'assets/images/ads.png')
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                //  width: MediaQuery.sizeOf(context).width,
-                decoration: BoxDecoration(
-                  color: AppColors.shadeColor,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                width: double.infinity,
-                height: 50.h,
-                child: Padding(
-                  padding: const EdgeInsets.all(7.0),
-                  child: Text(
-                    "Settings".tr(),
-                    style: Styles.style16,
-                  ),
-                ),
-              ),
-            ),
-            InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, Routes.contactus);
-                },
-                child: MenueWidget(
-                    text: 'contactus'.tr(),
-                    path: 'assets/images/contactus.png')),
-            MenueWidget(text: 'aboutapp'.tr(), path: 'assets/images/i.png'),
-            MenueWidget(text: 'Terms'.tr(), path: 'assets/images/verified.png'),
-            InkWell(
-              onTap: () async {
-                PackageInfo packageInfo = await PackageInfo.fromPlatform();
-                String url = '';
-                String packageName = packageInfo.packageName;
+                          child: Column(children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              title: Text("menue".tr(),
+                                  style: Styles.style20
+                                      .copyWith(color: Colors.black)),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              //  width: MediaQuery.sizeOf(context).width,
+                              decoration: BoxDecoration(
+                                color: AppColors.shadeColor,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              width: double.infinity,
+                              height: 50.h,
+                              child: Padding(
+                                padding: const EdgeInsets.all(7.0),
+                                child: Text(
+                                  "Mydata".tr(),
+                                  style: Styles.style16,
+                                ),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                              onTap: () {
+                                cubit2.userData!.data!.type == 'vendor'
+                                    ? Navigator.pushNamed(
+                                        context, Routes.vendorProfile)
+                                    : Navigator.pushNamed(
+                                        context, Routes.profile);
+                              },
+                              child: MenueWidget(
+                                  text: 'Profilepersonly'.tr(),
+                                  path: 'assets/images/profile2.png')),
+                          InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, Routes.messagescreen);
+                              },
+                              child: MenueWidget(
+                                  text: 'Mymessages'.tr(),
+                                  path: 'assets/images/message2.png')),
+                          InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, Routes.addharag);
+                              },
+                              child: MenueWidget(
+                                  text: 'AddHaraj'.tr(),
+                                  path: 'assets/images/Harag.png')),
+                          cubit2.userData!.data!.type == 'user'
+                              ? InkWell(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, Routes.favouritescreen);
+                                  },
+                                  child: MenueWidget(
+                                      text: 'Favorite'.tr(),
+                                      path: 'assets/images/favourite.png'))
+                              : Container(),
+                          cubit2.userData!.data!.type == 'vendor'
+                              ? InkWell(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, Routes.addNewProductScreen,
+                                        arguments: false);
+                                  },
+                                  child: MenueWidget(
+                                      text: 'add_product'.tr(),
+                                      path:
+                                          'assets/images/add_new_product.png'))
+                              : Container(),
+                          cubit2.userData!.data!.type == 'user'
+                              ? Container()
+                              : InkWell(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, Routes.addNewAdsScreen);
+                                  },
+                                  child: MenueWidget(
+                                      text: 'add_ads'.tr(),
+                                      path: 'assets/images/ads.png')),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              //  width: MediaQuery.sizeOf(context).width,
+                              decoration: BoxDecoration(
+                                color: AppColors.shadeColor,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              width: double.infinity,
+                              height: 50.h,
+                              child: Padding(
+                                padding: const EdgeInsets.all(7.0),
+                                child: Text(
+                                  "Settings".tr(),
+                                  style: Styles.style16,
+                                ),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, Routes.contactus);
+                              },
+                              child: MenueWidget(
+                                  text: 'contactus'.tr(),
+                                  path: 'assets/images/contactus.png')),
+                          MenueWidget(
+                              text: 'aboutapp'.tr(),
+                              path: 'assets/images/i.png'),
+                          MenueWidget(
+                              text: 'Terms'.tr(),
+                              path: 'assets/images/verified.png'),
+                          InkWell(
+                            onTap: () async {
+                              PackageInfo packageInfo =
+                                  await PackageInfo.fromPlatform();
+                              String url = '';
+                              String packageName = packageInfo.packageName;
 
-                if (Platform.isAndroid) {
-                  url =
-                      "https://play.google.com/store/apps/details?id=$packageName";
-                } else if (Platform.isIOS) {
-                  url = 'https://apps.apple.com/us/app/$packageName';
-                }
-                await Share.share(url);
-              },
-              child: MenueWidget(
-                  text: 'Shareapp'.tr(), path: 'assets/images/share.png'),
-            ),
-            InkWell(
-              onTap: () async {
-                PackageInfo packageInfo = await PackageInfo.fromPlatform();
-                String url = '';
-                String packageName = packageInfo.packageName;
+                              if (Platform.isAndroid) {
+                                url =
+                                    "https://play.google.com/store/apps/details?id=$packageName";
+                              } else if (Platform.isIOS) {
+                                url =
+                                    'https://apps.apple.com/us/app/$packageName';
+                              }
+                              await Share.share(url);
+                            },
+                            child: MenueWidget(
+                                text: 'Shareapp'.tr(),
+                                path: 'assets/images/share.png'),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              PackageInfo packageInfo =
+                                  await PackageInfo.fromPlatform();
+                              String url = '';
+                              String packageName = packageInfo.packageName;
 
-                if (Platform.isAndroid) {
-                  url =
-                      "https://play.google.com/store/apps/details?id=$packageName";
-                } else if (Platform.isIOS) {
-                  url = 'https://apps.apple.com/us/app/$packageName';
-                }
-                if (await canLaunch(url)) {
-                  await launch(url);
-                } else {
-                  throw 'Could not launch $url';
-                }
-                //launch url
-              },
-              child: MenueWidget(
-                  text: 'evaluation'.tr(),
-                  path: 'assets/images/evaluation.png'),
-            ),
-            // BlocProvider(
-            //   create: (context) => LogoutCubit(context.read<ServiceApi>()),
-            //   child: BlocConsumer<LogoutCubit, LogoutState>(
-            //     listener: (context, state) {
-            //       if (state is LoadedLogoutAuth) {
-            //         Preferences.instance.clearAllData().then(
-            //               (value) => Navigator.pushNamedAndRemoveUntil(
-            //             context,
-            //             Routes.initialRoute,
-            //                 (route) => false,
-            //           ),
-            //         );
-            //       } else if (state is ErrorLogoutAuth) {
-            //         errorGetBar('Logout failed');
-            //       }
-            //     },
-            //     builder: (context, state) {
-            //       return InkWell(
-            //         onTap: () {
-            //           if (state is! LoadingLogoutAuth) {
-            //             context.read<LogoutCubit>().loginAuthProvider(context);
-            //           }
-            //         },
-            //         child: MenueWidget(
-            //           text: 'Logout'.tr(),
-            //           path: 'assets/images/logout.png',
-            //           // isLoading: state is LoadingLogoutAuth,
-            //         ),
-            //       );
-            //     },
-            //   ),
-            // ),
-            InkWell(
-                onTap: () {
-                  cubit.logoutAuthProvider(context);
-                },
-                child: MenueWidget(
-                    text: 'Logout'.tr(), path: 'assets/images/logout.png')),
-          ]))));
+                              if (Platform.isAndroid) {
+                                url =
+                                    "https://play.google.com/store/apps/details?id=$packageName";
+                              } else if (Platform.isIOS) {
+                                url =
+                                    'https://apps.apple.com/us/app/$packageName';
+                              }
+                              if (await canLaunch(url)) {
+                                await launch(url);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                              //launch url
+                            },
+                            child: MenueWidget(
+                                text: 'evaluation'.tr(),
+                                path: 'assets/images/evaluation.png'),
+                          ),
+                          // BlocProvider(
+                          //   create: (context) => LogoutCubit(context.read<ServiceApi>()),
+                          //   child: BlocConsumer<LogoutCubit, LogoutState>(
+                          //     listener: (context, state) {
+                          //       if (state is LoadedLogoutAuth) {
+                          //         Preferences.instance.clearAllData().then(
+                          //               (value) => Navigator.pushNamedAndRemoveUntil(
+                          //             context,
+                          //             Routes.initialRoute,
+                          //                 (route) => false,
+                          //           ),
+                          //         );
+                          //       } else if (state is ErrorLogoutAuth) {
+                          //         errorGetBar('Logout failed');
+                          //       }
+                          //     },
+                          //     builder: (context, state) {
+                          //       return InkWell(
+                          //         onTap: () {
+                          //           if (state is! LoadingLogoutAuth) {
+                          //             context.read<LogoutCubit>().loginAuthProvider(context);
+                          //           }
+                          //         },
+                          //         child: MenueWidget(
+                          //           text: 'Logout'.tr(),
+                          //           path: 'assets/images/logout.png',
+                          //           // isLoading: state is LoadingLogoutAuth,
+                          //         ),
+                          //       );
+                          //     },
+                          //   ),
+                          // ),
+                          InkWell(
+                              onTap: () {
+                                cubit.logoutAuthProvider(context);
+                              },
+                              child: MenueWidget(
+                                  text: 'Logout'.tr(),
+                                  path: 'assets/images/logout.png')),
+                        ]))));
         });
       },
     );

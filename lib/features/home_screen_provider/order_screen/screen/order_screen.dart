@@ -22,7 +22,6 @@ class _OrderScreenVendorState extends State<OrderScreenVendor> {
   @override
   void initState() {
     context.read<VendorOrderCubit>().getVendorOrders();
-
     super.initState();
   }
 

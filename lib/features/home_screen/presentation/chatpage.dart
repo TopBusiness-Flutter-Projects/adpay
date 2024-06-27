@@ -17,7 +17,6 @@ class ChatPageScreen extends StatefulWidget {
 class _ChatPageScreenState extends State<ChatPageScreen> {
   void initState() {
     super.initState();
-    // id user to
     context.read<MessagesCubit>().getRoomById(id: widget.id);
   }
 

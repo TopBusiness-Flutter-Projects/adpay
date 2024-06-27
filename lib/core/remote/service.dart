@@ -1270,6 +1270,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+  //get adv
 
   Future<Either<Failure, MainDetailsModel>> getVendorOrderDetails(
       String id) async {

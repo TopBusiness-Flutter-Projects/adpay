@@ -86,7 +86,7 @@ class EndPoints {
   static const String sendMessage = '${baseUrl}vendor/room/';
   static const String vendorProductDetails = '${baseUrl}vendor/productDetails/';
   static const String vendorDeleteProduct = '${baseUrl}vendor/deleteProduct';
-
   static const String orderDetails = '${baseUrl}user/order/d/?id=';
+
 
 }
