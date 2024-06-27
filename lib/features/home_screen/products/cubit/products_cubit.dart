@@ -4,12 +4,14 @@ import 'package:meta/meta.dart';
 
 import '../../../../../core/models/products_model.dart';
 import '../../../../../core/remote/service.dart';
+import '../../../../core/models/Home_models.dart';
 
 part 'products_state.dart';
 
 class ProductsCubit extends Cubit<ProductsState> {
   ProductsCubit(this.api) : super(ProductsInitial());
   ServiceApi api;
+  Products? product;
 
   ProductModel? productsModel ;
   static ProductsCubit get(context) => BlocProvider.of(context);

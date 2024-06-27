@@ -5,9 +5,7 @@ import 'package:flutter/material.dart%20';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../../core/utils/styles.dart';
-import '../../favourite/cubit/favourite_cubit.dart';
 import '../cubit/points_cubit.dart';
 
 class MyPoints extends StatefulWidget {
@@ -84,7 +82,7 @@ class _MyPointsState extends State<MyPoints> {
                                 child: Image.asset("assets/images/coins.png"),
                               ),
                               Text(
-                                cubit.coinsModel?.data?.user.points.toString()??"nehal",
+                                cubit.coinsModel?.data?.user.points.toString()??"nono",
                                 style: Styles.style16.copyWith(color: Colors.black),
                               ),
                             ],
@@ -131,7 +129,9 @@ class _MyPointsState extends State<MyPoints> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(                                cubit.coinsModel?.data?.user.name??"nehal",
+                  child: Text(
+                    cubit.coinsModel?.data?.user.name.toString()??"nono"
+                    // cubit.coinsModel?.data?.user.name??"nehal",
                   ),
                 ),
                 Padding(

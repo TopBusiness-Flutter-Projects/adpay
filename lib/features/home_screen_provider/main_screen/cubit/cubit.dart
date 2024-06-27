@@ -24,6 +24,8 @@ class MainVendorCubit extends Cubit<MainVendorState> {
   LoginModel? userData;
   //عشان الاسم الي فوق
   getUserModel() {
+    emit(LoadingGetUserData());
+
     Preferences.instance.getUserModel().then((e) {
       userData = e;
       print('.............${e.data?.phone}');
@@ -37,7 +39,6 @@ class MainVendorCubit extends Cubit<MainVendorState> {
     final res = await api.getVendorHomeData();
 
     res.fold((l) {
-      //!
       emit(ErrorGetHomeVendorState());
     }, (r) {
       homeVendorScreenModel = r;

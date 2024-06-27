@@ -30,7 +30,7 @@ class GradeDetailsModel {
   });
 
   factory GradeDetailsModel.fromJson(Map<String, dynamic> json) {
-    final data = json['data'];
+    final data = json['data'] ?? {};  // Add a default empty map
 
     return GradeDetailsModel(
       id: data['id'] ?? 0,

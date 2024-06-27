@@ -23,9 +23,6 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   void initState() {
     super.initState();
-
-    // Use read method from context in initState
-
      context.read<OrdersCubit>().GetOrders();
   }
   bool? colors = true;
@@ -147,9 +144,9 @@ class _OrderScreenState extends State<OrderScreen> {
           ),
         ),
       ),
-      SizedBox(
-        height: 200.h,
-      )
+      // SizedBox(
+      //   height: 200.h,
+      // )
     ]));
   }
     );}}

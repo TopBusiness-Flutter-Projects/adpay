@@ -37,7 +37,11 @@ class _MenueScreenState extends State<MenueScreen> {
           LogoutCubit cubit = LogoutCubit.get(context);
           return SafeArea(
               child: Scaffold(
-                  body: SingleChildScrollView(
+                  body:(state is LoadingGetUserData || cubit2.userData==null)?
+                      Center(
+                        child: RefreshProgressIndicator(),
+                      )
+                      : SingleChildScrollView(
                       child: Column(children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -67,7 +71,8 @@ class _MenueScreenState extends State<MenueScreen> {
             ),
             InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, Routes.profile);
+                  cubit2.userData!.data!.type == 'vendor'?
+                  Navigator.pushNamed(context, Routes.vendorProfile) :                  Navigator.pushNamed(context, Routes.profile);
                 },
                 child: MenueWidget(
                     text: 'Profilepersonly'.tr(),
@@ -85,17 +90,19 @@ class _MenueScreenState extends State<MenueScreen> {
                 },
                 child: MenueWidget(
                     text: 'AddHaraj'.tr(), path: 'assets/images/Harag.png')),
+                        cubit2.userData!.data!.type == 'vendor'
+                            ?
             InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, Routes.favouritescreen);
                 },
                 child: MenueWidget(
                     text: 'Favorite'.tr(),
-                    path: 'assets/images/favourite.png')),
+                    path: 'assets/images/favourite.png')):Container(),
             cubit2.userData!.data!.type == 'vendor'
                 ? InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, Routes.addNewProductScreen);
+                      Navigator.pushNamed(context, Routes.addNewProductScreen,arguments: false);
                     },
                     child: MenueWidget(
                         text: 'add_product'.tr(),
@@ -108,7 +115,8 @@ class _MenueScreenState extends State<MenueScreen> {
                       Navigator.pushNamed(context, Routes.addNewAdsScreen);
                     },
                     child: MenueWidget(
-                        text: 'add_ads'.tr(), path: 'assets/images/ads.png')),
+                        text: 'add_ads'.tr(), path: 'assets/images/ads.png')
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(

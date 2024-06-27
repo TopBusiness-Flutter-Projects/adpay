@@ -105,8 +105,7 @@ class _GrageDetailsScreenState extends State<GrageDetailsScreen> {
                                                 child: Swiper(
                                                     autoplay: true,
                                                     itemCount:
-                                                        //   cubit.productsModelDetails?.data?.images!.length ??
-                                                        1,
+                                                           cubit.grageModelDetails?.images?.length ?? 1,
                                                     pagination:
                                                         const SwiperPagination(
                                                       alignment: Alignment

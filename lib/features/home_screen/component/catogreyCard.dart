@@ -27,7 +27,6 @@ class _CategoryCardState extends State<CategoryCard> {
     currentIdX= widget.currentId;
     context.read<CatogriesCubit>().getCatogries();
     super.initState();
-
   }
 late  int currentIdX;
 

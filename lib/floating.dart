@@ -133,7 +133,6 @@ class _FloatingState extends State<Floating> {
                             height: getSize(context) / 14,
                           ),
                   )),
-
                   FloatingNavbarItem(
                       customWidget: Padding(
                     padding: EdgeInsets.all(2),

@@ -59,7 +59,6 @@ import '../models/wallet_model.dart';
 import '../preferences/preferences.dart';
 
 class ServiceApi {
-  String? Devicetoken;
 
   final BaseApiConsumer dio;
 
@@ -82,14 +81,14 @@ class ServiceApi {
   }) async {
     String lan = await Preferences.instance.getSavedLang();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    Devicetoken = prefs.getString('checkUser' ?? "");
+  String?  devicetoken = prefs.getString('checkUser')?? "";
     try {
       var response = await dio.post(
         EndPoints.loginUrl,
         body: {
           "phone": phone,
           "password": password,
-          "device_token": '$Devicetoken',
+          "device_token": '$devicetoken',
         },
         options: Options(
           headers: {'Accept-Language': lan},
@@ -108,14 +107,14 @@ class ServiceApi {
   }) async {
     String lan = await Preferences.instance.getSavedLang();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    Devicetoken = prefs.getString('checkUser');
+    String devicetoken = prefs.getString('checkUser')??"";
     try {
       var response = await dio.post(
         EndPoints.loginUrlProvider,
         body: {
           "phone": phone,
           "password": password,
-          "device_token": '$Devicetoken',
+          "device_token": '$devicetoken',
         },
         options: Options(
           headers: {'Accept-Language': lan},
@@ -280,12 +279,14 @@ class ServiceApi {
     }
   }
 //getVendorProfile
-  Future<Either<Failure,MainVendorHomeModel >> getVendorProfile() async {
+  Future<Either<Failure,MainVendorHomeModel >> getVendorProfile({
+    required text
+}) async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
 
     try {
       final response = await dio.get(
-        EndPoints.vendorProfile,
+        EndPoints.vendorProfile+'${(text == null) ? '' : text}',
         options: Options(
           headers: {'Authorization': loginModel.data!.token},
         ),
@@ -665,10 +666,12 @@ class ServiceApi {
 
   //register
   Future<Either<Failure, LoginModel>> postRegister(
-      {required String phone,
+      {
+        required String phone,
       required File profileImage,
       required String phoneCode,
-      required String name}) async {
+      required String name
+      }) async {
     String? deviceToken = await Preferences.instance.getDeviceToken();
 
     try {

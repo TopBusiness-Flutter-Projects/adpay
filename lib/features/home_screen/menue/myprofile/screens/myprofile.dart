@@ -52,9 +52,17 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                "assets/images/logo2.png",
-              ),
+          Padding(
+            padding: const EdgeInsets.only(right:8.0),
+            child: CircleAvatar(
+              backgroundImage:  NetworkImage(
+              (cubit.profileModel?.data?.first?.image.toString() ??
+                  ''),
+              //
+                 // fit:  BoxFit.fill
+                    ),
+            ),
+          ),
               Flexible(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -63,7 +71,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        cubit.profileModel?.data.name ?? "adPay",
+                        cubit.profileModel?.data?.first.name ?? "adPay",
                         maxLines: 1,
                         style: TextStyle(
                           overflow: TextOverflow.ellipsis,
@@ -71,8 +79,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(cubit.profileModel?.data.phone.toString() ??
-                          "0128686868"),
+                      Text(cubit.profileModel?.data?.first.phone.toString() ??
+                          "-"),
                     ],
                   ),
                 ),
@@ -94,7 +102,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       children: [
                         Text("orders".tr()),
                         Text(
-                          cubit.profileModel?.data.ordersCount.toString() ??
+                          cubit.profileModel?.data?.first.ordersCount.toString() ??
                               '0',
                           style: Styles.style16.copyWith(color: Colors.black),
                         ),
@@ -116,7 +124,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       children: [
                         Text("Forester".tr()),
                         Text(
-                          cubit.profileModel?.data.auctionsCount.toString() ??
+                          cubit.profileModel?.data?.first.auctionsCount.toString() ??
                               "0",
                           style: Styles.style16.copyWith(color: Colors.black),
                         )
@@ -138,7 +146,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       children: [
                         Text("advertisements".tr()),
                         Text(
-                          cubit.profileModel?.data.viewAdsCount.toString() ??
+                          cubit.profileModel?.data?.first.viewAdsCount.toString() ??
                               "0",
                           style: Styles.style16.copyWith(color: Colors.black),
                         )
@@ -194,7 +202,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 child: Image.asset("assets/images/coins.png"),
                               ),
                               Text(
-                                cubit.profileModel?.data.points.toString() ??
+                                cubit.profileModel?.data?.first.points.toString() ??
                                     "0",
                                 style: Styles.style16
                                     .copyWith(color: Colors.black),
@@ -249,7 +257,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 child: Image.asset("assets/images/pocket.png"),
                               ),
                               Text(
-                                cubit.profileModel?.data.auctionsCount.toString() ??
+                                cubit.profileModel?.data?.first.auctionsCount.toString() ??
                                     "0",
                                 style: Styles.style16
                                     .copyWith(color: Colors.black),

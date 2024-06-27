@@ -13,9 +13,9 @@ class TagerCubit extends Cubit<TagerState> {
 
   MainVendorHomeModel? vendorModel ;
   static TagerCubit get(context) => BlocProvider.of(context);
-  Future<void> getVendor({ String ?id}) async {
+  Future<void> getVendor({ String ?text}) async {
     emit(LoadingTager());
-    final response = await api.getVendorProfile();
+    final response = await api.getVendorProfile(text: text);
     response.fold((l) {
       emit(ErrorTager());
     }, (right) async {
