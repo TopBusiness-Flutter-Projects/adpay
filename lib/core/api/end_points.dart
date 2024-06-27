@@ -1,13 +1,11 @@
 class EndPoints {
   static const String baseUrl = 'https://adpay.topbusiness.io/api/';
   static const String baseUrlImage = 'https://adpay.topbusiness.io/';
-
   static const String loginUrl = '${baseUrl}auth/login';
   static const String loginUrlProvider = '${baseUrl}provider/login';
   static const String CheckUser = '${baseUrl}auth/checkUser';
   static const String homeUrl = '${baseUrl}user/getHome';
   static const String CatogriesListUrl = '${baseUrl}user/getCategories';
-
   static const String AdsListUrl = '${baseUrl}user/getAds';
   static const String ProductListUrl = '${baseUrl}user/getProducts';
   static const String GrageListUrl = '${baseUrl}user/getAuctions';
@@ -16,22 +14,16 @@ class EndPoints {
   static const String ShopsList = '${baseUrl}user/getShops';
   static const String Favourite = '${baseUrl}user/storeFavorite';
   static const String CommentsUrl = '${baseUrl}user/storeComment';
-
   static const String CoinsUrl = '${baseUrl}user/myCoins';
   static const String WalletUrl = '${baseUrl}user/myWallet';
   static const String addHarag = '${baseUrl}user/storeAuction';
   static const String logout = '${baseUrl}auth/logout';
-
   static const String contactUs = '${baseUrl}user/sendContactUs';
-
   static const String homeVendorUrl = '${baseUrl}vendor/home';
-  static const String vendorNotificationsUrl =
-      '${baseUrl}vendor/getNotifications';
+  static const String vendorNotificationsUrl = '${baseUrl}vendor/getNotifications';
   static const String vendorOrdersUrl = '${baseUrl}vendor/orders';
   static const String vendorOrderDetailsUrl = '${baseUrl}vendor/order/d/';
-
   static const String resetUrl = '${baseUrl}auth/resetPassword';
-
   static const String getshopctogreyUrl = '${baseUrl}getShopCategories';
   static const String getShopCtogreyUrl = '${baseUrl}getShopCategories';
   static const String subCatogreyUrl = '${baseUrl}vendor/getShopSubCategories';
@@ -45,11 +37,8 @@ class EndPoints {
   static const String getMyAdvertiseVendor = '${baseUrl}vendor/myAdvertise';
 
   static const String addToCart = '${baseUrl}user/addToCart';
-
   static const String getCart = '${baseUrl}user/getCart';
-
   static const String vendorRegister = '${baseUrl}vendor/register';
-
   static const String vendorAddProduct = '${baseUrl}vendor/addProduct';
   static const String vendorUpdateProduct = '${baseUrl}vendor/updateProduct';
   static const String getAdPackages = '${baseUrl}vendor/getAdPackages';
@@ -62,6 +51,7 @@ class EndPoints {
   static const String emptycard = '${baseUrl}user/emptyCard';
 
   static const String deleteCard = '${baseUrl}user/deleteFromCart';
+  static const String vendorProfile = '${baseUrl}user/vendorProfile/18?key=';
 
 
 

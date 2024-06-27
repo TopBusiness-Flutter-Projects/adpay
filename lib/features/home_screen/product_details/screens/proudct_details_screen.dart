@@ -130,27 +130,32 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     children: [
                                       Row(
                                         children: [
-                                          Text(
-                                              (EasyLocalization.of(context)!
-                                                          .locale
-                                                          .languageCode ==
-                                                      'ar')
-                                                  ? (cubit.productsModelDetails
-                                                          ?.data?.titleAr ??
-                                                      'arabic')
-                                                  : (cubit.productsModelDetails
-                                                          ?.data?.titleEn ??
-                                                      'english'),
-                                              style: Styles.style18.copyWith(
-                                                  color:
-                                                      AppColors.secondPrimary)),
-                                          Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Flexible(
-                                                  child: Text(
-                                                "${cubit.productsModelDetails?.data?.price.toString() ?? "T-Shirt"} ${AppStrings.currency}",
-                                                style: Styles.style16,
-                                              )))
+                                          Flexible(
+                                            child: Text(
+                                                (EasyLocalization.of(context)!
+                                                            .locale
+                                                            .languageCode ==
+                                                        'ar')
+                                                    ? (cubit.productsModelDetails
+                                                            ?.data?.titleAr ??
+                                                        'arabic')
+                                                    : (cubit.productsModelDetails
+                                                            ?.data?.titleEn ??
+                                                        'english'),
+                                                style: Styles.style18.copyWith(
+                                                    color:
+                                                        AppColors.secondPrimary)),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(20.0),
+                                            child: Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Flexible(
+                                                    child: Text(
+                                                  "${cubit.productsModelDetails?.data?.price.toString() ?? "T-Shirt"} ${AppStrings.currency}",
+                                                  style: Styles.style16,
+                                                ))),
+                                          )
                                         ],
                                       ),
                                       Text(

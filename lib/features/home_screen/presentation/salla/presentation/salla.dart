@@ -47,7 +47,7 @@ class _SallaScreenState extends State<SallaScreen> {
                           ),
                         ),
                         Flexible(
-                          fit:FlexFit.tight,
+                          fit: FlexFit.tight,
                           //main scrooll >>have
                           child: ListView.builder(
                             itemCount: cubit.cartModel?.data!.length,
@@ -78,10 +78,11 @@ class _SallaScreenState extends State<SallaScreen> {
                                         .copyWith(color: Colors.black),
                                   ),
                                   Text(
-                                    "total",
-                                    // cubit.cartModel?.data![index].carts?[index].total.toString()??"",
-                                    style: Styles.style16
-                                        .copyWith(color: Colors.black),
+                                    cubit.getTotalPrice.abs().toString(),
+
+                                    //                           for(int i=0;i<cubit.cartModel.data.length;i++)
+                                    // cubit.cartModel?.data![i].carts?[i].total.toString()=   (cubit.cartModel?.data![i].carts?[i].total.toString())+1??"",
+                                    style: Styles.style16.copyWith(color: Colors.black),
                                   )
                                 ],
                               ),
@@ -102,7 +103,7 @@ class _SallaScreenState extends State<SallaScreen> {
                                                 Colors.red, // لون الزر
                                           ),
                                           child: Text(
-                                            "الغاء",
+                                            "cancel".tr(),
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 15.sp),
@@ -143,7 +144,7 @@ class CustomCartWidget extends StatefulWidget {
     super.key,
     required this.model,
   });
-GetCartModelData model;
+  GetCartModelData model;
 
   @override
   State<CustomCartWidget> createState() => _CustomCartWidgetState();
@@ -201,7 +202,6 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                     child: ListView.builder(
                       shrinkWrap: true,
                       physics: const BouncingScrollPhysics(),
-
                       padding: EdgeInsets.only(top: getSize(context) / 8),
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
@@ -235,7 +235,9 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                                     ),
                                     Column(
                                       children: [
-                                        Text(widget.model.carts?[index].name.toString()??""),
+                                        Text(widget.model.carts?[index].name
+                                                .toString() ??
+                                            ""),
                                         // ElevatedButton(onPressed: (){}, child: Text("hi"))
                                         Container(
                                           height: 30.h,
@@ -273,17 +275,20 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                                                     // setState(() {
                                                     //   _counter++;
                                                     // });
-                                                 cubit.increment(
-                                                   //  model:widget.model?.carts?[index]
-                                                   model:widget.model?.carts?[index]
-                                                 );
-                                                 //     .then((value) =>     cubit.getCart()
-                                                 // );
+                                                    cubit.increment(
+                                                        item: widget.model,
+                                                        //  model:widget.model?.carts?[index]
+                                                        model: widget.model
+                                                            ?.carts?[index]);
+                                                    //     .then((value) =>     cubit.getCart()
+                                                    // );
                                                   },
                                                   child: Image.asset(
                                                       "assets/images/add.png")),
                                               Text(
-                                              widget.model.carts![index].qty.toString()??"",
+                                                widget.model.carts![index].qty
+                                                        .toString() ??
+                                                    "",
                                                 style:
                                                     TextStyle(fontSize: 24.0),
                                               ),
@@ -293,9 +298,11 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                                                     //   _counter--;
                                                     // });
                                                     cubit.decrement(
-                                                      //  model:widget.model?.carts?[index]
-                                                        model:widget.model?.carts?[index]
-                                                    );
+                                                        item: widget.model,
+
+                                                        //  model:widget.model?.carts?[index]
+                                                        model: widget.model
+                                                            ?.carts?[index]);
                                                   },
                                                   child: Image.asset(
                                                       "assets/images/minus.png")),
@@ -310,14 +317,23 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Text(
-"ss",
+                                            widget.model.carts?[index].price
+                                                    .toString() ??
+                                                "price",
                                             style: Styles.style16,
                                           ),
                                         ),
                                         InkWell(
-                                        onTap:(){
-                                     cubit.postDelete(product_id:widget.model.carts?[index].productId.toString() , user_id: widget.model.carts?[index].userId.toString());
-                                        },
+                                          onTap: () {
+                                            cubit.postDelete(
+                                                item: widget.model,
+                                                product_id: widget.model
+                                                    .carts?[index].productId
+                                                    .toString(),
+                                                user_id: widget
+                                                    .model.carts?[index].userId
+                                                    .toString());
+                                          },
                                           child: Icon(Icons.delete_outline,
                                               color: AppColors.primary),
                                         )
@@ -335,11 +351,13 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "الاجمالي",
+                          "total".tr(),
                           style: Styles.style16.copyWith(color: Colors.black),
                         ),
                         Text(
-                          context.read<SallaCubit>().cartModel?.data![0].carts![0].total.toString()??"",
+                          //  context.read<SallaCubit>().cartModel?.data![0].carts![0].total.toString()??"",
+
+                          widget.model.total.abs().toString() ?? "",
                           style: Styles.style16.copyWith(color: Colors.black),
                         )
                       ],
@@ -349,8 +367,7 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                     height: 10.h,
                   )
                 ],
-              )
-          ),
+              )),
         ),
         Positioned(
           top: 0,
@@ -373,7 +390,7 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                    widget.model.vendor?.name.toString()??"",
+                      widget.model.vendor?.name.toString() ?? "",
                       style: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
@@ -400,7 +417,8 @@ class _CustomCartWidgetState extends State<CustomCartWidget> {
                       child: ClipOval(
                         child: Image.network(
                           widget.model.vendor?.image.toString() ?? '',
-                          fit: BoxFit.cover, // Ensures the image covers the CircleAvatar
+                          fit: BoxFit
+                              .cover, // Ensures the image covers the CircleAvatar
                           errorBuilder: (context, error, stackTrace) {
                             return Image.asset(
                               'assets/images/logo.png',

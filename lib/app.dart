@@ -34,6 +34,7 @@ import 'features/home_screen/presentation/salla/cubit/salla_cubit.dart';
 import 'features/home_screen/product_details/cubit/products_details_cubit.dart';
 import 'features/home_screen/products/cubit/products_cubit.dart';
 import 'features/home_screen/shop/cubit/shop_cubit.dart';
+import 'features/home_screen/tager/cubit/tager_cubit.dart';
 import 'features/home_screen_provider/add_new_ads/cubit/cubit.dart';
 import 'features/home_screen_provider/add_new_product/cubit/cubit.dart';
 import 'features/home_screen_provider/main_screen/cubit/cubit.dart';
@@ -151,6 +152,9 @@ class _AdpayState extends State<Adpay> {
           ),
           BlocProvider(
             create: (_) => injector.serviceLocator<MessagesCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<TagerCubit>(),
           ),
 
           BlocProvider(

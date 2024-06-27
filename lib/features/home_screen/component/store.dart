@@ -56,10 +56,23 @@ class _StoresState extends State<Stores> {
                        ),
                        child: ClipRRect(
                          borderRadius: BorderRadius.circular(5),
-                         child: Image.asset(
-                           "assets/images/Rectangle.png",
+                         child:
+                         Image.network(
+                         (cubit.homeModel?.data?.shops?[index]?.logo?[index]
+              .toString() ??
+          'assets/images/chair.jpg'),
+          errorBuilder:
+          (context, error, stackTrace) {
+          return Image.asset(
+          'assets/images/chair.jpg',
+            fit: BoxFit.cover,
+
+          );
+          },
                            fit: BoxFit.cover,
-                         ),
+
+                         )
+
                        ),
                      ),
                    ),

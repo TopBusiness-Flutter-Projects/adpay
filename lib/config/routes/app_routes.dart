@@ -24,6 +24,7 @@ import '../../features/home_screen/main_screen/screens/home_screen_user.dart';
 import '../../features/home_screen/menue/myprofile/edit_my_harag/edit_my_harag.dart';
 import '../../features/home_screen/menue/myprofile/myharag/screens/my_harag.dart';
 import '../../features/home_screen/menue/myprofile/screens/myprofile.dart';
+import '../../features/home_screen/menue/myprofile_vendor/screens/vendor_profile.dart';
 import '../../features/home_screen/menue/screens/contact_us/screens/contact_us.dart';
 import '../../features/home_screen/menue/screens/menue_screen.dart';
 import '../../features/home_screen/menue/screens/mypoints/screens/points.dart';
@@ -123,6 +124,8 @@ class Routes {
   static const String addNewAdsScreen = '/addNewAdsScreen';
    static const String orderdetails = '/orderdetails';
 
+  static const String vendorProfile = '/VendorProfile';
+
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
 //   static const String registerScreenRoute = '/registerScreen';
@@ -181,6 +184,15 @@ class AppRoutes {
           child:
               EditMyHaragDetails(), // Replace with your category screen widget
         );
+      case Routes.vendorProfile: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child:
+          VendorProfile(), // Replace with your category screen widget
+        );
+
       case Routes.myharagdetails: // Change this line
         return PageTransition(
           type: PageTransitionType.fade,

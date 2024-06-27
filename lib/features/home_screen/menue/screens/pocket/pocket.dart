@@ -129,7 +129,7 @@ class _PocketScreenState extends State<PocketScreen> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text(cubit.walletModel?.data?.user.name.toString()??"nehal"),
+                                  child: Text(cubit.walletModel?.data?.user.name.toString()??"nono"),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),

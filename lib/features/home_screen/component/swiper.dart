@@ -46,7 +46,8 @@ class CustomSwiper extends StatelessWidget {
                         return Image.asset('assets/images/logo.png');
                       },
                     );
-                  }),
+                  }
+                  ),
             ),
           );
         } else {

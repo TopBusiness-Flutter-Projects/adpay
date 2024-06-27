@@ -123,8 +123,8 @@ class LoginCubit extends Cubit<LoginState> {
       if (r.status == 1) {
         print("loaded");
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('checkUser', r.data!.deviceToken.toString());
-        prefs.setString('name', r.data!.name.toString());
+        await prefs.setString('checkUser', r.data!.deviceToken.toString());
+      await  prefs.setString('name', r.data!.name.toString());
         loginAuth(context);
         pref.setBool('onBoarding', true);
         emit(LoadedCheckUserAuth());

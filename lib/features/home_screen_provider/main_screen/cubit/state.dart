@@ -3,6 +3,7 @@ abstract class MainVendorState {}
 class MainVendorInitial extends MainVendorState {}
 
 class GetUserData extends MainVendorState {}
+class LoadingGetUserData extends MainVendorState {}
 
 class LoadingGetHomeVendorState extends MainVendorState {}
 

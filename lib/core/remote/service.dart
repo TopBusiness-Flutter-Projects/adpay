@@ -31,6 +31,7 @@ import '../models/getCity_ byRegion_model.dart';
 import '../models/get_cart_model.dart';
 import '../models/get_my_orders_model.dart';
 import '../models/get_myprofile_model.dart';
+import '../models/get_vendor_model.dart';
 import '../models/getaddress_model.dart';
 import '../models/getchat_room_byid.dart';
 import '../models/getchat_rooms_model.dart';
@@ -58,7 +59,6 @@ import '../models/wallet_model.dart';
 import '../preferences/preferences.dart';
 
 class ServiceApi {
-  String? Devicetoken;
 
   final BaseApiConsumer dio;
 
@@ -81,14 +81,14 @@ class ServiceApi {
   }) async {
     String lan = await Preferences.instance.getSavedLang();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    Devicetoken = prefs.getString('checkUser' ?? "");
+  String?  devicetoken = prefs.getString('checkUser')?? "";
     try {
       var response = await dio.post(
         EndPoints.loginUrl,
         body: {
           "phone": phone,
           "password": password,
-          "device_token": '$Devicetoken',
+          "device_token": '$devicetoken',
         },
         options: Options(
           headers: {'Accept-Language': lan},
@@ -107,14 +107,14 @@ class ServiceApi {
   }) async {
     String lan = await Preferences.instance.getSavedLang();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    Devicetoken = prefs.getString('checkUser');
+    String devicetoken = prefs.getString('checkUser')??"";
     try {
       var response = await dio.post(
         EndPoints.loginUrlProvider,
         body: {
           "phone": phone,
           "password": password,
-          "device_token": '$Devicetoken',
+          "device_token": '$devicetoken',
         },
         options: Options(
           headers: {'Accept-Language': lan},
@@ -274,6 +274,24 @@ class ServiceApi {
         ),
       );
       return Right(GetShopCategoriesModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+//getVendorProfile
+  Future<Either<Failure,MainVendorHomeModel >> getVendorProfile({
+    required text
+}) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.vendorProfile+'${(text == null) ? '' : text}',
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(MainVendorHomeModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
@@ -648,10 +666,12 @@ class ServiceApi {
 
   //register
   Future<Either<Failure, LoginModel>> postRegister(
-      {required String phone,
+      {
+        required String phone,
       required File profileImage,
       required String phoneCode,
-      required String name}) async {
+      required String name
+      }) async {
     String? deviceToken = await Preferences.instance.getDeviceToken();
 
     try {
