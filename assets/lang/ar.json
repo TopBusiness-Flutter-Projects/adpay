@@ -162,7 +162,9 @@
   "total": "الاجمالي",
   "createaccount": "انئاء حساب",
   "no_orders": "لا يوجد طلبات",
-  "completeorder": "اكمال الطلب"
+  "completeorder": "اكمال الطلب",
+  "loading":"جاري الدخول ...."
+
 
 
 
