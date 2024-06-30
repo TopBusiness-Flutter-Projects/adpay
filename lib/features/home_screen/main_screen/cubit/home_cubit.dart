@@ -17,6 +17,7 @@ class HomeCubit extends Cubit<HomeState> {
   getUserModel() {
     Preferences.instance.getUserModel().then((e) {
       userData = e;
+      print("user id = ${userData?.data!.id}");
       emit(GetUserData());
     });
   }

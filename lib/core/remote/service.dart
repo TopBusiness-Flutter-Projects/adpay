@@ -369,7 +369,7 @@ class ServiceApi {
   Future<Either<Failure, GetChatRoomById>> getRoomById(
       {required String? id}) async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
-    String? id;
+    // String? id;
 
     try {
       final response = await dio.get(

@@ -51,6 +51,9 @@ class _MessageScreenState extends State<MessageScreen> {
                             padding: EdgeInsets.all(8.0),
                             child: GestureDetector(
                               onTap: () {
+                                print("ffffff ${cubit
+                                    .getChatModel?.data?[index].toUser?.id
+                                    .toString()}");
                                 Navigator.pushNamed(context, Routes.chatapp,
                                     arguments: cubit
                                         .getChatModel?.data?[index].toUser?.id

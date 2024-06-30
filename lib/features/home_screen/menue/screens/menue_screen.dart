@@ -83,24 +83,26 @@ class _MenueScreenState extends State<MenueScreen> {
                                   path: 'assets/images/profile2.png')),
                           InkWell(
                               onTap: () {
+
                                 Navigator.pushNamed(
                                     context, Routes.messagescreen);
                               },
                               child: MenueWidget(
                                   text: 'Mymessages'.tr(),
                                   path: 'assets/images/message2.png')),
+                            cubit2.userData!.data!.type == 'user'
+                                ?
                           InkWell(
                               onTap: () {
                                 Navigator.pushNamed(context, Routes.addharag);
                               },
                               child: MenueWidget(
                                   text: 'AddHaraj'.tr(),
-                                  path: 'assets/images/Harag.png')),
+                                  path: 'assets/images/Harag.png')):Container(),
                           cubit2.userData!.data!.type == 'user'
                               ? InkWell(
                                   onTap: () {
-                                    Navigator.pushNamed(
-                                        context, Routes.favouritescreen);
+                                    Navigator.pushNamed(context, Routes.favouritescreen);
                                   },
                                   child: MenueWidget(
                                       text: 'Favorite'.tr(),
@@ -166,7 +168,6 @@ class _MenueScreenState extends State<MenueScreen> {
                                   await PackageInfo.fromPlatform();
                               String url = '';
                               String packageName = packageInfo.packageName;
-
                               if (Platform.isAndroid) {
                                 url =
                                     "https://play.google.com/store/apps/details?id=$packageName";

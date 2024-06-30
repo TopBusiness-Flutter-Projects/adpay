@@ -34,7 +34,7 @@ class MessagesCubit extends Cubit<MessagesState> {
 
   GetChatRoomById? chatidmodel;
   //getRoombyid
-  Future<void> getRoomById({String? id}) async {
+  Future<void> getRoomByUserId({String? id}) async {
     emit(LoadingRoomMessage());
     final response = await api.getRoomById(id: id);
     //
@@ -50,7 +50,8 @@ class MessagesCubit extends Cubit<MessagesState> {
 
   SendMessageModel? sendMessageModel;
   //post
-  Future<void> postSendMessage() async {
+  Future<void> postSendMessage(String userId) async {
+    print("gggg${chatidmodel!.data.id}");
     emit(LoadingPostMessage());
     final response = await api.postMessage(
         message: text1.text, roomId: chatidmodel!.data.id.toString());
@@ -61,7 +62,7 @@ class MessagesCubit extends Cubit<MessagesState> {
       print("loaded");
       text1.clear();
       successGetBar(r.msg);
-      getRoomById(id: chatidmodel!.data.id.toString());
+      getRoomByUserId(id: userId.toString());
       emit(LoadedPostMessage(chatmodelid: null));
     });
   }
