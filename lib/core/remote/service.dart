@@ -354,6 +354,7 @@ class ServiceApi {
   //getchatrooms
   Future<Either<Failure, GetChatRoomsModel>> getChatRooms() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
+    print("dddddddddddddd ${loginModel.data!.token}");
     try {
       final response = await dio.get(
         EndPoints.getChatroomUrl,

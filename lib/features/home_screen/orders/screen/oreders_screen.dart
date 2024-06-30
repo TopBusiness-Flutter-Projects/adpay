@@ -63,7 +63,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 decoration: BoxDecoration(
                   color: cubit.currentUserOrder=='complete'
                       ? AppColors.primary
-                      : AppColors.secondPrimary,
+                      : AppColors.gray,
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Align(
@@ -85,7 +85,6 @@ class _OrderScreenState extends State<OrderScreen> {
           Expanded(
             child: InkWell(
               onTap: () {
-
                 cubit.onChangeUserOrder('new');
               },
               child: Container(
@@ -93,8 +92,9 @@ class _OrderScreenState extends State<OrderScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
                 width: getSize(context) / 3,
                 decoration: BoxDecoration(
-                  color:cubit.currentUserOrder=='new'                      ? AppColors.primary
-                      : AppColors.secondPrimary,
+                  color:cubit.currentUserOrder=='new'                      ?
+                  AppColors.primary
+                      : AppColors.gray,
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Align(
@@ -118,7 +118,6 @@ class _OrderScreenState extends State<OrderScreen> {
       Flexible(
         child: Container(
           child:( cubit.getMyOrderModel!.data!.isEmpty)?
-        
               Center(
                 child:Text('no_data'.tr()),
               )
@@ -130,8 +129,6 @@ class _OrderScreenState extends State<OrderScreen> {
 
                 child: CustomOrderWidget(
                   orderModel: cubit.getMyOrderModel!.data?[index], onTap: () {
-
-
                     print('...............${cubit.getMyOrderModel?.data?[index].id.toString()}');
                   Navigator.pushNamed(
                       context, Routes.orderDetails,
@@ -144,9 +141,6 @@ class _OrderScreenState extends State<OrderScreen> {
           ),
         ),
       ),
-      // SizedBox(
-      //   height: 200.h,
-      // )
     ]));
   }
     );}}

@@ -2,11 +2,9 @@ import 'package:adpay/core/utils/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/styles.dart';
 import '../cubit/messages_cubit.dart';
-
 class MessageScreen extends StatefulWidget {
   const MessageScreen({super.key});
 
@@ -20,7 +18,6 @@ class _MessageScreenState extends State<MessageScreen> {
     MessagesCubit.get(context).getRooms();
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MessagesCubit, MessagesState>(
@@ -81,14 +78,19 @@ class _MessageScreenState extends State<MessageScreen> {
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(200),
-                                        child: Image.asset(
-                                          "assets/images/chair.jpg",
-                                          scale: 11,
+                                        child:  Image.network(
+                                          (cubit.getChatModel?.data?[index].toUser.toString() ?? ''),
+                                          errorBuilder: (context, error, stackTrace) {
+                                            return Image.asset(
+                                              'assets/images/chair.jpg',
+                                              scale: 10,
+                                            );
+                                          },
                                         ),
                                       ),
                                       label: Center(
                                         child: Container(
-                                          child: Text('2'),
+                                          child: Text(cubit.getChatModel?.data?[index]?.unseenCount.toString()??""),
                                         ),
                                       ), // Add this line
                                     ),

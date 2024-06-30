@@ -171,17 +171,17 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     ),
                   ),
                   MainCatogreyAddProductWidget(),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0, top: 8),
-                    child: Text(
-                      "Subcategory".tr(),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SubCatogreyAddProductWidget(),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(right: 8.0, top: 8),
+                  //   child: Text(
+                  //     "Subcategory".tr(),
+                  //     style: TextStyle(
+                  //       color: Colors.black,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  // ),
+                  // SubCatogreyAddProductWidget(),
 
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0, top: 8),

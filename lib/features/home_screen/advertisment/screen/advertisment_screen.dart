@@ -18,7 +18,6 @@ class Advertesment_Screen extends StatefulWidget {
 }
 
 class _Advertesment_ScreenState extends State<Advertesment_Screen> {
-  // int selectedCategoryIndex = 0;
   void initState() {
     super.initState();
     context.read<AdsenceCubit>().getAdsence();
