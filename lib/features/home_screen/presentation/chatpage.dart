@@ -17,7 +17,7 @@ class ChatPageScreen extends StatefulWidget {
 class _ChatPageScreenState extends State<ChatPageScreen> {
   void initState() {
     super.initState();
-    context.read<MessagesCubit>().getRoomById(id: widget.id);
+    context.read<MessagesCubit>().getRoomByUserId(id: widget.id);
   }
 
   @override
@@ -53,7 +53,14 @@ class _ChatPageScreenState extends State<ChatPageScreen> {
                         ? Center(
                             child: CircularProgressIndicator(),
                           )
-                        : ListView.builder(
+                        :
+                    context.read<HomeCubit>().userData == null ?
+
+                    Center(
+                      child: CircularProgressIndicator(),
+                    )
+                        :
+                    ListView.builder(
                             itemCount:
                                 cubit.chatidmodel?.data.messages.length ?? 0,
                             itemBuilder: (context, index) {
@@ -173,7 +180,7 @@ class _ChatPageScreenState extends State<ChatPageScreen> {
                               // print("kkkkkkkkkc${context.read<HomeCubit>().userData?.data?.id.toString()}");
                               // print("kkkkkkkkkc${context.read<HomeCubit>().userData?.data?.id.toString()}");
 
-                              cubit.postSendMessage();
+                              cubit.postSendMessage(widget.id!);
                             },
                             child: Icon(Icons.send)),
                         border: OutlineInputBorder(

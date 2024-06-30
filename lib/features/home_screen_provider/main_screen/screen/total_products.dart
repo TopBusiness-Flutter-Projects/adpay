@@ -21,10 +21,8 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
   @override
   void initState() {
     context.read<MainVendorCubit>().getVendorGetShopCategories();
-
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MainVendorCubit, MainVendorState>(
@@ -53,10 +51,7 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
                         onTap: () {
                           setState(() {
                             cubit.currentTotalProductsIndex = 0;
-                            //! 0 >>used
                             cubit.getTotalProductsVendor();
-
-                            //! get
                           });
                         },
                         child: Container(
@@ -68,7 +63,7 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
                           decoration: BoxDecoration(
                             color: cubit.currentTotalProductsIndex == 0
                                 ? AppColors.primary
-                                : AppColors.secondPrimary,
+                                : AppColors.greyColor,
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Align(
@@ -106,7 +101,7 @@ class _TotalProductsVendorScreenState extends State<TotalProductsVendorScreen> {
                           decoration: BoxDecoration(
                             color: cubit.currentTotalProductsIndex == 1
                                 ? AppColors.primary
-                                : AppColors.secondPrimary,
+                                : AppColors.greyColor,
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Align(

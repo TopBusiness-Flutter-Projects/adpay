@@ -2,17 +2,14 @@ import 'package:adpay/config/routes/app_routes.dart';
 import 'package:adpay/core/utils/app_colors.dart';
 import 'package:adpay/core/utils/get_size.dart';
 import 'package:adpay/features/home_screen_provider/main_screen/cubit/state.dart';
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart%20';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/utils/assets_manager.dart';
-import '../../../home_screen/component/custom_Appbar.dart';
+import '../../../home_screen/main_screen/cubit/home_cubit.dart';
 import '../../order_screen/cubit/cubit.dart';
 import '../../widget/custom_bome_item.dart';
 import '../widget/chart.dart';
@@ -22,7 +19,6 @@ import 'swiper_vendor.dart';
 
 class HomeScreenDriver extends StatefulWidget {
   const HomeScreenDriver({super.key});
-
   @override
   State<HomeScreenDriver> createState() => _HomeScreenDriverState();
 }
@@ -33,10 +29,9 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
   void initState() {
     super.initState();
     context.read<MainVendorCubit>().getVendorHomeData();
+    context.read<HomeCubit>().getUserModel();
   }
-
   bool isLoading = true;
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainVendorCubit, MainVendorState>(
@@ -49,7 +44,6 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
       },
       builder: (context, state) {
         var cubit = context.read<MainVendorCubit>();
-
         return SafeArea(
           child: Scaffold(
               backgroundColor: AppColors.white,
@@ -75,7 +69,6 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                               Container(child: CustomSwiperVendor()),
                               SizedBox(height: getSize(context) / 28),
                               Container(
-                                // height: getSize(context) / 2,
                                 width: getSize(context),
                                 child: GridView(
                                   gridDelegate:
@@ -171,7 +164,8 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                           ),
                         ),
                       ),
-                    )),
+                    )
+          ),
         );
       },
     );

@@ -71,8 +71,7 @@ class _ProductDetailsVendorScreenState
                                     borderRadius: BorderRadius.circular(30)),
                                 child: Swiper(
                                     autoplay: true,
-                                    itemCount: cubit.productsModelDetails?.data
-                                            ?.images?.length ??
+                                    itemCount: cubit.productsModelDetails?.data?.images?.length ??
                                         1,
                                     pagination: const SwiperPagination(
                                       alignment: Alignment.bottomCenter,

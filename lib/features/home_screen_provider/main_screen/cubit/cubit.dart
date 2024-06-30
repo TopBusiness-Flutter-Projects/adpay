@@ -154,8 +154,8 @@ class MainVendorCubit extends Cubit<MainVendorState> {
     }, (right) async {
       print("sucess cubit");
       Navigator.pop(context);
-
       print("loaded");
+      getTotalProductsVendor();
       emit(LoadedDeleteProductsDEtails());
     });
   }
