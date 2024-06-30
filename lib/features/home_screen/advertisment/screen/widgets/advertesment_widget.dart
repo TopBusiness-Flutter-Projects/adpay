@@ -89,15 +89,30 @@ class AdvertesmentWidet extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment
                             .start, // Align children to the start
                         children: [
-                          Text(
-                              (EasyLocalization.of(context)!
-                                          .locale
-                                          .languageCode ==
-                                      'ar')
-                                  ? (ads.titleAr ?? '')
-                                  : (ads.titleEn ?? ''),
-                              style: Styles.style18
-                                  .copyWith(color: AppColors.secondPrimary)),
+                          Row(
+                            children: [
+                              Text(
+                                  (EasyLocalization.of(context)!
+                                              .locale
+                                              .languageCode ==
+                                          'ar')
+                                      ? (ads.titleAr ?? '')
+                                      : (ads.titleEn ?? ''),
+                                  style: Styles.style18
+                                      .copyWith(color: AppColors.secondPrimary)),
+                              Spacer(),
+                              Row(
+                                children: [
+                                  Text(ads.countViews.toString()??""),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Icon(Icons.remove_red_eye_outlined,color: Colors.grey,),
+                                  ),
+
+                                ],
+                              )
+                            ],
+                          ),
                           Text(
                             (EasyLocalization.of(context)!
                                         .locale

@@ -415,9 +415,16 @@ class Shops {
     titleAr = json["title_ar"];
     titleEn = json["title_en"];
     shopCatId = json["shop_cat_id"];
-    shopSubCat = json["shop_sub_cat"] == null
-        ? null
-        : List<String>.from(json["shop_sub_cat"]);
+    if (json["shop_sub_cat"] == null) {
+      shopSubCat = null;
+    } else if (json["shop_sub_cat"] is List) {
+      shopSubCat = List<String>.from(json["shop_sub_cat"]);
+    } else if (json["shop_sub_cat"] is Map) {
+      // If it's a Map, you might want to extract the values
+      shopSubCat = (json["shop_sub_cat"] as Map<String, dynamic>).values.cast<String>().toList();
+    } else {
+      shopSubCat = null;
+    }
     vendorId = json["vendor_id"];
     createdAt = json["created_at"];
     updatedAt = json["updated_at"];

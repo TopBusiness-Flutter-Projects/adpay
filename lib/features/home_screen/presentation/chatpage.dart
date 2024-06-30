@@ -17,7 +17,6 @@ class ChatPageScreen extends StatefulWidget {
 class _ChatPageScreenState extends State<ChatPageScreen> {
   void initState() {
     super.initState();
-    // id user to
     context.read<MessagesCubit>().getRoomById(id: widget.id);
   }
 
@@ -61,12 +60,8 @@ class _ChatPageScreenState extends State<ChatPageScreen> {
                               return Column(
                                 children: [
                                   Align(
-                                    alignment: ((context
-                                                    .read<HomeCubit>()
-                                                    .userData
-                                                    ?.data
-                                                    ?.id
-                                                    .toString() ??
+                                    alignment: (
+                                        (context.read<HomeCubit>().userData?.data?.id.toString() ??
                                                 '1') ==
                                             cubit.chatidmodel?.data
                                                 .messages[index].fromUserId
@@ -78,12 +73,8 @@ class _ChatPageScreenState extends State<ChatPageScreen> {
                                         margin: EdgeInsets.symmetric(
                                             horizontal: 16, vertical: 8),
                                         decoration: BoxDecoration(
-                                            borderRadius: (context
-                                                        .read<HomeCubit>()
-                                                        .userData!
-                                                        .data
-                                                        ?.id
-                                                        .toString() ==
+                                            borderRadius: (
+                                                context.read<HomeCubit>().userData?.data?.id.toString() ==
                                                     cubit
                                                         ?.chatidmodel
                                                         ?.data
@@ -123,14 +114,18 @@ class _ChatPageScreenState extends State<ChatPageScreen> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(10),
                                           child: Text(
+                                  //           "${context
+                                  //               .read<HomeCubit>()
+                                  // .userData!
+                                  // .data
+                                  // ?.id}   ",
                                             cubit
                                                     ?.chatidmodel
                                                     ?.data
                                                     ?.messages?[index]
                                                     .message ??
                                                 "nehal",
-                                            style:
-                                                TextStyle(color: Colors.white),
+                                            style: TextStyle(color: Colors.white),
                                           ),
                                         ),
                                       ),
@@ -170,6 +165,14 @@ class _ChatPageScreenState extends State<ChatPageScreen> {
                         hintText: "send message",
                         suffixIcon: InkWell(
                             onTap: () {
+                              // (context.read<HomeCubit>().userData?.data?.id.toString() ??
+                              //     '1') ==
+                              //     cubit.chatidmodel?.data
+                              //         .messages[index].fromUserId
+                              //         .toString())
+                              // print("kkkkkkkkkc${context.read<HomeCubit>().userData?.data?.id.toString()}");
+                              // print("kkkkkkkkkc${context.read<HomeCubit>().userData?.data?.id.toString()}");
+
                               cubit.postSendMessage();
                             },
                             child: Icon(Icons.send)),

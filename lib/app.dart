@@ -6,7 +6,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-
 import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
 import 'core/utils/app_strings.dart';
@@ -18,7 +17,6 @@ import 'features/home_screen/catogries/cubit/catogries_cubit.dart';
 import 'features/home_screen/garage/cubit/grage_cubit.dart';
 import 'features/home_screen/grage_details/cubit/grage_details_cubit.dart';
 import 'features/home_screen/main_screen/cubit/home_cubit.dart';
-
 import 'features/home_screen/menue/cubit/logout_cubit.dart';
 import 'features/home_screen/menue/myprofile/cubit/get_profile_cubit.dart';
 import 'features/home_screen/menue/myprofile/edit_profile/cubit/edit_profile_cubit.dart';

@@ -89,71 +89,76 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Container(
-              color: HexColor('#fbdede'),
-              width: MediaQuery.sizeOf(context).width,
-              height: 100.h,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("orders".tr()),
-                        Text(
-                          cubit.profileModel?.data?.first.ordersCount.toString() ??
-                              '0',
-                          style: Styles.style16.copyWith(color: Colors.black),
-                        ),
-                      ],
+            child: InkWell(
+              onTap: (){
+
+              },
+              child: Container(
+                color: HexColor('#fbdede'),
+                width: MediaQuery.sizeOf(context).width,
+                height: 100.h,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("orders".tr()),
+                          Text(
+                            cubit.profileModel?.data?.first.ordersCount.toString() ??
+                                '0',
+                            style: Styles.style16.copyWith(color: Colors.black),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
-                    child: Container(
-                      color: Colors.black,
-                      width: 2,
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
+                      child: Container(
+                        color: Colors.black,
+                        width: 2,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Forester".tr()),
-                        Text(
-                          cubit.profileModel?.data?.first.auctionsCount.toString() ??
-                              "0",
-                          style: Styles.style16.copyWith(color: Colors.black),
-                        )
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Forester".tr()),
+                          Text(
+                            cubit.profileModel?.data?.first.auctionsCount.toString() ??
+                                "0",
+                            style: Styles.style16.copyWith(color: Colors.black),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
-                    child: Container(
-                      color: Colors.black,
-                      width: 2,
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
+                      child: Container(
+                        color: Colors.black,
+                        width: 2,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("advertisements".tr()),
-                        Text(
-                          cubit.profileModel?.data?.first.viewAdsCount.toString() ??
-                              "0",
-                          style: Styles.style16.copyWith(color: Colors.black),
-                        )
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("advertisements".tr()),
+                          Text(
+                            cubit.profileModel?.data?.first.viewAdsCount.toString() ??
+                                "0",
+                            style: Styles.style16.copyWith(color: Colors.black),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

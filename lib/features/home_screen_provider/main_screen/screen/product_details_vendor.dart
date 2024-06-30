@@ -11,7 +11,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/api/end_points.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/styles.dart';
 import '../cubit/cubit.dart';
@@ -30,7 +29,6 @@ class _ProductDetailsVendorScreenState
     super.initState();
     context.read<MainVendorCubit>().getProductsDetils(id: widget.id);
   }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainVendorCubit, MainVendorState>(
