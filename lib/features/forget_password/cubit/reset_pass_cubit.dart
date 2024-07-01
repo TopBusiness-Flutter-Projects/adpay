@@ -1,11 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/remote/service.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/utils/dialogs.dart';
+import '../../login/cubit/cubit.dart';
 part 'reset_pass_state.dart';
 
 class ResetPassCubit extends Cubit<ResetPassState> {
@@ -70,7 +72,7 @@ class ResetPassCubit extends Cubit<ResetPassState> {
     //
     await _mAuth
         .verifyPhoneNumber(
-      phoneNumber: AppStrings.phoneCode + phoneController.text,
+      phoneNumber: context.read< LoginCubit>().countryCode + phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) {
         print('=========================================');
         print("verificationId=>$verificationId");

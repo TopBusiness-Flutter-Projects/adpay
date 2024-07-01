@@ -138,19 +138,19 @@ class LoginCubit extends Cubit<LoginState> {
       }
     });
   }
-
   //! OTP
   TextEditingController otpController = TextEditingController();
   final FirebaseAuth _mAuth = FirebaseAuth.instance;
   String? verificationId;
   String? smsCode;
   int? resendToken;
+  String countryCode = '';
   sendOTP(BuildContext context) async {
     emit(SendCodeLoading());
     //
     await _mAuth
         .verifyPhoneNumber(
-      phoneNumber: AppStrings.phoneCode + phoneController.text,
+      phoneNumber: context.read< LoginCubit>().countryCode + phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) {
         print('=========================================');
         print("verificationId=>$verificationId");

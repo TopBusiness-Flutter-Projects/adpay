@@ -67,11 +67,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 CustomTextField(
+                  isPhoneNumber: true,
+                  onPhoneChanged: (code, number) {
+                    setState(() {
+                    cubit.countryCode = code;
+                    });
+                  },
                   controller: cubit.phoneController,
                   message: 'enter_phone'.tr(),
                   title: 'phone'.tr(),
                   hintTitle: 'enter_phone'.tr(),
                   keyboardType: TextInputType.phone,
+
                 ),
                 SizedBox(
                   height: getSize(context) / 22,

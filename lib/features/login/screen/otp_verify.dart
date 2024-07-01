@@ -41,7 +41,7 @@ class _OTPVerifyScreenState extends State<OTPVerifyScreen> {
               text: TextSpan(children: [
                 TextSpan(
                     text:
-                        '${'we_sent_an_code_to_verify_your_phone'.tr()}(${AppStrings.phoneCode})',
+                        '${'we_sent_an_code_to_verify_your_phone'.tr()}(${context.read<LoginCubit>().countryCode})',
                     style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: AppColors.blackColor,

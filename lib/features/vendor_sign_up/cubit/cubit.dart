@@ -8,14 +8,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../config/routes/app_routes.dart';
 import '../../../core/models/login_model.dart';
-import '../../../core/models/shop_category_vendor_model.dart';
 import '../../../core/models/shopcatogriesmodel.dart';
 import '../../../core/preferences/preferences.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/utils/dialogs.dart';
+import '../../login/cubit/cubit.dart';
 
 class SignUpVendorCubit extends Cubit<SignUpVendorState> {
   SignUpVendorCubit(this.api) : super(SignUpVendorInitial());
@@ -153,6 +152,47 @@ class SignUpVendorCubit extends Cubit<SignUpVendorState> {
       emit(LoadedRgisterVendorState());
     });
   }
+//post edit profile
+  editProfleVendor(BuildContext context) async {
+    emit(LoadingEditProfileState());
+    final res = await api.editProfile(
+      banner: bannerImage,
+      logo: logoImage,
+      profileImage: selectedImage ?? File(''),
+      password: passwprdController.text,
+      phone: phoneController.text,
+      storeName: storeNameController.text,
+      address: adressNameController.text, password_confirmation:confirmPasswprdController.text,
+    );
+    res.fold((l) {
+      emit(ErrorEditState());
+    }, (r) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('auth-token', r.data?.token.toString() ?? "");
+      Preferences.instance.setUser(r).then((value) {
+        userModel = r;
+        (userModel?.data?.type == 'user' && userModel?.data?.type != null)
+            ? Navigator.pushNamedAndRemoveUntil(
+          context,
+          Routes.floatingRote,
+              (route) => false,
+        )
+            : ((userModel?.data?.type == 'vendor' ||
+            userModel?.data?.type == 'advertise') &&
+            userModel?.data?.type != null)
+            ? Navigator.pushNamedAndRemoveUntil(
+          context,
+          Routes.floatVendor,
+              (route) => false,
+        )
+            : null;
+        successGetBar(r.msg);
+      });
+      prefs.setBool('onBoarding', true);
+
+      emit(LoadedEditProfileState());
+    });
+  }
 
   //!
   TextEditingController otpController = TextEditingController();
@@ -165,7 +205,7 @@ class SignUpVendorCubit extends Cubit<SignUpVendorState> {
     //
     await _mAuth
         .verifyPhoneNumber(
-      phoneNumber: AppStrings.phoneCode + phoneController.text,
+      phoneNumber: context.read< LoginCubit>().countryCode + phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) {
         print('=========================================');
         print("verificationId=>$verificationId");

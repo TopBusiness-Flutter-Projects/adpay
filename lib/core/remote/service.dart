@@ -12,6 +12,7 @@ import '../api/end_points.dart';
 import '../error/exceptions.dart';
 import '../error/failures.dart';
 import '../models/Home_models.dart';
+import '../models/about_app_model.dart';
 import '../models/add_harag_model.dart';
 import '../models/add_new_product.dart';
 import '../models/add_to_cart_model.dart';
@@ -62,6 +63,7 @@ class ServiceApi {
   final BaseApiConsumer dio;
 
   ServiceApi(this.dio);
+
 //   if (dio is DioConsumer) {
 //   (dio as DioConsumer).client.interceptors.add(PrettyDioLogger(
 //   requestHeader: true,
@@ -150,6 +152,10 @@ class ServiceApi {
   }
 
 //delete card
+  Future<Either<Failure, DeleteCardModel>> deleteCard({
+    required String product_id,
+    required String user_id
+  }) async {
   Future<Either<Failure, DeleteCardModel>> deleteCard(
       {required String product_id, required String user_id}) async {
     LoginModel user = await Preferences.instance.getUserModel();
@@ -160,6 +166,10 @@ class ServiceApi {
     try {
       var response = await dio.post(
         EndPoints.deleteCard,
+        body: {
+          "product_id": product_id,
+          "user_id": user_id
+        },
         body: {"product_id": product_id, "user_id": user_id},
         options: Options(
           headers: {
@@ -205,6 +215,9 @@ class ServiceApi {
   }
 
   //confirmOrder
+  Future<Either<Failure, ConfirmOrderModel>> confirmOrder({
+    required List <Cart> confirmList
+  }) async {
   Future<Either<Failure, ConfirmOrderModel>> confirmOrder(
       {required List<Cart> confirmList}) async {
     LoginModel user = await Preferences.instance.getUserModel();
@@ -216,6 +229,12 @@ class ServiceApi {
       var response = await dio.post(
         EndPoints.confrimOrder,
         body: {
+
+          for(int i = 0; i < confirmList.length; i++ )
+            "products[$i][product_id]": confirmList[i].productId,
+          for(int i = 0; i < confirmList.length; i++ )
+            "products[$i][qty]": confirmList[i].qty,
+        }, formDataIsEnabled: true,
           for (int i = 0; i < confirmList.length; i++)
             "products[$i][product_id]": confirmList[i].productId,
           for (int i = 0; i < confirmList.length; i++)
@@ -244,6 +263,7 @@ class ServiceApi {
     try {
       var response = await dio.post(
         EndPoints.emptycard,
+        body: {}, formDataIsEnabled: true,
         body: {},
         formDataIsEnabled: true,
         options: Options(
@@ -277,6 +297,9 @@ class ServiceApi {
   }
 
 //getVendorProfile
+  Future<Either<Failure, MainVendorHomeModel>> getVendorProfile({
+    required text
+  }) async {
   Future<Either<Failure, MainVendorHomeModel>> getVendorProfile(
       {required text}) async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -330,6 +353,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
 //getorderdetails
 //   Future<Either<Failure, GetOrderDetails>> getOrdersDetails({
 //     int? intt
@@ -364,6 +388,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
 //getchatroombyid
 
   Future<Either<Failure, GetChatRoomById>> getRoomById(
@@ -604,11 +629,11 @@ class ServiceApi {
         EndPoints.Favourite,
         body: isAuction
             ? {
-                "auction_id": productId,
-              }
+          "auction_id": productId,
+        }
             : {
-                "product_id": productId,
-              },
+          "product_id": productId,
+        },
         formDataIsEnabled: true,
         options: Options(
           headers: {
@@ -639,16 +664,16 @@ class ServiceApi {
         EndPoints.CommentsUrl,
         body: isComment
             ? {
-                "auction_id": auction_id,
-                "comment": comment,
-                "type": "comment",
-              }
+          "auction_id": auction_id,
+          "comment": comment,
+          "type": "comment",
+        }
             : {
-                "auction_id": auction_id,
-                "comment": comment,
-                "type": "reply",
-                "comment_id": comment_id
-              },
+          "auction_id": auction_id,
+          "comment": comment,
+          "type": "reply",
+          "comment_id": comment_id
+        },
         options: Options(
           headers: {
             'Accept-Language': lan,
@@ -663,6 +688,12 @@ class ServiceApi {
   }
 
   //register
+  Future<Either<Failure, LoginModel>> postRegister({
+    required String phone,
+    required File profileImage,
+    required String phoneCode,
+    required String name
+  }) async {
   Future<Either<Failure, LoginModel>> userRegister(
       {required String phone,
       required File profileImage,
@@ -674,9 +705,11 @@ class ServiceApi {
       //! images >>Multipare.
 
       var fileName;
-      fileName = profileImage.path.split('/').last; // x.png
+      fileName = profileImage.path
+          .split('/')
+          .last; // x.png
       var data =
-          await MultipartFile.fromFile(profileImage.path, filename: fileName);
+      await MultipartFile.fromFile(profileImage.path, filename: fileName);
 
       var response = await dio.post(
         EndPoints.registerUrl,
@@ -697,20 +730,21 @@ class ServiceApi {
   }
 
   //edit profile
-  Future<Either<Failure, LoginModel>> PostEditProfile(
-      {required String phone,
-      required File profileImage,
-      required String phoneCode,
-      required String name}) async {
+  Future<Either<Failure, LoginModel>> PostEditProfile({required String phone,
+    required File profileImage,
+    required String phoneCode,
+    required String name}) async {
     String? deviceToken = await Preferences.instance.getDeviceToken();
 
     try {
       //! images >>Multipare.
 
       var fileName;
-      fileName = profileImage.path.split('/').last; // x.png
+      fileName = profileImage.path
+          .split('/')
+          .last; // x.png
       var data =
-          await MultipartFile.fromFile(profileImage.path, filename: fileName);
+      await MultipartFile.fromFile(profileImage.path, filename: fileName);
 
       var response = await dio.post(
         EndPoints.EditProfileUrl,
@@ -731,19 +765,20 @@ class ServiceApi {
   }
 
   //addharag
-  Future<Either<Failure, AddHaragModel>> AddHarag(
-      {required String title_ar,
-      required File profileImage,
-      required String description_ar,
-      required String user_id,
-      required String price,
-      required String cat_id,
-      required String sub_cat_id}) async {
+  Future<Either<Failure, AddHaragModel>> AddHarag({required String title_ar,
+    required File profileImage,
+    required String description_ar,
+    required String user_id,
+    required String price,
+    required String cat_id,
+    required String sub_cat_id}) async {
     try {
       var fileName;
-      fileName = profileImage.path.split('/').last; // x.png
+      fileName = profileImage.path
+          .split('/')
+          .last; // x.png
       var data =
-          await MultipartFile.fromFile(profileImage.path, filename: fileName);
+      await MultipartFile.fromFile(profileImage.path, filename: fileName);
       String lan = await Preferences.instance.getSavedLang();
       LoginModel user = await Preferences.instance.getUserModel();
       var response = await dio.post(
@@ -1122,6 +1157,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
 //order details
 //   Future<Either<Failure, OrdersDetailsNewModel>> getOrderDetails({String? id}) async {
 //     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -1265,6 +1301,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
   //get adv
 
   Future<Either<Failure, MainDetailsModel>> getVendorOrderDetails(
@@ -1313,7 +1350,7 @@ class ServiceApi {
   }
 
   Future<Either<Failure, GetShopCategoriesModel>>
-      getVendorGetShopCategories() async {
+  getVendorGetShopCategories() async {
     // LoginModel loginModel = await Preferences.instance.getUserModel();
     try {
       final response = await dio.get(EndPoints.getShopCtogreyUrl,
@@ -1361,42 +1398,117 @@ class ServiceApi {
   }
 
 //! vendor sign up
-  Future<Either<Failure, LoginModel>> vendorRegister(
-      {required String phone,
-      required File profileImage,
-      File? logo,
-      File? banner,
-      required String password,
-      required String type,
-      String? storeName,
-      String? address,
-      int? shopCatId,
-      List<String>? subCategory,
-      required String name}) async {
+  Future<Either<Failure, LoginModel>> editProfile({required String phone,
+    required File profileImage,
+    File? logo,
+    File? banner,
+    required String password,
+    required String password_confirmation,
+    String? storeName,
+    String? address,
+  }
+      ) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
     String? deviceToken = await Preferences.instance.getDeviceToken();
     print('=====================${deviceToken}');
     try {
       //! images >>Multipare.
       //! profileImage
       var fileName;
-      fileName = profileImage.path.split('/').last; // x.png
+      fileName = profileImage.path
+          .split('/')
+          .last; // x.png
       var data =
-          await MultipartFile.fromFile(profileImage.path, filename: fileName);
+      await MultipartFile.fromFile(profileImage.path, filename: fileName);
+      //!
+      var dataFileNameBanner;
+      var dataLogo;
+
+        //! banner
+        var fileNameBanner;
+        fileNameBanner = banner?.path
+            .split('/')
+            .last; // x.png
+        dataFileNameBanner = await MultipartFile.fromFile(banner!.path,
+            filename: fileNameBanner);
+
+        //! logo
+        var fileNameLogo;
+        fileNameLogo = logo!
+            .path
+            .split('/')
+            .last; // x.png
+        dataLogo = await MultipartFile.fromFile(logo.path, filename: fileNameLogo);
+
+
+      var response = await dio.post(
+        EndPoints.updateProfile,
+        formDataIsEnabled: true,
+
+        body:
+        {
+          "image": data,
+          'password': password,
+          'logo': dataLogo,
+          'banner': dataFileNameBanner,
+          'store_name': storeName,
+          'address': address,
+          'password_confirmation':password_confirmation
+        },
+
+
+    );
+
+      return Right(LoginModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+//vendor edit profile
+  Future<Either<Failure, LoginModel>> vendorRegister({required String phone,
+    required File profileImage,
+    File? logo,
+    File? banner,
+    required String password,
+    required String type,
+    String? storeName,
+    String? address,
+    int? shopCatId,
+    List<String>? subCategory,
+    required String name}) async {
+    String? deviceToken = await Preferences.instance.getDeviceToken();
+    print('=====================${deviceToken}');
+    try {
+      //! images >>Multipare.
+      //! profileImage
+      var fileName;
+      fileName = profileImage.path
+          .split('/')
+          .last; // x.png
+      var data =
+      await MultipartFile.fromFile(profileImage.path, filename: fileName);
       //!
       var dataFileNameBanner;
       var dataLogo;
       if (type == 'vendor') {
         //! banner
         var fileNameBanner;
-        fileNameBanner = banner?.path.split('/').last; // x.png
+        fileNameBanner = banner?.path
+            .split('/')
+            .last; // x.png
         dataFileNameBanner = await MultipartFile.fromFile(banner!.path,
             filename: fileNameBanner);
 
         //! logo
         var fileNameLogo;
-        fileNameLogo = logo!.path.split('/').last; // x.png
+        fileNameLogo = logo!
+            .path
+            .split('/')
+            .last; // x.png
         dataLogo =
-            await MultipartFile.fromFile(logo.path, filename: fileNameLogo);
+        await MultipartFile.fromFile(logo.path, filename: fileNameLogo);
       }
 
       var response = await dio.post(
@@ -1404,6 +1516,28 @@ class ServiceApi {
         formDataIsEnabled: true,
         body: type == 'vendor'
             ? {
+          "image": data,
+          'name': name,
+          'phone': phone,
+          'password': password,
+          'type': type,
+          'logo': dataLogo,
+          'banner': dataFileNameBanner,
+          'store_name': storeName,
+          'address': address,
+          'device_token': deviceToken ?? '123',
+          'shop_cat_id': shopCatId,
+          for (int i = 1; i < subCategory!.length; i++)
+            'sub_cat_id[$i]': subCategory[i],
+        }
+            : {
+          "image": data,
+          'device_token': deviceToken,
+          'name': name,
+          'phone': phone,
+          'password': password,
+          'type': type,
+        },
                 "image": data,
                 'name': name,
                 'phone': phone,
@@ -1433,7 +1567,6 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
-
   //! add new Product
   Future<Either<Failure, AddNewProductModel>> addNewProduct({
     required List<File> images,
@@ -1517,6 +1650,19 @@ class ServiceApi {
       final response = await dio.get(EndPoints.getAdPackages,
           options: Options(headers: {'Authorization': loginModel.data!.token}));
       return Right(GetAdPackagesModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+//getaboutapp
+  Future<Either<Failure, AboutAppModel>> getAboutApp() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(
+          EndPoints.aboutUs,
+          options: Options(headers: {'Authorization': loginModel.data!.token})
+      );
+      return Right(AboutAppModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }

@@ -1,3 +1,4 @@
+import 'package:adpay/features/login/cubit/cubit.dart';
 import 'package:adpay/core/utils/show_dialog.dart';
 import 'package:easy_localization/easy_localization.dart' as tr;
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class _OTPVerifyRegisterScreenState extends State<OTPVerifyRegisterScreen> {
               text: TextSpan(children: [
                 TextSpan(
                     text:
-                        '${'we_sent_an_code_to_verify_your_phone'.tr()}(${AppStrings.phoneCode})',
+                        '${'we_sent_an_code_to_verify_your_phone'.tr()}(${context.read< LoginCubit>().countryCode})',
                     style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: AppColors.blackColor,

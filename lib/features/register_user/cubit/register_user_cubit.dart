@@ -23,7 +23,7 @@ class SignUpUserCubit extends Cubit<SignUpUserState> {
     isPersonalType = false;
     emit(ChangeToStoreInfo());
   }
-
+  String countryCode = '';
   void setSignUpPageType(bool isMarket) {
     isPersonalType = isMarket;
     emit(ChangeSignUpPageStates());

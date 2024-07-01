@@ -17,12 +17,14 @@ class VendorSignupScreen extends StatefulWidget {
 }
 
 class _VendorSignupScreenState extends State<VendorSignupScreen> {
+  void initState() {
+    super.initState();
+    context.read<SignUpVendorCubit>().vendorRegister(context);
+  }
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpVendorCubit, SignUpVendorState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         var cubit = context.read<SignUpVendorCubit>();
         return Scaffold(
