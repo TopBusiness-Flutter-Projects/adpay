@@ -160,9 +160,10 @@
   "ordercomplete": "اكمال الطلب",
   "cancel": "الغاء",
   "total": "الاجمالي",
-  "createaccount": "انئاء حساب",
+  "createaccount": "انشاء حساب",
   "no_orders": "لا يوجد طلبات",
-  "completeorder": "اكمال الطلب"
+  "completeorder": "اكمال الطلب",
+  "editprofile": "تعديل الحساب"
 
 
 

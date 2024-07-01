@@ -18,6 +18,7 @@ import 'features/home_screen/main_screen/cubit/home_cubit.dart';
 import 'features/home_screen/menue/myprofile/cubit/get_profile_cubit.dart';
 import 'features/home_screen/menue/myprofile/edit_profile/cubit/edit_profile_cubit.dart';
 import 'features/home_screen/menue/myprofile/myharag/cubit/my_harag_cubit.dart';
+import 'features/home_screen/menue/screens/about_app/cubit/about_app_cubit.dart';
 import 'features/home_screen/menue/screens/contact_us/cubit/contact_us_cubit.dart';
 import 'features/home_screen/menue/screens/favourite/cubit/favourite_cubit.dart';
 import 'features/home_screen/menue/screens/mypoints/cubit/points_cubit.dart';
@@ -82,6 +83,11 @@ Future<void> setup() async {
   );
   serviceLocator.registerFactory(
     () => EditProfileCubit(
+      serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory(
+        () => AboutAppCubit(
       serviceLocator(),
     ),
   );

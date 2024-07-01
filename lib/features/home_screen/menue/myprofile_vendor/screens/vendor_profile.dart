@@ -120,7 +120,7 @@ class _VendorProfileState extends State<VendorProfile> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, Routes.advVendor);
+                          Navigator.pushNamed(context, Routes.editProfileVendor);
                         },
                         child: MenueWidget(
                           text: 'edit'.tr(),

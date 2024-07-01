@@ -45,3 +45,9 @@ class CheckCodeInvalidCode extends SignUpVendorState {}
 
 class CheckCodeSuccessfully extends SignUpVendorState {}
 class CheckCodeErrorfully extends SignUpVendorState {}
+//editprofile
+class LoadingEditProfileState extends SignUpVendorState {}
+class LoadedEditProfileState extends SignUpVendorState {}
+class ErrorEditState extends SignUpVendorState {}
+
+

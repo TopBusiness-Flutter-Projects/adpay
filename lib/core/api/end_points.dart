@@ -52,6 +52,7 @@ class EndPoints {
 
   static const String deleteCard = '${baseUrl}user/deleteFromCart';
   static const String vendorProfile = '${baseUrl}user/vendorProfile/18?key=';
+  static const String updateProfile = '${baseUrl}vendor/updateProfile';
 
 
 
@@ -88,5 +89,6 @@ class EndPoints {
   static const String vendorDeleteProduct = '${baseUrl}vendor/deleteProduct';
   static const String orderDetails = '${baseUrl}user/order/d/?id=';
 
+  static const String aboutUs = '${baseUrl}user/aboutUs';
 
 }

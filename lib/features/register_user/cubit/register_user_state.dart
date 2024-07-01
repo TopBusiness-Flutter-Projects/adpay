@@ -22,4 +22,6 @@ class ErrorSignUpAuth extends SignUpUserState {}
 
 class LoadedSignUpAuth extends SignUpUserState {}
 
+// class ChangePasswordState extends SignUpUserState {}
+
 class LoadingSignUpAuth extends SignUpUserState {}

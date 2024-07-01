@@ -24,6 +24,8 @@ import '../../features/home_screen/menue/myprofile/edit_my_harag/edit_my_harag.d
 import '../../features/home_screen/menue/myprofile/myharag/screens/my_harag.dart';
 import '../../features/home_screen/menue/myprofile/screens/myprofile.dart';
 import '../../features/home_screen/menue/myprofile_vendor/screens/vendor_profile.dart';
+import '../../features/home_screen/menue/screens/about_app/screens/about_app.dart';
+import '../../features/home_screen/menue/screens/about_app/screens/privacy.dart';
 import '../../features/home_screen/menue/screens/contact_us/screens/contact_us.dart';
 import '../../features/home_screen/menue/screens/mypoints/screens/points.dart';
 import '../../features/home_screen/menue/screens/places/screens/places.dart';
@@ -37,6 +39,7 @@ import '../../features/home_screen/shop/screens/theshop_screen.dart';
 import '../../features/home_screen/tager/screens/tager_screen.dart';
 import '../../features/home_screen_provider/add_new_ads/screen/add_new_ad.dart';
 import '../../features/home_screen_provider/add_new_product/screen/add_new_products.dart';
+import '../../features/home_screen_provider/edit_profile/screens/edit_profile.dart';
 import '../../features/home_screen_provider/main_screen/screen/ads_vendor_screen.dart';
 import '../../features/home_screen_provider/main_screen/screen/main_screen_driver.dart';
 import '../../features/home_screen_provider/main_screen/screen/product_details_vendor.dart';
@@ -130,6 +133,11 @@ class Routes {
   static const String orderVendor = '/orderVendor';
   static const String advVendor = '/advsVendor';
 
+  static const String aboutApp = '/aboutApp';
+  static const String privacy = '/privacy';
+
+  static const String editProfileVendor = '/editprofilevendor';
+
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -167,6 +175,28 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: MyProfileScreen(), // Replace with your category screen widget
         );
+      case Routes.aboutApp: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: AboutApp(), // Replace with your category screen widget
+        );
+      case Routes.privacy: // Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: Privacy_Screen(), // Replace with your category screen widget
+        );
+    case Routes.editProfileVendor: // Change this line
+    return PageTransition(
+    type: PageTransitionType.fade,
+    alignment: Alignment.center,
+    duration: const Duration(milliseconds: 800),
+    child: EditProfileVendor(), // Replace with your category screen widget
+    );
+
       case Routes.vendorOrdersUrl: // Change this line
         return PageTransition(
           type: PageTransitionType.fade,
@@ -583,6 +613,14 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: AddNewProductScreen(isUpdate: isUpdate),
+        );
+      case Routes.editProfileVendor:
+        bool isUpdate = settings.arguments as bool;
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: EditProfileVendor(),
         );
       case Routes.addNewAdsScreen:
         return PageTransition(

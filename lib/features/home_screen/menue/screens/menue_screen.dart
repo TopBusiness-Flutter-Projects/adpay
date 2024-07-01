@@ -156,12 +156,22 @@ class _MenueScreenState extends State<MenueScreen> {
                               child: MenueWidget(
                                   text: 'contactus'.tr(),
                                   path: 'assets/images/contactus.png')),
-                          MenueWidget(
-                              text: 'aboutapp'.tr(),
-                              path: 'assets/images/i.png'),
-                          MenueWidget(
-                              text: 'Terms'.tr(),
-                              path: 'assets/images/verified.png'),
+                          InkWell(
+                            onTap: (){
+                              Navigator.pushNamed(context, Routes.aboutApp);
+                            },
+                            child: MenueWidget(
+                                text: 'aboutapp'.tr(),
+                                path: 'assets/images/i.png'),
+                          ),
+                          InkWell(
+                            onTap: (){
+                              Navigator.pushNamed(context, Routes.privacy);
+                            },
+                            child: MenueWidget(
+                                text: 'Terms'.tr(),
+                                path: 'assets/images/verified.png'),
+                          ),
                           InkWell(
                             onTap: () async {
                               PackageInfo packageInfo =

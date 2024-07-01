@@ -22,7 +22,6 @@ class AddNewProductScreen extends StatefulWidget {
   @override
   State<AddNewProductScreen> createState() => _AddNewProductScreenState();
 }
-
 class _AddNewProductScreenState extends State<AddNewProductScreen> {
   final formKey = GlobalKey<FormState>();
   @override
