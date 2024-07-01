@@ -1,3 +1,4 @@
+import 'package:adpay/core/utils/show_dialog.dart';
 import 'package:easy_localization/easy_localization.dart' as tr;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,8 +21,16 @@ class OTPVerifyPasswordScreen extends StatefulWidget {
 class _OTPVerifyPasswordScreenState extends State<OTPVerifyPasswordScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ResetPassCubit, ResetPassState>(
-        builder: (context, state) {
+    return BlocConsumer<ResetPassCubit, ResetPassState>(
+        listener: (context, state) {
+      if (state is LoadingResetAuth) {
+        //!
+        createProgressDialog(context, 'loading'.tr());
+      } else if (state is ErrorResetAuth || state is LoadedResetAuth) {
+        Navigator.pop(context);
+      }
+      //!
+    }, builder: (context, state) {
       var cubit = context.read<ResetPassCubit>();
       return Scaffold(
         appBar: AppBar(),

@@ -163,4 +163,6 @@
   "ordercomplete": "Order Complete",
   "cancel": "Cancel",
   "editprofile": "Edit Profile"
+  "completeorder": "Compelete Oreder",
+  "loading":"Loading ..."
 }

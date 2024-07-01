@@ -79,9 +79,9 @@ class Preferences {
     return userModel;
   }
 
-  Future<void> setDeviceToken(String? token) async {
+  Future<void> setDeviceToken(String token) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString('device_token', token ?? '');
+    preferences.setString('device_token', token);
   }
 
   Future<String?> getDeviceToken() async {

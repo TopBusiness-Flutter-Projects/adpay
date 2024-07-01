@@ -13,7 +13,20 @@
           "package_name": "com.topbusiness.adpay"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "979222201210-31uesqdvffh12nff6d86ubajctopdl5p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.topbusiness.adpay",
+            "certificate_hash": "0714172e50e3486b050980b70afe18d7bff64a17"
+          }
+        },
+        {
+          "client_id": "979222201210-sqhtmvtahg8789eu1rcaf9n9bp1d82pe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC5Z89wejGw6nF4oDIoIG1beoSKboj1jsg"
@@ -21,7 +34,63 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979222201210-sqhtmvtahg8789eu1rcaf9n9bp1d82pe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "979222201210-drc4licnlp0c94nke3lqoi06q48gjj0d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.topbusiness.adpay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979222201210:android:bde689cab1d7e027eb4cc3",
+        "android_client_info": {
+          "package_name": "com.topbusiness.adpayapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979222201210-gjrir33b4ou8jf01r78u1tie41nr3jv2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.topbusiness.adpayapp",
+            "certificate_hash": "0714172e50e3486b050980b70afe18d7bff64a17"
+          }
+        },
+        {
+          "client_id": "979222201210-sqhtmvtahg8789eu1rcaf9n9bp1d82pe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5Z89wejGw6nF4oDIoIG1beoSKboj1jsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979222201210-sqhtmvtahg8789eu1rcaf9n9bp1d82pe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "979222201210-drc4licnlp0c94nke3lqoi06q48gjj0d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.topbusiness.adpay"
+              }
+            }
+          ]
         }
       }
     }
