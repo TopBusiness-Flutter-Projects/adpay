@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>979222201210-los0gvk1n7vrh2q8im7p9m4hdv796bl0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.979222201210-los0gvk1n7vrh2q8im7p9m4hdv796bl0</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>979222201210-31uesqdvffh12nff6d86ubajctopdl5p.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDlgvjteGCJG2lzOZld2rodlON9kg4A8jk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>979222201210</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.topbusiness.adpayapp</string>
+	<key>PROJECT_ID</key>
+	<string>adpay-edf24</string>
+	<key>STORAGE_BUCKET</key>
+	<string>adpay-edf24.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:979222201210:ios:314f82dec2d5b853eb4cc3</string>
+	<key>DATABASE_URL</key>
+	<string>https://adpay-edf24-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
