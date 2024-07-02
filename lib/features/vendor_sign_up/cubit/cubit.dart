@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../config/routes/app_routes.dart';
+import '../../../core/models/get_vendor_modellll.dart';
 import '../../../core/models/login_model.dart';
 import '../../../core/models/shopcatogriesmodel.dart';
 import '../../../core/preferences/preferences.dart';
@@ -30,7 +31,7 @@ class SignUpVendorCubit extends Cubit<SignUpVendorState> {
     isPersonalType = isMarket;
     emit(ChangeSignUpPageStates());
   }
-
+  GetVendorModel ? getVendorModel;
   bool isPassword = true;
   bool isConfirmPassword = true;
   TextEditingController nameController = TextEditingController();
@@ -256,4 +257,16 @@ class SignUpVendorCubit extends Cubit<SignUpVendorState> {
       emit(CheckCodeErrorfully());
     });
   }
+  //get vendor
+  getVendorDetails() async {
+    emit(LoadingVendorProfileState());
+    final res = await api.getVendorProfileDetails();
+    res.fold((l) {
+      emit(ErrorVendorState());
+    }, (r) {
+     getVendorModel  = r;
+      emit(LoadedVendorProfileState(getVendorModel: r));
+    });
+  }
+
 }
