@@ -1,6 +1,6 @@
-// import 'package:http/http.dart' as http;
 
 import 'dart:io';
+import 'package:adpay/core/error/exceptions.dart';
 import 'package:adpay/core/models/comment_model.dart';
 import 'package:adpay/core/models/get_favourite_model.dart';
 import 'package:adpay/core/models/home_vendor_model.dart';
@@ -152,11 +152,8 @@ class ServiceApi {
     }
   }
 
-//delete card
-  Future<Either<Failure, DeleteCardModel>> deleteCard({
-    required String product_id,
-    required String user_id
-  }) async {
+//delete cardvendor
+
   Future<Either<Failure, DeleteCardModel>> deleteCard(
       {required String product_id, required String user_id}) async {
     LoginModel user = await Preferences.instance.getUserModel();
@@ -171,7 +168,6 @@ class ServiceApi {
           "product_id": product_id,
           "user_id": user_id
         },
-        body: {"product_id": product_id, "user_id": user_id},
         options: Options(
           headers: {
             'Accept-Language': lan,
@@ -217,9 +213,7 @@ class ServiceApi {
 //det vendor profile
 
   //confirmOrder
-  Future<Either<Failure, ConfirmOrderModel>> confirmOrder({
-    required List <Cart> confirmList
-  }) async {
+
   Future<Either<Failure, ConfirmOrderModel>> confirmOrder(
       {required List<Cart> confirmList}) async {
     LoginModel user = await Preferences.instance.getUserModel();
@@ -237,12 +231,7 @@ class ServiceApi {
           for(int i = 0; i < confirmList.length; i++ )
             "products[$i][qty]": confirmList[i].qty,
         }, formDataIsEnabled: true,
-          for (int i = 0; i < confirmList.length; i++)
-            "products[$i][product_id]": confirmList[i].productId,
-          for (int i = 0; i < confirmList.length; i++)
-            "products[$i][qty]": confirmList[i].qty,
-        },
-        formDataIsEnabled: true,
+
         options: Options(
           headers: {
             'Accept-Language': lan,
@@ -266,8 +255,6 @@ class ServiceApi {
       var response = await dio.post(
         EndPoints.emptycard,
         body: {}, formDataIsEnabled: true,
-        body: {},
-        formDataIsEnabled: true,
         options: Options(
           headers: {
             'Accept-Language': lan,
@@ -299,25 +286,8 @@ class ServiceApi {
   }
 
 //getVendorProfile
-  Future<Either<Failure, MainVendorHomeModel>> getVendorProfile({
-    required text
-  }) async {
-  Future<Either<Failure, MainVendorHomeModel>> getVendorProfile(
-      {required text}) async {
-    LoginModel loginModel = await Preferences.instance.getUserModel();
 
-    try {
-      final response = await dio.get(
-        EndPoints.vendorProfile + '${(text == null) ? '' : text}',
-        options: Options(
-          headers: {'Authorization': loginModel.data!.token},
-        ),
-      );
-      return Right(MainVendorHomeModel.fromJson(response));
-    } on ServerException {
-      return Left(ServerFailure());
-    }
-  }
+
   //getVendorProfile details edit
   Future<Either<Failure, GetVendorModel>> getVendorProfileDetails() async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
@@ -705,12 +675,7 @@ class ServiceApi {
   }
 
   //register
-  Future<Either<Failure, LoginModel>> postRegister({
-    required String phone,
-    required File profileImage,
-    required String phoneCode,
-    required String name
-  }) async {
+
   Future<Either<Failure, LoginModel>> userRegister(
       {required String phone,
       required File profileImage,
@@ -741,6 +706,23 @@ class ServiceApi {
       );
 
       return Right(LoginModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+//get Vendor pROFILE
+  Future<Either<Failure, MainVendorHomeModel>> getVendorProfile(
+      {required text}) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+
+    try {
+      final response = await dio.get(
+        EndPoints.vendorProfile + '${(text == null) ? '' : text}',
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(MainVendorHomeModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
@@ -1551,28 +1533,8 @@ class ServiceApi {
           'password': password,
           'type': type,
         },
-                "image": data,
-                'name': name,
-                'phone': phone,
-                'password': password,
-                'type': type,
-                'logo': dataLogo,
-                'banner': dataFileNameBanner,
-                'store_name': storeName,
-                'address': address,
-                'device_token': deviceToken ?? '123',
-                'shop_cat_id': shopCatId ?? 1,
-                for (int i = 1; i < subCategory!.length; i++)
-                  'shop_sub_cat[$i]': subCategory[i],
-              }
-            : {
-                "image": data,
-                'device_token': deviceToken ?? '123',
-                'name': name,
-                'phone': phone,
-                'password': password,
-                'type': type,
-              },
+
+
       );
 
       return Right(LoginModel.fromJson(response));
