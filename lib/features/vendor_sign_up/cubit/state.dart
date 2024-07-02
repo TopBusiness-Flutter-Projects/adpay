@@ -1,3 +1,5 @@
+import '../../../core/models/get_vendor_modellll.dart';
+
 abstract class SignUpVendorState {}
 
 class SignUpVendorInitial extends SignUpVendorState {}
@@ -49,5 +51,12 @@ class CheckCodeErrorfully extends SignUpVendorState {}
 class LoadingEditProfileState extends SignUpVendorState {}
 class LoadedEditProfileState extends SignUpVendorState {}
 class ErrorEditState extends SignUpVendorState {}
+//get vendor profile
+class LoadingVendorProfileState extends SignUpVendorState {}
+class LoadedVendorProfileState extends SignUpVendorState {
+  final GetVendorModel ?getVendorModel;
+  LoadedVendorProfileState({required this.getVendorModel});
+}
+class ErrorVendorState extends SignUpVendorState {}
 
 

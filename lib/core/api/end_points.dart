@@ -54,6 +54,8 @@ class EndPoints {
   static const String vendorProfile = '${baseUrl}user/vendorProfile/18?key=';
   static const String updateProfile = '${baseUrl}vendor/updateProfile';
 
+  static const String vendorDetails = '${baseUrl}vendor/getVendorDetails';
+
 
 
   // static const String citiesUrl = '${baseUrl}cities';

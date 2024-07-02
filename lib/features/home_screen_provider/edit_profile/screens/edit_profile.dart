@@ -1,8 +1,11 @@
 import 'package:adpay/core/utils/app_colors.dart';
 import 'package:adpay/core/utils/get_size.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart%20';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../login/widgets/custom_text_field.dart';
@@ -15,11 +18,30 @@ class EditProfileVendor extends StatefulWidget {
   State<EditProfileVendor> createState() => _EditProfileVendorState();
 }
 class _EditProfileVendorState extends State<EditProfileVendor> {
+  void initState() {
+    super.initState();
+    context.read<SignUpVendorCubit>().getVendorDetails();
+  }
+
   GlobalKey<FormState> registerKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpVendorCubit, SignUpVendorState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is LoadingEditProfileState ) {
+            EasyLoading.show(status: 'loading...');
+          } else if (state is LoadedEditProfileState) {
+            EasyLoading.dismiss();
+            EasyLoading.showSuccess('Edit Success');
+          } else if (state is ErrorEditState) {
+            EasyLoading.showError("state.toString()");
+          } else if (state is ErrorEditState) {
+            EasyLoading.dismiss();
+            EasyLoading.showError("${state.toString()}");
+          } else {
+            EasyLoading.dismiss();
+          }
+        },
     builder: (context, state) {
     var cubit = context.read<SignUpVendorCubit>();
     return Scaffold(
@@ -44,7 +66,7 @@ class _EditProfileVendorState extends State<EditProfileVendor> {
                         ? CircleAvatar(
                       backgroundColor: Colors.white,
                       radius: getSize(context) / 8,
-                      backgroundImage: AssetImage(ImageAssets.logoImage),
+                      backgroundImage: NetworkImage(cubit.getVendorModel?.data?.image.toString()??""),
                     )
                         : CircleAvatar(
                       backgroundColor: Colors.white,
@@ -99,7 +121,8 @@ class _EditProfileVendorState extends State<EditProfileVendor> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(ImageAssets.uImage),
+                        Flexible(child: Image.network(cubit.getVendorModel?.data?.logo??"",                        fit: BoxFit.cover,
+                        )),
                         Text('Upload image',
                             style: TextStyle(
                                 fontSize: getSize(context) / 30))
@@ -132,8 +155,6 @@ class _EditProfileVendorState extends State<EditProfileVendor> {
                 child: GestureDetector(
                   onTap: () {
                     context.read<SignUpVendorCubit>().pickLogoImage(imageName: "bannerImage");
-
-                    ///
                   },
                   child: Container(
                     height: getSize(context) / 4,
@@ -151,7 +172,15 @@ class _EditProfileVendorState extends State<EditProfileVendor> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(ImageAssets.uImage),
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.network(cubit.getVendorModel?.data?.banner??"",
+                              fit: BoxFit.cover,
+                              // width:30
+                                ),
+                          ),
+                        ),
                         Text('Upload image',
                             style: TextStyle(
                                 fontSize: getSize(context) / 30))
@@ -174,7 +203,7 @@ class _EditProfileVendorState extends State<EditProfileVendor> {
               CustomTextField(
                 controller: context.read<SignUpVendorCubit>().storeNameController,
                 title: 'store_name'.tr(),
-                hintTitle: 'enter_name'.tr(),
+                hintTitle: cubit.getVendorModel?.data?.name??"",
                 message: 'enter_store_name'.tr(),
                 keyboardType: TextInputType.name,
               ),
@@ -182,7 +211,7 @@ class _EditProfileVendorState extends State<EditProfileVendor> {
               CustomTextField(
                 controller: context.read<SignUpVendorCubit>().adressNameController,
                 title: 'store_adress'.tr(),
-                hintTitle: 'enter_store_adress'.tr(),
+                hintTitle: cubit.getVendorModel?.data?.address??"",
                 message: 'enter_store_adress'.tr(),
                 keyboardType: TextInputType.name,
               ),

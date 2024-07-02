@@ -33,6 +33,7 @@ import '../models/get_cart_model.dart';
 import '../models/get_my_orders_model.dart';
 import '../models/get_myprofile_model.dart';
 import '../models/get_vendor_model.dart';
+import '../models/get_vendor_modellll.dart';
 import '../models/getaddress_model.dart';
 import '../models/getchat_room_byid.dart';
 import '../models/getchat_rooms_model.dart';
@@ -211,6 +212,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+//det vendor profile
 
   //confirmOrder
   Future<Either<Failure, ConfirmOrderModel>> confirmOrder({
@@ -298,6 +300,21 @@ class ServiceApi {
         ),
       );
       return Right(MainVendorHomeModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //getVendorProfile details edit
+  Future<Either<Failure, GetVendorModel>> getVendorProfileDetails() async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.get(
+        EndPoints.vendorDetails,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.token},
+        ),
+      );
+      return Right(GetVendorModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
@@ -1427,9 +1444,7 @@ class ServiceApi {
       var response = await dio.post(
         EndPoints.updateProfile,
         formDataIsEnabled: true,
-
-        body:
-        {
+        body: {
           "image": data,
           'password': password,
           'logo': dataLogo,
@@ -1438,8 +1453,6 @@ class ServiceApi {
           'address': address,
           'password_confirmation':password_confirmation
         },
-
-
     );
 
       return Right(LoginModel.fromJson(response));
