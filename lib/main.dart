@@ -38,7 +38,7 @@ void main() async {
 
 //! Firebase
 getToken() async {
-  String? token = await messaging.getToken();
+  String? token = await messaging.getToken() ?? '123';
   print('Token : $token');
   await Preferences.instance.setDeviceToken(token);
   await Preferences.instance.getDeviceToken();

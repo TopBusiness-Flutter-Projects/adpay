@@ -79,7 +79,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   Future<void> PostRegister(BuildContext context) async {
     var pref = await SharedPreferences.getInstance();
     emit(LoadingEdit());
-    final response = await api.postRegister(
+    final response = await api.userRegister(
       phone: phoneController.text,
       profileImage: selectedImage!,
       phoneCode: phoneController.text,

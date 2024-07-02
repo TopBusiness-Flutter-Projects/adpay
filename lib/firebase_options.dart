@@ -42,18 +42,18 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyC4aO0cL_oq2KbPRI5JQEOMMDwge8BIC_s',
-    appId: '1:979222201210:web:b145f2b33a8be135eb4cc3',
+    appId: '1:979222201210:web:2195ccf11a3bf433eb4cc3',
     messagingSenderId: '979222201210',
     projectId: 'adpay-edf24',
     authDomain: 'adpay-edf24.firebaseapp.com',
     databaseURL: 'https://adpay-edf24-default-rtdb.firebaseio.com',
     storageBucket: 'adpay-edf24.appspot.com',
-    measurementId: 'G-7KWNQ7DDKF',
+    measurementId: 'G-H1B1SVD3SL',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyC5Z89wejGw6nF4oDIoIG1beoSKboj1jsg',
-    appId: '1:979222201210:android:38c3e594d5c2aad1eb4cc3',
+    appId: '1:979222201210:android:bde689cab1d7e027eb4cc3',
     messagingSenderId: '979222201210',
     projectId: 'adpay-edf24',
     databaseURL: 'https://adpay-edf24-default-rtdb.firebaseio.com',
@@ -62,22 +62,26 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDlgvjteGCJG2lzOZld2rodlON9kg4A8jk',
-    appId: '1:979222201210:ios:39431a88cc85ff35eb4cc3',
+    appId: '1:979222201210:ios:314f82dec2d5b853eb4cc3',
     messagingSenderId: '979222201210',
     projectId: 'adpay-edf24',
     databaseURL: 'https://adpay-edf24-default-rtdb.firebaseio.com',
     storageBucket: 'adpay-edf24.appspot.com',
-    iosBundleId: 'com.topbusiness.adpay',
+    androidClientId: '979222201210-31uesqdvffh12nff6d86ubajctopdl5p.apps.googleusercontent.com',
+    iosClientId: '979222201210-los0gvk1n7vrh2q8im7p9m4hdv796bl0.apps.googleusercontent.com',
+    iosBundleId: 'com.topbusiness.adpayapp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyDlgvjteGCJG2lzOZld2rodlON9kg4A8jk',
-    appId: '1:979222201210:ios:39431a88cc85ff35eb4cc3',
+    appId: '1:979222201210:ios:314f82dec2d5b853eb4cc3',
     messagingSenderId: '979222201210',
     projectId: 'adpay-edf24',
     databaseURL: 'https://adpay-edf24-default-rtdb.firebaseio.com',
     storageBucket: 'adpay-edf24.appspot.com',
-    iosBundleId: 'com.topbusiness.adpay',
+    androidClientId: '979222201210-31uesqdvffh12nff6d86ubajctopdl5p.apps.googleusercontent.com',
+    iosClientId: '979222201210-los0gvk1n7vrh2q8im7p9m4hdv796bl0.apps.googleusercontent.com',
+    iosBundleId: 'com.topbusiness.adpayapp',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
@@ -90,4 +94,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'adpay-edf24.appspot.com',
     measurementId: 'G-H1B1SVD3SL',
   );
+
 }

@@ -8,7 +8,7 @@
 PRODUCT_NAME = adpay
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.topbusiness.adpay
+PRODUCT_BUNDLE_IDENTIFIER = com.topbusiness.adpayapp
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2024 com.topbusiness. All rights reserved.

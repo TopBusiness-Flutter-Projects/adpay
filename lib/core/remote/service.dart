@@ -61,7 +61,6 @@ import '../models/wallet_model.dart';
 import '../preferences/preferences.dart';
 
 class ServiceApi {
-
   final BaseApiConsumer dio;
 
   ServiceApi(this.dio);
@@ -158,6 +157,8 @@ class ServiceApi {
     required String product_id,
     required String user_id
   }) async {
+  Future<Either<Failure, DeleteCardModel>> deleteCard(
+      {required String product_id, required String user_id}) async {
     LoginModel user = await Preferences.instance.getUserModel();
 
     String lan = await Preferences.instance.getSavedLang();
@@ -170,6 +171,7 @@ class ServiceApi {
           "product_id": product_id,
           "user_id": user_id
         },
+        body: {"product_id": product_id, "user_id": user_id},
         options: Options(
           headers: {
             'Accept-Language': lan,
@@ -218,6 +220,8 @@ class ServiceApi {
   Future<Either<Failure, ConfirmOrderModel>> confirmOrder({
     required List <Cart> confirmList
   }) async {
+  Future<Either<Failure, ConfirmOrderModel>> confirmOrder(
+      {required List<Cart> confirmList}) async {
     LoginModel user = await Preferences.instance.getUserModel();
 
     String lan = await Preferences.instance.getSavedLang();
@@ -233,6 +237,12 @@ class ServiceApi {
           for(int i = 0; i < confirmList.length; i++ )
             "products[$i][qty]": confirmList[i].qty,
         }, formDataIsEnabled: true,
+          for (int i = 0; i < confirmList.length; i++)
+            "products[$i][product_id]": confirmList[i].productId,
+          for (int i = 0; i < confirmList.length; i++)
+            "products[$i][qty]": confirmList[i].qty,
+        },
+        formDataIsEnabled: true,
         options: Options(
           headers: {
             'Accept-Language': lan,
@@ -256,6 +266,8 @@ class ServiceApi {
       var response = await dio.post(
         EndPoints.emptycard,
         body: {}, formDataIsEnabled: true,
+        body: {},
+        formDataIsEnabled: true,
         options: Options(
           headers: {
             'Accept-Language': lan,
@@ -290,6 +302,8 @@ class ServiceApi {
   Future<Either<Failure, MainVendorHomeModel>> getVendorProfile({
     required text
   }) async {
+  Future<Either<Failure, MainVendorHomeModel>> getVendorProfile(
+      {required text}) async {
     LoginModel loginModel = await Preferences.instance.getUserModel();
 
     try {
@@ -697,6 +711,11 @@ class ServiceApi {
     required String phoneCode,
     required String name
   }) async {
+  Future<Either<Failure, LoginModel>> userRegister(
+      {required String phone,
+      required File profileImage,
+      required String phoneCode,
+      required String name}) async {
     String? deviceToken = await Preferences.instance.getDeviceToken();
 
     try {
@@ -1139,8 +1158,7 @@ class ServiceApi {
     LoginModel loginModel = await Preferences.instance.getUserModel();
 
     try {
-      final response = await Dio(
-      ).get(
+      final response = await Dio().get(
         EndPoints.orderDetails + id,
         options: Options(
           headers: {
@@ -1533,6 +1551,28 @@ class ServiceApi {
           'password': password,
           'type': type,
         },
+                "image": data,
+                'name': name,
+                'phone': phone,
+                'password': password,
+                'type': type,
+                'logo': dataLogo,
+                'banner': dataFileNameBanner,
+                'store_name': storeName,
+                'address': address,
+                'device_token': deviceToken ?? '123',
+                'shop_cat_id': shopCatId ?? 1,
+                for (int i = 1; i < subCategory!.length; i++)
+                  'shop_sub_cat[$i]': subCategory[i],
+              }
+            : {
+                "image": data,
+                'device_token': deviceToken ?? '123',
+                'name': name,
+                'phone': phone,
+                'password': password,
+                'type': type,
+              },
       );
 
       return Right(LoginModel.fromJson(response));

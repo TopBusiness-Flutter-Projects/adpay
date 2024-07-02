@@ -78,7 +78,7 @@ class SignUpUserCubit extends Cubit<SignUpUserState> {
   Future<void> PostRegister(BuildContext context) async {
     var pref = await SharedPreferences.getInstance();
     emit(LoadingSignUpAuth());
-    final response = await api.postRegister(
+    final response = await api.userRegister(
       phone: passwprdController.text,
       profileImage: selectedImage!,
       phoneCode: phoneController.text,
@@ -91,26 +91,24 @@ class SignUpUserCubit extends Cubit<SignUpUserState> {
     response.fold((l) {
       emit(ErrorSignUpAuth());
     }, (r) async {
-
-      if(r.status==0){
-
-        Fluttertoast.showToast(msg: r.msg??'');
+      if (r.status == 0) {
+        Fluttertoast.showToast(msg: r.msg ?? '');
         EasyLoading.dismiss();
+      } else {
+        userModel = r;
+        Preferences.instance.setUser(r).then((value) {
+          print("loaded");
 
-      }else{   userModel = r;
-      Preferences.instance.setUser(r).then((value) {
-        print("loaded");
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            Routes.float,
+            (route) => false,
+          );
+          pref.setBool('onBoarding', true);
 
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          Routes.float,
-              (route) => false,
-        );
-        pref.setBool('onBoarding', true);
-
-        emit(LoadedSignUpAuth());
-      });}
-
+          emit(LoadedSignUpAuth());
+        });
+      }
     });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:adpay/features/login/cubit/cubit.dart';
+import 'package:adpay/core/utils/show_dialog.dart';
 import 'package:easy_localization/easy_localization.dart' as tr;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,8 +22,16 @@ class OTPVerifyRegisterScreen extends StatefulWidget {
 class _OTPVerifyRegisterScreenState extends State<OTPVerifyRegisterScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignUpVendorCubit, SignUpVendorState>(
-        builder: (context, state) {
+    return BlocConsumer<SignUpVendorCubit, SignUpVendorState>(
+        listener: (context, state) {
+      if (state is LoadingRgisterVendorState) {
+        createProgressDialog(context, 'loading'.tr());
+      } else if (state is LoadedRgisterVendorState ||
+          state is ErrorRgisterVendorState ||
+          state is ErrorRgisterVendorState) {
+        Navigator.pop(context);
+      } else {}
+    }, builder: (context, state) {
       var cubit = context.read<SignUpVendorCubit>();
       return Scaffold(
         appBar: AppBar(),
