@@ -113,7 +113,7 @@ class AddNewProductCubit extends Cubit<AddNewProductState> {
         type: currentType == 'new'.tr() ? 'new' : 'used',
         discount: discountController.text,
         shopCatId: currentMainCategories!.id.toString(),
-        shopSubCat: currentSubCategory!.titleAr ?? '',
+        // shopSubCat: currentSubCategory!.titleAr ?? '',
         stock: limitController.text);
     res.fold((l) {
       emit(ErrorAddNewProduct());
@@ -150,7 +150,7 @@ class AddNewProductCubit extends Cubit<AddNewProductState> {
         titleEn: productsModelDetails.data!.vendor!.shopCat!.titleEn!,
         status: productsModelDetails.data!.vendor!.shopCat!.status!);
 
-    Navigator.pushNamed(context, Routes.addNewProductScreen, arguments: true);
+    Navigator.pushNamed(context, Routes.editProduct, arguments: true);
     emit(ONUpdateProduct());
   }
 
@@ -166,7 +166,7 @@ class AddNewProductCubit extends Cubit<AddNewProductState> {
         type: currentType == 'new'.tr() ? 'new' : 'used',
         discount: discountController.text,
         shopCatId: currentMainCategories!.id.toString(),
-        shopSubCat: currentSubCategory!.titleAr ?? '',
+        // shopSubCat: currentSubCategory!.titleAr ?? '',
         stock: limitController.text);
     res.fold((l) {
       emit(ErrorAddNewProduct());

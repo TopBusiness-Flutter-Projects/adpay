@@ -27,6 +27,7 @@ import '../../features/home_screen/menue/myprofile_vendor/screens/vendor_profile
 import '../../features/home_screen/menue/screens/about_app/screens/about_app.dart';
 import '../../features/home_screen/menue/screens/about_app/screens/privacy.dart';
 import '../../features/home_screen/menue/screens/contact_us/screens/contact_us.dart';
+import '../../features/home_screen/menue/screens/edit_product/edit_product.dart';
 import '../../features/home_screen/menue/screens/mypoints/screens/points.dart';
 import '../../features/home_screen/menue/screens/places/screens/places.dart';
 import '../../features/home_screen/menue/screens/pocket/pocket.dart';
@@ -38,7 +39,7 @@ import '../../features/home_screen/products/screens/products-screen.dart';
 import '../../features/home_screen/shop/screens/theshop_screen.dart';
 import '../../features/home_screen/tager/screens/tager_screen.dart';
 import '../../features/home_screen_provider/add_new_ads/screen/add_new_ad.dart';
-import '../../features/home_screen_provider/add_new_product/screen/add_new_products.dart';
+import '../../features/home_screen_provider/edit_product/screen/add_new_products.dart';
 import '../../features/home_screen_provider/edit_profile/screens/edit_profile.dart';
 import '../../features/home_screen_provider/main_screen/screen/ads_vendor_screen.dart';
 import '../../features/home_screen_provider/main_screen/screen/main_screen_driver.dart';
@@ -77,12 +78,9 @@ class Routes {
   static const String choosLogin = '/choosLoginscreen';
   static const String forgetPassword = '/forgetPassword';
   static const String vendorSignUp = '/vendorSignUp';
-
   static const String bestSeller = '/BestSeller';
   static const String gragedetails = '/GrageDetails';
-
   static const String allcomments = '/allcomments';
-
   static const String chatapp = '/chatapp';
   static const String completeorder = '/compeleteorder';
   static const String salla = '/salla';
@@ -91,24 +89,17 @@ class Routes {
   static const String notificationscreen = '/notification';
   static const String messagescreen = '/message';
   static const String addharag = '/addharag';
-
   static const String contactus = '/contactus';
   static const String profilescreen = '/profilescreen';
-
   static const String favouritescreen = '/favouritescreen';
   static const String profile = '/profile';
   static const String pocket = '/pocket';
-
   static const String points = '/points';
-
   static const String places = '/places';
   static const String myharag = '/myharag';
   static const String editprofile = '/editprofile';
-
   static const String myharagdetails = '/myharagdetails';
-
   static const String editmyharagdetails = '/editmyharagdetails';
-
   static const String vendorOrdersUrl = '/vendorOrdersUrl';
 
   static const String Main = '/Main';
@@ -123,7 +114,8 @@ class Routes {
   static const String otpScreen = '/otpScreen';
   static const String oTPVerifyRegisterScreen = '/oTPVerifyRegisterScreen';
   static const String oTPVerifyrResetScreen = '/oTPVerifyrResetScreen';
-  static const String addNewProductScreen = '/AddNewProductScreen';
+   static const String addNewProductScreen = '/AddNewProductScreen';
+  static const String editProduct = '/EditProductScreen';
   static const String addNewAdsScreen = '/addNewAdsScreen';
    static const String orderdetails = '/orderdetails';
 
@@ -137,6 +129,8 @@ class Routes {
   static const String privacy = '/privacy';
 
   static const String editProfileVendor = '/editprofilevendor';
+
+  static const String addNewProduct = '/editprofilevendor';
 
 
 //   static const String otpRoute = '/otp';
@@ -606,13 +600,21 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: OTPVerifyPasswordScreen(),
         );
+      case Routes.editProduct:
+        bool isUpdate = settings.arguments as bool;
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: EditProductScreen(isUpdate: isUpdate),
+        );
       case Routes.addNewProductScreen:
         bool isUpdate = settings.arguments as bool;
         return PageTransition(
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
-          child: AddNewProductScreen(isUpdate: isUpdate),
+          child: AddNewProductScreen(),
         );
       case Routes.editProfileVendor:
         bool isUpdate = settings.arguments as bool;

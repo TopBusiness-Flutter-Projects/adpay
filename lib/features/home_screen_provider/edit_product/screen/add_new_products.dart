@@ -1,24 +1,20 @@
 import 'package:adpay/core/utils/get_size.dart';
-import 'package:adpay/features/home_screen_provider/add_new_product/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../../../../core/utils/app_colors.dart';
+import '../cubit/cubit.dart';
 import '../cubit/state.dart';
 import '../widget/text_field.dart';
 import 'main_catogrey.dart';
-import 'sub_catogrey.dart';
 import 'type_category.dart';
 
 class AddNewProductScreen extends StatefulWidget {
   AddNewProductScreen({
     super.key,
-    this.isUpdate = false,
   });
-  bool isUpdate;
   @override
   State<AddNewProductScreen> createState() => _AddNewProductScreenState();
 }
@@ -75,49 +71,61 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                                   cubit.pickLogoImages();
                                 },
                                 child: cubit.selectedImages.isNotEmpty
-                                    ? Container(
-                                        height: getSize(context) / 6,
-                                        child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount:
-                                              cubit.selectedImages.length,
-                                          itemBuilder: (context, index) {
-                                            return Image.file(
-                                              cubit.selectedImages[index],
-                                              height: getSize(context) / 6,
-                                              width: getSize(context) / 6,
-                                              fit: BoxFit.cover,
-                                              errorBuilder:
-                                                  (context, error, stackTrace) {
-                                                return Image.asset(
-                                                    "assets/images/uploadimages.png");
-                                              },
-                                            );
-                                          },
-                                        ),
-                                      )
-                                    : cubit.updatedimages.isNotEmpty
-                                        ? Container(
-                                            height: getSize(context) / 6,
-                                            child: ListView.builder(
-                                              scrollDirection: Axis.horizontal,
-                                              itemCount:
-                                                  cubit.updatedimages.length,
-                                              itemBuilder: (context, index) {
-                                                return Image.network(
-                                                  cubit.updatedimages[index],
+                                    ? Center(
+                                      child: Container(
+                                          height: getSize(context) / 6,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount:
+                                                cubit.selectedImages.length,
+                                            itemBuilder: (context, index) {
+                                              return Center(
+                                                child: Image.file(
+                                                  cubit.selectedImages[index],
                                                   height: getSize(context) / 6,
                                                   width: getSize(context) / 6,
                                                   fit: BoxFit.cover,
-                                                  errorBuilder: (context, error,
-                                                      stackTrace) {
-                                                    return Image.asset(
-                                                        "assets/images/uploadimages.png");
+                                                  errorBuilder:
+                                                      (context, error, stackTrace) {
+                                                    return Center(
+                                                      child: Image.asset(
+                                                          "assets/images/uploadimages.png"),
+                                                    );
                                                   },
-                                                );
-                                              },
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                    )
+                                    : cubit.updatedimages.isNotEmpty
+                                        ? Center(
+                                          child: Container(
+                                              height: getSize(context) / 6,
+                                              child: ListView.builder(
+                                                scrollDirection: Axis.horizontal,
+                                                itemCount:
+                                                    cubit.updatedimages.length,
+                                                itemBuilder: (context, index) {
+                                                  return Center(
+                                                    child: Image.network(
+                                                      cubit.updatedimages[index],
+                                                      height: getSize(context) / 6,
+                                                      width: getSize(context) / 6,
+                                                      fit: BoxFit.cover,
+                                                      errorBuilder: (context, error,
+                                                          stackTrace) {
+                                                        return Center(
+                                                          child: Image.asset(
+                                                              "assets/images/uploadimages.png"),
+                                                        );
+                                                      },
+                                                    ),
+                                                  );
+                                                },
+                                              ),
                                             ),
-                                          )
+                                        )
                                         : Image.asset(
                                             "assets/images/uploadimages.png"),
                               ),
@@ -155,7 +163,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                   ),
                   CustomAddNewProductField(
                     controller: cubit.priceController,
-                    hintText: 'price'.tr(),
+                    hintText: "price".tr(),
                     keyboardType: TextInputType.number,
                     mssage: 'please_enter_data'.tr(),
                   ),
@@ -251,20 +259,9 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                         width: 250.w,
                         child: ElevatedButton(
                           onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              if (cubit.selectedImages.isNotEmpty ||
-                                  cubit.updatedimages.isNotEmpty) {
-                                if (widget.isUpdate) {
-                                  cubit.updateProduct(context);
-                                } else {
                                   cubit.addNewProduct(context);
-                                }
-                              } else {
-                                Fluttertoast.showToast(
-                                    msg: 'Productimages'.tr());
-                              }
-                            }
-                          },
+                            },
+
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.primary, // لون الزر
                           ),
@@ -276,9 +273,8 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                                     ),
                                   )
                                 : Text(
-                                    widget.isUpdate
-                                        ? 'edit_product'.tr()
-                                        : "add".tr(),
+
+                                         "add".tr(),
                                     style: TextStyle(
                                       color: AppColors.white,
                                       fontSize: 16.sp,

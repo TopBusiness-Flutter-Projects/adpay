@@ -1,4 +1,4 @@
-import 'package:adpay/features/home_screen_provider/add_new_product/cubit/state.dart';
+import 'package:adpay/features/home_screen_provider/edit_product/cubit/state.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +77,8 @@ class _TypeCategoryAddProductState extends State<TypeCategoryAddProduct> {
                     ),
                   ),
                   hint: Text(
-                    'Category'.tr(),
+                    cubit.currentType,
+                    // "choose_type".tr(),
                     style: TextStyle(fontSize: getSize(context) / 24),
                   ),
                   // value: cubit.currentMainCategories,

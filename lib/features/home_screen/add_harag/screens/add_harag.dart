@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../home_screen_provider/add_new_product/widget/text_field.dart';
+import '../../../home_screen_provider/edit_product/widget/text_field.dart';
 import '../cubit/add_harag_cubit.dart';
 
 class AddHarag extends StatefulWidget {

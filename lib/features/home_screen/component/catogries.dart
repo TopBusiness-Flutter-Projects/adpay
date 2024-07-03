@@ -28,12 +28,12 @@ class Catogries extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: cubit.homeModel!.data!.categories!.length,
+        itemCount: cubit.homeModel?.data?.categories?.length,
         itemBuilder: (context, index) {
           return InkWell(
             onTap: (){
               Navigator.pushNamed(
-                  context, Routes.ProductssRoute,arguments:cubit.homeModel!.data!.categories![index].id.toString());
+                  context, Routes.ProductssRoute,arguments:cubit.homeModel?.data?.categories?[index].id.toString());
             },
             child: Container(
               height: 120.h,
@@ -62,19 +62,16 @@ class Catogries extends StatelessWidget {
                   // SizedBox(height: 8.h),
                   Flexible(fit: FlexFit.tight,
                     child: Text(
-                    cubit.homeModel?.data?.categories?[index]?.titleAr??"",
+                    cubit.homeModel?.data?.categories?[index].name??"",
                       maxLines: 1,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                        // fontSize: 10.sp,
                         fontWeight: FontWeight.bold,
-
-
                           fontSize: 16,
                           overflow: TextOverflow.fade,
 
                       ),
-
                     ),
                   ),
                 ],

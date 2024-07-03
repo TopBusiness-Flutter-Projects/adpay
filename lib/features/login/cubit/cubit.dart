@@ -158,9 +158,6 @@ class LoginCubit extends Cubit<LoginState> {
         print('=========================================');
         smsCode = credential.smsCode;
         verificationId = credential.verificationId;
-
-        //! check verify
-
         emit(OnSmsCodeSent(smsCode ?? ''));
       },
       verificationFailed: (FirebaseAuthException e) {
@@ -183,7 +180,8 @@ class LoginCubit extends Cubit<LoginState> {
     )
         .then((value) {
       Navigator.pushNamed(context, Routes.otpScreen);
-    });
+    }
+    );
   }
 
   verifyOtp(String smsCode, BuildContext context) async {
