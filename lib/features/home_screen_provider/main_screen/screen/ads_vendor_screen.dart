@@ -5,6 +5,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import '../../../../core/api/end_points.dart';
 import '../cubit/cubit.dart';
 import '../cubit/state.dart';
@@ -291,12 +292,8 @@ class _AdsVendorScreenState extends State<AdsVendorScreen> {
                                                     ],
                                                   ),
                                                   Text(
-                                                    (EasyLocalization
-                                                                    .of(
-                                                                        context)!
-                                                                .locale
-                                                                .languageCode ==
-                                                            'ar')
+                                                    (EasyLocalization.of(
+                                                                        context)!.locale.languageCode == 'ar')
                                                         ? (ads?.descriptionAr ??
                                                             '')
                                                         : (ads?.descriptionEn ??
@@ -315,6 +312,30 @@ class _AdsVendorScreenState extends State<AdsVendorScreen> {
                                                 ],
                                               ),
                                             ),
+                                            Spacer(),
+
+
+
+                                            cubit.  currentSelectedTypeOfAds == 'new'.tr()
+                                                ?
+
+                                                Icon(Icons.edit):
+
+                                            cubit.currentSelectedTypeOfAds=='pending'.tr()?
+                                            new CircularPercentIndicator(
+                                              radius: 20.0,
+                                              lineWidth: 5.0,
+                                              percent: .9,
+                                              center: Center(child: Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: new Text("90%",style: TextStyle(fontSize: 15,fontWeight:FontWeight.bold),),
+                                                ),
+                                              )),
+                                              progressColor: AppColors.secondPrimary,
+                                            )
+                                                :Container()
                                           ],
                                         ),
                                       ),
