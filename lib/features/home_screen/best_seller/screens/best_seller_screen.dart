@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart%20';
@@ -9,7 +8,6 @@ import '../../main_screen/cubit/home_cubit.dart';
 import '../../main_screen/cubit/home_state.dart';
 class BestSellerScreen extends StatefulWidget {
   BestSellerScreen({super.key});
-
   @override
   State<BestSellerScreen> createState() => _BestSellerScreenState();
 }

@@ -1,4 +1,3 @@
-import 'package:adpay/features/home_screen_provider/add_new_product/cubit/state.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import '../../../../../core/models/shopcatogriesmodel.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/get_size.dart';
 import '../cubit/cubit.dart';
+import '../cubit/state.dart';
 
 class MainCatogreyAddProductWidget extends StatefulWidget {
   const MainCatogreyAddProductWidget({super.key});
@@ -72,7 +72,14 @@ class _MainCatogreyAddProductWidgetState
                         Radius.circular(getSize(context) / 44),
                       ),
                     ),
-                    hintText: 'nationality_select'.tr(),
+                    hintText:
+
+
+                    EasyLocalization.of(context)!.locale.languageCode ==
+                        'ar'
+                        ? ( cubit.currentMainCategories?.titleAr.toString()??"nehal")
+                        : ( cubit.currentMainCategories?.titleEn.toString()??"nehal"),
+
                     hintStyle: TextStyle(
                       color: AppColors.blackLite,
                       fontFamily: 'tahoma',
@@ -80,7 +87,7 @@ class _MainCatogreyAddProductWidgetState
                     ),
                   ),
                   hint: Text(
-                    'Category'.tr(),
+                    cubit.currentMainCategories?.titleAr.toString()??"",
                     style: TextStyle(fontSize: getSize(context) / 24),
                   ),
                   // value: cubit.currentMainCategories,

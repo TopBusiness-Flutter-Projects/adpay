@@ -173,8 +173,7 @@ class _AdsVendorScreenState extends State<AdsVendorScreen> {
                                                     BorderRadius.circular(
                                                         getSize(context) / 32)),
                                             child: Image.network(
-                               
-                                                  (ads?.image.toString() ?? ''),
+                                              (ads?.image.toString() ?? ''),
                                               errorBuilder:
                                                   (context, error, stackTrace) {
                                                 return ClipRRect(
@@ -219,10 +218,8 @@ class _AdsVendorScreenState extends State<AdsVendorScreen> {
                                                 ),
                                                 child: CircleAvatar(
                                                   backgroundImage: NetworkImage(
-                                            
-                                                        (ads?.image
-                                                                .toString() ??
-                                                            ''),
+                                                    (ads?.image.toString() ??
+                                                        ''),
                                                   ),
                                                 ),
                                               ),

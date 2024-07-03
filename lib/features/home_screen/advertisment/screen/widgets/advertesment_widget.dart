@@ -128,9 +128,8 @@ class AdvertesmentWidet extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text("advertisement".tr(),
-                              style: Styles.style18
-                                  .copyWith(color: AppColors.secondPrimary)),
+                          Text("advertisement".tr()+'.${ads.vendor.toString()??""}',
+                              style: Styles.style18.copyWith(color: AppColors.secondPrimary)),
                         ],
                       ),
                     ),

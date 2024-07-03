@@ -5,10 +5,19 @@ class HomeModel {
 
   HomeModel({this.data, this.msg, this.status});
 
-  HomeModel.fromJson(Map<String, dynamic> json) {
-    data = json["data"] == null ? null : Data.fromJson(json["data"]);
-    msg = json["msg"];
-    status = json["status"];
+  HomeModel.fromJson(dynamic json) {
+    if (json is List && json.isNotEmpty) {
+      // If the input is a List, take the first item
+      var firstItem = json[0];
+      if (firstItem is Map<String, dynamic>) {
+        data = Data.fromJson(firstItem);
+      }
+    } else if (json is Map<String, dynamic>) {
+      // If the input is a Map, process it as before
+      data = json["data"] == null ? null : Data.fromJson(json["data"]);
+      msg = json["msg"];
+      status = json["status"];
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -465,24 +474,27 @@ class Ads {
   dynamic video;
   String? createdAt;
   String? updatedAt;
+  String? vendor;
 
-  Ads(
-      {this.id,
-      this.image,
-      this.titleAr,
-      this.titleEn,
-      this.descriptionAr,
-      this.descriptionEn,
-      this.userId,
-      this.status,
-      this.paymentStatus,
-      this.countViews,
-      this.packageId,
-      this.views,
-      this.complete,
-      this.video,
-      this.createdAt,
-      this.updatedAt});
+  Ads({
+    this.id,
+    this.image,
+    this.titleAr,
+    this.titleEn,
+    this.descriptionAr,
+    this.descriptionEn,
+    this.userId,
+    this.status,
+    this.paymentStatus,
+    this.countViews,
+    this.packageId,
+    this.views,
+    this.complete,
+    this.video,
+    this.createdAt,
+    this.updatedAt,
+    this.vendor,
+  });
 
   Ads.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -501,6 +513,7 @@ class Ads {
     video = json["video"];
     createdAt = json["created_at"];
     updatedAt = json["updated_at"];
+    vendor = json["vendor"];
   }
 
   Map<String, dynamic> toJson() {
@@ -521,28 +534,41 @@ class Ads {
     _data["video"] = video;
     _data["created_at"] = createdAt;
     _data["updated_at"] = updatedAt;
+    _data["vendor"] = vendor;
     return _data;
   }
 }
 
 class Categories {
   int? id;
-  String? titleAr;
-  String? titleEn;
+  String? name;
+  String? image;
+  String? createdAt;
+  String? updatedAt;
 
-  Categories({this.id, this.titleAr, this.titleEn});
+  Categories({
+    this.id,
+    this.name,
+    this.image,
+    this.createdAt,
+    this.updatedAt,
+  });
 
   Categories.fromJson(Map<String, dynamic> json) {
     id = json["id"];
-    titleAr = json["title_ar"];
-    titleEn = json["title_en"];
+    name = json["name"];
+    image = json["image"];
+    createdAt = json["created_at"];
+    updatedAt = json["updated_at"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["id"] = id;
-    _data["title_ar"] = titleAr;
-    _data["title_en"] = titleEn;
+    _data["name"] = name;
+    _data["image"] = image;
+    _data["created_at"] = createdAt;
+    _data["updated_at"] = updatedAt;
     return _data;
   }
 }
@@ -550,21 +576,41 @@ class Categories {
 class Sliders {
   int? id;
   String? image;
-  dynamic url;
+  String? link;
+  String? createdAt;
+  String? updatedAt;
 
-  Sliders({this.id, this.image, this.url});
+  Sliders({
+    this.id,
+    this.image,
+    this.link,
+    this.createdAt,
+    this.updatedAt,
+  });
 
   Sliders.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     image = json["image"];
-    url = json["url"];
+    link = json["link"];
+    createdAt = json["created_at"];
+    updatedAt = json["updated_at"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["id"] = id;
     _data["image"] = image;
-    _data["url"] = url;
+    _data["link"] = link;
+    _data["created_at"] = createdAt;
+    _data["updated_at"] = updatedAt;
     return _data;
   }
 }
+//
+
+
+
+
+
+
+

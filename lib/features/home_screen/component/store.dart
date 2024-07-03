@@ -36,9 +36,8 @@ class _StoresState extends State<Stores> {
           crossAxisSpacing: 2.0,
           childAspectRatio: 1 / 1.4,
         ),
-        itemCount: cubit.homeModel!.data!.shops!.length,
+        itemCount: cubit.homeModel?.data?.shops?.length,
         itemBuilder: (BuildContext context, int index) {
-
              return Column(
                  children: [
                    InkWell(
@@ -98,9 +97,6 @@ class _StoresState extends State<Stores> {
                    ),
                  ],
              );},
-
-
-
       ),
     );
 

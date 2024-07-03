@@ -5,9 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart%20';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/api/end_points.dart';
-import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/styles.dart';
 import '../cubit/adsence_cubit.dart';
 
@@ -22,7 +19,6 @@ class _Advertesment_ScreenState extends State<Advertesment_Screen> {
     super.initState();
     context.read<AdsenceCubit>().getAdsence();
   }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AdsenceCubit, AdsenceState>(

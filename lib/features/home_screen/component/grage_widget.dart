@@ -16,8 +16,6 @@ class BestSellerforGrage extends StatelessWidget {
     return  BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
       builder: (context, statee) {
-
-
           HomeCubit cubit = HomeCubit.get(context);
           return SizedBox(
             height: 200.h,
