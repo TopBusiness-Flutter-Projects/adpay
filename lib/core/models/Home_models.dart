@@ -260,72 +260,6 @@ class Products {
     return _data;
   }
 }
-
-// class Props {
-//   String? color;
-//   String? size;
-//   String? material;
-//   String? condition;
-//   String? warranty;
-//   String? delivery;
-//   String? freeShipping;
-//   String? freeReturn;
-//   String? freeInstallation;
-//   String? freeExchange;
-//   String? freeCancellation;
-//   String? freeGift;
-//   String? freeSupport;
-
-//   Props(
-//       {this.color,
-//       this.size,
-//       this.material,
-//       this.condition,
-//       this.warranty,
-//       this.delivery,
-//       this.freeShipping,
-//       this.freeReturn,
-//       this.freeInstallation,
-//       this.freeExchange,
-//       this.freeCancellation,
-//       this.freeGift,
-//       this.freeSupport});
-
-//   Props.fromJson(Map<String, dynamic> json) {
-//     color = json["color"];
-//     size = json["size"];
-//     material = json["material"];
-//     condition = json["condition"];
-//     warranty = json["warranty"];
-//     delivery = json["delivery"];
-//     freeShipping = json["free_shipping"];
-//     freeReturn = json["free_return"];
-//     freeInstallation = json["free_installation"];
-//     freeExchange = json["free_exchange"];
-//     freeCancellation = json["free_cancellation"];
-//     freeGift = json["free_gift"];
-//     freeSupport = json["free_support"];
-//   }
-
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> _data = <String, dynamic>{};
-//     _data["color"] = color;
-//     _data["size"] = size;
-//     _data["material"] = material;
-//     _data["condition"] = condition;
-//     _data["warranty"] = warranty;
-//     _data["delivery"] = delivery;
-//     _data["free_shipping"] = freeShipping;
-//     _data["free_return"] = freeReturn;
-//     _data["free_installation"] = freeInstallation;
-//     _data["free_exchange"] = freeExchange;
-//     _data["free_cancellation"] = freeCancellation;
-//     _data["free_gift"] = freeGift;
-//     _data["free_support"] = freeSupport;
-//     return _data;
-//   }
-// }
-
 class Auctions {
   int? id;
   dynamic images;
@@ -456,7 +390,6 @@ class Shops {
     return _data;
   }
 }
-
 class Ads {
   int? id;
   String? image;
@@ -538,25 +471,26 @@ class Ads {
     return _data;
   }
 }
-
 class Categories {
   int? id;
-  String? name;
   String? image;
   String? createdAt;
   String? updatedAt;
-
+  String ?title_ar;
+  String ?title_en;
   Categories({
     this.id,
-    this.name,
     this.image,
     this.createdAt,
     this.updatedAt,
+    this.title_ar,
+    this.title_en
   });
 
   Categories.fromJson(Map<String, dynamic> json) {
     id = json["id"];
-    name = json["name"];
+    title_ar = json["title_ar"];
+    title_en=json["title_en"];
     image = json["image"];
     createdAt = json["created_at"];
     updatedAt = json["updated_at"];
@@ -565,14 +499,15 @@ class Categories {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["id"] = id;
-    _data["name"] = name;
+    _data["title_ar"] = title_ar;
+
+    _data["title_en"] = title_en;
     _data["image"] = image;
     _data["created_at"] = createdAt;
     _data["updated_at"] = updatedAt;
     return _data;
   }
 }
-
 class Sliders {
   int? id;
   String? image;
@@ -606,7 +541,7 @@ class Sliders {
     return _data;
   }
 }
-//
+
 
 
 

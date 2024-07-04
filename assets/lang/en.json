@@ -164,5 +164,8 @@
   "cancel": "Cancel",
   "editprofile": "Edit Profile",
   "completeorder": "Compelete Oreder",
-  "loading":"Loading ..."
+  "loading":"Loading ...",
+  "edit_ads": "Edit Ads",
+  "editt": "Edit",
+  "Advertisementimage": "Advertisement image"
 }

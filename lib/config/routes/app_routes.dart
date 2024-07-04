@@ -43,6 +43,7 @@ import '../../features/home_screen_provider/add_new_ads/screen/add_new_ad.dart';
 import '../../features/home_screen_provider/edit_product/screen/add_new_products.dart';
 import '../../features/home_screen_provider/edit_profile/screens/edit_profile.dart';
 import '../../features/home_screen_provider/main_screen/screen/ads_vendor_screen.dart';
+import '../../features/home_screen_provider/main_screen/screen/edit_ads.dart';
 import '../../features/home_screen_provider/main_screen/screen/main_screen_driver.dart';
 import '../../features/home_screen_provider/main_screen/screen/product_details_vendor.dart';
 import '../../features/home_screen_provider/main_screen/screen/total_products.dart';
@@ -135,6 +136,8 @@ class Routes {
 
   static const String videoPlayer = '/videoPlayer';
 
+  static const String editAdsencce = '/editAdsencce';
+
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
 //   static const String registerScreenRoute = '/registerScreen';
@@ -207,6 +210,16 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: UserSignUpScreen(), // Replace with your category screen widget
         );
+      case Routes.editAdsencce:
+        String id = settings.arguments as String;
+// Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: EditAdsence(id:id), // Replace with your category screen widget
+        );
+
       case Routes.myharag: // Change this line
         return PageTransition(
           type: PageTransitionType.fade,

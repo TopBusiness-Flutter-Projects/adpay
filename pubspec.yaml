@@ -80,6 +80,7 @@ dependencies:
   video_player: ^2.4.3
   chewie: ^1.2.2
   youtube_player_flutter: ^8.0.0
+  better_player: 
 dev_dependencies:
   flutter_test:
     sdk: flutter

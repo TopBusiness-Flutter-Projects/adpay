@@ -15,7 +15,6 @@ import '../main_screen/cubit/home_state.dart';
 
 class advertisements extends StatefulWidget {
   const advertisements({super.key});
-
   @override
   State<advertisements> createState() => _advertisementsState();
 }

@@ -1686,6 +1686,36 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+  //edit ads
+  Future<Either<Failure, AddNewProductModel>> editads({
+    required File image,
+    required String title,
+    required String describtion,
+    required String video,
+    String countViews = '0',
+    String packageId = '0',
+  }) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.post(EndPoints.updateAds,
+          formDataIsEnabled: true,
+          body: {
+            "title_ar": title,
+            "title_en": title,
+            "description_ar": describtion,
+            "description_en": describtion,
+            "count_views": countViews,
+            "video": video,
+            "id": packageId,
+            'image': await MultipartFile.fromFile(image.path,
+                filename: image.path.split('/').last),
+          },
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(AddNewProductModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 //   Future<Either<Failure, UpdatedModel>> editService(
 //       int catId,ServiceToUpdate serviceToUpdate) async {
 //     LoginModel loginModel = await Preferences.instance.getUserModel();

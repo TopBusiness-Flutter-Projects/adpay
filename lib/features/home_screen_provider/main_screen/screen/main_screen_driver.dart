@@ -133,7 +133,8 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                                         Navigator.pushNamed(
                                             context, Routes.adsVendorScreen);
                                       },
-                                      child: Hero(
+                                      child:
+                                      Hero(
                                         tag: 'ads_vendor',
                                         child: CustomHomeScreenWidget(
                                           imagePath: ImageAssets.totalAdsImage,
