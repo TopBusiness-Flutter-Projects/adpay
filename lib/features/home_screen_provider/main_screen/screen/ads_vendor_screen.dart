@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import '../../../../config/routes/app_routes.dart';
-import '../../../../core/api/end_points.dart';
 import '../cubit/cubit.dart';
 import '../cubit/state.dart';
 

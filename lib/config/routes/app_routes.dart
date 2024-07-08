@@ -15,6 +15,7 @@ import '../../features/forget_password/screen/newpass.dart';
 import '../../features/forget_password/screen/otp_verify_pass.dart';
 import '../../features/home_screen/add_harag/screens/add_harag.dart';
 import '../../features/home_screen/advertisment/screen/advertisment_screen.dart';
+import '../../features/home_screen/advertisment/screen/widgets/video_player.dart';
 import '../../features/home_screen/best_seller/screens/best_seller_screen.dart';
 import '../../features/home_screen/catogries/screens/Categories_screen.dart';
 import '../../features/home_screen/garage/screens/grage_screen.dart';
@@ -63,8 +64,7 @@ class Routes {
   static const String CategoriesRoute = '/categories'; // Change this line
   static const String ProductssRoute = '/products';
   static const String ProductsDetails = '/productsDetails'; // Change this line
-  static const String productDetailsVendorScreen =
-      '/productDetailsVendorScreen'; // Change this line
+  static const String productDetailsVendorScreen = '/productDetailsVendorScreen'; // Change this line
 
   static const String float = '/float'; // Change this line
 
@@ -131,7 +131,8 @@ class Routes {
   static const String editProfileVendor = '/editprofilevendor';
 
   static const String addNewProduct = '/editprofilevendor';
-
+  static const String editAdsencce = '/editAdsencce';
+  static const String videoPlayer = '/videoPlayer';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -197,6 +198,15 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: OrderScreenVendor(), // Replace with your category screen widget
+        );
+        //
+      case Routes.videoPlayer:
+        String? video = settings.arguments as String;
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: VideoPlayerScreen(videoUrl:video,), // Replace with your category screen widget
         );
       case Routes.usersignupscreen: // Change this line
         return PageTransition(
