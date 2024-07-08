@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart%20';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -139,62 +138,24 @@ class _TagerScreenState extends State<TagerScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
                   child: SizedBox(
                     height: 30.h,
-                    width: double.infinity, // Set width to fill available space
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: cubit.vendorModel?.data?.vendor?.shopSubCat?.length ?? 0,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              final subCatId = cubit.vendorModel?.data?.vendor?.shopSubCat?[index].toString() ?? "1";
-                              final subCatIdInt = int.tryParse(subCatId) ?? 1;
-                              return GestureDetector(
-                                onTap: () {
-                                  cubit.getVendor(text: subCatId);
-                                  setState(() {
-                                    currentIdX = index;
-                                  });
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 2),
-                                  width: MediaQuery.of(context).size.width / 4,
-                                  decoration: BoxDecoration(
-                                    color: currentIdX == index
-                                        ? AppColors.primary
-                                        : Colors.grey[300],
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      subCatId,
-                                      maxLines: 1,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: AppColors.white,
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: (){
+                    child: ListView.builder(
+                      itemCount: cubit.vendorModel?.data?.vendor?.shopSubCat?.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        final subCatId = cubit.vendorModel?.data?.vendor?.shopSubCat?[index].toString() ?? "1";
+                        final subCatIdInt = int.tryParse(subCatId) ?? 1;
+                        return GestureDetector(
+                          onTap: () {
+                            cubit.getVendor(text: subCatId);
                             setState(() {
-                              cubit.getVendor(text:'');
-                              currentIdX = -1;
+                             currentIdX = index;
                             });
                           },
                           child: Container(
                             margin: EdgeInsets.symmetric(horizontal: 2),
-                            width: MediaQuery.of(context).size.width / 4,
+                            width: MediaQuery.sizeOf(context).width / 4,
                             decoration: BoxDecoration(
-                              color: currentIdX == -1
+                              color: currentIdX == index
                                   ? AppColors.primary
                                   : Colors.grey[300],
                               borderRadius: BorderRadius.circular(15),
@@ -202,7 +163,7 @@ class _TagerScreenState extends State<TagerScreen> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                "all",
+                                subCatId,
                                 maxLines: 1,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -213,8 +174,8 @@ class _TagerScreenState extends State<TagerScreen> {
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -317,40 +278,40 @@ class _TagerScreenState extends State<TagerScreen> {
                     },
                   ),
                 ),
-              ],
-            ),
-            bottomNavigationBar:   Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SizedBox(
-                width: 300.w,
-                child: ElevatedButton(
-                  onPressed: () {
-                    createProgressDialog2(context, "adPay");
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset("assets/images/star.png"),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: SizedBox(
+                    width: 300.w,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        createProgressDialog2(context, "adPay");
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          "MerchantRating".tr(),
-                          style: TextStyle(
-                            color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset("assets/images/star.png"),
                           ),
-                        ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              "MerchantRating".tr(),
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
         );

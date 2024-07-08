@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../core/models/add_new_product.dart';
 import '../../../../core/models/ads_packages_model.dart';
 import 'state.dart';
 
@@ -17,6 +18,7 @@ class AddNewAdsCubit extends Cubit<AddNewAdsState> {
 
   GetAdPackagesModel? adPackagesModel;
   GetAdPackagesModelData? currentPackage;
+  GetAdPackagesModelData? currentPackage2;
 
   onChangePackage(package) {
     currentPackage = package;
@@ -37,10 +39,16 @@ class AddNewAdsCubit extends Cubit<AddNewAdsState> {
   }
 
   TextEditingController discriptoionController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController videoLinkController = TextEditingController();
-  File? selectedImage;
+  TextEditingController discriptoionController2 = TextEditingController();
 
+  TextEditingController nameController = TextEditingController();
+  TextEditingController nameController2 = TextEditingController();
+
+  TextEditingController videoLinkController = TextEditingController();
+  TextEditingController videoLinkController2 = TextEditingController();
+
+  File? selectedImage;
+  AddNewProductModel ? addadsmodel;
   Future pickLogoImage() async {
     emit(LoadinglogoNewImage());
     try {
@@ -74,6 +82,30 @@ class AddNewAdsCubit extends Cubit<AddNewAdsState> {
       nameController.clear();
       discriptoionController.clear();
       videoLinkController.clear();
+      successGetBar(r.msg);
+      emit(LoadedAddNewAd());
+    });
+  }
+  //editads
+  editAds(BuildContext context, {String? id}) async {
+    emit(LoadingAddNewAd());
+    final res = await api.editads(
+      countViews: currentPackage2?.count.toString() ?? '0',
+      image: selectedImage!,
+      packageId:id??"85",
+      title: nameController2.text,
+      describtion: discriptoionController2.text,
+      video: videoLinkController2.text,
+    );
+    res.fold((l) {
+      emit(ErrorAddNewAd());
+    }, (r) {
+      // addadsmodel=r;
+      Navigator.pop(context);
+      selectedImage = null;
+      nameController2.clear();
+      discriptoionController2.clear();
+      videoLinkController2.clear();
       successGetBar(r.msg);
       emit(LoadedAddNewAd());
     });

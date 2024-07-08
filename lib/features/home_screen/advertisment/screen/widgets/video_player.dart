@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+<<<<<<< HEAD
 import 'package:url_launcher/url_launcher.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   final String videoUrl;
+=======
+import 'package:video_player/video_player.dart';
+
+class VideoPlayerScreen extends StatefulWidget {
+  final String videoUrl;
+
   VideoPlayerScreen({required this.videoUrl});
 
   @override
@@ -12,7 +19,15 @@ class VideoPlayerScreen extends StatefulWidget {
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late YoutubePlayerController _youtubeController;
+<<<<<<< HEAD
   bool isYoutube = false;
+=======
+  late VideoPlayerController _videoPlayerController;
+  String? videoId;
+  bool isYoutube = false;
+  bool videoError = false;
+  String errorMessage = '';
+>>>>>>> origin/main
 
   @override
   void initState() {
@@ -21,6 +36,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   }
 
   void initializeVideo() {
+<<<<<<< HEAD
     if (widget.videoUrl.contains('youtu.be') || widget.videoUrl.contains('youtube.com')) {
       isYoutube = true;
       String? videoId = YoutubePlayer.convertUrlToId(widget.videoUrl);
@@ -31,6 +47,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       }
     } else {
       isYoutube = false;
+=======
+    videoId = YoutubePlayer.convertUrlToId(widget.videoUrl);
+    if (videoId != null) {
+      isYoutube = true;
+      initializeYoutubePlayer(videoId!);
+    } else {
+      isYoutube = false;
+      initializeVideoPlayer();
+>>>>>>> origin/main
     }
   }
 
@@ -44,6 +69,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     );
   }
 
+<<<<<<< HEAD
   Future<void> launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -52,10 +78,39 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     }
   }
 
+=======
+  void initializeVideoPlayer() {
+    try {
+      _videoPlayerController = VideoPlayerController.network(widget.videoUrl)
+        ..initialize().then((_) {
+          setState(() {});
+          _videoPlayerController.play();
+        }).catchError((error) {
+          setVideoError('Video player initialization error: $error');
+        });
+    } catch (error) {
+      setVideoError('Video player error: $error');
+    }
+  }
+
+  void setVideoError(String message) {
+    setState(() {
+      videoError = true;
+      errorMessage = message;
+    });
+    print(message);
+  }
+
+>>>>>>> origin/main
   @override
   void dispose() {
     if (isYoutube) {
       _youtubeController.dispose();
+<<<<<<< HEAD
+=======
+    } else {
+      _videoPlayerController.dispose();
+>>>>>>> origin/main
     }
     super.dispose();
   }
@@ -78,6 +133,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         controller: _youtubeController,
         showVideoProgressIndicator: true,
       );
+<<<<<<< HEAD
     } else {
       // Launch the URL immediately
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -93,4 +149,24 @@ Future<void> launchURL(String url) async {
   } else {
     throw 'Could not launch $url';
   }
+=======
+    } else if (videoError) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Failed to load video'),
+          SizedBox(height: 10),
+          Text(errorMessage, style: TextStyle(color: Colors.red)),
+        ],
+      );
+    } else if (!isYoutube && _videoPlayerController.value.isInitialized) {
+      return AspectRatio(
+        aspectRatio: _videoPlayerController.value.aspectRatio,
+        child: VideoPlayer(_videoPlayerController),
+      );
+    } else {
+      return CircularProgressIndicator();
+    }
+  }
+>>>>>>> origin/main
 }
