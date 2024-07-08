@@ -69,7 +69,6 @@ class _StoresState extends State<Stores> {
           );
           },
                            fit: BoxFit.cover,
-
                          )
 
                        ),

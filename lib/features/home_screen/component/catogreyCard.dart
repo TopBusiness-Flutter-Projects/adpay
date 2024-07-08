@@ -39,50 +39,51 @@ late  int currentIdX;
           CatogriesCubit cubit = CatogriesCubit.get(context);
           return SizedBox(
             height: 42.h,
-            child: ListView.builder(
-              itemCount: cubit.catogriesModel?.data?.length ?? 0,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: () {
-
-                  setState(() {
-                    currentIdX = cubit.catogriesModel?.data?[index].id ?? 1;
-                   context.read<ProductsCubit>().getProducts(id: cubit.catogriesModel?.data?[index].id.toString() ?? '1');
-                    context.read<GrageCubit>().getGarge(id: currentIdX.toString()??'1' ) ;
-                    context.read<ShopCubit>().getShop(id: currentIdX.toString()??'1' );
-                  });
-                },
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  width: widthh / 3,
-                  decoration: BoxDecoration(
-                    color:
-                    currentIdX == cubit.catogriesModel?.data?[index].id ? AppColors.primary : Colors.grey[300],
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      (EasyLocalization.of(context)!.locale.languageCode ==
-                              'ar')
-                          ? (cubit.catogriesModel?.data?[index]?.titleAr ?? 'T-Shirt')
-                          : (cubit.catogriesModel?.data?[index]?.titleEn ?? ''),
-                      maxLines: 1,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: currentIdX==
-                                cubit.catogriesModel?.data?[index].id
-                            ? AppColors.white
-                            : Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
+            child:
+              ListView.builder(
+                itemCount: cubit.catogriesModel?.data?.length ?? 0,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      currentIdX = cubit.catogriesModel?.data?[index].id ?? 1;
+                     context.read<ProductsCubit>().getProducts(id: cubit.catogriesModel?.data?[index].id.toString() ?? '1');
+                      context.read<GrageCubit>().getGarge(id: currentIdX.toString()??'1' ) ;
+                      context.read<ShopCubit>().getShop(id: currentIdX.toString()??'1' );
+                    });
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    width: widthh / 3,
+                    decoration: BoxDecoration(
+                      color:
+                      currentIdX == cubit.catogriesModel?.data?[index].id ? AppColors.primary : Colors.grey[300],
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        (EasyLocalization.of(context)!.locale.languageCode ==
+                                'ar')
+                            ? (cubit.catogriesModel?.data?[index]?.titleAr ?? 'T-Shirt')
+                            : (cubit.catogriesModel?.data?[index]?.titleEn ?? ''),
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: currentIdX==
+                                  cubit.catogriesModel?.data?[index].id
+                              ? AppColors.white
+                              : Colors.black,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          );
+            );
+
         } else {
           return Scaffold(body: const Center(child: Text("no data")));
         }

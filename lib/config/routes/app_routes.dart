@@ -15,6 +15,7 @@ import '../../features/forget_password/screen/newpass.dart';
 import '../../features/forget_password/screen/otp_verify_pass.dart';
 import '../../features/home_screen/add_harag/screens/add_harag.dart';
 import '../../features/home_screen/advertisment/screen/advertisment_screen.dart';
+import '../../features/home_screen/advertisment/screen/widgets/video_player.dart';
 import '../../features/home_screen/best_seller/screens/best_seller_screen.dart';
 import '../../features/home_screen/catogries/screens/Categories_screen.dart';
 import '../../features/home_screen/garage/screens/grage_screen.dart';
@@ -132,6 +133,7 @@ class Routes {
 
   static const String addNewProduct = '/editprofilevendor';
 
+  static const String videoPlayer = '/videoPlayer';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -441,6 +443,14 @@ class AppRoutes {
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: ProductsScreen(id: id),
+        );
+      case Routes.videoPlayer:
+        String? video = settings.arguments as String;
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: VideoPlayerScreen(videoUrl:video,), // Replace with your category screen widget
         );
       case Routes.ProductsDetails:
         String? id = settings.arguments as String?;
