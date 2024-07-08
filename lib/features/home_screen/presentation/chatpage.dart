@@ -9,7 +9,6 @@ import '../messgaes/cubit/messages_cubit.dart';
 class ChatPageScreen extends StatefulWidget {
   ChatPageScreen({Key? key, this.id}) : super(key: key);
   String? id;
-
   @override
   State<ChatPageScreen> createState() => _ChatPageScreenState();
 }

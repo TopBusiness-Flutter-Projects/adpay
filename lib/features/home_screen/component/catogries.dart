@@ -60,9 +60,10 @@ class Catogries extends StatelessWidget {
                     ),
                   ),
                   // SizedBox(height: 8.h),
-                  Flexible(fit: FlexFit.tight,
+                  Flexible(
+                    fit: FlexFit.tight,
                     child: Text(
-                    cubit.homeModel?.data?.categories?[index].name??"",
+                    cubit.homeModel?.data?.categories?[index].title_ar??"nahola",
                       maxLines: 1,
                       textAlign: TextAlign.center,
                       style: TextStyle(

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart' as tr;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 
 import '../../../core/utils/app_colors.dart';
@@ -20,9 +21,11 @@ class OTPVerifyScreen extends StatefulWidget {
 class _OTPVerifyScreenState extends State<OTPVerifyScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginState>(listener: (context, state) {
+    return BlocConsumer<LoginCubit, LoginState>(
+        listener: (context, state) {
       if (state is LoadingLoginAuth) {
-        createProgressDialog(context, 'loading'.tr());
+        EasyLoading.show(status:  'loading'.tr());
+        // createProgressDialog(context, 'loading'.tr());
       } else if (state is LoadedLoginAuth || state is ErrorLoginAuth) {
         Navigator.pop(context);
       } else {}

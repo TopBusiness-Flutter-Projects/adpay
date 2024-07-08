@@ -39,6 +39,7 @@ class _TagerScreenState extends State<TagerScreen> {
         return SafeArea(
           child: Scaffold(
             body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Stack(
                   children: [
@@ -134,6 +135,7 @@ class _TagerScreenState extends State<TagerScreen> {
                     ),
                   ],
                 ),
+
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
                   child: SizedBox(
@@ -148,7 +150,7 @@ class _TagerScreenState extends State<TagerScreen> {
                           onTap: () {
                             cubit.getVendor(text: subCatId);
                             setState(() {
-                             currentIdX = index;
+                              currentIdX = index;
                             });
                           },
                           child: Container(
@@ -179,6 +181,11 @@ class _TagerScreenState extends State<TagerScreen> {
                     ),
                   ),
                 ),
+                currentIdX==-1?
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("الكل ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15.sp),),
+                ):Container(),
                 Flexible(
                   child: GridView.builder(
                     shrinkWrap: true,
@@ -278,40 +285,41 @@ class _TagerScreenState extends State<TagerScreen> {
                     },
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: SizedBox(
-                    width: 300.w,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        createProgressDialog2(context, "adPay");
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
+                // Spacer(),
+              ],
+            ),
+            bottomNavigationBar:    Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SizedBox(
+                width: 300.w,
+                child: ElevatedButton(
+                  onPressed: () {
+                    createProgressDialog2(context, "adPay");
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset("assets/images/star.png"),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Image.asset("assets/images/star.png"),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          "MerchantRating".tr(),
+                          style: TextStyle(
+                            color: Colors.white,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(
-                              "MerchantRating".tr(),
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
           ),
         );

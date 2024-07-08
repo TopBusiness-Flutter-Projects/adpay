@@ -27,16 +27,17 @@ class _StoresState extends State<Stores> {
     return   SizedBox(
       height: 200.h,
       child: GridView.builder(
-        physics: const BouncingScrollPhysics(),
+      //  physics: const BouncingScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 2.0,
           crossAxisSpacing: 2.0,
-          childAspectRatio: 1 / 1.4,
+          childAspectRatio: 1 / 1.233,
         ),
-        itemCount: cubit.homeModel?.data?.shops?.length,
+        itemCount: 6,
         itemBuilder: (BuildContext context, int index) {
              return Column(
                  children: [

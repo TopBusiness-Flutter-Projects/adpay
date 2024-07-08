@@ -93,4 +93,7 @@ class EndPoints {
 
   static const String aboutUs = '${baseUrl}user/aboutUs';
 
+  static const String updateAds = '${baseUrl}vendor/UpdateAdvertise';
+
+
 }

@@ -166,5 +166,8 @@
   "editprofile": "تعديل الحساب",
   "loading":"جاري الدخول ....",
   "delete_product": "حذف الحساب",
-  "edit_product": "تعديل المنتج"
+  "edit_product": "تعديل المنتج",
+  "edit_ads": "تعديل الاعلانات",
+  "editt": "تعديل",
+  "Advertisementimage": "صورة الاعلان"
 }
