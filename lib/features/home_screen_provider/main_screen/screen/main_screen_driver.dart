@@ -101,14 +101,12 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                                         context
                                             .read<VendorOrderCubit>()
                                             .currentOrderIndex = 0;
-                                        Navigator.pushNamed(
-                                            context, Routes.orderScreenVendor);
+                                        Navigator.pushNamed(context, Routes.orderScreenVendor);
                                       },
                                       child: CustomHomeScreenWidget(
                                         imagePath: ImageAssets.totalOrderImage,
                                         title: 'total_count'.tr(),
-                                        count:
-                                            "${cubit.homeVendorScreenModel?.data?.ordersCount.toString() ?? ''}",
+                                        count: "${cubit.homeVendorScreenModel?.data?.ordersCount.toString() ?? ''}",
                                       ),
                                     ),
                                     InkWell(
@@ -135,7 +133,8 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                                         Navigator.pushNamed(
                                             context, Routes.adsVendorScreen);
                                       },
-                                      child: Hero(
+                                      child:
+                                      Hero(
                                         tag: 'ads_vendor',
                                         child: CustomHomeScreenWidget(
                                           imagePath: ImageAssets.totalAdsImage,

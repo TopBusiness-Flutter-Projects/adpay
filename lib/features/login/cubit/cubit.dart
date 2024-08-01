@@ -178,9 +178,6 @@ bool  isRegisterUser =true;
         print('=========================================');
         smsCode = credential.smsCode;
         verificationId = credential.verificationId;
-
-        //! check verify
-
         emit(OnSmsCodeSent(smsCode ?? ''));
       },
       verificationFailed: (FirebaseAuthException e) {
@@ -203,7 +200,8 @@ bool  isRegisterUser =true;
     )
         .then((value) {
       Navigator.pushNamed(context, Routes.otpScreen);
-    });
+    }
+    );
   }
 
   verifyOtp(String smsCode, BuildContext context) async {

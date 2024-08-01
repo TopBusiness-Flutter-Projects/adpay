@@ -72,7 +72,7 @@ class _AdPackageWidgetState extends State<AdPackageWidget> {
                         Radius.circular(getSize(context) / 44),
                       ),
                     ),
-                    hintText: 'package'.tr(),
+                    hintText:cubit.currentPackage?.price.toString()??"",
                     hintStyle: TextStyle(
                       color: AppColors.blackLite,
                       fontFamily: 'tahoma',
@@ -80,7 +80,7 @@ class _AdPackageWidgetState extends State<AdPackageWidget> {
                     ),
                   ),
                   hint: Text(
-                    'package'.tr(),
+                    cubit.currentPackage?.price.toString()?? 'package'.tr(),
                     style: TextStyle(fontSize: getSize(context) / 24),
                   ),
                   // value: cubit.currentMainCategories,

@@ -1572,7 +1572,7 @@ class ServiceApi {
     required String describtion,
     required String price,
     required String shopCatId,
-    required String shopSubCat,
+    // required String shopSubCat,
     required String stock,
     String discount = '0',
     String type = 'new',
@@ -1591,7 +1591,7 @@ class ServiceApi {
             "stock": stock,
             "type": type,
             "shop_cat_id": shopCatId,
-            "shop_sub_cat": shopSubCat,
+            // "shop_sub_cat": shopSubCat,
             for (int i = 0; i < images.length; i++)
               'images[$i]': await MultipartFile.fromFile(images[i].path,
                   filename: images[i].path.split('/').last),
@@ -1610,7 +1610,7 @@ class ServiceApi {
     required String describtion,
     required String price,
     required String shopCatId,
-    required String shopSubCat,
+    // required String shopSubCat,
     required String stock,
     String discount = '0',
     String type = 'new',
@@ -1630,7 +1630,7 @@ class ServiceApi {
             "stock": stock,
             "type": type,
             "shop_cat_id": shopCatId,
-            "shop_sub_cat": shopSubCat,
+            // "shop_sub_cat": shopSubCat,
             for (int i = 0; i < images.length; i++)
               'images[$i]': await MultipartFile.fromFile(images[i].path,
                   filename: images[i].path.split('/').last),
@@ -1700,6 +1700,36 @@ class ServiceApi {
             "count_views": countViews,
             "video": video,
             "package_id": packageId,
+            'image': await MultipartFile.fromFile(image.path,
+                filename: image.path.split('/').last),
+          },
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(AddNewProductModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //edit ads
+  Future<Either<Failure, AddNewProductModel>> editads({
+    required File image,
+    required String title,
+    required String describtion,
+    required String video,
+    String countViews = '0',
+    String packageId = '0',
+  }) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.post(EndPoints.updateAds,
+          formDataIsEnabled: true,
+          body: {
+            "title_ar": title,
+            "title_en": title,
+            "description_ar": describtion,
+            "description_en": describtion,
+            "count_views": countViews,
+            "video": video,
+            "id": packageId,
             'image': await MultipartFile.fromFile(image.path,
                 filename: image.path.split('/').last),
           },

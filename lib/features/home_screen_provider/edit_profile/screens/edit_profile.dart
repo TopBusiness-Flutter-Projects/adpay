@@ -167,7 +167,8 @@ class _EditProfileVendorState extends State<EditProfileVendor> {
                         BorderRadius.all(Radius.circular(10))),
                     margin: EdgeInsets.all(5),
                     alignment: Alignment.center,
-                    child: context.read<SignUpVendorCubit>().bannerImage == null
+                    child:
+                    context.read<SignUpVendorCubit>().bannerImage == null
                         ? Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,

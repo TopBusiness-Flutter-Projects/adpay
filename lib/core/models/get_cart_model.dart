@@ -4,9 +4,9 @@
 
 import 'dart:convert';
 
-GetCartModel getCartModelFromJson(String str) => GetCartModel.fromJson(json.decode(str));
-
-String getCartModelToJson(GetCartModel data) => json.encode(data.toJson());
+// GetCartModel getCartModelFromJson(String str) => GetCartModel.fromJson(json.decode(str));
+//
+// String getCartModelToJson(GetCartModel data) => json.encode(data.toJson());
 
 class GetCartModel {
   List<GetCartModelData>? data;

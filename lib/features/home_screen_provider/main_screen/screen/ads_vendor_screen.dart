@@ -5,7 +5,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/api/end_points.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+import '../../../../config/routes/app_routes.dart';
 import '../cubit/cubit.dart';
 import '../cubit/state.dart';
 
@@ -173,8 +174,7 @@ class _AdsVendorScreenState extends State<AdsVendorScreen> {
                                                     BorderRadius.circular(
                                                         getSize(context) / 32)),
                                             child: Image.network(
-                               
-                                                  (ads?.image.toString() ?? ''),
+                                              (ads?.image.toString() ?? ''),
                                               errorBuilder:
                                                   (context, error, stackTrace) {
                                                 return ClipRRect(
@@ -219,19 +219,15 @@ class _AdsVendorScreenState extends State<AdsVendorScreen> {
                                                 ),
                                                 child: CircleAvatar(
                                                   backgroundImage: NetworkImage(
-                                            
-                                                        (ads?.image
-                                                                .toString() ??
-                                                            ''),
+                                                    (ads?.image.toString() ??
+                                                        ''),
                                                   ),
                                                 ),
                                               ),
                                             ),
                                             Flexible(
                                               child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .start, // Align children to the start
+                                                crossAxisAlignment: CrossAxisAlignment.start, // Align children to the start
                                                 children: [
                                                   Row(
                                                     children: [
@@ -318,6 +314,53 @@ class _AdsVendorScreenState extends State<AdsVendorScreen> {
                                                 ],
                                               ),
                                             ),
+                                            cubit.currentSelectedTypeOfAds ==
+                                                    'new'.tr()
+                                                ? InkWell(
+                                              onTap: (){
+
+                                                print( cubit.adsVendorModel
+                                                !.data![index].id
+                                                    .toString()+"nahola");
+
+                                                Navigator.pushNamed(
+                                                    context, Routes.editAdsencce,
+                                                    arguments: cubit.adsVendorModel
+                                                    !.data![index].id
+                                                        .toString()
+                                                );
+
+                                              },
+                                                child: Icon(Icons.edit))
+                                                : cubit.currentSelectedTypeOfAds ==
+                                                        'pending'.tr()
+                                                    ? new CircularPercentIndicator(
+                                                        radius: 20.0,
+                                                        lineWidth: 5.0,
+                                                        percent: .9,
+                                                        center: Center(
+                                                            child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: new Text(
+                                                              "90%",
+                                                              style: TextStyle(
+                                                                  fontSize: 15,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ),
+                                                        )),
+                                                        progressColor: AppColors
+                                                            .secondPrimary,
+                                                      )
+                                                    : Container()
                                           ],
                                         ),
                                       ),

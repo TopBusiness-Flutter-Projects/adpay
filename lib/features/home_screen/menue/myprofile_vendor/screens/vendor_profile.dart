@@ -28,7 +28,8 @@ class _VendorProfileState extends State<VendorProfile> {
       return SafeArea(
           child: Scaffold(
               body: SingleChildScrollView(
-                  child: Column(children: [
+                  child: Column(
+                      children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(

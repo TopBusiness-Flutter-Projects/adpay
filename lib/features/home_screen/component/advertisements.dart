@@ -14,7 +14,6 @@ import '../main_screen/cubit/home_state.dart';
 
 class advertisements extends StatefulWidget {
   const advertisements({super.key});
-
   @override
   State<advertisements> createState() => _advertisementsState();
 }
@@ -30,7 +29,6 @@ class _advertisementsState extends State<advertisements> {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
       builder: (context, statee) {
-
           HomeCubit cubit = HomeCubit.get(context);
           return SingleChildScrollView(
             child: SizedBox(
@@ -39,14 +37,13 @@ class _advertisementsState extends State<advertisements> {
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: cubit.homeModel?.data?.ads?.length ?? 2,
+                  itemCount: cubit.homeModel?.data?.ads?.length ?? 0,
                   itemBuilder: (context, index) {
                     return AdvertesmentWidet(ads: cubit.homeModel!.data!.ads![index]);
                   }),
             ),
           );
         }
-
     );
   }
 }

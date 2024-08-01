@@ -30,7 +30,6 @@ class CustomProductWidget extends StatelessWidget {
         },
         child: Container(
           width: 150.w,
-          // height: 300.h,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
