@@ -1,6 +1,8 @@
+import 'package:adpay/core/widgets/delete_account_dialog.dart';
+import 'package:adpay/features/home_screen/menue/cubit/logout_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart%20';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../config/routes/app_routes.dart';
 import '../../../../../core/utils/styles.dart';
@@ -132,7 +134,13 @@ class _VendorProfileState extends State<VendorProfile> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, Routes.myharag);
+                          // delete account
+
+                          showDeleteAccountAlert(context);
+
+
+
+                         // Navigator.pushNamed(context, Routes.myharag);
                         },
                         child: MenueWidget(
                           text: 'delete'.tr(),

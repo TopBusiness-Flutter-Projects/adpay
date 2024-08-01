@@ -1,7 +1,9 @@
 import 'package:adpay/core/utils/app_colors.dart';
 import 'package:adpay/core/utils/get_size.dart';
+import 'package:adpay/features/login/cubit/cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../core/utils/assets_manager.dart';
@@ -11,6 +13,7 @@ import '../cubit/register_user_cubit.dart';
 class UserInfoWidgetUser extends StatefulWidget {
   UserInfoWidgetUser({required this.cubit, super.key});
   SignUpUserCubit cubit;
+  // LoginCubit loginCubit;
 
   @override
   State<UserInfoWidgetUser> createState() => _UserInfoWidgetUserState();
@@ -21,6 +24,7 @@ class _UserInfoWidgetUserState extends State<UserInfoWidgetUser> {
 
   @override
   Widget build(BuildContext context) {
+    LoginCubit loginCubit =  context.read<LoginCubit>();
     return Scaffold(
         body: Form(
       key: registerKey,
@@ -70,12 +74,26 @@ class _UserInfoWidgetUserState extends State<UserInfoWidgetUser> {
           ),
           SizedBox(height: getSize(context) / 32),
           CustomTextField(
+            isPhoneNumber: true,
+            onPhoneChanged: (code, number) {
+              setState(() {
+               loginCubit.countryCode = code;
+              });
+            },
             controller: widget.cubit.phoneController,
+            message: 'enter_phone'.tr(),
             title: 'phone'.tr(),
             hintTitle: 'enter_phone'.tr(),
-            message: 'enter_phone'.tr(),
             keyboardType: TextInputType.phone,
+
           ),
+          // CustomTextField(
+          //   controller: widget.cubit.phoneController,
+          //   title: 'phone'.tr(),
+          //   hintTitle: 'enter_phone'.tr(),
+          //   message: 'enter_phone'.tr(),
+          //   keyboardType: TextInputType.phone,
+          // ),
           SizedBox(height: getSize(context) / 32),
           CustomTextField(
             isPass: true,
@@ -111,7 +129,8 @@ class _UserInfoWidgetUserState extends State<UserInfoWidgetUser> {
                 if (widget.cubit.passwprdController.text ==
                     widget.cubit.confirmPasswprdController.text) {
                   if (widget.cubit.selectedImage != null) {
-                    widget.cubit.PostRegister(context);
+                    loginCubit.sendOTP(context,phonee:widget.cubit.phoneController.text);
+                    //widget.cubit.postRegister(context);
                   } else {
                     Fluttertoast.showToast(msg: 'please enter image');
                     //show messae

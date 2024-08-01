@@ -25,7 +25,7 @@ class LogoutCubit extends Cubit<LogoutState> {
     response.fold((l) {
       emit(ErrorLogoutAuth());
     }, (r) async {
-      Preferences.instance.clearAllData().then(
+      Preferences.instance.clearUserData().then(
               (value) =>
               Navigator.pushNamedAndRemoveUntil(
                   context,
@@ -34,6 +34,37 @@ class LogoutCubit extends Cubit<LogoutState> {
       );
       print("loaded");
         successGetBar(r.msg);
+      });
+      emit(LoadedLogoutAuth());
+   }
+   Future<void> deleteAccount(BuildContext context) async {
+    var pref = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    emit(LoadingLogoutAuth());
+    final response = await api.deleteAccount();
+    //
+    response.fold((l) {
+      emit(ErrorLogoutAuth());
+    }, (r) async {
+      if(r.status == 1){
+
+        Preferences.instance.clearUserData().then(
+                (value) =>
+                Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    Routes.choosLogin,
+                        (route) => false)
+        );
+        print("loaded");
+        successGetBar(r.msg);
+      }else{
+
+        errorGetBar(r.msg);
+      }
+
+
+
+
       });
       emit(LoadedLogoutAuth());
    }

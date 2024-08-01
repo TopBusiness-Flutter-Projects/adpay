@@ -2,7 +2,7 @@ import 'package:adpay/core/utils/app_colors.dart';
 import 'package:adpay/core/utils/get_size.dart';
 import 'package:adpay/features/home_screen_provider/main_screen/cubit/cubit.dart';
 import 'package:adpay/features/home_screen_provider/main_screen/cubit/state.dart';
-import 'package:flutter/material.dart%20';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';

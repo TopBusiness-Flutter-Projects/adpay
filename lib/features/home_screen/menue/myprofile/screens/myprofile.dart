@@ -1,9 +1,11 @@
 import 'package:adpay/core/utils/hex_color.dart';
+import 'package:adpay/core/widgets/delete_account_dialog.dart';
+import 'package:adpay/features/home_screen/menue/cubit/logout_cubit.dart';
 import 'package:adpay/features/home_screen/menue/myprofile/cubit/get_profile_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart%20';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -315,9 +317,15 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: MenueWidget(
-              text: 'delete'.tr(),
-              path: 'assets/images/delete.png',
+            child: InkWell(
+              onTap: () {
+                //delete account
+                showDeleteAccountAlert(context);
+              },
+              child: MenueWidget(
+                text: 'delete'.tr(),
+                path: 'assets/images/delete.png',
+              ),
             ),
           ),
         ]))),

@@ -1,3 +1,6 @@
+import 'package:adpay/core/utils/call_method.dart';
+import 'package:adpay/features/register_user/cubit/register_user_cubit.dart';
+import 'package:adpay/features/vendor_sign_up/cubit/cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,35 +41,48 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoadingLoginAuth());
     final response = await api.loginAuth(
         phone: phoneController.text,
-        password: passwprdController.text,
-        device_token: '$deviceToken');
+        password: passwprdController.text);
     //
     response.fold((l) {
       emit(ErrorLoginAuth());
     }, (r) async {
-      print("loaded");
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('auth-token', r.data?.token.toString() ?? "");
-      Preferences.instance.setUser(r).then((value) {
-        userModel = r;
-        (userModel?.data?.type == 'user' && userModel?.data?.type != null)
-            ? Navigator.pushNamedAndRemoveUntil(
-                context,
-                Routes.floatingRote,
+
+
+      if (r.status == 1) {
+
+        print("loaded");
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('auth-token', r.data?.token.toString() ?? "");
+        Preferences.instance.setUser(r).then((value) {
+          userModel = r;
+          phoneController.clear();
+          passwprdController.clear();
+;          (userModel?.data?.type == 'user' && userModel?.data?.type != null)
+              ? Navigator.pushNamedAndRemoveUntil(
+            context,
+            Routes.floatingRote,
                 (route) => false,
-              )
-            : (userModel?.data?.type == 'vendor' &&
-                    userModel?.data?.type != null)
-                ? Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    Routes.floatVendor,
-                    (route) => false,
-                  )
-                : null;
-        successGetBar(r.msg);
-      });
-      emit(LoadedLoginAuth());
-      pref.setBool('onBoarding', true);
+          )
+              : (userModel?.data?.type == 'vendor' &&
+              userModel?.data?.type != null)
+              ? Navigator.pushNamedAndRemoveUntil(
+            context,
+            Routes.floatVendor,
+                (route) => false,
+          )
+              : null;
+          successGetBar(r.msg);
+        });
+        emit(LoadedLoginAuth());
+        pref.setBool('onBoarding', true);
+
+      }else{
+        errorGetBar(r.msg ?? '');
+
+        emit(ErrorLoginAuth());
+      }
+
+
     });
   }
 
@@ -138,19 +154,23 @@ class LoginCubit extends Cubit<LoginState> {
       }
     });
   }
+
   //! OTP
   TextEditingController otpController = TextEditingController();
   final FirebaseAuth _mAuth = FirebaseAuth.instance;
   String? verificationId;
   String? smsCode;
   int? resendToken;
+
   String countryCode = '';
-  sendOTP(BuildContext context) async {
+bool  isRegisterUser =true;
+  sendOTP(BuildContext context ,{required String phonee ,bool isUser =true}) async {
+    isRegisterUser =isUser;
     emit(SendCodeLoading());
     //
     await _mAuth
         .verifyPhoneNumber(
-      phoneNumber: context.read< LoginCubit>().countryCode + phoneController.text,
+      phoneNumber: countryCode + "${phonee}" ,
       verificationCompleted: (PhoneAuthCredential credential) {
         print('=========================================');
         print("verificationId=>$verificationId");
@@ -194,7 +214,11 @@ class LoginCubit extends Cubit<LoginState> {
       emit(CheckCodeSuccessfully());
       //
       //! loginAuth
-      CheckUser(context);
+    //  CheckUser(context);
+      if(isRegisterUser)
+      context.read<SignUpUserCubit>().postRegister(context);
+      else
+        context.read<SignUpVendorCubit>().vendorRegister(context);
     }).catchError((error) {
       errorGetBar(error.toString());
 
