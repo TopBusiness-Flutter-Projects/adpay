@@ -25,3 +25,16 @@ class LoadedSignUpAuth extends SignUpUserState {}
 // class ChangePasswordState extends SignUpUserState {}
 
 class LoadingSignUpAuth extends SignUpUserState {}
+
+class SendCodeLoading extends SignUpUserState {}
+
+class OnSmsCodeSent extends SignUpUserState {
+  String smsCode;
+  OnSmsCodeSent(this.smsCode);
+}
+
+class CheckCodeInvalidCode extends SignUpUserState {}
+
+class CheckCodeSuccessfully extends SignUpUserState {}
+
+class CheckCodeErrorfully extends SignUpUserState {}

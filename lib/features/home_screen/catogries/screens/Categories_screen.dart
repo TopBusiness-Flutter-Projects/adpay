@@ -3,7 +3,6 @@ import 'package:adpay/core/utils/styles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart%20';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,6 +59,9 @@ class _CatogreisssState extends State<Catogreisss> {
                           crossAxisCount: 2,
                           crossAxisSpacing: 16,
                           mainAxisSpacing: 16,
+
+
+
                         ),
                         itemCount: statee.catogriesModel!.data!.length,
                         itemBuilder: (BuildContext context, int index) {
@@ -85,12 +87,12 @@ class _CatogreisssState extends State<Catogreisss> {
                                 ],
                               ),
                               child: Container(
-                                height: 100.h,
+                                 height: 150.h,
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   children: [
                                     Container(
-                                      height: 90.h,
+                                       height: 80.h,
                                       padding: const EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                         color: Colors.white60,

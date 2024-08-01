@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart%20';
 
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/styles.dart';

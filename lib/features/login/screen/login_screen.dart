@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
           EasyLoading.dismiss();
           EasyLoading.showSuccess('Login Success');
         } else if (state is ErrorLoginAuth) {
-          EasyLoading.showError("state.toString()");
+          EasyLoading.showError("Login Failed");
         } else if (state is ErrorLoginAuth || state is ErrorLoginAuth) {
           EasyLoading.dismiss();
           EasyLoading.showError("${state.toString()}");
@@ -121,8 +121,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       print("screen");
 
                       //   cubit.loginAuth(context);
-                      // cubit.CheckUser(context);
-                      cubit.sendOTP(context);
+                       cubit.CheckUser(context);
+
+                  //    cubit.sendOTP(context);
                     }
                   },
                   child: Container(

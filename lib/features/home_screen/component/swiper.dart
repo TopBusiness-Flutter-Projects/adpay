@@ -1,5 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/material.dart%20';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api/end_points.dart';

@@ -80,9 +80,9 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     var pref = await SharedPreferences.getInstance();
     emit(LoadingEdit());
     final response = await api.userRegister(
-      phone: phoneController.text,
+      password: phoneController.text,
       profileImage: selectedImage!,
-      phoneCode: phoneController.text,
+      phone: phoneController.text,
       name: nameController.text,
     );
     //
