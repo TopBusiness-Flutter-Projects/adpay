@@ -1677,7 +1677,8 @@ class ServiceApi {
             "count_views": countViews,
             "video": video,
             "package_id": packageId,
-            'image': await MultipartFile.fromFile(image.path,
+            'image': await MultipartFile.fromFile(
+                image.path,
                 filename: image.path.split('/').last),
           },
           options: Options(headers: {'Authorization': loginModel.data!.token}));

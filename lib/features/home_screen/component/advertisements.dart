@@ -33,7 +33,6 @@ class _advertisementsState extends State<advertisements> {
           HomeCubit cubit = HomeCubit.get(context);
           return SingleChildScrollView(
             child: SizedBox(
-              // width: 400.w,
               height: 310.h,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,

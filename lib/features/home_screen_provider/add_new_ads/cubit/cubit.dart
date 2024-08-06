@@ -27,9 +27,7 @@ class AddNewAdsCubit extends Cubit<AddNewAdsState> {
 
   getAdPackagesModel() async {
     emit(LoadingGetAdPackages());
-
     final res = await api.getAdPackagesModel();
-
     res.fold((l) {
       emit(ErrorGetAdPackages());
     }, (r) {
