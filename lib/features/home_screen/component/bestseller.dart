@@ -1,12 +1,12 @@
 import 'package:adpay/features/home_screen/main_screen/cubit/home_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart%20';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../main_screen/cubit/home_state.dart';
 import 'custom_product_widget.dart';
+import 'package:flutter/material.dart';
 
 class BestSeller extends StatelessWidget {
   const BestSeller({super.key});

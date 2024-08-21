@@ -1,7 +1,6 @@
 import 'package:adpay/core/utils/get_size.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:easy_localization/easy_localization.dart' as tr;
-import 'package:flutter/material.dart%20';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
