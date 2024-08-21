@@ -108,9 +108,10 @@ class Preferences {
     return homeModel;
   }
 
-  Future<bool> clearAllData() async {
+  Future<bool> clearUserData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return preferences.clear();
+
+    return preferences.remove("user");
   }
 
   Future<String> getSavedLang() async {

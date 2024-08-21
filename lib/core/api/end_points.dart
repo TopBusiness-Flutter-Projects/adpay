@@ -18,6 +18,7 @@ class EndPoints {
   static const String WalletUrl = '${baseUrl}user/myWallet';
   static const String addHarag = '${baseUrl}user/storeAuction';
   static const String logout = '${baseUrl}auth/logout';
+  static const String deleteAccount = '${baseUrl}auth/deleteUser';
   static const String contactUs = '${baseUrl}user/sendContactUs';
   static const String homeVendorUrl = '${baseUrl}vendor/home';
   static const String vendorNotificationsUrl = '${baseUrl}vendor/getNotifications';
@@ -92,5 +93,8 @@ class EndPoints {
   static const String orderDetails = '${baseUrl}user/order/d/?id=';
 
   static const String aboutUs = '${baseUrl}user/aboutUs';
+
+  static const String updateAds = '${baseUrl}vendor/UpdateAdvertise';
+
 
 }

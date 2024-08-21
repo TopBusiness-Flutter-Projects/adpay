@@ -79,18 +79,19 @@ class ServiceApi {
   Future<Either<Failure, LoginModel>> loginAuth({
     required String phone,
     required String password,
-    required String device_token,
+
   }) async {
     String lan = await Preferences.instance.getSavedLang();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? devicetoken = prefs.getString('checkUser') ?? "";
+    String deviceToken = await Preferences.instance.getDeviceToken() ??"123";
+    print("ffffffv ${deviceToken}");
     try {
       var response = await dio.post(
         EndPoints.loginUrl,
         body: {
           "phone": phone,
           "password": password,
-          "device_token": '$devicetoken',
+          "device_token": deviceToken ,
         },
         options: Options(
           headers: {'Accept-Language': lan},
@@ -109,15 +110,15 @@ class ServiceApi {
   }) async {
     String lan = await Preferences.instance.getSavedLang();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String devicetoken = prefs.getString('checkUser') ?? "";
+    String? deviceToken = await Preferences.instance.getDeviceToken();
+
     try {
       var response = await dio.post(
         EndPoints.loginUrlProvider,
         body: {
           "phone": phone,
           "password": password,
-          "device_token": '$devicetoken',
-        },
+          "device_token": deviceToken ??"12",        },
         options: Options(
           headers: {'Accept-Language': lan},
         ),
@@ -138,6 +139,29 @@ class ServiceApi {
     try {
       var response = await dio.post(
         EndPoints.logout,
+        body: {},
+        options: Options(
+          headers: {
+            'Accept-Language': lan,
+            'Authorization': user.data!.token!,
+          },
+        ),
+      );
+      return Right(LogoutModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //delete account
+  Future<Either<Failure, LogoutModel>> deleteAccount() async {
+    LoginModel user = await Preferences.instance.getUserModel();
+
+    String lan = await Preferences.instance.getSavedLang();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Devicetoken = prefs.getString('checkUser');
+    try {
+      var response = await dio.post(
+        EndPoints.deleteAccount,
         body: {},
         options: Options(
           headers: {
@@ -677,15 +701,14 @@ class ServiceApi {
   //register
 
   Future<Either<Failure, LoginModel>> userRegister(
-      {required String phone,
+      {required String password,
       required File profileImage,
-      required String phoneCode,
+      required String phone,
       required String name}) async {
     String? deviceToken = await Preferences.instance.getDeviceToken();
+    print("ddddddddd $deviceToken");
 
     try {
-      //! images >>Multipare.
-
       var fileName;
       fileName = profileImage.path
           .split('/')
@@ -697,8 +720,8 @@ class ServiceApi {
         EndPoints.registerUrl,
         formDataIsEnabled: true,
         body: {
-          'password': phone,
-          'phone': phoneCode,
+          'password': password,
+          'phone': phone,
           "image": data,
           'name': name,
           'device_token': deviceToken,
@@ -1549,7 +1572,7 @@ class ServiceApi {
     required String describtion,
     required String price,
     required String shopCatId,
-    required String shopSubCat,
+    // required String shopSubCat,
     required String stock,
     String discount = '0',
     String type = 'new',
@@ -1568,7 +1591,7 @@ class ServiceApi {
             "stock": stock,
             "type": type,
             "shop_cat_id": shopCatId,
-            "shop_sub_cat": shopSubCat,
+            // "shop_sub_cat": shopSubCat,
             for (int i = 0; i < images.length; i++)
               'images[$i]': await MultipartFile.fromFile(images[i].path,
                   filename: images[i].path.split('/').last),
@@ -1587,7 +1610,7 @@ class ServiceApi {
     required String describtion,
     required String price,
     required String shopCatId,
-    required String shopSubCat,
+    // required String shopSubCat,
     required String stock,
     String discount = '0',
     String type = 'new',
@@ -1607,7 +1630,7 @@ class ServiceApi {
             "stock": stock,
             "type": type,
             "shop_cat_id": shopCatId,
-            "shop_sub_cat": shopSubCat,
+            // "shop_sub_cat": shopSubCat,
             for (int i = 0; i < images.length; i++)
               'images[$i]': await MultipartFile.fromFile(images[i].path,
                   filename: images[i].path.split('/').last),
@@ -1677,6 +1700,36 @@ class ServiceApi {
             "count_views": countViews,
             "video": video,
             "package_id": packageId,
+            'image': await MultipartFile.fromFile(image.path,
+                filename: image.path.split('/').last),
+          },
+          options: Options(headers: {'Authorization': loginModel.data!.token}));
+      return Right(AddNewProductModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  //edit ads
+  Future<Either<Failure, AddNewProductModel>> editads({
+    required File image,
+    required String title,
+    required String describtion,
+    required String video,
+    String countViews = '0',
+    String packageId = '0',
+  }) async {
+    LoginModel loginModel = await Preferences.instance.getUserModel();
+    try {
+      final response = await dio.post(EndPoints.updateAds,
+          formDataIsEnabled: true,
+          body: {
+            "title_ar": title,
+            "title_en": title,
+            "description_ar": describtion,
+            "description_en": describtion,
+            "count_views": countViews,
+            "video": video,
+            "id": packageId,
             'image': await MultipartFile.fromFile(image.path,
                 filename: image.path.split('/').last),
           },

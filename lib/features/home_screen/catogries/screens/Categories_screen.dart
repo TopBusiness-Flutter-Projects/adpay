@@ -59,6 +59,9 @@ class _CatogreisssState extends State<Catogreisss> {
                           crossAxisCount: 2,
                           crossAxisSpacing: 16,
                           mainAxisSpacing: 16,
+
+
+
                         ),
                         itemCount: statee.catogriesModel!.data!.length,
                         itemBuilder: (BuildContext context, int index) {
@@ -84,12 +87,12 @@ class _CatogreisssState extends State<Catogreisss> {
                                 ],
                               ),
                               child: Container(
-                                height: 100.h,
+                                 height: 150.h,
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   children: [
                                     Container(
-                                      height: 90.h,
+                                       height: 80.h,
                                       padding: const EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                         color: Colors.white60,
