@@ -2,13 +2,12 @@ import 'package:adpay/core/utils/hex_color.dart';
 import 'package:adpay/features/home_screen/menue/myprofile/cubit/get_profile_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../config/routes/app_routes.dart';
 import '../../../../../../core/utils/styles.dart';
 import '../../screens/widgets/menue_widget.dart';
+import 'package:flutter/material.dart';
 
 class MyProfileScreen extends StatefulWidget {
   const MyProfileScreen({super.key});

@@ -7,6 +7,7 @@ import '../../../../home_screen_provider/main_screen/cubit/cubit.dart';
 import '../../../../home_screen_provider/main_screen/cubit/state.dart';
 import '../../myprofile/cubit/get_profile_cubit.dart';
 import '../../screens/widgets/menue_widget.dart';
+import 'package:flutter/material.dart';
 
 class VendorProfile extends StatefulWidget {
   const VendorProfile({super.key});

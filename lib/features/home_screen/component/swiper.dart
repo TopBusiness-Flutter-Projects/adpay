@@ -5,6 +5,7 @@ import '../../../../core/api/end_points.dart';
 
 import '../main_screen/cubit/home_cubit.dart';
 import '../main_screen/cubit/home_state.dart';
+import 'package:flutter/material.dart';
 
 class CustomSwiper extends StatelessWidget {
   const CustomSwiper({super.key});

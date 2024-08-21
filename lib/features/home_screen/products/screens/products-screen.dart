@@ -7,6 +7,7 @@ import '../../../../core/utils/styles.dart';
 import '../../component/catogreyCard.dart';
 import '../../component/custom_product_widget.dart';
 import '../cubit/products_cubit.dart';
+import 'package:flutter/material.dart';
 
 class ProductsScreen extends StatefulWidget {
   ProductsScreen({super.key, this.id});

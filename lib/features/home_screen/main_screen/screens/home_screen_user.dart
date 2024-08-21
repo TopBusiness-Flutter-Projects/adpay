@@ -15,6 +15,7 @@ import '../../component/store.dart';
 import '../../component/swiper.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
+import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);

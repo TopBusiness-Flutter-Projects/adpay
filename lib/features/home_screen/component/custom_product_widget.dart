@@ -1,7 +1,7 @@
 import 'package:adpay/core/models/Home_models.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/widgets/network_image.dart';
 
@@ -29,7 +29,6 @@ class CustomProductWidget extends StatelessWidget {
         },
         child: Container(
           width: 150.w,
-          // height: 300.h,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
