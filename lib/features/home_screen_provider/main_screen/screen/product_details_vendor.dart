@@ -1,6 +1,5 @@
 import 'package:adpay/core/utils/app_strings.dart';
 import 'package:adpay/core/utils/get_size.dart';
-import 'package:adpay/features/home_screen_provider/add_new_product/cubit/cubit.dart';
 import 'package:adpay/features/home_screen_provider/main_screen/cubit/state.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -12,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/styles.dart';
+import '../../edit_product/cubit/cubit.dart';
 import '../cubit/cubit.dart';
 
 class ProductDetailsVendorScreen extends StatefulWidget {

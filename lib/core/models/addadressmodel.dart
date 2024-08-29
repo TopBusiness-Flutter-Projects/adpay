@@ -23,14 +23,14 @@ class AddAddressModel {
 }
 
 class Data {
-  final int? userId;
+  final dynamic? userId;
   final String? region;
   final String? city;
   final String? details;
   final String? defaultStatus;
   final String? updatedAt;
   final String? createdAt;
-  final int? id;
+  final dynamic? id;
 
   Data({
     this.userId,

@@ -24,9 +24,9 @@ class GetAdPackagesModel {
 }
 
 class GetAdPackagesModelData {
-    int? id;
-    int? count;
-    int? price;
+    dynamic? id;
+    dynamic? count;
+    dynamic? price;
 
     GetAdPackagesModelData({
         this.id,

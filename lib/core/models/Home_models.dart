@@ -115,13 +115,13 @@ class User {
   int? id;
   String? name;
   String? image;
-  int? phone;
+  dynamic? phone;
   String? password;
-  int? verifiedAt;
-  int? points;
+  dynamic? verifiedAt;
+  dynamic? points;
   String? type;
   String? deviceToken;
-  int? status;
+  dynamic? status;
   String? session;
   String? createdAt;
   String? updatedAt;
@@ -178,20 +178,20 @@ class User {
 
 class Products {
   int? id;
-  int? vendorId;
+  dynamic? vendorId;
   List<String>? images;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? price;
-  int? discount;
+  dynamic? price;
+  dynamic? discount;
   String? type;
-  int? shopCatId;
+  dynamic? shopCatId;
   String? shopSubCat;
-  int? stock;
+  dynamic? stock;
   // Props? props;
-  int? status;
+  dynamic? status;
   String? createdAt;
   String? updatedAt;
 
@@ -263,16 +263,16 @@ class Products {
 class Auctions {
   int? id;
   dynamic images;
-  double? price;
+  dynamic? price;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? isSold;
-  int? userId;
+  dynamic? isSold;
+  dynamic? userId;
   dynamic video;
-  int? catId;
-  int? subCatId;
+  dynamic? catId;
+  dynamic? subCatId;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -296,7 +296,7 @@ class Auctions {
   factory Auctions.fromJson(Map<String, dynamic> json) => Auctions(
     id: json["id"],
     images: json["images"],
-    price: json["price"]?.toDouble(),
+    price: json["price"],
     titleAr: json["title_ar"],
     titleEn: json["title_en"],
     descriptionAr: json["description_ar"],
@@ -333,9 +333,9 @@ class Shops {
   String? banner;
   String? titleAr;
   String? titleEn;
-  int? shopCatId;
+  dynamic? shopCatId;
   List<String>? shopSubCat;
-  int? vendorId;
+  dynamic? vendorId;
   String? createdAt;
   String? updatedAt;
 
@@ -391,19 +391,19 @@ class Shops {
   }
 }
 class Ads {
-  int? id;
+  dynamic? id;
   String? image;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? userId;
-  int? status;
-  int? paymentStatus;
-  int? countViews;
-  int? packageId;
-  int? views;
-  int? complete;
+  String? userId;
+  String? status;
+  String? paymentStatus;
+  String? countViews;
+  String? packageId;
+  dynamic? views;
+  dynamic? complete;
   dynamic video;
   String? createdAt;
   String? updatedAt;

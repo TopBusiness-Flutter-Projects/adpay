@@ -26,12 +26,12 @@ class AddToCartModel {
 }
 
 class Data {
-  int? id;
-  int? productId;
-  int? userId;
-  int? vendorId;
-  int? qty;
-  int? total;
+  dynamic? id;
+  dynamic? productId;
+  dynamic? userId;
+  dynamic? vendorId;
+  dynamic? qty;
+  dynamic? total;
   String? createdAt;
   String? updatedAt;
 

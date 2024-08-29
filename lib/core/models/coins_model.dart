@@ -31,7 +31,7 @@ class Data {
 
   final User user;
   final List<dynamic> ads;
-  final int configPoint;
+  final dynamic configPoint;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     user: User.fromJson(json["user"]),

@@ -9,6 +9,10 @@ import '../../../../core/utils/get_size.dart';
 import '../../../../core/utils/hex_color.dart';
 import '../../../../core/utils/styles.dart';
 import '../cubit/order_details_cubit.dart';
+
+import 'package:flutter/material.dart';
+
+
 class CustomCartWidgetdetails extends StatefulWidget {
    CustomCartWidgetdetails({super.key, required this.itemCount});
   int itemCount;

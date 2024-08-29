@@ -27,14 +27,14 @@ class CommentsModel {
 }
 
 class Data {
-  int? userId;
+  dynamic? userId;
   String? auctionId;
   String? type;
   String? comment;
   String? commentId;
   String? updatedAt;
   String? createdAt;
-  int? id;
+  dynamic? id;
 
   Data({
     this.userId,

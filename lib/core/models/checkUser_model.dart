@@ -33,12 +33,12 @@ class CheckUserModel {
 }
 
 class Data {
-  int? id;
+  dynamic? id;
   String? name;
   String? image;
-  int? phone;
+  String? phone;
   String? type;
-  int? points;
+  String? points;
   String? deviceToken;
   String? session;
   String? token;

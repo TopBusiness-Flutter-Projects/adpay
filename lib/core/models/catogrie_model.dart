@@ -24,10 +24,10 @@ class CategoriesModel {
 }
 
 class Category {
-  final int? id;
+  final dynamic? id;
   final String? titleAr;
   final String? titleEn;
-  final int? status;
+  final dynamic? status;
   final String? createdAt;
   final String? updatedAt;
 

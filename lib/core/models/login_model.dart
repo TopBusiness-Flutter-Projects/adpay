@@ -39,7 +39,7 @@ class Data {
   String? image;
   dynamic phone;
   String? type;
-  int? points;
+  String? points;
   String? deviceToken;
   String? session;
   String? token;

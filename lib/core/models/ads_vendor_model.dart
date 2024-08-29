@@ -28,19 +28,19 @@ class AdsVendorModel {
 }
 
 class AdsVendorModelData {
-  int? id;
+  dynamic? id;
   String? image;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? status;
-  int? countViews;
+  dynamic? status;
+  dynamic? countViews;
   Package? package;
-  int? views;
-  int? complete;
+  dynamic? views;
+  dynamic? complete;
   String? video;
-  int? paymentStatus;
+  dynamic? paymentStatus;
   User? user;
 
   AdsVendorModelData({
