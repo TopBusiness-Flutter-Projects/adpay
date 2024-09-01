@@ -1,7 +1,7 @@
 class AddNewProductModel {
   Data? data;
   String? msg;
-  int? status;
+  dynamic? status;
 
   AddNewProductModel({
     this.data,
@@ -24,7 +24,7 @@ class AddNewProductModel {
 }
 
 class Data {
-  int? id;
+  dynamic? id;
   List<String>? images;
   String? titleAr;
   String? titleEn;
@@ -32,7 +32,7 @@ class Data {
   String? descriptionEn;
   String? price;
   bool? isFav;
-  int? rate;
+  dynamic? rate;
   String? discount;
   String? type;
   String? shopSubCat;
@@ -95,10 +95,10 @@ class Data {
 }
 
 class Vendor {
-  int? id;
+  dynamic? id;
   String? name;
   String? image;
-  int? phone;
+  dynamic? phone;
   String? type;
   String? deviceToken;
   dynamic session;
@@ -169,10 +169,10 @@ class Vendor {
 }
 
 class ShopCat {
-  int? id;
+  dynamic? id;
   String? titleAr;
   String? titleEn;
-  int? status;
+  dynamic? status;
   DateTime? createdAt;
   DateTime? updatedAt;
 

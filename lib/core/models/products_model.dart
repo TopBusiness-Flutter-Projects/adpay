@@ -2,13 +2,13 @@ import 'Home_models.dart';
 
 class ProductModel {
   ProductModel({
-    required this.data,
-    required this.msg,
-    required this.status,
+    this.data,
+    this.msg,
+    this.status,
   });
-  late final List<Products>? data;
-  late final String msg;
-  late final int status;
+    List<Products>? data;
+    String? msg;
+    int? status;
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     data = List.from(json['data']).map((e) => Products.fromJson(e)).toList();

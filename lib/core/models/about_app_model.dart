@@ -2,7 +2,7 @@ class AboutAppModel {
   String? aboutUs;
   String? privacyPolicy;
   String? msg;
-  int? status;
+  dynamic? status;
 
   AboutAppModel({
     this.aboutUs,
@@ -13,8 +13,8 @@ class AboutAppModel {
 
   factory AboutAppModel.fromJson(Map<String, dynamic> json) {
     return AboutAppModel(
-      aboutUs: json['data']['about_us'] as String?,
-      privacyPolicy: json['data']['privacy_policy'] as String?,
+      aboutUs: json['data']['about_us'],
+      privacyPolicy: json['data']['privacy_policy'] ,
       msg: json['msg'] as String?,
       status: json['status'] as int?,
     );

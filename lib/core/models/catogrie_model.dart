@@ -17,8 +17,8 @@ class CategoriesModel {
 
     return CategoriesModel(
       data: categories,
-      msg: json['msg'] as String?,
-      status: json['status'] as int?,
+      msg: json['msg'],
+      status: json['status'] ,
     );
   }
 }
@@ -27,7 +27,7 @@ class Category {
   final int? id;
   final String? titleAr;
   final String? titleEn;
-  final int? status;
+  final String? status;
   final String? createdAt;
   final String? updatedAt;
 
@@ -42,12 +42,12 @@ class Category {
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
-      id: json['id'] as int?,
-      titleAr: json['title_ar'] as String?,
-      titleEn: json['title_en'] as String?,
-      status: json['status'] as int?,
-      createdAt: json['created_at'] as String?,
-      updatedAt: json['updated_at'] as String?,
+      id: json['id'],
+      titleAr: json['title_ar'],
+      titleEn: json['title_en'] ,
+      status: json['status'] ,
+      createdAt: json['created_at'] ,
+      updatedAt: json['updated_at'] ,
     );
   }
 }

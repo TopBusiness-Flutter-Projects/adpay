@@ -27,8 +27,8 @@ class GetCityByRegionModel {
 }
 
 class Datum {
-  int? cityId;
-  int? regionId;
+  dynamic? cityId;
+  dynamic? regionId;
   String? nameAr;
   String? nameEn;
 

@@ -25,7 +25,7 @@ class GetChatRoomsModel {
 
 class GetChatRoomsModelDatum {
   int? id;
-  int? unseenCount;
+  dynamic? unseenCount;
   FromUser? fromUser;
   ToUser? toUser;
   dynamic model;
@@ -67,9 +67,9 @@ class FromUser {
   int? id;
   String? name;
   String? image;
-  int? phone;
+  dynamic? phone;
   String? type;
-  int? points;
+  dynamic? points;
   String? deviceToken;
   String? session;
   String? token;
@@ -115,7 +115,7 @@ class ToUser {
   int? id;
   String? name;
   String? image;
-  int? phone;
+  dynamic? phone;
   String? type;
   String? deviceToken;
   dynamic session;
@@ -183,7 +183,7 @@ class ShopCat {
   int? id;
   String? titleAr;
   String? titleEn;
-  int? status;
+  dynamic? status;
   DateTime? createdAt;
   DateTime? updatedAt;
 

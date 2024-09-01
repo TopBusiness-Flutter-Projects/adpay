@@ -1,7 +1,7 @@
 class NotificationModel {
   List<NotificationDataModel>? data;
   String? msg;
-  int? status;
+  dynamic? status;
 
   NotificationModel({
     this.data,
@@ -29,11 +29,11 @@ class NotificationModel {
 }
 
 class NotificationDataModel {
-  int? id;
+  dynamic? id;
   String? title;
   String? body;
   String? logo;
-  int? userId;
+  dynamic? userId;
   String? type;
   DateTime? createdAt;
   String? formattedCreatedAt;

@@ -81,7 +81,7 @@ class _PocketScreenState extends State<PocketScreen> {
                                 child: Image.asset("assets/images/pocket.png"),
                               ),
                               Text(
-                                cubit.walletModel?.data.wallet.toString()??"1",
+                                cubit.walletModel?.data!.wallet.toString()??"1",
                                 style: Styles.style16.copyWith(color: Colors.black),
                               ),
                             ],
@@ -128,11 +128,11 @@ class _PocketScreenState extends State<PocketScreen> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text(cubit.walletModel?.data?.user.name.toString()??"nono"),
+                                  child: Text(cubit.walletModel?.data?.user!.name.toString()??"nono"),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text( cubit.walletModel?.data.user.type.toString()??"type",maxLines: 1,overflow:TextOverflow.ellipsis ,),
+                                  child: Text( cubit.walletModel?.data?.user!.type.toString()??"type",maxLines: 1,overflow:TextOverflow.ellipsis ,),
                                 ),
 
                               ],

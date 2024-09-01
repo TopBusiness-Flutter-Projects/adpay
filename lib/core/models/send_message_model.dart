@@ -82,9 +82,9 @@ class User {
   int? id;
   String? name;
   String? image;
-  int? phone;
+  dynamic? phone;
   String? type;
-  int? points;
+  dynamic? points;
   String? deviceToken;
   String? session;
   String? token;
@@ -132,11 +132,11 @@ class User {
 
 class Message {
   int? id;
-  int? roomId;
-  int? fromUserId;
-  int? toUserId;
+  dynamic? roomId;
+  dynamic? fromUserId;
+  dynamic? toUserId;
   String? message;
-  int? seen;
+  dynamic? seen;
   String? createdAt;
   String? updatedAt;
 

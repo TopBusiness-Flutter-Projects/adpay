@@ -1,13 +1,13 @@
 class MyWalletModel {
   MyWalletModel({
-    required this.data,
-    required this.msg,
-    required this.status,
+     this.data,
+     this.msg,
+     this.status,
   });
 
-  final Data data;
-  final String msg;
-  final int status;
+   Data? data;
+   String? msg;
+   String? status;
 
   factory MyWalletModel.fromJson(Map<String, dynamic> json) => MyWalletModel(
     data: Data.fromJson(json["data"]),
@@ -16,7 +16,7 @@ class MyWalletModel {
   );
 
   Map<String, dynamic> toJson() => {
-    "data": data.toJson(),
+    "data": data!.toJson(),
     "msg": msg,
     "status": status,
   };
@@ -24,14 +24,14 @@ class MyWalletModel {
 
 class Data {
   Data({
-    required this.wallet,
-    required this.payments,
-    required this.user,
+     this.wallet,
+     this.payments,
+     this.user,
   });
 
-  final int wallet;
-  final List<dynamic> payments;
-  final User user;
+  final String? wallet;
+  final List<dynamic>? payments;
+  final User? user;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     wallet: json["wallet"],
@@ -41,33 +41,33 @@ class Data {
 
   Map<String, dynamic> toJson() => {
     "wallet": wallet,
-    "payments": List<dynamic>.from(payments.map((x) => x)),
-    "user": user.toJson(),
+    "payments": List<dynamic>.from(payments!.map((x) => x)),
+    "user": user!.toJson(),
   };
 }
 
 class User {
   User({
-    required this.id,
-    required this.name,
-    required this.image,
-    required this.phone,
-    required this.type,
-    required this.points,
-    required this.deviceToken,
-    required this.session,
-    required this.token,
+     this.id,
+     this.name,
+     this.image,
+     this.phone,
+     this.type,
+     this.points,
+     this.deviceToken,
+     this.session,
+     this.token,
   });
 
-  final int id;
-  final String name;
-  final String image;
-  final int phone;
-  final String type;
-  final int points;
-  final String deviceToken;
-  final String session;
-  final String token;
+   int? id;
+   String? name;
+   String? image;
+   String? phone;
+   String? type;
+   String? points;
+   String? deviceToken;
+   String? session;
+   String? token;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
     id: json["id"],

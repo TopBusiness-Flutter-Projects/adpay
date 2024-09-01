@@ -115,13 +115,13 @@ class User {
   int? id;
   String? name;
   String? image;
-  int? phone;
+  dynamic? phone;
   String? password;
-  int? verifiedAt;
-  int? points;
+  dynamic? verifiedAt;
+  dynamic? points;
   String? type;
   String? deviceToken;
-  int? status;
+  dynamic? status;
   String? session;
   String? createdAt;
   String? updatedAt;
@@ -178,20 +178,20 @@ class User {
 
 class Products {
   int? id;
-  int? vendorId;
+  dynamic? vendorId;
   List<String>? images;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? price;
-  int? discount;
+  dynamic? price;
+  dynamic? discount;
   String? type;
-  int? shopCatId;
+  dynamic? shopCatId;
   String? shopSubCat;
-  int? stock;
+  dynamic? stock;
   // Props? props;
-  int? status;
+  dynamic? status;
   String? createdAt;
   String? updatedAt;
 
@@ -260,19 +260,20 @@ class Products {
     return _data;
   }
 }
+
 class Auctions {
   int? id;
   dynamic images;
-  double? price;
+  dynamic? price;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? isSold;
-  int? userId;
+  dynamic? isSold;
+  dynamic? userId;
   dynamic video;
-  int? catId;
-  int? subCatId;
+  dynamic? catId;
+  dynamic? subCatId;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -294,48 +295,53 @@ class Auctions {
   });
 
   factory Auctions.fromJson(Map<String, dynamic> json) => Auctions(
-    id: json["id"],
-    images: json["images"],
-    price: json["price"]?.toDouble(),
-    titleAr: json["title_ar"],
-    titleEn: json["title_en"],
-    descriptionAr: json["description_ar"],
-    descriptionEn: json["description_en"],
-    isSold: json["is_sold"],
-    userId: json["user_id"],
-    video: json["video"],
-    catId: json["cat_id"],
-    subCatId: json["sub_cat_id"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-  );
+        id: json["id"],
+        images: json["images"],
+        price: json["price"],
+        titleAr: json["title_ar"],
+        titleEn: json["title_en"],
+        descriptionAr: json["description_ar"],
+        descriptionEn: json["description_en"],
+        isSold: json["is_sold"],
+        userId: json["user_id"],
+        video: json["video"],
+        catId: json["cat_id"],
+        subCatId: json["sub_cat_id"],
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "images": images,
-    "price": price,
-    "title_ar": titleAr,
-    "title_en": titleEn,
-    "description_ar": descriptionAr,
-    "description_en": descriptionEn,
-    "is_sold": isSold,
-    "user_id": userId,
-    "video": video,
-    "cat_id": catId,
-    "sub_cat_id": subCatId,
-    "created_at": createdAt?.toIso8601String(),
-    "updated_at": updatedAt?.toIso8601String(),
-  };
+        "id": id,
+        "images": images,
+        "price": price,
+        "title_ar": titleAr,
+        "title_en": titleEn,
+        "description_ar": descriptionAr,
+        "description_en": descriptionEn,
+        "is_sold": isSold,
+        "user_id": userId,
+        "video": video,
+        "cat_id": catId,
+        "sub_cat_id": subCatId,
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+      };
 }
+
 class Shops {
   int? id;
   String? logo;
   String? banner;
   String? titleAr;
   String? titleEn;
-  int? shopCatId;
+  dynamic? shopCatId;
   List<String>? shopSubCat;
-  int? vendorId;
+  dynamic? vendorId;
   String? createdAt;
   String? updatedAt;
 
@@ -364,7 +370,10 @@ class Shops {
       shopSubCat = List<String>.from(json["shop_sub_cat"]);
     } else if (json["shop_sub_cat"] is Map) {
       // If it's a Map, you might want to extract the values
-      shopSubCat = (json["shop_sub_cat"] as Map<String, dynamic>).values.cast<String>().toList();
+      shopSubCat = (json["shop_sub_cat"] as Map<String, dynamic>)
+          .values
+          .cast<String>()
+          .toList();
     } else {
       shopSubCat = null;
     }
@@ -390,6 +399,7 @@ class Shops {
     return _data;
   }
 }
+
 class Ads {
   int? id;
   String? image;
@@ -397,13 +407,13 @@ class Ads {
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? userId;
-  int? status;
-  int? paymentStatus;
-  int? countViews;
-  int? packageId;
-  int? views;
-  int? complete;
+  dynamic? userId;
+  dynamic? status;
+  dynamic? paymentStatus;
+  dynamic? countViews;
+  dynamic? packageId;
+  dynamic? views;
+  dynamic? complete;
   dynamic video;
   String? createdAt;
   String? updatedAt;
@@ -471,26 +481,26 @@ class Ads {
     return _data;
   }
 }
+
 class Categories {
   int? id;
   String? image;
   String? createdAt;
   String? updatedAt;
-  String ?title_ar;
-  String ?title_en;
-  Categories({
-    this.id,
-    this.image,
-    this.createdAt,
-    this.updatedAt,
-    this.title_ar,
-    this.title_en
-  });
+  String? title_ar;
+  String? title_en;
+  Categories(
+      {this.id,
+      this.image,
+      this.createdAt,
+      this.updatedAt,
+      this.title_ar,
+      this.title_en});
 
   Categories.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     title_ar = json["title_ar"];
-    title_en=json["title_en"];
+    title_en = json["title_en"];
     image = json["image"];
     createdAt = json["created_at"];
     updatedAt = json["updated_at"];
@@ -508,6 +518,7 @@ class Categories {
     return _data;
   }
 }
+
 class Sliders {
   int? id;
   String? image;
@@ -541,11 +552,3 @@ class Sliders {
     return _data;
   }
 }
-
-
-
-
-
-
-
-

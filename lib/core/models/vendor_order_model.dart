@@ -3,7 +3,7 @@ import 'home_vendor_model.dart';
 class VendorOrdersModel {
   List<VendorOrderData>? data;
   String? msg;
-  int? status;
+  dynamic? status;
 
   VendorOrdersModel({
     this.data,
@@ -31,13 +31,13 @@ class VendorOrdersModel {
 }
 
 class VendorOrderData {
-  int? id;
+  dynamic? id;
   String? type;
   String? reference;
   DateTime? date;
   dynamic total;
-  int? userId;
-  int? vendorId;
+  dynamic? userId;
+  dynamic? vendorId;
   DateTime? createdAt;
   dynamic updatedAt;
   Vendor? vendor;
@@ -98,15 +98,15 @@ class VendorOrderData {
 //!
 
 class DetailOfVendorOrder {
-  int? id;
-  int? productId;
-  int? orderId;
-  int? qty;
-  int? amount;
-  int? vat;
-  int? discount;
-  int? total;
-  int? shippingPrice;
+  dynamic? id;
+  dynamic? productId;
+  dynamic? orderId;
+  String? qty;
+  dynamic? amount;
+  dynamic? vat;
+  dynamic? discount;
+  dynamic? total;
+  dynamic? shippingPrice;
   String? shippingType;
   String? region;
   String? area;
@@ -176,21 +176,21 @@ class DetailOfVendorOrder {
 }
 
 class Product {
-  int? id;
-  int? vendorId;
+  dynamic? id;
+  dynamic? vendorId;
   List<String>? images;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? price;
-  int? discount;
+  dynamic? price;
+  dynamic? discount;
   String? type;
-  int? shopCatId;
+  dynamic? shopCatId;
   String? shopSubCat;
-  int? stock;
+  dynamic? stock;
   // Props? props;
-  int? status;
+  dynamic? status;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -327,10 +327,10 @@ class Product {
 // }
 
 class Vendor {
-  int? id;
+  dynamic? id;
   String? name;
   String? image;
-  int? phone;
+  dynamic? phone;
   String? type;
   String? deviceToken;
   String? session;

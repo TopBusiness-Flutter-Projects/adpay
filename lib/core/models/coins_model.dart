@@ -31,7 +31,7 @@ class Data {
 
   final User user;
   final List<dynamic> ads;
-  final int configPoint;
+  final dynamic configPoint;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     user: User.fromJson(json["user"]),
@@ -48,26 +48,26 @@ class Data {
 
 class User {
   User({
-    required this.id,
-    required this.name,
-    required this.image,
-    required this.phone,
-    required this.type,
-    required this.points,
-    required this.deviceToken,
-    required this.session,
-    required this.token,
+     this.id,
+     this.name,
+     this.image,
+     this.phone,
+     this.type,
+     this.points,
+     this.deviceToken,
+     this.session,
+     this.token,
   });
 
-  final int id;
-  final String name;
-  final String image;
-  final int phone;
-  final String type;
-  final int points;
-  final String deviceToken;
-  final String session;
-  final String token;
+   int? id;
+   String? name;
+   String? image;
+   String? phone;
+   String? type;
+   String? points;
+   String? deviceToken;
+   String? session;
+   String? token;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
     id: json["id"],

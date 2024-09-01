@@ -17,36 +17,36 @@ class ShopModel {
 }
 
 class Data {
-  int id;
-  String name;
-  String image;
-  int phone;
-  String type;
-  String deviceToken;
+  int? id;
+  String? name;
+  String? image;
+  String? phone;
+  String? type;
+  String? deviceToken;
   dynamic session;
-  String logo;
-  String banner;
-  String titleAr;
-  String titleEn;
-  ShopCat shopCat;
-  List<String> shopSubCat;
-  String token;
+  String? logo;
+  String? banner;
+  String? titleAr;
+  String? titleEn;
+  ShopCat? shopCat;
+  List<String>? shopSubCat;
+  String? token;
 
   Data({
-    required this.id,
-    required this.name,
-    required this.image,
-    required this.phone,
-    required this.type,
-    required this.deviceToken,
-    required this.session,
-    required this.logo,
-    required this.banner,
-    required this.titleAr,
-    required this.titleEn,
-    required this.shopCat,
-    required this.shopSubCat,
-    required this.token,
+     this.id,
+     this.name,
+     this.image,
+     this.phone,
+     this.type,
+     this.deviceToken,
+     this.session,
+     this.logo,
+     this.banner,
+     this.titleAr,
+     this.titleEn,
+     this.shopCat,
+     this.shopSubCat,
+     this.token,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
@@ -78,8 +78,8 @@ class Data {
         'banner': banner,
         'title_ar': titleAr,
         'title_en': titleEn,
-        'shop_cat': shopCat.toJson(),
-        'shop_sub_cat': List<dynamic>.from(shopSubCat.map((x) => x)),
+        'shop_cat': shopCat!.toJson(),
+        'shop_sub_cat': List<dynamic>.from(shopSubCat!.map((x) => x)),
         'token': token,
       };
 }

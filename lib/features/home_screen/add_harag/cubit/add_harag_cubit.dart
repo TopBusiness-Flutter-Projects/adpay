@@ -48,6 +48,7 @@ class AddHaragCubit extends Cubit<AddHaragState> {
 //mm
 
   Future<void> addharag(BuildContext context) async {
+    // ignore: unused_local_variable
     var pref = await SharedPreferences.getInstance();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     emit(LoadingHarag());
@@ -58,7 +59,7 @@ class AddHaragCubit extends Cubit<AddHaragState> {
       user_id: currentMainCategories?.id.toString() ?? "",
       price: priceController.text,
       cat_id: currentSubCategory?.id.toString() ?? "",
-      sub_cat_id: subcategoriesModel?.data[0].id.toString() ?? "",
+      sub_cat_id: subcategoriesModel?.data![0].id.toString() ?? "",
     );
     response.fold((l) {
       emit(ErrorHarag());

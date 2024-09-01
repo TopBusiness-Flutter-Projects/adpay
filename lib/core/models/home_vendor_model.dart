@@ -25,14 +25,14 @@ class HomeVendorScreenModel {
 
 class Data {
   List<Slider>? sliders;
-  int? walletTotal;
-  int? ordersCount;
-  int? productsCount;
-  int? adsCount;
-  int? ordersIncomplete;
-  int? ordersComplete;
-  int? adsIncomplete;
-  int? adsComplete;
+  dynamic? walletTotal;
+  dynamic? ordersCount;
+  dynamic? productsCount;
+  dynamic? adsCount;
+  dynamic? ordersIncomplete;
+  dynamic? ordersComplete;
+  dynamic? adsIncomplete;
+  dynamic? adsComplete;
   Vendor? vendor;
 
   Data({
@@ -82,7 +82,7 @@ class Data {
 
 class Slider {
   int? id;
-  int? status;
+  dynamic? status;
   String? image;
   dynamic url;
 
@@ -112,7 +112,7 @@ class Vendor {
   int? id;
   String? name;
   String? image;
-  int? phone;
+  dynamic? phone;
   String? type;
   String? deviceToken;
   dynamic session;

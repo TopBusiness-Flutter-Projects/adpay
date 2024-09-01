@@ -34,13 +34,13 @@ class AdsVendorModelData {
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? status;
-  int? countViews;
+  dynamic? status;
+  dynamic? countViews;
   Package? package;
-  int? views;
-  int? complete;
+  dynamic? views;
+  dynamic? complete;
   String? video;
-  int? paymentStatus;
+  dynamic? paymentStatus;
   User? user;
 
   AdsVendorModelData({
@@ -99,8 +99,8 @@ class AdsVendorModelData {
 
 class Package {
   int? id;
-  int? count;
-  int? price;
+  dynamic? count;
+  dynamic? price;
 
   Package({
     this.id,
@@ -125,7 +125,7 @@ class User {
   int? id;
   String? name;
   String? image;
-  int? phone;
+  dynamic? phone;
   String? type;
   String? deviceToken;
   String? session;
@@ -199,7 +199,7 @@ class ShopCat {
   int? id;
   String? titleAr;
   String? titleEn;
-  int? status;
+  dynamic? status;
   DateTime? createdAt;
   DateTime? updatedAt;
 

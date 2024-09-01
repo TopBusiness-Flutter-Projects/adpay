@@ -1,7 +1,7 @@
 class GetRegionsModel {
   final List<Region>? data;
   final String? msg;
-  final int? status;
+  final dynamic? status;
 
   GetRegionsModel({this.data, this.msg, this.status});
 
@@ -11,7 +11,7 @@ class GetRegionsModel {
           ? (json['data'] as List).map((i) => Region.fromJson(i)).toList()
           : null,
       msg: json['msg'] as String?,
-      status: json['status'] as int?,
+      status: json['status'] as dynamic?,
     );
   }
 
@@ -25,12 +25,12 @@ class GetRegionsModel {
 }
 
 class Region {
-  final int? regionId;
-  final int? capitalCityId;
+  final dynamic? regionId;
+  final dynamic? capitalCityId;
   final String? code;
   final String? nameAr;
   final String? nameEn;
-  final int? population;
+  final dynamic? population;
 
   Region({
     this.regionId,
@@ -43,12 +43,12 @@ class Region {
 
   factory Region.fromJson(Map<String, dynamic> json) {
     return Region(
-      regionId: json['region_id'] as int?,
-      capitalCityId: json['capital_city_id'] as int?,
+      regionId: json['region_id'] as dynamic?,
+      capitalCityId: json['capital_city_id'] as dynamic?,
       code: json['code'] as String?,
       nameAr: json['name_ar'] as String?,
       nameEn: json['name_en'] as String?,
-      population: json['population'] as int?,
+      population: json['population'] as dynamic?,
     );
   }
 

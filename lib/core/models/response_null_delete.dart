@@ -1,7 +1,7 @@
 class ResponseNullModel {
   dynamic data;
   String? msg;
-  int? status;
+  dynamic? status;
 
   ResponseNullModel({
     this.data,

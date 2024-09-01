@@ -9,8 +9,8 @@ class CommentsModel {
   factory CommentsModel.fromJson(Map<String, dynamic> json) {
     return CommentsModel(
       data: json['data'] != null ? Data.fromJson(json['data']) : null,
-      msg: json['msg'] as String?,
-      status: json['status'] as int?,
+      msg: json['msg'] ,
+      status: json['status'] ,
     );
   }
 
@@ -27,7 +27,7 @@ class CommentsModel {
 }
 
 class Data {
-  int? userId;
+  dynamic? userId;
   String? auctionId;
   String? type;
   String? comment;
@@ -50,14 +50,14 @@ class Data {
   // fromJson factory method
   factory Data.fromJson(Map<String, dynamic> json) {
     return Data(
-      userId: json['user_id'] as int?,
-      auctionId: json['auction_id'] as String?,
-      type: json['type'] as String?,
-      comment: json['comment'] as String?,
-      commentId: json['comment_id'] as String?,
-      updatedAt: json['updated_at'] as String?,
-      createdAt: json['created_at'] as String?,
-      id: json['id'] as int?,
+      userId: json['user_id'],
+      auctionId: json['auction_id'],
+      type: json['type'] ,
+      comment: json['comment'],
+      commentId: json['comment_id'] ,
+      updatedAt: json['updated_at'] ,
+      createdAt: json['created_at'] ,
+      id: json['id'] ,
     );
   }
 
