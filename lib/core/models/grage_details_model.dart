@@ -1,3 +1,5 @@
+import 'Home_models.dart';
+
 class GradeDetailsModel {
   dynamic? id;
   List<String> images;
@@ -133,37 +135,3 @@ class Comment {
   }
 }
 
-class User {
-  final int id;
-   String? name;
-   String? image;
-   String? phone;
-   String? type;
-   String? deviceToken;
-   String? session;
-   String? token;
-
-  User({
-    required this.id,
-     this.name,
-     this.image,
-     this.phone,
-     this.type,
-     this.deviceToken,
-     this.session,
-     this.token,
-  });
-
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-      id: json['id'] ?? 0,
-      name: json['name'] ?? '',
-      image: json['image'] ?? '',
-      phone: json['phone'] ?? 0,
-      type: json['type'] ?? '',
-      deviceToken: json['device_token'] ?? '',
-      session: json['session'] ?? '',
-      token: json['token'] ?? '',
-    );
-  }
-}

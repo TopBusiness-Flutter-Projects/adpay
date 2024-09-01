@@ -11,7 +11,7 @@ import 'dart:convert';
 class GetCartModel {
   List<GetCartModelData>? data;
   String? msg;
-  int? status;
+  dynamic? status;
 
   GetCartModel({
     this.data,
@@ -193,10 +193,10 @@ class Vendor {
 }
 
 class ShopCat {
-  int? id;
+  dynamic? id;
   String? titleAr;
   String? titleEn;
-  int? status;
+  dynamic? status;
   DateTime? createdAt;
   DateTime? updatedAt;
 
