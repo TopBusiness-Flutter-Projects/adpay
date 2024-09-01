@@ -30,7 +30,7 @@ class Data {
   final String? defaultStatus;
   final String? updatedAt;
   final String? createdAt;
-  final int? id;
+  final dynamic? id;
 
   Data({
     this.userId,

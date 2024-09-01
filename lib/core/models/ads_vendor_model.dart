@@ -28,7 +28,7 @@ class AdsVendorModel {
 }
 
 class AdsVendorModelData {
-  int? id;
+  dynamic? id;
   String? image;
   String? titleAr;
   String? titleEn;

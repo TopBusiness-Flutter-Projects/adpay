@@ -34,7 +34,7 @@ class Data {
   String? commentId;
   String? updatedAt;
   String? createdAt;
-  int? id;
+  dynamic? id;
 
   Data({
     this.userId,

@@ -8,6 +8,7 @@ import '../../../../core/utils/styles.dart';
 import '../../orders/cubit/orders_cubit.dart';
 import '../cubit/order_details_cubit.dart';
 import 'custom_cart_widget_details.dart';
+import 'package:flutter/material.dart';
 
 class OrderDetails extends StatefulWidget {
    OrderDetails({super.key,this.id});

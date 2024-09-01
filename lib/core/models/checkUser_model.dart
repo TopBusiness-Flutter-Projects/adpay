@@ -33,7 +33,7 @@ class CheckUserModel {
 }
 
 class Data {
-  int? id;
+  dynamic? id;
   String? name;
   String? image;
   dynamic? phone;

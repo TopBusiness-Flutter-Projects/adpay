@@ -116,11 +116,15 @@ class User {
   String? name;
   String? image;
   dynamic? phone;
+  dynamic? phone;
   String? password;
+  dynamic? verifiedAt;
+  dynamic? points;
   dynamic? verifiedAt;
   dynamic? points;
   String? type;
   String? deviceToken;
+  dynamic? status;
   dynamic? status;
   String? session;
   String? createdAt;
@@ -179,6 +183,7 @@ class User {
 class Products {
   int? id;
   dynamic? vendorId;
+  dynamic? vendorId;
   List<String>? images;
   String? titleAr;
   String? titleEn;
@@ -186,11 +191,16 @@ class Products {
   String? descriptionEn;
   dynamic? price;
   dynamic? discount;
+  dynamic? price;
+  dynamic? discount;
   String? type;
+  dynamic? shopCatId;
   dynamic? shopCatId;
   String? shopSubCat;
   dynamic? stock;
+  dynamic? stock;
   // Props? props;
+  dynamic? status;
   dynamic? status;
   String? createdAt;
   String? updatedAt;
@@ -265,13 +275,18 @@ class Auctions {
   int? id;
   dynamic images;
   dynamic? price;
+  dynamic? price;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
   dynamic? isSold;
   dynamic? userId;
+  dynamic? isSold;
+  dynamic? userId;
   dynamic video;
+  dynamic? catId;
+  dynamic? subCatId;
   dynamic? catId;
   dynamic? subCatId;
   DateTime? createdAt;
@@ -340,7 +355,9 @@ class Shops {
   String? titleAr;
   String? titleEn;
   dynamic? shopCatId;
+  dynamic? shopCatId;
   List<String>? shopSubCat;
+  dynamic? vendorId;
   dynamic? vendorId;
   String? createdAt;
   String? updatedAt;
@@ -401,7 +418,7 @@ class Shops {
 }
 
 class Ads {
-  int? id;
+  dynamic? id;
   String? image;
   String? titleAr;
   String? titleEn;
