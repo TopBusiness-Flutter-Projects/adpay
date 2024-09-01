@@ -24,7 +24,7 @@ class CategoriesModel {
 }
 
 class Category {
-  final dynamic? id;
+  final int? id;
   final String? titleAr;
   final String? titleEn;
   final String? status;
