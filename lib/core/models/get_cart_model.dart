@@ -191,7 +191,7 @@ class Vendor {
         "token": token,
       };
 }
-
+//
 class ShopCat {
   dynamic? id;
   String? titleAr;
