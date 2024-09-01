@@ -192,6 +192,7 @@ class Vendor {
       };
 }
 ////
+//
 class ShopCat {
   dynamic? id;
   String? titleAr;
