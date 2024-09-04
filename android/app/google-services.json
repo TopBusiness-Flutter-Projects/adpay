@@ -40,10 +40,10 @@
               "client_type": 3
             },
             {
-              "client_id": "979222201210-drc4licnlp0c94nke3lqoi06q48gjj0d.apps.googleusercontent.com",
+              "client_id": "979222201210-aj980543g50jtdobevo6ilf209ocs590.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.topbusiness.adpay"
+                "bundle_id": "com.topbusiness.adpayapp2"
               }
             }
           ]
@@ -84,10 +84,46 @@
               "client_type": 3
             },
             {
-              "client_id": "979222201210-drc4licnlp0c94nke3lqoi06q48gjj0d.apps.googleusercontent.com",
+              "client_id": "979222201210-aj980543g50jtdobevo6ilf209ocs590.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.topbusiness.adpay"
+                "bundle_id": "com.topbusiness.adpayapp2"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979222201210:android:a8be35dde6294de0eb4cc3",
+        "android_client_info": {
+          "package_name": "com.topbusiness.adpayapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979222201210-sqhtmvtahg8789eu1rcaf9n9bp1d82pe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5Z89wejGw6nF4oDIoIG1beoSKboj1jsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979222201210-sqhtmvtahg8789eu1rcaf9n9bp1d82pe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "979222201210-aj980543g50jtdobevo6ilf209ocs590.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.topbusiness.adpayapp2"
               }
             }
           ]

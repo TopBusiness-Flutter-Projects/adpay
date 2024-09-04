@@ -1,4 +1,4 @@
-package com.topbusiness.adpayapp
+package com.topbusiness.adpayapplication
 
 import io.flutter.embedding.android.FlutterActivity
 
