@@ -12,8 +12,8 @@ class AdsenceModel {
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => Ads.fromJson(e as Map<String, dynamic>))
           .toList(),
-      msg: json['msg'] as String?,
-      status: json['status'] as int?,
+      msg: json['msg'] ,
+      status: json['status'] ,
     );
   }
 }

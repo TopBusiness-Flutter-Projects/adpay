@@ -19,10 +19,10 @@ class GetVendorModel {
 }
 
 class Data {
-  final int? id;
+  final dynamic? id;
   final String? name;
   final String? image;
-  final int? phone;
+  final dynamic? phone;
   final String? type;
   final String? deviceToken;
   final String? session;
@@ -64,8 +64,11 @@ class Data {
       banner: json['banner'],
       storeName: json['store_name'],
       address: json['address'],
-      shopCat: json['shop_cat'] != null ? ShopCat.fromJson(json['shop_cat']) : null,
-      shopSubCat: json['shop_sub_cat'] != null ? List<String>.from(json['shop_sub_cat']) : null,
+      shopCat:
+          json['shop_cat'] != null ? ShopCat.fromJson(json['shop_cat']) : null,
+      shopSubCat: json['shop_sub_cat'] != null
+          ? List<String>.from(json['shop_sub_cat'])
+          : null,
       token: json['token'],
     );
   }
@@ -75,7 +78,7 @@ class ShopCat {
   final int? id;
   final String? titleAr;
   final String? titleEn;
-  final int? status;
+  final dynamic? status;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -94,8 +97,12 @@ class ShopCat {
       titleAr: json['title_ar'],
       titleEn: json['title_en'],
       status: json['status'],
-      createdAt: json['created_at'] != null ? DateTime.parse(json['created_at']) : null,
-      updatedAt: json['updated_at'] != null ? DateTime.parse(json['updated_at']) : null,
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'])
+          : null,
+      updatedAt: json['updated_at'] != null
+          ? DateTime.parse(json['updated_at'])
+          : null,
     );
   }
 }

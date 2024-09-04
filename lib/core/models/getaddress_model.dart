@@ -26,12 +26,12 @@ class GetAddressModel {
 }
 
 class AddressData {
-  final int? id;
-  final int? userId;
+  final dynamic? id;
+  final dynamic? userId;
   final String? region;
   final String? city;
   final String? details;
-  final int? defaultFlag;
+  final dynamic? defaultFlag;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 

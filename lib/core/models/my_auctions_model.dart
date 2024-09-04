@@ -100,7 +100,7 @@ class SubCategory {
   final int id;
   final String titleAr;
   final String titleEn;
-  final int catId;
+  final dynamic catId;
   final String createdAt;
   final String updatedAt;
 

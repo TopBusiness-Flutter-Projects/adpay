@@ -1,4 +1,3 @@
-
 class AddToCartModel {
   Data? data;
   String? msg;
@@ -27,11 +26,11 @@ class AddToCartModel {
 
 class Data {
   int? id;
-  int? productId;
-  int? userId;
-  int? vendorId;
-  int? qty;
-  int? total;
+  dynamic? productId;
+  dynamic? userId;
+  dynamic? vendorId;
+  dynamic? qty;
+  dynamic? total;
   String? createdAt;
   String? updatedAt;
 
@@ -48,12 +47,12 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) {
     return Data(
-      id: json['id'] is int ? json['id'] : int.tryParse(json['id'] ?? ''),
-      productId: json['product_id'] is int ? json['product_id'] : int.tryParse(json['product_id'] ?? ''),
-      userId: json['user_id'] is int ? json['user_id'] : int.tryParse(json['user_id'] ?? ''),
-      vendorId: json['vendor_id'] is int ? json['vendor_id'] : int.tryParse(json['vendor_id'] ?? ''),
-      qty: json['qty'] is int ? json['qty'] : int.tryParse(json['qty'] ?? ''),
-      total: json['total'] is int ? json['total'] : int.tryParse(json['total'] ?? ''),
+      id: json['id'],
+      productId: json['product_id'] ,
+      userId: json['user_id'] ,
+      vendorId: json['vendor_id'],
+      qty: json['qty'] ,
+      total: json['total'],
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
     );
@@ -72,4 +71,3 @@ class Data {
     return data;
   }
 }
-

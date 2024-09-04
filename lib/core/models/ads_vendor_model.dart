@@ -1,3 +1,5 @@
+import 'Home_models.dart';
+
 class AdsVendorModel {
   List<AdsVendorModelData>? data;
   String? msg;
@@ -28,19 +30,19 @@ class AdsVendorModel {
 }
 
 class AdsVendorModelData {
-  int? id;
+  dynamic? id;
   String? image;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? status;
-  int? countViews;
+  dynamic? status;
+  dynamic? countViews;
   Package? package;
-  int? views;
-  int? complete;
+  dynamic? views;
+  dynamic? complete;
   String? video;
-  int? paymentStatus;
+  dynamic? paymentStatus;
   User? user;
 
   AdsVendorModelData({
@@ -99,8 +101,8 @@ class AdsVendorModelData {
 
 class Package {
   int? id;
-  int? count;
-  int? price;
+  dynamic? count;
+  dynamic? price;
 
   Package({
     this.id,
@@ -121,85 +123,12 @@ class Package {
       };
 }
 
-class User {
-  int? id;
-  String? name;
-  String? image;
-  int? phone;
-  String? type;
-  String? deviceToken;
-  String? session;
-  String? logo;
-  String? banner;
-  String? titleAr;
-  String? titleEn;
-  ShopCat? shopCat;
-  List<String>? shopSubCat;
-  String? token;
-
-  User({
-    this.id,
-    this.name,
-    this.image,
-    this.phone,
-    this.type,
-    this.deviceToken,
-    this.session,
-    this.logo,
-    this.banner,
-    this.titleAr,
-    this.titleEn,
-    this.shopCat,
-    this.shopSubCat,
-    this.token,
-  });
-
-  factory User.fromJson(Map<String, dynamic> json) => User(
-        id: json["id"],
-        name: json["name"],
-        image: json["image"],
-        phone: json["phone"],
-        type: json["type"],
-        deviceToken: json["device_token"],
-        session: json["session"],
-        logo: json["logo"],
-        banner: json["banner"],
-        titleAr: json["title_ar"],
-        titleEn: json["title_en"],
-        shopCat: json["shop_cat"] == null
-            ? null
-            : ShopCat.fromJson(json["shop_cat"]),
-        shopSubCat: json["shop_sub_cat"] == null
-            ? []
-            : List<String>.from(json["shop_sub_cat"]!.map((x) => x)),
-        token: json["token"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "image": image,
-        "phone": phone,
-        "type": type,
-        "device_token": deviceToken,
-        "session": session,
-        "logo": logo,
-        "banner": banner,
-        "title_ar": titleAr,
-        "title_en": titleEn,
-        "shop_cat": shopCat?.toJson(),
-        "shop_sub_cat": shopSubCat == null
-            ? []
-            : List<dynamic>.from(shopSubCat!.map((x) => x)),
-        "token": token,
-      };
-}
 
 class ShopCat {
   int? id;
   String? titleAr;
   String? titleEn;
-  int? status;
+  dynamic? status;
   DateTime? createdAt;
   DateTime? updatedAt;
 

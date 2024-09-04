@@ -53,19 +53,19 @@ class MainVendorHomeModelData {
 }
 
 class Product {
-  int? id;
+  dynamic? id;
   List<String>? images;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? price;
+  dynamic? price;
   bool? isFav;
-  int? rate;
-  int? discount;
+  dynamic? rate;
+  dynamic? discount;
   String? type;
   String? shopSubCat;
-  int? stock;
+  dynamic? stock;
   Vendor? vendor;
 
   Product({
@@ -125,7 +125,7 @@ class Vendor {
   int? id;
   String? name;
   String? image;
-  int? phone;
+  dynamic? phone;
   String? type;
   String? deviceToken;
   dynamic session;
@@ -193,7 +193,7 @@ class ShopCat {
   int? id;
   String? titleAr;
   String? titleEn;
-  int? status;
+  dynamic? status;
   DateTime? createdAt;
   DateTime? updatedAt;
 

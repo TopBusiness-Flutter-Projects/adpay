@@ -29,10 +29,10 @@ class ShopCategoryVendorModel {
 }
 
 class ShopCategoryVendorModelData {
-  int? id;
+  dynamic? id;
   String? titleAr;
   String? titleEn;
-  int? status;
+  dynamic? status;
 
   ShopCategoryVendorModelData({
     this.id,

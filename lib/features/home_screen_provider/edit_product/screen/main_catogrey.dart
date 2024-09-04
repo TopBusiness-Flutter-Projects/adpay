@@ -97,8 +97,8 @@ class _MainCatogreyAddProductWidgetState
                       child: Text(
                         EasyLocalization.of(context)!.locale.languageCode ==
                                 'ar'
-                            ? (item.titleAr)
-                            : (item.titleEn),
+                            ? (item.titleAr!)
+                            : (item.titleEn!),
                         style: TextStyle(
                           fontSize: getSize(context) / 24,
                         ),

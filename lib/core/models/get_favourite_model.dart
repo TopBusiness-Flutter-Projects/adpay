@@ -17,7 +17,7 @@ class GetFavouriteModel {
           ?.map((item) => Data.fromJson(item as Map<String, dynamic>))
           .toList(),
       msg: json['msg'] as String?,
-      status: json['status'] as int?,
+      status: json['status'] as dynamic?,
     );
   }
 
@@ -32,9 +32,9 @@ class GetFavouriteModel {
 
 class Data {
   final int? id;
-  final int? userId;
-  final int? productId;
-  final int? auctionId;
+  final dynamic? userId;
+  final dynamic? productId;
+  final dynamic? auctionId;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -49,15 +49,15 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) {
     return Data(
-      id: json['id'] as int?,
-      userId: json['user_id'] as int?,
-      productId: json['product_id'] as int?,
-      auctionId: json['auction_id'] as int?,
+      id: json['id'] as dynamic?,
+      userId: json['user_id'] as dynamic?,
+      productId: json['product_id'] as dynamic?,
+      auctionId: json['auction_id'] as dynamic?,
       createdAt: json['created_at'] != null
-          ? DateTime.parse(json['created_at'] as String)
+          ? DateTime.parse(json['created_at'] ,)
           : null,
       updatedAt: json['updated_at'] != null
-          ? DateTime.parse(json['updated_at'] as String)
+          ? DateTime.parse(json['updated_at'] ,)
           : null,
     );
   }
@@ -73,4 +73,3 @@ class Data {
     };
   }
 }
-

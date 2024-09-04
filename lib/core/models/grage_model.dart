@@ -11,14 +11,13 @@ class GrageModel {
 
   factory GrageModel.fromJson(Map<String, dynamic> json) {
     // Assuming 'data' is a map, not a list
-    final List<dynamic> dataList = json['data']?? [];
+    final List<dynamic> dataList = json['data'] ?? [];
     return GrageModel(
       data: dataList.map((x) => Data.fromJson(x)).toList(),
       msg: json['msg'] ?? '',
       status: json['status'] ?? 0,
     );
   }
-
 }
 
 class Data {
@@ -29,11 +28,11 @@ class Data {
   final String titleEn;
   final String descriptionAr;
   final String descriptionEn;
-  final int isSold;
-  final int userId;
+  final dynamic isSold;
+  final dynamic userId;
   final dynamic video;
-  final int catId;
-  final int subCatId;
+  final dynamic catId;
+  final dynamic subCatId;
   final String createdAt;
   final String updatedAt;
 

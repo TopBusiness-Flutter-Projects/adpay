@@ -34,24 +34,24 @@ class GetShopCategoriesModel {
 }
 
 class Category {
-  final int id;
-  final String titleAr;
-  final String titleEn;
-  final int status;
+  final int? id;
+  final String? titleAr;
+  final String? titleEn;
+  final String? status;
 
   Category({
-    required this.id,
-    required this.titleAr,
-    required this.titleEn,
-    required this.status,
+    this.id,
+    this.titleAr,
+    this.titleEn,
+    this.status,
   });
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
-      id: json['id'] as int,
-      titleAr: json['title_ar'] as String,
-      titleEn: json['title_en'] as String,
-      status: json['status'] as int,
+      id: json['id'],
+      titleAr: json['title_ar'] ,
+      titleEn: json['title_en'] ,
+      status: json['status'] ,
     );
   }
 

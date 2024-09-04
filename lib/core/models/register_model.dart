@@ -3,7 +3,7 @@ import 'dart:convert';
 class RegisterModel {
   final Data? data;
   final String? msg;
-  final int? status;
+  final dynamic? status;
 
   RegisterModel({
     this.data,
@@ -15,7 +15,7 @@ class RegisterModel {
     return RegisterModel(
       data: json['data'] != null ? Data.fromJson(json['data']) : null,
       msg: json['msg'] as String?,
-      status: json['status'] as int?,
+      status: json['status'] as dynamic?,
     );
   }
 
@@ -29,12 +29,12 @@ class RegisterModel {
 }
 
 class Data {
-  final int? id;
+  final dynamic? id;
   final String? name;
   final String? image;
   final String? phone;
   final String? type;
-  final int? points;
+  final dynamic? points;
   final String? deviceToken;
   final String? session;
   final String? token;
@@ -53,15 +53,15 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) {
     return Data(
-      id: json['id'] as int?,
-      name: json['name'] as String?,
-      image: json['image'] as String?,
-      phone: json['phone'] as String?,
-      type: json['type'] as String?,
-      points: json['points'] as int?,
-      deviceToken: json['device_token'] as String?,
-      session: json['session'] as String?,
-      token: json['token'] as String?,
+      id: json['id'] ,
+      name: json['name'] ,
+      image: json['image'],
+      phone: json['phone'],
+      type: json['type'] ,
+      points: json['points'] ,
+      deviceToken: json['device_token'],
+      session: json['session'],
+      token: json['token'],
     );
   }
 
@@ -79,5 +79,3 @@ class Data {
     };
   }
 }
-
-

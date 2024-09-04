@@ -8,6 +8,7 @@ import '../../../../core/utils/styles.dart';
 import '../../orders/cubit/orders_cubit.dart';
 import '../cubit/order_details_cubit.dart';
 import 'custom_cart_widget_details.dart';
+import 'package:flutter/material.dart';
 
 class OrderDetails extends StatefulWidget {
    OrderDetails({super.key,this.id});
@@ -134,6 +135,7 @@ class _OrderDetailsState extends State<OrderDetails> {
     borderRadius: BorderRadius.only(topRight:Radius.circular(20) ,topLeft:Radius.circular(20) ),
 
             ),
+          //
           child:Column(
             children: [
               Padding(
@@ -143,7 +145,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("الاجمالي",style: Styles.style16.copyWith(color: Colors.black),),
-                    Text(cubit.getMyOrderModel?.data?.details?[0]?.total?.toString()??"",style: Styles.style16.copyWith(color: Colors.black),)
+               //   Text(cubit.getMyOrderModel?.data?.details?.first?.total?.toString()??"",style: Styles.style16.copyWith(color: Colors.black),)
                   ],),
               ),
               Padding(

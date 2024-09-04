@@ -1,5 +1,7 @@
+import 'Home_models.dart';
+
 class GradeDetailsModel {
-  int? id;
+  dynamic? id;
   List<String> images;
   bool? isFav;
   final String titleAr;
@@ -30,7 +32,7 @@ class GradeDetailsModel {
   });
 
   factory GradeDetailsModel.fromJson(Map<String, dynamic> json) {
-    final data = json['data'] ?? {};  // Add a default empty map
+    final data = json['data'] ?? {}; // Add a default empty map
 
     return GradeDetailsModel(
       id: data['id'] ?? 0,
@@ -47,7 +49,8 @@ class GradeDetailsModel {
       subCategory: SubCategory.fromJson(data['sub_category'] ?? {}),
       createdAt: data['created_at'] ?? '',
       comments: data['comments'] is List
-          ? List<Comment>.from((data['comments'] as List).map((x) => Comment.fromJson(x)))
+          ? List<Comment>.from(
+              (data['comments'] as List).map((x) => Comment.fromJson(x)))
           : [], // Default to an empty list if not a list
       user: User.fromJson(data['user'] ?? {}),
     );
@@ -81,7 +84,7 @@ class SubCategory {
   final int id;
   final String titleAr;
   final String titleEn;
-  final int catId;
+  final dynamic catId;
   final String createdAt;
 
   SubCategory({
@@ -124,44 +127,11 @@ class Comment {
       comment: json['comment'] ?? '',
       user: User.fromJson(json['user_id'] ?? {}),
       replies: json['replies'] is List
-          ? List<Comment>.from((json['replies'] as List).map((x) => Comment.fromJson(x)))
+          ? List<Comment>.from(
+              (json['replies'] as List).map((x) => Comment.fromJson(x)))
           : [], // Default to an empty list if not a list
       createdAt: json['created_at'] ?? '',
     );
   }
 }
 
-class User {
-  final int id;
-  final String name;
-  final String image;
-  final int phone;
-  final String type;
-  final String deviceToken;
-  final String session;
-  final String token;
-
-  User({
-    required this.id,
-    required this.name,
-    required this.image,
-    required this.phone,
-    required this.type,
-    required this.deviceToken,
-    required this.session,
-    required this.token,
-  });
-
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-      id: json['id'] ?? 0,
-      name: json['name'] ?? '',
-      image: json['image'] ?? '',
-      phone: json['phone'] ?? 0,
-      type: json['type'] ?? '',
-      deviceToken: json['device_token'] ?? '',
-      session: json['session'] ?? '',
-      token: json['token'] ?? '',
-    );
-  }
-}

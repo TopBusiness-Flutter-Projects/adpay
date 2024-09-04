@@ -1,7 +1,7 @@
 class ProductDetailsModel {
   Product? data;
   String? msg;
-  int? status;
+  dynamic? status;
 
   ProductDetailsModel({
     this.data,
@@ -24,19 +24,19 @@ class ProductDetailsModel {
 }
 
 class Product {
-  int? id;
+  dynamic? id;
   List<String>? images;
   String? titleAr;
   String? titleEn;
   String? descriptionAr;
   String? descriptionEn;
-  int? price;
-  bool? isFav;
-  int? rate;
-  int? discount;
+  dynamic? price;
+  dynamic? isFav;
+  dynamic? rate;
+  dynamic? discount;
   String? type;
   String? shopSubCat;
-  int? stock;
+  dynamic? stock;
   // Props? props;
   Vendor? vendor;
 
@@ -102,7 +102,7 @@ class Vendor {
   int? id;
   String? name;
   String? image;
-  int? phone;
+  dynamic? phone;
   String? type;
   String? deviceToken;
   dynamic session;
@@ -173,10 +173,10 @@ class Vendor {
 }
 
 class ShopCat {
-  int? id;
+  dynamic? id;
   String? titleAr;
   String? titleEn;
-  int? status;
+  dynamic? status;
   DateTime? createdAt;
   DateTime? updatedAt;
 

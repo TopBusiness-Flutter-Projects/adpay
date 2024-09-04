@@ -8,8 +8,8 @@ class AddAddressModel {
   factory AddAddressModel.fromJson(Map<String, dynamic> json) {
     return AddAddressModel(
       data: json['data'] != null ? Data.fromJson(json['data']) : null,
-      msg: json['msg'] as String?,
-      status: json['status'] as int?,
+      msg: json['msg'] ,
+      status: json['status'] ,
     );
   }
 
@@ -23,14 +23,14 @@ class AddAddressModel {
 }
 
 class Data {
-  final int? userId;
+  final dynamic? userId;
   final String? region;
   final String? city;
   final String? details;
   final String? defaultStatus;
   final String? updatedAt;
   final String? createdAt;
-  final int? id;
+  final dynamic? id;
 
   Data({
     this.userId,
@@ -45,14 +45,14 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) {
     return Data(
-      userId: json['user_id'] as int?,
-      region: json['region'] as String?,
-      city: json['city'] as String?,
-      details: json['details'] as String?,
-      defaultStatus: json['default'] as String?,
-      updatedAt: json['updated_at'] as String?,
-      createdAt: json['created_at'] as String?,
-      id: json['id'] as int?,
+      userId: json['user_id'],
+      region: json['region'],
+      city: json['city'],
+      details: json['details'] ,
+      defaultStatus: json['default'] ,
+      updatedAt: json['updated_at'] ,
+      createdAt: json['created_at'] ,
+      id: json['id'] ,
     );
   }
 

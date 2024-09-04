@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-GetOrderDetails getOrderDetailsFromJson(String str) => GetOrderDetails.fromJson(json.decode(str));
+GetOrderDetails getOrderDetailsFromJson(String str) =>
+    GetOrderDetails.fromJson(json.decode(str));
 
-String getOrderDetailsToJson(GetOrderDetails data) => json.encode(data.toJson());
+String getOrderDetailsToJson(GetOrderDetails data) =>
+    json.encode(data.toJson());
 
 class GetOrderDetails {
   GetOrderDetails({
@@ -19,17 +21,18 @@ class GetOrderDetails {
   String msg;
   int status;
 
-  factory GetOrderDetails.fromJson(Map<String, dynamic> json) => GetOrderDetails(
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
-    msg: json["msg"],
-    status: json["status"],
-  );
+  factory GetOrderDetails.fromJson(Map<String, dynamic> json) =>
+      GetOrderDetails(
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        msg: json["msg"],
+        status: json["status"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    "msg": msg,
-    "status": status,
-  };
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "msg": msg,
+        "status": status,
+      };
 }
 
 class Datum {
@@ -50,38 +53,39 @@ class Datum {
   String type;
   String reference;
   DateTime date;
-  int total;
+  dynamic total;
   int userId;
-  int vendorId;
+  dynamic vendorId;
   DateTime createdAt;
   DateTime updatedAt;
   List<Detail> details;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    id: json["id"],
-    type: json["type"],
-    reference: json["reference"],
-    date: DateTime.parse(json["date"]),
-    total: json["total"],
-    userId: json["user_id"],
-    vendorId: json["vendor_id"],
-    createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
-    details: List<Detail>.from(json["details"].map((x) => Detail.fromJson(x))),
-  );
+        id: json["id"],
+        type: json["type"],
+        reference: json["reference"],
+        date: DateTime.parse(json["date"]),
+        total: json["total"],
+        userId: json["user_id"],
+        vendorId: json["vendor_id"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        details:
+            List<Detail>.from(json["details"].map((x) => Detail.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "type": type,
-    "reference": reference,
-    "date": date.toIso8601String(),
-    "total": total,
-    "user_id": userId,
-    "vendor_id": vendorId,
-    "created_at": createdAt.toIso8601String(),
-    "updated_at": updatedAt.toIso8601String(),
-    "details": List<dynamic>.from(details.map((x) => x.toJson())),
-  };
+        "id": id,
+        "type": type,
+        "reference": reference,
+        "date": date.toIso8601String(),
+        "total": total,
+        "user_id": userId,
+        "vendor_id": vendorId,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+        "details": List<dynamic>.from(details.map((x) => x.toJson())),
+      };
 }
 
 class Detail {
@@ -104,14 +108,14 @@ class Detail {
   });
 
   int id;
-  int productId;
+  dynamic productId;
   int orderId;
-  int qty;
-  int amount;
-  int vat;
-  int discount;
-  int total;
-  int shippingPrice;
+  dynamic qty;
+  dynamic amount;
+  dynamic vat;
+  dynamic discount;
+  dynamic total;
+  dynamic shippingPrice;
   String shippingType;
   String region;
   String area;
@@ -120,38 +124,38 @@ class Detail {
   dynamic updatedAt;
 
   factory Detail.fromJson(Map<String, dynamic> json) => Detail(
-    id: json["id"],
-    productId: json["product_id"],
-    orderId: json["order_id"],
-    qty: json["qty"],
-    amount: json["amount"],
-    vat: json["vat"],
-    discount: json["discount"],
-    total: json["total"],
-    shippingPrice: json["shipping_price"],
-    shippingType: json["shipping_type"],
-    region: json["region"],
-    area: json["area"],
-    addressDetails: json["address_details"],
-    createdAt: json["created_at"],
-    updatedAt: json["updated_at"],
-  );
+        id: json["id"],
+        productId: json["product_id"],
+        orderId: json["order_id"],
+        qty: json["qty"],
+        amount: json["amount"],
+        vat: json["vat"],
+        discount: json["discount"],
+        total: json["total"],
+        shippingPrice: json["shipping_price"],
+        shippingType: json["shipping_type"],
+        region: json["region"],
+        area: json["area"],
+        addressDetails: json["address_details"],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "product_id": productId,
-    "order_id": orderId,
-    "qty": qty,
-    "amount": amount,
-    "vat": vat,
-    "discount": discount,
-    "total": total,
-    "shipping_price": shippingPrice,
-    "shipping_type": shippingType,
-    "region": region,
-    "area": area,
-    "address_details": addressDetails,
-    "created_at": createdAt,
-    "updated_at": updatedAt,
-  };
+        "id": id,
+        "product_id": productId,
+        "order_id": orderId,
+        "qty": qty,
+        "amount": amount,
+        "vat": vat,
+        "discount": discount,
+        "total": total,
+        "shipping_price": shippingPrice,
+        "shipping_type": shippingType,
+        "region": region,
+        "area": area,
+        "address_details": addressDetails,
+        "created_at": createdAt,
+        "updated_at": updatedAt,
+      };
 }

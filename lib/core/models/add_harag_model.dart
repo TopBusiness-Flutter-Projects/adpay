@@ -7,7 +7,7 @@ class AddHaragModel {
 
   final Data? data;
   final String? msg;
-  final int? status;
+  final dynamic? status;
 
   factory AddHaragModel.fromJson(Map<String, dynamic> json) => AddHaragModel(
         data: json["data"] != null ? Data.fromJson(json["data"]) : Data.empty(),

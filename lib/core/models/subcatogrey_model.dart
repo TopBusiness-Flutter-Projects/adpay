@@ -1,12 +1,12 @@
 class SubCatogreyModel {
-  final List<SubCategory> data;
-  final String msg;
-  final int status;
+   List<SubCategory>? data;
+   String? msg;
+   dynamic status;
 
   SubCatogreyModel({
-    required this.data,
-    required this.msg,
-    required this.status,
+     this.data,
+     this.msg,
+     this.status,
   });
 
   factory SubCatogreyModel.fromJson(Map<String, dynamic> json) {
@@ -23,7 +23,7 @@ class SubCatogreyModel {
 }
 
 class SubCategory {
-  int? id;
+  dynamic? id;
   String? titleAr;
   String? titleEn;
 

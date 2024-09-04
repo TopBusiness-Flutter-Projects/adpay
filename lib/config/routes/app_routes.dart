@@ -43,6 +43,7 @@ import '../../features/home_screen_provider/add_new_ads/screen/add_new_ad.dart';
 import '../../features/home_screen_provider/edit_product/screen/add_new_products.dart';
 import '../../features/home_screen_provider/edit_profile/screens/edit_profile.dart';
 import '../../features/home_screen_provider/main_screen/screen/ads_vendor_screen.dart';
+import '../../features/home_screen_provider/main_screen/screen/edit_ads.dart';
 import '../../features/home_screen_provider/main_screen/screen/main_screen_driver.dart';
 import '../../features/home_screen_provider/main_screen/screen/product_details_vendor.dart';
 import '../../features/home_screen_provider/main_screen/screen/total_products.dart';
@@ -64,7 +65,8 @@ class Routes {
   static const String CategoriesRoute = '/categories'; // Change this line
   static const String ProductssRoute = '/products';
   static const String ProductsDetails = '/productsDetails'; // Change this line
-  static const String productDetailsVendorScreen = '/productDetailsVendorScreen'; // Change this line
+  static const String productDetailsVendorScreen =
+      '/productDetailsVendorScreen'; // Change this line
 
   static const String float = '/float'; // Change this line
 
@@ -131,8 +133,10 @@ class Routes {
   static const String editProfileVendor = '/editprofilevendor';
 
   static const String addNewProduct = '/editprofilevendor';
-  static const String editAdsencce = '/editAdsencce';
+
   static const String videoPlayer = '/videoPlayer';
+
+  static const String editAdsencce = '/editAdsencce';
 
 //   static const String otpRoute = '/otp';
 //   static const String notificationDetailsRoute = '/notificationDetails';
@@ -199,15 +203,6 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: OrderScreenVendor(), // Replace with your category screen widget
         );
-        //
-      case Routes.videoPlayer:
-        String? video = settings.arguments as String;
-        return PageTransition(
-          type: PageTransitionType.fade,
-          alignment: Alignment.center,
-          duration: const Duration(milliseconds: 800),
-          child: VideoPlayerScreen(videoUrl:video,), // Replace with your category screen widget
-        );
       case Routes.usersignupscreen: // Change this line
         return PageTransition(
           type: PageTransitionType.fade,
@@ -215,12 +210,30 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
           child: UserSignUpScreen(), // Replace with your category screen widget
         );
+      case Routes.editAdsencce:
+        String id = settings.arguments as String;
+// Change this line
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: EditAdsence(id:id), // Replace with your category screen widget
+        );
+
       case Routes.myharag: // Change this line
         return PageTransition(
           type: PageTransitionType.fade,
           alignment: Alignment.center,
           duration: const Duration(milliseconds: 800),
           child: MyHarag(), // Replace with your category screen widget
+        );
+      case Routes.videoPlayer:
+        String? video = settings.arguments as String;
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+          child: VideoPlayerScreen(videoUrl:video,), // Replace with your category screen widget
         );
       case Routes.editmyharagdetails: // Change this line
         return PageTransition(

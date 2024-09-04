@@ -26,7 +26,7 @@ class MyWalletVendorModel {
 }
 
 class Data {
-  int? balanceWallet;
+  dynamic? balanceWallet;
   List<History>? history;
   Vendor? vendor;
 
@@ -57,9 +57,9 @@ class Data {
 class History {
   int? id;
   String? transactionId;
-  int? amount;
+  dynamic? amount;
   String? type;
-  int? status;
+  dynamic? status;
   String? createdAt;
 
   History({
